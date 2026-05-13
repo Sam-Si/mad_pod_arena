@@ -124,8 +124,8 @@ Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1), next_cp_id(0), boost
 double Pod::Mass() const { return (shield_cd > 0) ? 10.0 : 1.0; }
 
 void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
-    if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
+    else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     
 
     if (angle == -1) angle = 0;
@@ -136,8 +136,8 @@ void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
 }
 
 void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
-    if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
+    else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     
 
     double target_angle = GameEngine::RadToDeg(std::atan2(ty - pos.y, tx - pos.x));
@@ -191,29 +191,45 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
 }
 
 void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
-    double nx = p1.pos.x - p2.pos.x;
-    double ny = p1.pos.y - p2.pos.y;
-    double dist = std::sqrt(nx * nx + ny * ny);
-    nx /= dist; ny /= dist;
-
-    double vx = p1.vel.x - p2.vel.x;
-    double vy = p1.vel.y - p2.vel.y;
-    double impact = vx * nx + vy * ny;
-
-    if (impact >= 0.0) return;
-
+    // Exact replica of the Magus bounce method
+    // https://files.magusgeek.com/csb/csb_en.html
+    
     double m1 = p1.Mass();
     double m2 = p2.Mass();
-    double mass_coeff = (m1 * m2) / (m1 + m2);
-
-    double impulse = mass_coeff * impact * 2.0;
-    if (impulse > -120.0) impulse = -120.0;
-
-    double fx = nx * impulse;
-    double fy = ny * impulse;
-
-    p1.vel.x -= fx / m1; p1.vel.y -= fy / m1;
-    p2.vel.x += fx / m2; p2.vel.y += fy / m2;
+    double mcoeff = (m1 + m2) / (m1 * m2);
+    
+    double nx = p1.pos.x - p2.pos.x;
+    double ny = p1.pos.y - p2.pos.y;
+    
+    // Square of the distance between the 2 pods (always ~800²)
+    double nxnysquare = nx * nx + ny * ny;
+    
+    double dvx = p1.vel.x - p2.vel.x;
+    double dvy = p1.vel.y - p2.vel.y;
+    
+    // fx and fy are the components of the impact vector
+    double product = nx * dvx + ny * dvy;
+    double fx = (nx * product) / (nxnysquare * mcoeff);
+    double fy = (ny * product) / (nxnysquare * mcoeff);
+    
+    // Apply the impact vector ONCE (raw physics)
+    p1.vel.x -= fx / m1;
+    p1.vel.y -= fy / m1;
+    p2.vel.x += fx / m2;
+    p2.vel.y += fy / m2;
+    
+    // If the norm of the impact vector is less than 120, normalize it to 120
+    double impulse = std::sqrt(fx * fx + fy * fy);
+    if (impulse < 120.0) {
+        fx = fx * 120.0 / impulse;
+        fy = fy * 120.0 / impulse;
+    }
+    
+    // Apply the impact vector a SECOND time (minimum impulse enforcement)
+    p1.vel.x -= fx / m1;
+    p1.vel.y -= fy / m1;
+    p2.vel.x += fx / m2;
+    p2.vel.y += fy / m2;
 }
 
 void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
@@ -811,18 +827,18 @@ int main() {
 
     BotConfig config;
     config.name = "CoordBot";
-    config.horizon = 6;
-    config.population = 40;
-    config.dist_weight = 1.0;
-    config.align_weight = 2.0;
-    config.speed_bonus = 0.3;
-    config.lateral_penalty = 0.8;
-    config.angle_penalty = 30.0;
-    config.corner_cut_dist = 400.0;
-    config.block_weight = 5.0;
-    config.shield_penalty = 50.0;
-    config.shield_ram_dist = 850.0;
-    config.opp_penalty = 1.0;
+    config.horizon = 4;
+    config.population = 80;
+    config.dist_weight = 0.9;
+    config.align_weight = 3.6;
+    config.speed_bonus = 0.9;
+    config.lateral_penalty = 1.7;
+    config.angle_penalty = 55;
+    config.corner_cut_dist = 600;
+    config.block_weight = 0.8;
+    config.shield_penalty = 49;
+    config.shield_ram_dist = 1100;
+    config.opp_penalty = 0.9;
 
     GABot bot(config);
     bot.Initialize(laps, cp_count, cps, 0);

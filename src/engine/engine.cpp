@@ -50,8 +50,8 @@ Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1), next_cp_id(0), boost
 double Pod::Mass() const { return (shield_cd > 0) ? 10.0 : 1.0; }
 
 void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
-    if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
+    else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == 650) boost_available = false;
 
     if (angle == -1) angle = 0; 
@@ -62,8 +62,8 @@ void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
 }
 
 void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
-    if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
+    else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == 650) { 
         if (boost_available) { thrust_val = 650; boost_available = false; }
         else thrust_val = 200;
@@ -120,29 +120,40 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
 }
 
 void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
-    double nx = p1.pos.x - p2.pos.x;
-    double ny = p1.pos.y - p2.pos.y;
-    double dist = std::sqrt(nx * nx + ny * ny);
-    nx /= dist; ny /= dist;
-
-    double vx = p1.vel.x - p2.vel.x;
-    double vy = p1.vel.y - p2.vel.y;
-    double impact = vx * nx + vy * ny;
-
-    if (impact >= 0.0) return; 
-
+    // Exact replica of the Magus bounce method
     double m1 = p1.Mass();
     double m2 = p2.Mass();
-    double mass_coeff = (m1 * m2) / (m1 + m2);
+    double mcoeff = (m1 + m2) / (m1 * m2);
     
-    double impulse = mass_coeff * impact * 2.0;
-    if (impulse > -120.0) impulse = -120.0;
-
-    double fx = nx * impulse;
-    double fy = ny * impulse;
-
-    p1.vel.x -= fx / m1; p1.vel.y -= fy / m1;
-    p2.vel.x += fx / m2; p2.vel.y += fy / m2;
+    double nx = p1.pos.x - p2.pos.x;
+    double ny = p1.pos.y - p2.pos.y;
+    double nxnysquare = nx * nx + ny * ny;
+    
+    double dvx = p1.vel.x - p2.vel.x;
+    double dvy = p1.vel.y - p2.vel.y;
+    
+    double product = nx * dvx + ny * dvy;
+    double fx = (nx * product) / (nxnysquare * mcoeff);
+    double fy = (ny * product) / (nxnysquare * mcoeff);
+    
+    // Apply ONCE (raw physics)
+    p1.vel.x -= fx / m1;
+    p1.vel.y -= fy / m1;
+    p2.vel.x += fx / m2;
+    p2.vel.y += fy / m2;
+    
+    // Normalize to 120 if below threshold
+    double impulse = std::sqrt(fx * fx + fy * fy);
+    if (impulse < 120.0) {
+        fx = fx * 120.0 / impulse;
+        fy = fy * 120.0 / impulse;
+    }
+    
+    // Apply SECOND time (min impulse enforcement)
+    p1.vel.x -= fx / m1;
+    p1.vel.y -= fy / m1;
+    p2.vel.x += fx / m2;
+    p2.vel.y += fy / m2;
 }
 
 void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
