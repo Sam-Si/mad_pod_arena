@@ -1,0 +1,5 @@
+cc_binary(
+    name = "cg_bot",
+    srcs = ["cg_bot.cpp"],
+    copts = ["-std=c++17", "-O3"],
+)

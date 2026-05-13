@@ -1,0 +1,6 @@
+cc_library(
+    name = "engine",
+    srcs = ["engine.cpp", "arena.cpp"],
+    hdrs = ["engine.h", "arena.h", "bot.h"],
+    visibility = ["//visibility:public"],
+)

@@ -1,0 +1,15 @@
+cc_binary(
+    name = "tournament",
+    srcs = ["tournament.cpp"],
+    deps = ["//src/engine", "//src/bot"],
+    copts = ["-std=c++17", "-O3", "-pthread"],
+    linkopts = ["-pthread"],
+)
+
+cc_binary(
+    name = "fast_tournament",
+    srcs = ["fast_tournament.cpp"],
+    deps = ["//src/engine", "//src/bot"],
+    copts = ["-std=c++17", "-O3", "-pthread"],
+    linkopts = ["-pthread"],
+)

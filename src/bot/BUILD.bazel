@@ -1,0 +1,7 @@
+cc_library(
+    name = "ga_bot",
+    srcs = ["ga_bot.cpp"],
+    hdrs = ["ga_bot.h"],
+    deps = ["//src/engine"],
+    visibility = ["//visibility:public"],
+)
