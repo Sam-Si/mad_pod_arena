@@ -1,6 +1,6 @@
 #pragma once
-#include "engine.h"
-#include "bot.h"
+#include "src/engine/engine.h"
+#include "src/engine/bot.h"
 #include <memory>
 #include <vector>
 

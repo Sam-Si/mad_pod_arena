@@ -1,5 +1,5 @@
 #pragma once
-#include "bot.h"
+#include "src/engine/bot.h"
 
 const int MAX_HORIZON = 8;
 const int MAX_POPULATION = 100;

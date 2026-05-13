@@ -1,4 +1,4 @@
-#include "arena.h"
+#include "src/engine/arena.h"
 #include <iostream>
 
 Arena::Arena(std::shared_ptr<IBot> bot0, std::shared_ptr<IBot> bot1) 

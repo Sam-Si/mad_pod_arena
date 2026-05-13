@@ -1,5 +1,5 @@
-#include "arena.h"
-#include "ga_bot.h"
+#include "src/engine/arena.h"
+#include "src/bot/ga_bot.h"
 #include <iostream>
 #include <memory>
 

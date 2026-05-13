@@ -1,5 +1,5 @@
-#include "ga_bot.h"
-#include "engine.h"
+#include "src/bot/ga_bot.h"
+#include "src/engine/engine.h"
 #include <cmath>
 #include <algorithm>
 #include <iostream>
