@@ -4,6 +4,7 @@
 #include <chrono>
 #include <cmath>
 #include <cstdint>
+#include <iomanip>
 #include <iostream>
 #include <vector>
 
@@ -637,23 +638,41 @@ void GABot::Initialize(int laps, int cp_count, const std::vector<Vec2>& cps, int
     cps_ = cps;
     team_id_ = team_id;
 }
+static int cg_turn_count = 0;
 
 std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     Timer timer;
     timer.Start();
+    cg_turn_count++;
 
     int start_idx = team_id_ * 2;
     int opp_start_idx = (1 - team_id_) * 2;
 
-    // Phase 1: Model opponent (15ms)
+    // Phase 1: Model opponent
+    Timer opp_timer;
+    opp_timer.Start();
     Solution opp_plan = Evolution::RunGA(pods, cps_, timer, 15.0, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
+    double opp_ms = opp_timer.ElapsedMs();
     
-    // Phase 2: Plan our moves with solution persistence (70ms)
+    // Phase 2: Plan our moves with solution persistence
+    Timer our_timer;
+    our_timer.Start();
     Solution our_plan = Evolution::RunGA(pods, cps_, timer, 70.0, team_id_, &opp_plan, config_, runner_idx_, has_prev_best_ ? &prev_best_ : nullptr);
+    double our_ms = our_timer.ElapsedMs();
     
     // Save this plan for next turn's warm start
     prev_best_ = our_plan;
     has_prev_best_ = true;
+
+    double total_ms = timer.ElapsedMs();
+    
+    // Timing debug
+    cerr << "--- TIMING T" << cg_turn_count << " ---" << endl;
+    cerr << "  Opp model: " << fixed << setprecision(1) << opp_ms << "ms" << endl;
+    cerr << "  Our plan:  " << our_ms << "ms" << endl;
+    cerr << "  Total:     " << total_ms << "ms" << endl;
+    cerr << "  Roles: Runner=Pod" << runner_idx_ << " Blocker=Pod" << (1-runner_idx_) << endl;
+    cerr << "  GA Score: " << setprecision(0) << our_plan.score << endl;
 
     std::vector<PodAction> actions(2);
     for (int i = 0; i < 2; i++) {
@@ -682,6 +701,11 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         }
 
         actions[i] = {tx, ty, out_thrust};
+        
+        // Per-pod debug
+        string role = (i == runner_idx_) ? "RUNNER" : "BLOCKER";
+        cerr << "  " << role << " Pod" << i << ": target=(" << (int)tx << "," << (int)ty << ") thrust=" << out_thrust
+             << " gene1=" << setprecision(2) << a.gene1 << " gene2=" << a.gene2 << " gene3=" << a.gene3 << endl;
     }
     return actions;
 }

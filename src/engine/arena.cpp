@@ -1,27 +1,44 @@
 #include "src/engine/arena.h"
 #include <iostream>
 
+// All 18 maps captured from real CodinGame server
 static const std::vector<std::vector<Vec2>> ALL_MAPS = {
-    // Map 0: Tramway (6 CPs, complex)
-    { Vec2(14572, 7679), Vec2(10575, 5049), Vec2(13085, 2313), Vec2(4558, 2166), Vec2(7325, 4955), Vec2(3299, 7205) },
-    // Map 1: Diamond (4 CPs)
-    { Vec2(5404, 2849), Vec2(10346, 3341), Vec2(11212, 5420), Vec2(7269, 6652) },
-    // Map 2: Cross (4 CPs)
-    { Vec2(4087, 7396), Vec2(13489, 2345), Vec2(12935, 7211), Vec2(5644, 2597) },
-    // Map 3: Triangle (3 CPs)
-    { Vec2(10317, 3394), Vec2(11204, 5427), Vec2(7259, 6675) },
-    // Map 4: Reverse Diamond
-    { Vec2(7275, 6659), Vec2(5409, 2859), Vec2(10306, 3365), Vec2(11212, 5452) },
-    // Map 5: Long oval
-    { Vec2(3504, 4380), Vec2(13579, 4340), Vec2(12472, 7548), Vec2(4653, 7540) },
-    // Map 6: Zigzag
-    { Vec2(3000, 2000), Vec2(12000, 3500), Vec2(5000, 5500), Vec2(13000, 7000) },
-    // Map 7: Hairpin
-    { Vec2(7500, 1300), Vec2(12500, 4500), Vec2(7500, 7500), Vec2(2500, 4500) },
-    // Map 8: Sprint (3 CPs, long straights)
-    { Vec2(3500, 5000), Vec2(13000, 2500), Vec2(13000, 7500) },
-    // Map 9: Pentagon
-    { Vec2(7500, 1500), Vec2(13000, 4000), Vec2(11000, 7500), Vec2(4000, 7500), Vec2(2000, 4000) },
+    // Map 0: Cross variant
+    { Vec2(12929, 7191), Vec2(5614, 2557), Vec2(4114, 7440), Vec2(13515, 2340) },
+    // Map 1: Hostile territories
+    { Vec2(13584, 7626), Vec2(12449, 1355), Vec2(10519, 6003), Vec2(3593, 5174) },
+    // Map 2: Tramway (6 CPs)
+    { Vec2(14075, 7765), Vec2(13888, 1202), Vec2(10257, 4931), Vec2(6104, 2204), Vec2(3049, 5211), Vec2(6260, 7743) },
+    // Map 3: Dalton
+    { Vec2(9426, 7247), Vec2(5962, 4254), Vec2(14674, 1436), Vec2(3442, 7215) },
+    // Map 4: Triangle
+    { Vec2(5033, 5264), Vec2(11472, 6064), Vec2(9081, 1865) },
+    // Map 5: Tramway variant (6 CPs)
+    { Vec2(13095, 2313), Vec2(4579, 2152), Vec2(7377, 4920), Vec2(3303, 7243), Vec2(14551, 7688), Vec2(10577, 5043) },
+    // Map 6: Makbilit
+    { Vec2(2645, 7027), Vec2(10065, 5940), Vec2(13925, 1916), Vec2(8004, 3244) },
+    // Map 7: Arrow
+    { Vec2(14633, 1420), Vec2(3428, 7230), Vec2(9449, 7224), Vec2(5962, 4253) },
+    // Map 8: Reverse Tramway (6 CPs)
+    { Vec2(3031, 5179), Vec2(6271, 7752), Vec2(14096, 7753), Vec2(13873, 1231), Vec2(10258, 4890), Vec2(6128, 2203) },
+    // Map 9: Diamond
+    { Vec2(11202, 5412), Vec2(7244, 6630), Vec2(5403, 2840), Vec2(10293, 3376) },
+    // Map 10: Triangle variant
+    { Vec2(6000, 5375), Vec2(11322, 2825), Vec2(7508, 6916) },
+    // Map 11: Diamond variant
+    { Vec2(5406, 2811), Vec2(10302, 3339), Vec2(11231, 5436), Vec2(7267, 6667) },
+    // Map 12: Tilted square
+    { Vec2(9547, 1383), Vec2(3654, 4439), Vec2(7977, 7904), Vec2(13322, 5535) },
+    // Map 13: Tilted square (reverse)
+    { Vec2(13310, 5555), Vec2(9561, 1374), Vec2(3636, 4433), Vec2(7981, 7891) },
+    // Map 14: Tilted square variant
+    { Vec2(13283, 5513), Vec2(9560, 1394), Vec2(3652, 4444), Vec2(7997, 7872) },
+    // Map 15: Tramway variant 2 (6 CPs)
+    { Vec2(6306, 7766), Vec2(14117, 7743), Vec2(13885, 1197), Vec2(10229, 4926), Vec2(6102, 2199), Vec2(2991, 5197) },
+    // Map 16: Tilted square variant 2
+    { Vec2(13311, 5519), Vec2(9585, 1426), Vec2(3615, 4419), Vec2(7974, 7919) },
+    // Map 17: Hostile territories variant
+    { Vec2(12435, 1353), Vec2(10563, 5965), Vec2(3558, 5170), Vec2(13579, 7616) },
 };
 
 Arena::Arena(std::shared_ptr<IBot> bot0, std::shared_ptr<IBot> bot1) 
@@ -89,8 +106,7 @@ ArenaResult Arena::PlayGame(bool verbose, int map_idx) {
         for (int i = 0; i < 4; ++i) {
             pods_[i].timeout++;
             
-            // Reached CP?
-            if (pods_[i].pos.DistanceSq(cps_[pods_[i].next_cp_id]) <= 360000) { // 600 radius
+            if (pods_[i].pos.DistanceSq(cps_[pods_[i].next_cp_id]) <= 360000) {
                 pods_[i].next_cp_id++;
                 pods_[i].timeout = 0;
                 

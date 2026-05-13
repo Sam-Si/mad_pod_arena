@@ -52,6 +52,22 @@ void PrintConfig(const BotConfig& c) {
               << " | opp=" << c.opp_penalty << std::endl;
 }
 
+void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
+    if (!label.empty()) std::cout << "// === " << label << " ===" << std::endl;
+    std::cout << "config.horizon = " << w.horizon << ";" << std::endl;
+    std::cout << "config.population = " << w.population << ";" << std::endl;
+    std::cout << "config.dist_weight = " << w.dist_weight << ";" << std::endl;
+    std::cout << "config.align_weight = " << w.align_weight << ";" << std::endl;
+    std::cout << "config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
+    std::cout << "config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
+    std::cout << "config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
+    std::cout << "config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
+    std::cout << "config.block_weight = " << w.block_weight << ";" << std::endl;
+    std::cout << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
+    std::cout << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
+    std::cout << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
+}
+
 // Play a best-of-6 match: 3 maps × 2 sides
 std::pair<int, int> PlayMatch(BotConfig confA, BotConfig confB) {
     int winsA = 0, winsB = 0;
@@ -152,6 +168,9 @@ int main(int argc, char** argv) {
         
         std::cout << "Round " << round << " completed. Leader: " << players[0].config.name 
                   << " (" << players[0].wins << "W/" << players[0].losses << "L Elo:" << players[0].elo << ")" << std::endl;
+        PrintConfig(players[0].config);
+        PrintCopyableConfig(players[0].config, "ROUND " + std::to_string(round) + " LEADER");
+        std::cout << std::endl;
     }
     
     // Final Sort
@@ -175,20 +194,8 @@ int main(int argc, char** argv) {
     }
     
     // Print winning config as copyable C++ code
-    std::cout << "\n// === WINNING CONFIG ===" << std::endl;
-    const auto& w = players[0].config;
-    std::cout << "config.horizon = " << w.horizon << ";" << std::endl;
-    std::cout << "config.population = " << w.population << ";" << std::endl;
-    std::cout << "config.dist_weight = " << w.dist_weight << ";" << std::endl;
-    std::cout << "config.align_weight = " << w.align_weight << ";" << std::endl;
-    std::cout << "config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
-    std::cout << "config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
-    std::cout << "config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
-    std::cout << "config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
-    std::cout << "config.block_weight = " << w.block_weight << ";" << std::endl;
-    std::cout << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
-    std::cout << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
-    std::cout << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
+    std::cout << std::endl;
+    PrintCopyableConfig(players[0].config, "WINNING CONFIG");
     
     return 0;
 }

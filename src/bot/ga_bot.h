@@ -44,7 +44,8 @@ class GABot : public IBot {
     BotConfig config_;
     bool has_prev_best_ = false;
     Solution prev_best_;
-    int best_boost_cp_ = -1; // Pre-computed optimal boost segment
+    int best_boost_cp_ = -1;
+    int turn_count_ = 0;
 public:
     GABot(BotConfig config = BotConfig());
     std::string GetName() const override;

@@ -3,6 +3,7 @@
 #include <cmath>
 #include <algorithm>
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -388,6 +389,7 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
 
     int start_idx = team_id_ * 2;
     int opp_start_idx = (1 - team_id_) * 2;
+    turn_count_++;
 
     // Dynamic role assignment
     double score0 = pods[start_idx].next_cp_id * 1000 - pods[start_idx].pos.Distance(cps_[pods[start_idx].next_cp_id]);
@@ -400,14 +402,30 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         blocker_idx_ = 1;
     }
 
-    // Phase 1: Model opponent (15ms)
+    // Phase 1: Model opponent
+    Timer opp_timer;
+    opp_timer.Start();
     Solution opp_plan = Evolution::RunGA(pods, cps_, timer, 15.0, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
+    double opp_ms = opp_timer.ElapsedMs();
     
-    // Phase 2: Plan our moves with solution persistence (55ms for tournament)
+    // Phase 2: Plan our moves with solution persistence
+    Timer our_timer;
+    our_timer.Start();
     Solution our_plan = Evolution::RunGA(pods, cps_, timer, 55.0, team_id_, &opp_plan, config_, runner_idx_, has_prev_best_ ? &prev_best_ : nullptr);
+    double our_ms = our_timer.ElapsedMs();
     
     prev_best_ = our_plan;
     has_prev_best_ = true;
+
+    double total_ms = timer.ElapsedMs();
+    
+    // Timing debug output
+    cerr << "[" << config_.name << " T" << turn_count_ << "] "
+         << "Opp:" << std::fixed << std::setprecision(1) << opp_ms << "ms "
+         << "Our:" << our_ms << "ms "
+         << "Total:" << total_ms << "ms "
+         << "Role:R" << runner_idx_ << "/B" << blocker_idx_
+         << " Score:" << std::setprecision(0) << our_plan.score << endl;
 
     std::vector<PodAction> actions(2);
     
