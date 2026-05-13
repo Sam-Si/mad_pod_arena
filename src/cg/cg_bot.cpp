@@ -845,6 +845,21 @@ int main() {
     vector<int> pod_laps(4, 0);
     vector<int> prev_cp(4, 1);
 
+    // ======== PHYSICS VERIFIER ========
+    // After outputting our action, simulate the turn locally.
+    // On the next turn when we get the real server state, compare.
+    bool has_prediction = false;
+    vector<Pod> predicted(4);  // What we THINK the server state will be
+    struct OutputAction {
+        double tx, ty;
+        int thrust;     // raw thrust value output
+        bool was_boost;
+        bool was_shield;
+    };
+    vector<OutputAction> last_output(2); // what we actually sent to server
+    double max_pos_err = 0, max_vel_err = 0, max_angle_err = 0;
+    int verify_turn = 0;
+
     while (1) {
         vector<Pod> env(4);
         for (int i = 0; i < 4; i++) {
@@ -859,6 +874,51 @@ int main() {
         }
         env[0].boost_available = boost_available_0;
         env[1].boost_available = boost_available_1;
+        
+        // ======== VERIFY PREVIOUS PREDICTION ========
+        if (has_prediction) {
+            verify_turn++;
+            cerr << "--- PHYSICS VERIFY T" << verify_turn << " ---" << endl;
+            bool any_error = false;
+            for (int i = 0; i < 4; i++) {
+                double pos_dx = env[i].pos.x - predicted[i].pos.x;
+                double pos_dy = env[i].pos.y - predicted[i].pos.y;
+                double pos_err = std::sqrt(pos_dx*pos_dx + pos_dy*pos_dy);
+                double vel_dx = env[i].vel.x - predicted[i].vel.x;
+                double vel_dy = env[i].vel.y - predicted[i].vel.y;
+                double vel_err = std::sqrt(vel_dx*vel_dx + vel_dy*vel_dy);
+                double angle_err = 0;
+                if (env[i].angle >= 0 && predicted[i].angle >= 0) {
+                    angle_err = std::abs(GameEngine::ShortestAngleDiff(env[i].angle, predicted[i].angle));
+                }
+                
+                max_pos_err = std::max(max_pos_err, pos_err);
+                max_vel_err = std::max(max_vel_err, vel_err);
+                max_angle_err = std::max(max_angle_err, angle_err);
+                
+                string label = (i < 2) ? "OUR" : "OPP";
+                
+                if (pos_err > 1.0 || vel_err > 1.0 || angle_err > 1.0) {
+                    any_error = true;
+                    cerr << "  " << label << " Pod" << i << " MISMATCH:" << endl;
+                    cerr << "    Pos: predicted(" << (int)predicted[i].pos.x << "," << (int)predicted[i].pos.y 
+                         << ") actual(" << (int)env[i].pos.x << "," << (int)env[i].pos.y 
+                         << ") err=" << fixed << setprecision(1) << pos_err << endl;
+                    cerr << "    Vel: predicted(" << (int)predicted[i].vel.x << "," << (int)predicted[i].vel.y 
+                         << ") actual(" << (int)env[i].vel.x << "," << (int)env[i].vel.y 
+                         << ") err=" << vel_err << endl;
+                    if (angle_err > 0) {
+                        cerr << "    Angle: predicted=" << (int)predicted[i].angle 
+                             << " actual=" << (int)env[i].angle 
+                             << " err=" << angle_err << endl;
+                    }
+                }
+            }
+            if (!any_error) {
+                cerr << "  ALL PODS OK (max pos_err=" << fixed << setprecision(1) << max_pos_err 
+                     << " vel_err=" << max_vel_err << " angle_err=" << max_angle_err << ")" << endl;
+            }
+        }
 
         cerr << "--- STATE DUMP ---" << endl;
         for (int i = 0; i < 4; i++) {
@@ -894,6 +954,7 @@ int main() {
         PodAction blocker_action = HeuristicBlocker::GetAction(env[blocker_idx], env, cps, opp_start_idx);
         actions[blocker_idx] = blocker_action;
 
+        // Build the actual output and track what we send
         for (int i = 0; i < 2; i++) {
             bool use_boost = false;
             if (i == runner_idx && ((runner_idx == 0 && boost_available_0) || (runner_idx == 1 && boost_available_1))) {
@@ -913,8 +974,16 @@ int main() {
                 out_thrust = 200;
             }
 
+            // Record what we're actually outputting for verification
+            last_output[i].tx = actions[i].tx;
+            last_output[i].ty = actions[i].ty;
+            last_output[i].was_boost = use_boost;
+            last_output[i].was_shield = (out_thrust == -1);
+            last_output[i].thrust = use_boost ? 650 : out_thrust;
+
             if (use_boost) {
                 cout << (int)actions[i].tx << " " << (int)actions[i].ty << " BOOST" << endl;
+                shield_cd_track[i] = 0; // boost doesn't affect shield
             } else if (out_thrust == -1) {
                 cout << (int)actions[i].tx << " " << (int)actions[i].ty << " SHIELD" << endl;
                 shield_cd_track[i] = 3;
@@ -922,5 +991,38 @@ int main() {
                 cout << (int)actions[i].tx << " " << (int)actions[i].ty << " " << out_thrust << endl;
             }
         }
+        
+        // ======== PREDICT NEXT STATE ========
+        // Clone current env, apply our known actions + proxy for opponents, simulate
+        predicted = env;
+        
+        // Apply our pod 0 action
+        {
+            int thrust = last_output[0].thrust;
+            if (last_output[0].was_shield) thrust = -1;
+            predicted[0].ApplyServerAction(last_output[0].tx, last_output[0].ty, thrust);
+        }
+        // Apply our pod 1 action
+        {
+            int thrust = last_output[1].thrust;
+            if (last_output[1].was_shield) thrust = -1;
+            predicted[1].ApplyServerAction(last_output[1].tx, last_output[1].ty, thrust);
+        }
+        // Opponent: use basic proxy (thrust 200 toward their next CP)
+        // This won't be exact, but any deviation in OUR pods tells us about collision bugs
+        Evolution::ApplyBasicProxy(predicted[2], cps);
+        Evolution::ApplyBasicProxy(predicted[3], cps);
+        
+        // Simulate physics (move + collisions + endturn)
+        PhysicsSimulator::SimulateTurn(predicted);
+        
+        // Apply checkpoint passing
+        for (int p = 0; p < 4; p++) {
+            if (predicted[p].pos.DistanceSq(cps[predicted[p].next_cp_id]) <= 360000) {
+                predicted[p].next_cp_id = (predicted[p].next_cp_id + 1) % cp_count;
+            }
+        }
+        
+        has_prediction = true;
     }
 }
