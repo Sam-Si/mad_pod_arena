@@ -178,6 +178,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     double b = 2.0 * (x * vx + y * vy);
     double c = x * x + y * y - 640000.0;
 
+    // If pods are already overlapping, force immediate resolution
+    if (c < 0.0) return 0.0;
+
     double delta = b * b - 4.0 * a * c;
     if (delta < 0.0) return -1.0;
 
@@ -300,7 +303,7 @@ class Evolution {
 public:
     static double EvaluatePod(const Pod& pod, const std::vector<Vec2>& cps, int initial_cp, const BotConfig& config);
     static void ApplyBasicProxy(Pod& p, const std::vector<Vec2>& cps);
-    static Solution RunGA(const std::vector<Pod>& base_pods, const std::vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx);
+    static Solution RunGA(const std::vector<Pod>& base_pods, const std::vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx, const Solution* warm_start = nullptr);
 };
 
 class GABot : public IBot {
@@ -311,6 +314,8 @@ class GABot : public IBot {
     int runner_idx_ = 0;
     int blocker_idx_ = 1;
     BotConfig config_;
+    bool has_prev_best_ = false;
+    Solution prev_best_;
 public:
     GABot(BotConfig config = BotConfig());
     std::string GetName() const override;
@@ -373,20 +378,39 @@ double Evolution::EvaluatePod(const Pod& pod, const vector<Vec2>& cps, int initi
         target.x += (to_next_x / to_next_len) * 400.0;
         target.y += (to_next_y / to_next_len) * 400.0;
     }
-    score -= pod.pos.Distance(target) * config.dist_weight;
+    
+    double dist_to_target = pod.pos.Distance(target);
+    // Use progress-based scoring: reward fraction of distance covered
+    // This gives smoother gradients than raw distance penalty
+    score -= dist_to_target * config.dist_weight;
 
     Vec2 dir(target.x - pod.pos.x, target.y - pod.pos.y);
     double dir_len = std::sqrt(dir.x*dir.x + dir.y*dir.y);
     if (dir_len > 0) {
-        double dot = (pod.vel.x * (dir.x/dir_len)) + (pod.vel.y * (dir.y/dir_len));
-        score += dot * config.align_weight;
+        double nx = dir.x / dir_len;
+        double ny = dir.y / dir_len;
         
-        // Orbital penalty: penalize velocity that is perpendicular to the target
-        double cross = (pod.vel.x * (dir.y/dir_len)) - (pod.vel.y * (dir.x/dir_len));
-        score -= std::abs(cross) * 0.5; // Punish drifting sideways to prevent orbiting
+        // Velocity toward target (high weight)
+        double speed_toward = pod.vel.x * nx + pod.vel.y * ny;
+        score += speed_toward * config.align_weight;
+        
+        // Lateral drift penalty
+        double lateral = pod.vel.x * ny - pod.vel.y * nx;
+        score -= std::abs(lateral) * 0.8;
+    }
+    
+    // Speed bonus: reward raw speed (encourages aggressive racing)
+    double total_speed = std::sqrt(pod.vel.x*pod.vel.x + pod.vel.y*pod.vel.y);
+    score += total_speed * 0.3;
+    
+    // Angle penalty: how far is the pod pointing from the target direction?
+    if (dir_len > 0) {
+        double target_angle = GameEngine::RadToDeg(std::atan2(dir.y, dir.x));
+        double angle_err = std::abs(GameEngine::ShortestAngleDiff(pod.angle, target_angle));
+        score -= angle_err * 30.0; // Being mis-pointed is very costly
     }
 
-    // Add shield penalty
+    // Shield penalty
     if (pod.shield_cd == 3) {
         score -= config.shield_penalty;
     }
@@ -465,25 +489,37 @@ static void DecodeGeneToAction(const Action& action_gene, Pod& pod, const vector
     pod.ApplyGAAction(angle_shift, thrust);
 }
 
-Solution Evolution::RunGA(const vector<Pod>& base_pods, const vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx) {
+Solution Evolution::RunGA(const vector<Pod>& base_pods, const vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx, const Solution* warm_start) {
     Solution pop[MAX_POPULATION];
     int start_idx = target_team * 2;
     int opp_start_idx = (1 - target_team) * 2;
-
-
 
     int pop_size = std::min(config.population, MAX_POPULATION);
     int horizon = std::min(config.horizon, MAX_HORIZON);
 
     for (int i = 0; i < pop_size; ++i) {
         pop[i].Randomize(horizon);
-        // Seed the 0th solution with pure Direct Bot meta-genes for an instantly coherent plan
-        if (i == 0) {
-            for (int t = 0; t < horizon; ++t) {
-                pop[0].moves[0][t].gene1 = 0.15; // Runner direct bot
-                pop[0].moves[1][t].gene1 = 0.15; // Blocker direct bot
-            }
+    }
+    
+    // Seed pop[0]: warm start from previous turn's shifted solution if available
+    if (warm_start) {
+        for (int t = 0; t < horizon - 1; ++t) {
+            pop[0].moves[0][t] = warm_start->moves[0][t + 1];
+            pop[0].moves[1][t] = warm_start->moves[1][t + 1];
         }
+        pop[0].moves[0][horizon - 1].Randomize();
+        pop[0].moves[1][horizon - 1].Randomize();
+    } else {
+        // Fallback: seed with Direct Bot meta-genes
+        for (int t = 0; t < horizon; ++t) {
+            pop[0].moves[0][t].gene1 = 0.15; // Runner direct bot
+            pop[0].moves[1][t].gene1 = 0.15; // Blocker direct bot
+        }
+    }
+    // Also seed pop[1] with pure Direct Bot as a strong baseline
+    for (int t = 0; t < horizon; ++t) {
+        pop[1].moves[0][t].gene1 = 0.15;
+        pop[1].moves[1][t].gene1 = 0.15;
     }
 
     int simulations = 0;
@@ -577,40 +613,36 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     int start_idx = team_id_ * 2;
     int opp_start_idx = (1 - team_id_) * 2;
 
-    // The user's original logic gives 20ms to opponent, 65ms to us.
-    // In a simulation Arena, we can give a fixed amount per turn.
-    // For local evaluation, we can simulate 20ms opponent and 65ms self.
-    // For fair bot vs bot, maybe they just get 40ms each.
-    Solution opp_plan = Evolution::RunGA(pods, cps_, timer, 15.0, 1 - team_id_, nullptr, BotConfig(), 0); // Assume opp 0 is runner for now // Baseline for opp
-    Solution our_plan = Evolution::RunGA(pods, cps_, timer, 70.0, team_id_, &opp_plan, config_, runner_idx_);
+    // Phase 1: Model opponent (15ms)
+    Solution opp_plan = Evolution::RunGA(pods, cps_, timer, 15.0, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
+    
+    // Phase 2: Plan our moves with solution persistence (70ms)
+    Solution our_plan = Evolution::RunGA(pods, cps_, timer, 70.0, team_id_, &opp_plan, config_, runner_idx_, has_prev_best_ ? &prev_best_ : nullptr);
+    
+    // Save this plan for next turn's warm start
+    prev_best_ = our_plan;
+    has_prev_best_ = true;
 
     std::vector<PodAction> actions(2);
     for (int i = 0; i < 2; i++) {
         Action a = our_plan.moves[i][0];
         Pod p = pods[start_idx + i];
 
-        // We simulate the decode to find the final thrust/angle it decided to use
         DecodeGeneToAction(a, p, cps_, pods, opp_start_idx, i == runner_idx_);
 
         double target_angle = GameEngine::NormalizeAngle(p.angle);
         double tx = p.pos.x + cos_lut[(int)target_angle] * 10000.0;
         double ty = p.pos.y + sin_lut[(int)target_angle] * 10000.0;
         
-        // TURN 1 FIX: If angle is -1, output exact checkpoint to perfectly utilize the instant-snap
+        // TURN 1 FIX: snap to checkpoint on first turn
         if (pods[start_idx + i].angle == -1) {
             tx = cps_[pods[start_idx + i].next_cp_id].x;
             ty = cps_[pods[start_idx + i].next_cp_id].y;
         }
 
-        // Determine what the thrust effectively was after ApplyGAAction modified pod's vel/shield state
-        // To accurately send output, we just send tx,ty and the thrust/shield state.
-        // If it shielded, it set shield_cd = 3 (actually ApplyGAAction would have done it).
-        // Since we are extracting output for the actual game server (which Arena mirrors),
-        int out_thrust = 200; // Placeholder, need to deduce from gene if we can
-
+        int out_thrust = 200;
         if (a.gene1 > 0.95 && p.shield_cd == 0) out_thrust = -1;
-        
-        else if (a.gene1 < 0.3) out_thrust = 200; // Direct bot always thrusts 200
+        else if (a.gene1 < 0.3) out_thrust = 200;
         else {
             if (a.gene3 < 0.25) out_thrust = 0;
             else if (a.gene3 > 0.75) out_thrust = 200;
@@ -625,6 +657,80 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
 bool boost_available_0 = true;
 bool boost_available_1 = true;
 int shield_cd_track[4] = {0, 0, 0, 0};
+
+// ======== HEURISTIC BLOCKER ========
+// Deterministic state machine that replaces the GA for the blocker pod.
+// States: CHASE (head toward intercept point), RAM (aim at opponent), SHIELD (activate shield on contact)
+struct HeuristicBlocker {
+    static PodAction GetAction(const Pod& blocker, const vector<Pod>& pods, const vector<Vec2>& cps, int opp_start_idx) {
+        // Identify opponent runner (the one further ahead in the race)
+        const Pod& opp0 = pods[opp_start_idx];
+        const Pod& opp1 = pods[opp_start_idx + 1];
+        const Pod& opp_runner = (opp0.next_cp_id >= opp1.next_cp_id) ? opp0 : opp1;
+        // If same CP, pick the one closer to it
+        const Pod& target_opp = (opp0.next_cp_id == opp1.next_cp_id) ?
+            (opp0.pos.DistanceSq(cps[opp0.next_cp_id]) < opp1.pos.DistanceSq(cps[opp1.next_cp_id]) ? opp0 : opp1)
+            : opp_runner;
+        
+        double dist_to_opp = blocker.pos.Distance(target_opp.pos);
+        
+        // Compute intercept point: where will the opponent be in ~3 turns?
+        Vec2 intercept;
+        if (dist_to_opp < 1500) {
+            // RAM state: aim directly at opponent
+            intercept = target_opp.pos;
+            // Lead the target slightly
+            intercept.x += target_opp.vel.x * 0.5;
+            intercept.y += target_opp.vel.y * 0.5;
+        } else if (dist_to_opp < 4000) {
+            // CHASE close: aim at opponent's predicted position in 2 turns
+            intercept.x = target_opp.pos.x + target_opp.vel.x * 2.0;
+            intercept.y = target_opp.pos.y + target_opp.vel.y * 2.0;
+        } else {
+            // CHASE far: head toward opponent's next checkpoint (intercept at the gate)
+            Vec2 cp_target = cps[target_opp.next_cp_id];
+            // If we're closer to the CP than the opponent, camp there
+            double our_dist_to_cp = blocker.pos.Distance(cp_target);
+            double opp_dist_to_cp = target_opp.pos.Distance(cp_target);
+            if (our_dist_to_cp > opp_dist_to_cp + 1000) {
+                // We can't beat them to this CP, aim for the next one
+                int next_cp = (target_opp.next_cp_id + 1) % cps.size();
+                cp_target = cps[next_cp];
+            }
+            intercept = cp_target;
+        }
+        
+        // Compute thrust
+        int thrust = 200;
+        
+        // SHIELD decision: activate when about to collide head-on
+        if (dist_to_opp < 900 && blocker.shield_cd == 0) {
+            // Check if we're closing in (relative velocity toward each other)
+            double rel_vx = blocker.vel.x - target_opp.vel.x;
+            double rel_vy = blocker.vel.y - target_opp.vel.y;
+            double dx = target_opp.pos.x - blocker.pos.x;
+            double dy = target_opp.pos.y - blocker.pos.y;
+            double closing = (rel_vx * dx + rel_vy * dy);
+            if (closing > 0 && dist_to_opp < 850) {
+                // We're closing in fast — SHIELD for mass advantage!
+                return {intercept.x, intercept.y, -1}; // -1 = SHIELD
+            }
+        }
+        
+        // Slow down when camping near a checkpoint
+        if (dist_to_opp > 5000) {
+            double our_dist = blocker.pos.Distance(intercept);
+            if (our_dist < 1500) {
+                // We're already at the intercept point, slow down to camp
+                double speed = std::sqrt(blocker.vel.x*blocker.vel.x + blocker.vel.y*blocker.vel.y);
+                if (speed > 200) thrust = 0;
+                else thrust = 100;
+            }
+        }
+        
+        return {intercept.x, intercept.y, thrust};
+    }
+};
 
 int main() {
     InitLUT();
@@ -695,16 +801,20 @@ int main() {
         double score0 = pod_laps[0] * 50000 + env[0].next_cp_id * 1000 - env[0].pos.Distance(cps[env[0].next_cp_id]);
         double score1 = pod_laps[1] * 50000 + env[1].next_cp_id * 1000 - env[1].pos.Distance(cps[env[1].next_cp_id]);
         
-        if (score1 > score0 + 1500) { // Add hysteresis to prevent flickering
+        if (score1 > score0 + 1500) {
             runner_idx = 1;
             blocker_idx = 0;
         }
         
-        // Let the GA know who the runner is
         bot.SetRoles(runner_idx, blocker_idx);
         
+        // Get GA actions (GA controls both pods, but blocker will be overridden)
         vector<PodAction> actions = bot.GetActions(env);
-
+        
+        // Override blocker action with heuristic blocker
+        int opp_start_idx = 2; // opponent pods are indices 2, 3
+        PodAction blocker_action = HeuristicBlocker::GetAction(env[blocker_idx], env, cps, opp_start_idx);
+        actions[blocker_idx] = blocker_action;
 
         for (int i = 0; i < 2; i++) {
             bool use_boost = false;
@@ -722,7 +832,7 @@ int main() {
             
             // TURN 1 FORCED ACCELERATION
             if (env[i].angle == -1 && out_thrust != -1) {
-                out_thrust = 200; // Always blast 200 on Turn 1 if not shielded
+                out_thrust = 200;
             }
 
             if (use_boost) {

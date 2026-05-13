@@ -108,6 +108,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     double b = 2.0 * (x * vx + y * vy);
     double c = x * x + y * y - 640000.0; 
 
+    // If pods are already overlapping, force immediate resolution
+    if (c < 0.0) return 0.0;
+
     double delta = b * b - 4.0 * a * c;
     if (delta < 0.0) return -1.0;
 
