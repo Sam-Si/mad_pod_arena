@@ -116,24 +116,19 @@ int main(int argc, char** argv) {
         players[i].config = RandomConfig(i);
     }
     
-    std::cout << "Starting Swiss Tournament with " << num_bots << " bots over " << num_rounds << " rounds." << std::endl;
-    std::cout << "Maps: " << Arena::GetMapCount() << " | Games per match: 6 (3 maps x 2 sides)" << std::endl;
+    std::cout << "Swiss Tournament: " << num_bots << " bots, " << num_rounds << " rounds, "
+              << Arena::GetMapCount() << " maps" << std::endl;
     
     for (int round = 1; round <= num_rounds; ++round) {
-        std::cout << "\n--- ROUND " << round << " ---" << std::endl;
-        
-        // Sort by wins then Elo
         std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
             if (a.wins != b.wins) return a.wins > b.wins;
             return a.elo > b.elo;
         });
         
         std::vector<std::future<std::pair<int, int>>> match_results;
-        
         for (int i = 0; i < num_bots; i += 2) {
             BotConfig cA = players[i].config;
             BotConfig cB = players[i + 1].config;
-            
             match_results.push_back(std::async(std::launch::async, [cA, cB]() {
                 return PlayMatch(cA, cB);
             }));
@@ -143,16 +138,13 @@ int main(int argc, char** argv) {
         for (int i = 0; i < num_bots; i += 2) {
             auto [winsA, winsB] = match_results[match_idx].get();
             match_idx++;
-            
             players[i].wins += winsA;
             players[i + 1].wins += winsB;
             players[i].losses += winsB;
             players[i + 1].losses += winsA;
-            int draws = 6 - winsA - winsB; // 6 games per match
+            int draws = 6 - winsA - winsB;
             players[i].draws += draws;
             players[i + 1].draws += draws;
-            
-            // Elo update (K=32)
             double expectedA = 1.0 / (1.0 + std::pow(10.0, (players[i+1].elo - players[i].elo) / 400.0));
             double scoreA = (winsA + draws * 0.5) / 6.0;
             int elo_change = 32 * (scoreA - expectedA);
@@ -160,42 +152,47 @@ int main(int argc, char** argv) {
             players[i+1].elo -= elo_change;
         }
         
-        // Sort for display
         std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
             if (a.wins != b.wins) return a.wins > b.wins;
             return a.elo > b.elo;
         });
         
-        std::cout << "Round " << round << " completed. Leader: " << players[0].config.name 
-                  << " (" << players[0].wins << "W/" << players[0].losses << "L Elo:" << players[0].elo << ")" << std::endl;
-        PrintConfig(players[0].config);
-        PrintCopyableConfig(players[0].config, "ROUND " + std::to_string(round) + " LEADER");
+        // Compact top-2 per round
+        std::cout << "R" << std::setw(2) << round << " | ";
+        for (int i = 0; i < std::min(2, num_bots); ++i) {
+            const auto& p = players[i];
+            std::cout << "#" << (i+1) << " " << p.config.name 
+                      << "(" << p.wins << "W/" << p.losses << "L E:" << p.elo 
+                      << " H=" << p.config.horizon << " P=" << p.config.population
+                      << " d=" << p.config.dist_weight << " a=" << p.config.align_weight
+                      << " b=" << p.config.block_weight << ")";
+            if (i == 0) std::cout << "  ";
+        }
         std::cout << std::endl;
     }
     
-    // Final Sort
+    // Final
     std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
         if (a.wins != b.wins) return a.wins > b.wins;
         return a.elo > b.elo;
     });
     
-    std::cout << "\n=====================================================" << std::endl;
-    std::cout << "              TOURNAMENT RESULTS (TOP 10)             " << std::endl;
-    std::cout << "=====================================================" << std::endl;
-    
-    for (int i = 0; i < std::min(10, num_bots); ++i) {
+    std::cout << "\n========== FINAL TOP 5 ==========" << std::endl;
+    for (int i = 0; i < std::min(5, num_bots); ++i) {
         const auto& p = players[i];
         std::cout << std::setw(2) << (i+1) << ". " << std::setw(10) << p.config.name 
-                  << " | W:" << std::setw(3) << p.wins 
+                  << " W:" << std::setw(3) << p.wins 
                   << " L:" << std::setw(3) << p.losses 
-                  << " D:" << std::setw(3) << p.draws
-                  << " | Elo:" << std::setw(5) << p.elo << std::endl;
+                  << " Elo:" << std::setw(5) << p.elo << std::endl;
         PrintConfig(p.config);
     }
     
-    // Print winning config as copyable C++ code
     std::cout << std::endl;
-    PrintCopyableConfig(players[0].config, "WINNING CONFIG");
+    PrintCopyableConfig(players[0].config, "1st PLACE");
+    std::cout << std::endl;
+    if (num_bots >= 2)
+        PrintCopyableConfig(players[1].config, "2nd PLACE");
     
     return 0;
 }
+
