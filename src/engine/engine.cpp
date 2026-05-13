@@ -72,12 +72,13 @@ void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
     double target_angle = GameEngine::RadToDeg(std::atan2(ty - pos.y, tx - pos.x));
     
     if (angle == -1) {
-        angle = std::round(GameEngine::NormalizeAngle(target_angle));
+        angle = (int)GameEngine::NormalizeAngle(std::round(target_angle));
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        angle = std::round(GameEngine::NormalizeAngle(angle + diff));
+        // Magus referee uses (int) truncation, not round
+        angle = (int)GameEngine::NormalizeAngle(angle + diff);
     }
 
     vel.x += cos_lut[angle] * thrust_val;

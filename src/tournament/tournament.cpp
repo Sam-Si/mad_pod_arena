@@ -39,6 +39,9 @@ BotConfig RandomConfig(int id) {
     // Coordination
     c.opp_penalty = FastRandInt(0, 30) / 10.0;             // 0.0..3.0
     
+    // Time allocation
+    c.opp_model_ms = 5.0 + FastRandInt(0, 4) * 5.0;       // 5..25ms
+    
     return c;
 }
 
@@ -49,7 +52,8 @@ void PrintConfig(const BotConfig& c) {
               << " angle=" << c.angle_penalty << " corner=" << c.corner_cut_dist
               << " | block=" << c.block_weight << " shield=" << c.shield_penalty
               << " ram=" << c.shield_ram_dist
-              << " | opp=" << c.opp_penalty << std::endl;
+              << " | opp=" << c.opp_penalty
+              << " | opp_ms=" << c.opp_model_ms << std::endl;
 }
 
 void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
@@ -66,6 +70,7 @@ void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
     std::cout << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
     std::cout << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
     std::cout << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
+    std::cout << "config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
 }
 
 // Play a best-of-6 match: 3 maps × 2 sides

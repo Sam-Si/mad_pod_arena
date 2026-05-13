@@ -22,6 +22,9 @@ struct BotConfig {
     
     // Coordination
     double opp_penalty = 1.0;       // Penalize opponent's progress in eval
+    
+    // Time allocation
+    double opp_model_ms = 15.0;     // ms spent modeling opponent (rest goes to our GA)
 
     std::string name = "DefaultGA";
 };

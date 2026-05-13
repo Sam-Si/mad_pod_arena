@@ -139,16 +139,19 @@ void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
     else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     
-
+    // Magus referee uses getAngle() which returns Math.atan2 -> toDegrees
+    // then uses (int) cast (truncation toward zero) NOT Math.round
     double target_angle = GameEngine::RadToDeg(std::atan2(ty - pos.y, tx - pos.x));
 
     if (angle == -1) {
-        angle = std::round(GameEngine::NormalizeAngle(target_angle));
+        // First turn: face target directly (referee uses round here for initial facing)
+        angle = (int)GameEngine::NormalizeAngle(std::round(target_angle));
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        angle = std::round(GameEngine::NormalizeAngle(angle + diff));
+        // Referee: this.angle += clampedDiff => (int) truncation
+        angle = (int)GameEngine::NormalizeAngle(angle + diff);
     }
 
     vel.x += cos_lut[angle] * thrust_val;
@@ -292,6 +295,9 @@ struct BotConfig {
     
     // Coordination
     double opp_penalty = 1.0;
+    
+    // Time allocation
+    double opp_model_ms = 15.0;
     
     std::string name = "DefaultGA";
 };
@@ -667,7 +673,7 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     // Phase 1: Model opponent
     Timer opp_timer;
     opp_timer.Start();
-    Solution opp_plan = Evolution::RunGA(pods, cps_, timer, 15.0, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
+    Solution opp_plan = Evolution::RunGA(pods, cps_, timer, config_.opp_model_ms, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
     double opp_ms = opp_timer.ElapsedMs();
     
     // Phase 2: Plan our moves with solution persistence
