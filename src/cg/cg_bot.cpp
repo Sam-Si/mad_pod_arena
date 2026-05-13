@@ -851,13 +851,14 @@ int main() {
     bool has_prediction = false;
     vector<Pod> predicted(4);  // What we THINK the server state will be
     struct OutputAction {
-        double tx, ty;
-        int thrust;     // raw thrust value output
+        int tx, ty;       // INTEGER coords — exactly what the CG server receives
+        int thrust;       // raw thrust value output
         bool was_boost;
         bool was_shield;
     };
     vector<OutputAction> last_output(2); // what we actually sent to server
-    double max_pos_err = 0, max_vel_err = 0, max_angle_err = 0;
+    bool pred_had_opp_collision[2] = {false, false}; // did our pod collide with an opp pod?
+    double max_pos_err_clean = 0, max_vel_err_clean = 0; // max error on collision-free turns
     int verify_turn = 0;
 
     while (1) {
@@ -879,8 +880,8 @@ int main() {
         if (has_prediction) {
             verify_turn++;
             cerr << "--- PHYSICS VERIFY T" << verify_turn << " ---" << endl;
-            bool any_error = false;
-            for (int i = 0; i < 4; i++) {
+            bool any_our_bug = false;
+            for (int i = 0; i < 2; i++) {
                 double pos_dx = env[i].pos.x - predicted[i].pos.x;
                 double pos_dy = env[i].pos.y - predicted[i].pos.y;
                 double pos_err = std::sqrt(pos_dx*pos_dx + pos_dy*pos_dy);
@@ -891,32 +892,37 @@ int main() {
                 if (env[i].angle >= 0 && predicted[i].angle >= 0) {
                     angle_err = std::abs(GameEngine::ShortestAngleDiff(env[i].angle, predicted[i].angle));
                 }
+
+                bool had_opp_col = pred_had_opp_collision[i];
                 
-                max_pos_err = std::max(max_pos_err, pos_err);
-                max_vel_err = std::max(max_vel_err, vel_err);
-                max_angle_err = std::max(max_angle_err, angle_err);
-                
-                string label = (i < 2) ? "OUR" : "OPP";
-                
-                if (pos_err > 1.0 || vel_err > 1.0 || angle_err > 1.0) {
-                    any_error = true;
-                    cerr << "  " << label << " Pod" << i << " MISMATCH:" << endl;
-                    cerr << "    Pos: predicted(" << (int)predicted[i].pos.x << "," << (int)predicted[i].pos.y 
-                         << ") actual(" << (int)env[i].pos.x << "," << (int)env[i].pos.y 
-                         << ") err=" << fixed << setprecision(1) << pos_err << endl;
-                    cerr << "    Vel: predicted(" << (int)predicted[i].vel.x << "," << (int)predicted[i].vel.y 
-                         << ") actual(" << (int)env[i].vel.x << "," << (int)env[i].vel.y 
-                         << ") err=" << vel_err << endl;
-                    if (angle_err > 0) {
-                        cerr << "    Angle: predicted=" << (int)predicted[i].angle 
-                             << " actual=" << (int)env[i].angle 
-                             << " err=" << angle_err << endl;
+                if (pos_err > 0.5 || vel_err > 0.5 || angle_err > 0.5) {
+                    if (had_opp_col) {
+                        // Expected mismatch — opponent action unknown
+                        cerr << "  Pod" << i << " COLLISION-EXPECTED: pos_err=" << fixed << setprecision(1) 
+                             << pos_err << " vel_err=" << vel_err << endl;
+                    } else {
+                        // TRUE PHYSICS BUG — no opponent collision, we know everything
+                        any_our_bug = true;
+                        cerr << "  *** Pod" << i << " PHYSICS BUG ***:" << endl;
+                        cerr << "    Pos: predicted(" << (int)predicted[i].pos.x << "," << (int)predicted[i].pos.y 
+                             << ") actual(" << (int)env[i].pos.x << "," << (int)env[i].pos.y 
+                             << ") err=" << pos_err << endl;
+                        cerr << "    Vel: predicted(" << (int)predicted[i].vel.x << "," << (int)predicted[i].vel.y 
+                             << ") actual(" << (int)env[i].vel.x << "," << (int)env[i].vel.y 
+                             << ") err=" << vel_err << endl;
+                        if (angle_err > 0) {
+                            cerr << "    Angle: predicted=" << (int)predicted[i].angle 
+                                 << " actual=" << (int)env[i].angle 
+                                 << " err=" << angle_err << endl;
+                        }
+                        max_pos_err_clean = std::max(max_pos_err_clean, pos_err);
+                        max_vel_err_clean = std::max(max_vel_err_clean, vel_err);
                     }
                 }
             }
-            if (!any_error) {
-                cerr << "  ALL PODS OK (max pos_err=" << fixed << setprecision(1) << max_pos_err 
-                     << " vel_err=" << max_vel_err << " angle_err=" << max_angle_err << ")" << endl;
+            if (!any_our_bug) {
+                cerr << "  OUR PODS OK (max_clean_pos=" << fixed << setprecision(1) << max_pos_err_clean 
+                     << " max_clean_vel=" << max_vel_err_clean << ")" << endl;
             }
         }
 
@@ -974,47 +980,78 @@ int main() {
                 out_thrust = 200;
             }
 
-            // Record what we're actually outputting for verification
-            last_output[i].tx = actions[i].tx;
-            last_output[i].ty = actions[i].ty;
+            // Record EXACTLY what we send to server (int-truncated coords!)
+            last_output[i].tx = (int)actions[i].tx;
+            last_output[i].ty = (int)actions[i].ty;
             last_output[i].was_boost = use_boost;
             last_output[i].was_shield = (out_thrust == -1);
             last_output[i].thrust = use_boost ? 650 : out_thrust;
 
             if (use_boost) {
-                cout << (int)actions[i].tx << " " << (int)actions[i].ty << " BOOST" << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " BOOST" << endl;
                 shield_cd_track[i] = 0; // boost doesn't affect shield
             } else if (out_thrust == -1) {
-                cout << (int)actions[i].tx << " " << (int)actions[i].ty << " SHIELD" << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " SHIELD" << endl;
                 shield_cd_track[i] = 3;
             } else {
-                cout << (int)actions[i].tx << " " << (int)actions[i].ty << " " << out_thrust << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " " << out_thrust << endl;
             }
         }
         
         // ======== PREDICT NEXT STATE ========
-        // Clone current env, apply our known actions + proxy for opponents, simulate
         predicted = env;
         
-        // Apply our pod 0 action
-        {
-            int thrust = last_output[0].thrust;
-            if (last_output[0].was_shield) thrust = -1;
-            predicted[0].ApplyServerAction(last_output[0].tx, last_output[0].ty, thrust);
+        // Propagate shield_cd correctly into predicted pods
+        for (int i = 0; i < 2; i++) {
+            if (last_output[i].was_shield) {
+                predicted[i].shield_cd = 3;
+            }
         }
-        // Apply our pod 1 action
+        
+        // Apply our pod actions using the INT-TRUNCATED coordinates
         {
-            int thrust = last_output[1].thrust;
-            if (last_output[1].was_shield) thrust = -1;
-            predicted[1].ApplyServerAction(last_output[1].tx, last_output[1].ty, thrust);
+            int thrust0 = last_output[0].thrust;
+            if (last_output[0].was_shield) thrust0 = -1;
+            predicted[0].ApplyServerAction((double)last_output[0].tx, (double)last_output[0].ty, thrust0);
+        }
+        {
+            int thrust1 = last_output[1].thrust;
+            if (last_output[1].was_shield) thrust1 = -1;
+            predicted[1].ApplyServerAction((double)last_output[1].tx, (double)last_output[1].ty, thrust1);
         }
         // Opponent: use basic proxy (thrust 200 toward their next CP)
-        // This won't be exact, but any deviation in OUR pods tells us about collision bugs
         Evolution::ApplyBasicProxy(predicted[2], cps);
         Evolution::ApplyBasicProxy(predicted[3], cps);
         
-        // Simulate physics (move + collisions + endturn)
+        // Simulate physics — but ALSO detect if our pods collided with opponent pods
+        // We do this by running a collision scan first
+        pred_had_opp_collision[0] = false;
+        pred_had_opp_collision[1] = false;
+        
+        // Run full simulation
         PhysicsSimulator::SimulateTurn(predicted);
+        
+        // Post-hoc: check if our pods are close enough to opponent pods that collision likely occurred
+        // Use the env state (pre-move) and predicted state to detect
+        for (int our = 0; our < 2; our++) {
+            for (int opp = 2; opp < 4; opp++) {
+                // Check if pods were within collision range at any point during the turn
+                // Simple heuristic: if they're within 1200 units post-turn, collision likely occurred
+                double dx = predicted[our].pos.x - predicted[opp].pos.x;
+                double dy = predicted[our].pos.y - predicted[opp].pos.y;
+                double dist = std::sqrt(dx*dx + dy*dy);
+                if (dist < 1200.0) {
+                    pred_had_opp_collision[our] = true;
+                }
+                // Also check pre-move proximity + velocity convergence
+                dx = env[our].pos.x - env[opp].pos.x;
+                dy = env[our].pos.y - env[opp].pos.y;
+                dist = std::sqrt(dx*dx + dy*dy);
+                if (dist < 1600.0) {
+                    pred_had_opp_collision[our] = true;
+                }
+            }
+        }
         
         // Apply checkpoint passing
         for (int p = 0; p < 4; p++) {
