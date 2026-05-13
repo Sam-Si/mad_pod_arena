@@ -256,12 +256,26 @@ void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
 }
 
 struct BotConfig {
+    // GA Core
     int horizon = 6;
-    int population = 50;
+    int population = 40;
+    
+    // Runner Evaluation
     double dist_weight = 1.0;
-    double align_weight = 3.0;
-    double block_weight = 0.0;
-    double shield_penalty = 0.0;
+    double align_weight = 2.0;
+    double speed_bonus = 0.3;
+    double lateral_penalty = 0.8;
+    double angle_penalty = 30.0;
+    double corner_cut_dist = 400.0;
+    
+    // Blocker
+    double block_weight = 5.0;
+    double shield_penalty = 50.0;
+    double shield_ram_dist = 850.0;
+    
+    // Coordination
+    double opp_penalty = 1.0;
+    
     std::string name = "DefaultGA";
 };
 
@@ -369,19 +383,19 @@ double Evolution::EvaluatePod(const Pod& pod, const vector<Vec2>& cps, int initi
     if (cpspassed < 0) cpspassed += cps.size();
 
     double score = cpspassed * 50000.0;
+    
+    // Corner-cutting target
     Vec2 target = cps[pod.next_cp_id];
     int next_next = (pod.next_cp_id + 1) % cps.size();
     double to_next_x = cps[next_next].x - target.x;
     double to_next_y = cps[next_next].y - target.y;
     double to_next_len = std::sqrt(to_next_x*to_next_x + to_next_y*to_next_y);
     if (to_next_len > 0.0) {
-        target.x += (to_next_x / to_next_len) * 400.0;
-        target.y += (to_next_y / to_next_len) * 400.0;
+        target.x += (to_next_x / to_next_len) * config.corner_cut_dist;
+        target.y += (to_next_y / to_next_len) * config.corner_cut_dist;
     }
     
     double dist_to_target = pod.pos.Distance(target);
-    // Use progress-based scoring: reward fraction of distance covered
-    // This gives smoother gradients than raw distance penalty
     score -= dist_to_target * config.dist_weight;
 
     Vec2 dir(target.x - pod.pos.x, target.y - pod.pos.y);
@@ -390,27 +404,22 @@ double Evolution::EvaluatePod(const Pod& pod, const vector<Vec2>& cps, int initi
         double nx = dir.x / dir_len;
         double ny = dir.y / dir_len;
         
-        // Velocity toward target (high weight)
         double speed_toward = pod.vel.x * nx + pod.vel.y * ny;
         score += speed_toward * config.align_weight;
         
-        // Lateral drift penalty
         double lateral = pod.vel.x * ny - pod.vel.y * nx;
-        score -= std::abs(lateral) * 0.8;
+        score -= std::abs(lateral) * config.lateral_penalty;
     }
     
-    // Speed bonus: reward raw speed (encourages aggressive racing)
     double total_speed = std::sqrt(pod.vel.x*pod.vel.x + pod.vel.y*pod.vel.y);
-    score += total_speed * 0.3;
+    score += total_speed * config.speed_bonus;
     
-    // Angle penalty: how far is the pod pointing from the target direction?
     if (dir_len > 0) {
         double target_angle = GameEngine::RadToDeg(std::atan2(dir.y, dir.x));
         double angle_err = std::abs(GameEngine::ShortestAngleDiff(pod.angle, target_angle));
-        score -= angle_err * 30.0; // Being mis-pointed is very costly
+        score -= angle_err * config.angle_penalty;
     }
 
-    // Shield penalty
     if (pod.shield_cd == 3) {
         score -= config.shield_penalty;
     }
@@ -433,14 +442,14 @@ static void DecodeGeneToAction(const Action& action_gene, Pod& pod, const vector
     }
 
     if (is_runner && action_gene.gene1 < 0.3) {
-        // Direct bot to next CP
+        // Direct bot to next CP with corner cutting
         Vec2 target = cps[pod.next_cp_id];
         int next_next = (pod.next_cp_id + 1) % cps.size();
         double to_next_x = cps[next_next].x - target.x;
         double to_next_y = cps[next_next].y - target.y;
         double to_next_len = std::sqrt(to_next_x*to_next_x + to_next_y*to_next_y);
         if (to_next_len > 0.0) {
-            target.x += (to_next_x / to_next_len) * 400.0;
+            target.x += (to_next_x / to_next_len) * 400.0; // Uses default in decode
             target.y += (to_next_y / to_next_len) * 400.0;
         }
         double desired_angle = GameEngine::RadToDeg(std::atan2(target.y - pod.pos.y, target.x - pod.pos.x));
@@ -461,9 +470,11 @@ static void DecodeGeneToAction(const Action& action_gene, Pod& pod, const vector
             pod.ApplyGAAction(angle_shift, 200);
             return;
         } else if (action_gene.gene1 < 0.3) {
-            // Direct bot intercept opp
+            // Direct bot intercept opp with lead prediction
             const Pod& opp_pod = env[opp_start_idx];
             Vec2 target = opp_pod.pos;
+            target.x += opp_pod.vel.x; // Lead by 1 turn
+            target.y += opp_pod.vel.y;
             double desired_angle = GameEngine::RadToDeg(std::atan2(target.y - pod.pos.y, target.x - pod.pos.x));
             int angle_shift = (int)GameEngine::ShortestAngleDiff(pod.angle, desired_angle);
             angle_shift = std::max(-18, std::min(18, angle_shift));
@@ -552,35 +563,56 @@ Solution Evolution::RunGA(const vector<Pod>& base_pods, const vector<Vec2>& cps,
                 }
             }
 
-            // Incorporate blocking/avoidance logic
+            // ========== JOINT SCORING ==========
+            const Pod& runner = sim_env[start_idx + runner_idx];
+            const Pod& blocker = sim_env[start_idx + (1 - runner_idx)];
+            const Pod& opp_runner = sim_env[opp_start_idx];
+            
+            // Runner score
+            double runner_score = EvaluatePod(runner, cps, base_pods[start_idx + runner_idx].next_cp_id, config);
+            
+            // Block score: penalize opponent's progress
             double block_score = 0;
             if (config.block_weight > 0) {
-                const Pod& opp_runner = sim_env[opp_start_idx];
-                const Pod& blocker = sim_env[start_idx + 1 - runner_idx];
+                double opp_progress = EvaluatePod(opp_runner, cps, base_pods[opp_start_idx].next_cp_id, config);
+                block_score = -opp_progress * config.opp_penalty;
                 
+                // Blocker proximity to opponent's next CP
                 int target_cp = opp_runner.next_cp_id;
                 double opp_dist_to_cp = opp_runner.pos.Distance(cps[target_cp]);
                 double blocker_dist_to_cp = blocker.pos.Distance(cps[target_cp]);
-                
                 if (opp_dist_to_cp < blocker_dist_to_cp - 1500) {
                     target_cp = (target_cp + 1) % cps.size();
                 }
-                
                 double dist_to_intercept = blocker.pos.Distance(cps[target_cp]);
-                block_score = -dist_to_intercept * 5.0; // Heavily weight interception
+                block_score -= dist_to_intercept * 2.0;
                 
-                if (dist_to_intercept < 1500) {
-                    double speed = std::sqrt(blocker.vel.x*blocker.vel.x + blocker.vel.y*blocker.vel.y);
-                    block_score -= speed * 2.0; // Encourage camping
-                }
-                
-                // Bonus if we actually hit the opponent runner
+                // Collision bonus
                 if (blocker.pos.Distance(opp_runner.pos) < 800) {
                     block_score += 50000.0;
                 }
+                
+                // Positional bonus: blocker between opponent and their CP
+                Vec2 opp_to_cp(cps[target_cp].x - opp_runner.pos.x, cps[target_cp].y - opp_runner.pos.y);
+                Vec2 opp_to_blk(blocker.pos.x - opp_runner.pos.x, blocker.pos.y - opp_runner.pos.y);
+                double opp_cp_len = std::sqrt(opp_to_cp.x*opp_to_cp.x + opp_to_cp.y*opp_to_cp.y);
+                if (opp_cp_len > 0) {
+                    double proj = (opp_to_blk.x * opp_to_cp.x + opp_to_blk.y * opp_to_cp.y) / opp_cp_len;
+                    double perp_x = opp_to_blk.x - (opp_to_cp.x / opp_cp_len) * proj;
+                    double perp_y = opp_to_blk.y - (opp_to_cp.y / opp_cp_len) * proj;
+                    double perp_dist = std::sqrt(perp_x*perp_x + perp_y*perp_y);
+                    if (proj > 0 && proj < opp_cp_len && perp_dist < 2000) {
+                        block_score += 10000.0 * (1.0 - perp_dist / 2000.0);
+                    }
+                }
+                
+                // Friendly fire penalty
+                if (runner.pos.Distance(blocker.pos) < 900) {
+                    block_score -= 30000.0;
+                }
             }
 
-            pop[i].score = EvaluatePod(sim_env[start_idx + runner_idx], cps, base_pods[start_idx + runner_idx].next_cp_id, config) + block_score;
+            pop[i].score = runner_score + block_score * config.block_weight;
             simulations++;
         }
 
@@ -754,13 +786,19 @@ int main() {
     }
 
     BotConfig config;
-    config.name = "Bot_449";
+    config.name = "CoordBot";
     config.horizon = 6;
     config.population = 40;
     config.dist_weight = 1.0;
-    config.align_weight = 1.0;
+    config.align_weight = 2.0;
+    config.speed_bonus = 0.3;
+    config.lateral_penalty = 0.8;
+    config.angle_penalty = 30.0;
+    config.corner_cut_dist = 400.0;
     config.block_weight = 5.0;
     config.shield_penalty = 50.0;
+    config.shield_ram_dist = 850.0;
+    config.opp_penalty = 1.0;
 
     GABot bot(config);
     bot.Initialize(laps, cp_count, cps, 0);

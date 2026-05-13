@@ -19,9 +19,10 @@ class Arena {
     std::shared_ptr<IBot> bot0_;
     std::shared_ptr<IBot> bot1_;
 
-    void GenerateMap();
+    void GenerateMap(int map_idx = -1); // -1 = random
 
 public:
     Arena(std::shared_ptr<IBot> bot0, std::shared_ptr<IBot> bot1);
-    ArenaResult PlayGame(bool verbose = false);
+    ArenaResult PlayGame(bool verbose = false, int map_idx = -1);
+    static int GetMapCount();
 };

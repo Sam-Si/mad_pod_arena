@@ -18,51 +18,95 @@ struct Player {
 BotConfig RandomConfig(int id) {
     BotConfig c;
     c.name = "Bot_" + std::to_string(id);
-    c.horizon = (rand() % 2 == 0) ? 4 : 6;
-    c.population = (rand() % 2 == 0) ? 20 : 40;
     
-    double dists[] = {0.5, 1.0, 2.0};
-    c.dist_weight = dists[rand() % 3];
+    // GA Core (continuous sampling)
+    c.horizon = 4 + FastRandInt(0, 4);                     // 4..8
+    c.population = 20 + FastRandInt(0, 6) * 10;            // 20..80
     
-    double aligns[] = {1.0, 3.0, 5.0};
-    c.align_weight = aligns[rand() % 3];
+    // Runner Evaluation
+    c.dist_weight = 0.5 + FastRandInt(0, 30) / 10.0;       // 0.5..3.5
+    c.align_weight = 0.5 + FastRandInt(0, 40) / 10.0;      // 0.5..4.5
+    c.speed_bonus = FastRandInt(0, 10) / 10.0;              // 0.0..1.0
+    c.lateral_penalty = FastRandInt(0, 20) / 10.0;          // 0.0..2.0
+    c.angle_penalty = FastRandInt(5, 60);                   // 5..60
+    c.corner_cut_dist = 200 + FastRandInt(0, 6) * 100;     // 200..800
     
-    double blocks[] = {0.0, 2.0, 5.0};
-    c.block_weight = blocks[rand() % 3];
+    // Blocker
+    c.block_weight = FastRandInt(0, 100) / 10.0;            // 0.0..10.0
+    c.shield_penalty = FastRandInt(0, 100);                 // 0..100
+    c.shield_ram_dist = 600 + FastRandInt(0, 5) * 100;     // 600..1100
     
-    double shields[] = {0.0, 50.0};
-    c.shield_penalty = shields[rand() % 2];
+    // Coordination
+    c.opp_penalty = FastRandInt(0, 30) / 10.0;             // 0.0..3.0
     
     return c;
 }
 
-// Play a single match between two bots and return the winner (0 for bot A, 1 for bot B, -1 for draw)
-int PlayMatch(BotConfig confA, BotConfig confB) {
-    auto botA = std::make_shared<GABot>(confA);
-    auto botB = std::make_shared<GABot>(confB);
-    Arena arena(botA, botB);
-    ArenaResult res = arena.PlayGame(false);
-    return res.winner_team;
+void PrintConfig(const BotConfig& c) {
+    std::cout << "  H=" << c.horizon << " P=" << c.population
+              << " | dist=" << c.dist_weight << " align=" << c.align_weight
+              << " speed=" << c.speed_bonus << " lat=" << c.lateral_penalty
+              << " angle=" << c.angle_penalty << " corner=" << c.corner_cut_dist
+              << " | block=" << c.block_weight << " shield=" << c.shield_penalty
+              << " ram=" << c.shield_ram_dist
+              << " | opp=" << c.opp_penalty << std::endl;
 }
 
-int main() {
-    InitLUT();
-    srand(42); // deterministic seed for tournament generation
+// Play a best-of-6 match: 3 maps × 2 sides
+std::pair<int, int> PlayMatch(BotConfig confA, BotConfig confB) {
+    int winsA = 0, winsB = 0;
+    int num_maps = std::min(3, Arena::GetMapCount());
     
-    int num_bots = 4096; // Large simulation // Even number for pairing
+    for (int m = 0; m < num_maps; m++) {
+        int map_idx = FastRandInt(0, Arena::GetMapCount() - 1);
+        
+        // Side 1: A=team0, B=team1
+        {
+            auto botA = std::make_shared<GABot>(confA);
+            auto botB = std::make_shared<GABot>(confB);
+            Arena arena(botA, botB);
+            ArenaResult res = arena.PlayGame(false, map_idx);
+            if (res.winner_team == 0) winsA++;
+            else if (res.winner_team == 1) winsB++;
+        }
+        
+        // Side 2: B=team0, A=team1
+        {
+            auto botB = std::make_shared<GABot>(confB);
+            auto botA = std::make_shared<GABot>(confA);
+            Arena arena(botB, botA);
+            ArenaResult res = arena.PlayGame(false, map_idx);
+            if (res.winner_team == 0) winsB++;
+            else if (res.winner_team == 1) winsA++;
+        }
+    }
+    
+    return {winsA, winsB};
+}
+
+int main(int argc, char** argv) {
+    InitLUT();
+    
+    int num_bots = 256;
+    int num_rounds = 8;
+    
+    if (argc >= 2) num_bots = std::atoi(argv[1]);
+    if (argc >= 3) num_rounds = std::atoi(argv[2]);
+    // Ensure even number
+    if (num_bots % 2 != 0) num_bots++;
+    
     std::vector<Player> players(num_bots);
     for (int i = 0; i < num_bots; ++i) {
         players[i].config = RandomConfig(i);
     }
     
-    int num_rounds = 30; // ~30 min run depending on threads
-    
     std::cout << "Starting Swiss Tournament with " << num_bots << " bots over " << num_rounds << " rounds." << std::endl;
+    std::cout << "Maps: " << Arena::GetMapCount() << " | Games per match: 6 (3 maps x 2 sides)" << std::endl;
     
     for (int round = 1; round <= num_rounds; ++round) {
         std::cout << "\n--- ROUND " << round << " ---" << std::endl;
         
-        // Sort by wins to pair players with similar scores
+        // Sort by wins then Elo
         std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
             if (a.wins != b.wins) return a.wins > b.wins;
             return a.elo > b.elo;
@@ -70,51 +114,44 @@ int main() {
         
         std::vector<std::future<std::pair<int, int>>> match_results;
         
-        // Pair players: 0 vs 1, 2 vs 3, etc.
         for (int i = 0; i < num_bots; i += 2) {
             BotConfig cA = players[i].config;
             BotConfig cB = players[i + 1].config;
             
             match_results.push_back(std::async(std::launch::async, [cA, cB]() {
-                // To be fair, they play two games, swapping sides
-                int winsA = 0;
-                int winsB = 0;
-                
-                int res1 = PlayMatch(cA, cB);
-                if (res1 == 0) winsA++;
-                else if (res1 == 1) winsB++;
-                
-                int res2 = PlayMatch(cB, cA);
-                if (res2 == 0) winsB++;
-                else if (res2 == 1) winsA++;
-                
-                return std::make_pair(winsA, winsB);
+                return PlayMatch(cA, cB);
             }));
         }
         
-        // Collect results
         int match_idx = 0;
         for (int i = 0; i < num_bots; i += 2) {
             auto [winsA, winsB] = match_results[match_idx].get();
             match_idx++;
             
-            // Update scores
             players[i].wins += winsA;
             players[i + 1].wins += winsB;
             players[i].losses += winsB;
             players[i + 1].losses += winsA;
-            players[i].draws += (2 - winsA - winsB);
+            int draws = 6 - winsA - winsB; // 6 games per match
+            players[i].draws += draws;
+            players[i + 1].draws += draws;
             
-            // Simple Elo update (K=32)
+            // Elo update (K=32)
             double expectedA = 1.0 / (1.0 + std::pow(10.0, (players[i+1].elo - players[i].elo) / 400.0));
-            double scoreA = (winsA + (2 - winsA - winsB)*0.5) / 2.0;
-            
+            double scoreA = (winsA + draws * 0.5) / 6.0;
             int elo_change = 32 * (scoreA - expectedA);
             players[i].elo += elo_change;
             players[i+1].elo -= elo_change;
         }
         
-        std::cout << "Round " << round << " completed. Top bot: " << players[0].config.name << " with " << players[0].wins << " wins." << std::endl;
+        // Sort for display
+        std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
+            if (a.wins != b.wins) return a.wins > b.wins;
+            return a.elo > b.elo;
+        });
+        
+        std::cout << "Round " << round << " completed. Leader: " << players[0].config.name 
+                  << " (" << players[0].wins << "W/" << players[0].losses << "L Elo:" << players[0].elo << ")" << std::endl;
     }
     
     // Final Sort
@@ -123,19 +160,35 @@ int main() {
         return a.elo > b.elo;
     });
     
-    std::cout << "\n=====================================" << std::endl;
-    std::cout << "        TOURNAMENT RESULTS           " << std::endl;
-    std::cout << "=====================================" << std::endl;
+    std::cout << "\n=====================================================" << std::endl;
+    std::cout << "              TOURNAMENT RESULTS (TOP 10)             " << std::endl;
+    std::cout << "=====================================================" << std::endl;
     
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < std::min(10, num_bots); ++i) {
         const auto& p = players[i];
         std::cout << std::setw(2) << (i+1) << ". " << std::setw(10) << p.config.name 
-                  << " | Wins: " << std::setw(2) << p.wins 
-                  << " | Elo: " << p.elo 
-                  << " | H=" << p.config.horizon << ", P=" << p.config.population
-                  << ", D=" << p.config.dist_weight << ", A=" << p.config.align_weight 
-                  << ", B=" << p.config.block_weight << ", S=" << p.config.shield_penalty << std::endl;
+                  << " | W:" << std::setw(3) << p.wins 
+                  << " L:" << std::setw(3) << p.losses 
+                  << " D:" << std::setw(3) << p.draws
+                  << " | Elo:" << std::setw(5) << p.elo << std::endl;
+        PrintConfig(p.config);
     }
+    
+    // Print winning config as copyable C++ code
+    std::cout << "\n// === WINNING CONFIG ===" << std::endl;
+    const auto& w = players[0].config;
+    std::cout << "config.horizon = " << w.horizon << ";" << std::endl;
+    std::cout << "config.population = " << w.population << ";" << std::endl;
+    std::cout << "config.dist_weight = " << w.dist_weight << ";" << std::endl;
+    std::cout << "config.align_weight = " << w.align_weight << ";" << std::endl;
+    std::cout << "config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
+    std::cout << "config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
+    std::cout << "config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
+    std::cout << "config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
+    std::cout << "config.block_weight = " << w.block_weight << ";" << std::endl;
+    std::cout << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
+    std::cout << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
+    std::cout << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
     
     return 0;
 }
