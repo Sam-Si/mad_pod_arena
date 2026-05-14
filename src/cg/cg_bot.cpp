@@ -833,18 +833,19 @@ int main() {
 
     BotConfig config;
     config.name = "CoordBot";
-    config.horizon = 4;
-    config.population = 80;
-    config.dist_weight = 0.9;
-    config.align_weight = 3.6;
-    config.speed_bonus = 0.9;
-    config.lateral_penalty = 1.7;
-    config.angle_penalty = 55;
-    config.corner_cut_dist = 600;
-    config.block_weight = 0.8;
-    config.shield_penalty = 49;
-    config.shield_ram_dist = 1100;
-    config.opp_penalty = 0.9;
+    config.horizon = 6;
+    config.population = 60;
+    config.dist_weight = 1.4;
+    config.align_weight = 0.8;
+    config.speed_bonus = 1.0;
+    config.lateral_penalty = 0.1;
+    config.angle_penalty = 29;
+    config.corner_cut_dist = 200;
+    config.block_weight = 0.1;
+    config.shield_penalty = 44;
+    config.shield_ram_dist = 600;
+    config.opp_penalty = 0.0;
+    config.opp_model_ms = 45;
 
     GABot bot(config);
     bot.Initialize(laps, cp_count, cps, 0);

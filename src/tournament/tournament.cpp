@@ -40,7 +40,7 @@ BotConfig RandomConfig(int id) {
     c.opp_penalty = FastRandInt(0, 30) / 10.0;             // 0.0..3.0
     
     // Time allocation
-    c.opp_model_ms = 5.0 + FastRandInt(0, 4) * 5.0;       // 5..25ms
+    c.opp_model_ms = 5.0 + FastRandInt(0, 9) * 5.0;       // 5..50ms
     
     return c;
 }
