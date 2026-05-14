@@ -52,7 +52,7 @@ struct Pod {
     int id;
     int team;
     Vec2 pos, vel;
-    int angle;
+    double angle;
     int next_cp_id;
     bool boost_available;
     int shield_cd;
@@ -120,42 +120,43 @@ double GameEngine::ShortestAngleDiff(double current, double target) {
 }
 double GameEngine::RadToDeg(double radians) { return radians * 180.0 / PI; }
 
-Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1), next_cp_id(0), boost_available(true), shield_cd(0), timeout(0), laps_completed(0) {}
+Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1.0), next_cp_id(0), boost_available(true), shield_cd(0), timeout(0), laps_completed(0) {}
 double Pod::Mass() const { return (shield_cd > 0) ? 10.0 : 1.0; }
 
 void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
     else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
-    
 
-    if (angle == -1) angle = 0;
-    else angle = (int)GameEngine::NormalizeAngle(angle + angle_shift);
+    if (angle < 0) angle = 0;
+    else angle = GameEngine::NormalizeAngle(angle + angle_shift);
 
-    vel.x += cos_lut[angle] * thrust_val;
-    vel.y += sin_lut[angle] * thrust_val;
+    int a_idx = ((int)angle) % 360;
+    vel.x += cos_lut[a_idx] * thrust_val;
+    vel.y += sin_lut[a_idx] * thrust_val;
 }
 
 void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
     if (thrust_val == -1) { shield_cd = 3; thrust_val = 0; }
     else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     
-    // Magus referee uses getAngle() which returns Math.atan2 -> toDegrees
-    // then uses (int) cast (truncation toward zero) NOT Math.round
+    // Magus referee keeps angle as a float throughout, only truncating for output.
+    // We match this by storing angle as double and accumulating fractional diffs.
     double target_angle = GameEngine::RadToDeg(std::atan2(ty - pos.y, tx - pos.x));
 
-    if (angle == -1) {
-        // First turn: face target directly (referee uses round here for initial facing)
-        angle = (int)GameEngine::NormalizeAngle(std::round(target_angle));
+    if (angle < 0) {
+        // First turn: face target directly
+        angle = GameEngine::NormalizeAngle(target_angle);
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        // Referee: this.angle += clampedDiff => (int) truncation
-        angle = (int)GameEngine::NormalizeAngle(angle + diff);
+        angle = GameEngine::NormalizeAngle(angle + diff);
     }
 
-    vel.x += cos_lut[angle] * thrust_val;
-    vel.y += sin_lut[angle] * thrust_val;
+    // Use precise trig for server action prediction (verifier accuracy)
+    double rad = angle * PI / 180.0;
+    vel.x += std::cos(rad) * thrust_val;
+    vel.y += std::sin(rad) * thrust_val;
 }
 
 void Pod::Move(double t) {
@@ -670,16 +671,18 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     int start_idx = team_id_ * 2;
     int opp_start_idx = (1 - team_id_) * 2;
 
-    // Phase 1: Model opponent
-    Timer opp_timer;
-    opp_timer.Start();
-    Solution opp_plan = Evolution::RunGA(pods, cps_, timer, config_.opp_model_ms, 1 - team_id_, nullptr, BotConfig(), 0, nullptr);
-    double opp_ms = opp_timer.ElapsedMs();
+    // Opponent proxy: zero-cost heuristic (thrust 200 toward next CP)
+    // This replaces the expensive GA opponent model that was stealing 45ms
+    Solution opp_plan;
+    for (int t = 0; t < config_.horizon; ++t) {
+        opp_plan.moves[0][t].gene1 = 0.15; // Direct bot heuristic
+        opp_plan.moves[1][t].gene1 = 0.15;
+    }
     
-    // Phase 2: Plan our moves with solution persistence
+    // Plan our moves with the FULL time budget (~65ms)
     Timer our_timer;
     our_timer.Start();
-    Solution our_plan = Evolution::RunGA(pods, cps_, timer, 70.0, team_id_, &opp_plan, config_, runner_idx_, has_prev_best_ ? &prev_best_ : nullptr);
+    Solution our_plan = Evolution::RunGA(pods, cps_, timer, 65.0, team_id_, &opp_plan, config_, runner_idx_, has_prev_best_ ? &prev_best_ : nullptr);
     double our_ms = our_timer.ElapsedMs();
     
     // Save this plan for next turn's warm start
@@ -690,8 +693,7 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     
     // Timing debug
     cerr << "--- TIMING T" << cg_turn_count << " ---" << endl;
-    cerr << "  Opp model: " << fixed << setprecision(1) << opp_ms << "ms" << endl;
-    cerr << "  Our plan:  " << our_ms << "ms" << endl;
+    cerr << "  Our plan:  " << fixed << setprecision(1) << our_ms << "ms" << endl;
     cerr << "  Total:     " << total_ms << "ms" << endl;
     cerr << "  Roles: Runner=Pod" << runner_idx_ << " Blocker=Pod" << (1-runner_idx_) << endl;
     cerr << "  GA Score: " << setprecision(0) << our_plan.score << endl;
@@ -704,11 +706,12 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         DecodeGeneToAction(a, p, cps_, pods, opp_start_idx, i == runner_idx_);
 
         double target_angle = GameEngine::NormalizeAngle(p.angle);
-        double tx = p.pos.x + cos_lut[(int)target_angle] * 10000.0;
-        double ty = p.pos.y + sin_lut[(int)target_angle] * 10000.0;
+        int a_idx = ((int)target_angle) % 360;
+        double tx = p.pos.x + cos_lut[a_idx] * 10000.0;
+        double ty = p.pos.y + sin_lut[a_idx] * 10000.0;
         
         // TURN 1 FIX: snap to checkpoint on first turn
-        if (pods[start_idx + i].angle == -1) {
+        if (pods[start_idx + i].angle < 0) {
             tx = cps_[pods[start_idx + i].next_cp_id].x;
             ty = cps_[pods[start_idx + i].next_cp_id].y;
         }
@@ -841,11 +844,11 @@ int main() {
     config.lateral_penalty = 0.1;
     config.angle_penalty = 29;
     config.corner_cut_dist = 200;
-    config.block_weight = 0.1;
+    config.block_weight = 5.0;   // Restored: blocker must actually block
     config.shield_penalty = 44;
-    config.shield_ram_dist = 600;
-    config.opp_penalty = 0.0;
-    config.opp_model_ms = 45;
+    config.shield_ram_dist = 850;
+    config.opp_penalty = 1.0;    // Penalize opponent progress
+    config.opp_model_ms = 0;     // No GA opponent model — using free proxy
 
     GABot bot(config);
     bot.Initialize(laps, cp_count, cps, 0);
@@ -875,7 +878,7 @@ int main() {
             cin >> x >> y >> vx >> vy >> angle >> next_cp_id; cin.ignore();
             env[i].pos = Vec2(x, y);
             env[i].vel = Vec2(vx, vy);
-            env[i].angle = angle;
+            env[i].angle = (double)angle;
             env[i].next_cp_id = next_cp_id;
             env[i].shield_cd = shield_cd_track[i];
             if (shield_cd_track[i] > 0) shield_cd_track[i]--;
@@ -897,7 +900,8 @@ int main() {
                 double vel_err = std::sqrt(vel_dx*vel_dx + vel_dy*vel_dy);
                 double angle_err = 0;
                 if (env[i].angle >= 0 && predicted[i].angle >= 0) {
-                    angle_err = std::abs(GameEngine::ShortestAngleDiff(env[i].angle, predicted[i].angle));
+                    // Server reports integer angle; compare against truncated prediction
+                    angle_err = std::abs(GameEngine::ShortestAngleDiff((int)env[i].angle, (int)predicted[i].angle));
                 }
 
                 bool had_opp_col = pred_had_opp_collision[i];
@@ -983,7 +987,7 @@ int main() {
             int out_thrust = actions[i].thrust;
             
             // TURN 1 FORCED ACCELERATION
-            if (env[i].angle == -1 && out_thrust != -1) {
+            if (env[i].angle < 0 && out_thrust != -1) {
                 out_thrust = 200;
             }
 

@@ -437,10 +437,11 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         DecodeGeneToAction(a, p, cps_, pods, opp_start_idx, true, config_);
         
         double target_angle = GameEngine::NormalizeAngle(p.angle);
-        double tx = p.pos.x + cos_lut[(int)target_angle] * 10000.0;
-        double ty = p.pos.y + sin_lut[(int)target_angle] * 10000.0;
+        int a_idx = ((int)target_angle) % 360;
+        double tx = p.pos.x + cos_lut[a_idx] * 10000.0;
+        double ty = p.pos.y + sin_lut[a_idx] * 10000.0;
         
-        if (pods[start_idx + i].angle == -1) {
+        if (pods[start_idx + i].angle < 0) {
             tx = cps_[pods[start_idx + i].next_cp_id].x;
             ty = cps_[pods[start_idx + i].next_cp_id].y;
         }
@@ -455,7 +456,7 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         }
         
         // Turn 1 forced acceleration
-        if (pods[start_idx + i].angle == -1 && out_thrust != -1) out_thrust = 200;
+        if (pods[start_idx + i].angle < 0 && out_thrust != -1) out_thrust = 200;
         
         actions[i] = {tx, ty, out_thrust};
     }
@@ -464,7 +465,7 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
     actions[blocker_idx_] = HeuristicBlocker::GetAction(pods[start_idx + blocker_idx_], pods, cps_, opp_start_idx, config_);
     
     // Turn 1 forced acceleration for blocker
-    if (pods[start_idx + blocker_idx_].angle == -1 && actions[blocker_idx_].thrust != -1) {
+    if (pods[start_idx + blocker_idx_].angle < 0 && actions[blocker_idx_].thrust != -1) {
         actions[blocker_idx_].thrust = 200;
     }
 

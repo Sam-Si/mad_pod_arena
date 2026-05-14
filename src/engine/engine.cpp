@@ -46,7 +46,7 @@ double GameEngine::ShortestAngleDiff(double current, double target) {
 }
 double GameEngine::RadToDeg(double radians) { return radians * 180.0 / PI; }
 
-Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1), next_cp_id(0), boost_available(true), shield_cd(0), timeout(0), laps_completed(0) {}
+Pod::Pod() : id(0), team(0), pos(0,0), vel(0,0), angle(-1.0), next_cp_id(0), boost_available(true), shield_cd(0), timeout(0), laps_completed(0) {}
 double Pod::Mass() const { return (shield_cd > 0) ? 10.0 : 1.0; }
 
 void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
@@ -54,11 +54,12 @@ void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
     else if (shield_cd > 0) { shield_cd--; thrust_val = 0; }
     if (thrust_val == 650) boost_available = false;
 
-    if (angle == -1) angle = 0; 
-    else angle = (int)GameEngine::NormalizeAngle(angle + angle_shift);
+    if (angle < 0) angle = 0;
+    else angle = GameEngine::NormalizeAngle(angle + angle_shift);
 
-    vel.x += cos_lut[angle] * thrust_val;
-    vel.y += sin_lut[angle] * thrust_val;
+    int a_idx = ((int)angle) % 360;
+    vel.x += cos_lut[a_idx] * thrust_val;
+    vel.y += sin_lut[a_idx] * thrust_val;
 }
 
 void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
@@ -71,18 +72,18 @@ void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
 
     double target_angle = GameEngine::RadToDeg(std::atan2(ty - pos.y, tx - pos.x));
     
-    if (angle == -1) {
-        angle = (int)GameEngine::NormalizeAngle(std::round(target_angle));
+    if (angle < 0) {
+        angle = GameEngine::NormalizeAngle(target_angle);
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        // Magus referee uses (int) truncation, not round
-        angle = (int)GameEngine::NormalizeAngle(angle + diff);
+        angle = GameEngine::NormalizeAngle(angle + diff);
     }
 
-    vel.x += cos_lut[angle] * thrust_val;
-    vel.y += sin_lut[angle] * thrust_val;
+    int a_idx = ((int)angle) % 360;
+    vel.x += cos_lut[a_idx] * thrust_val;
+    vel.y += sin_lut[a_idx] * thrust_val;
 }
 
 void Pod::Move(double t) {

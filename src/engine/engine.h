@@ -45,7 +45,7 @@ struct Pod {
     int id;
     int team;
     Vec2 pos, vel;
-    int angle;
+    double angle;
     int next_cp_id;
     bool boost_available;
     int shield_cd;
