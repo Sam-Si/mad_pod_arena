@@ -350,6 +350,8 @@ PodAction HeuristicBlocker::GetAction(const Pod& blocker, const vector<Pod>& pod
     return {intercept.x, intercept.y, thrust};
 }
 
+bool GABot::verbose = false;
+
 // ======== BOT IMPLEMENTATION ========
 GABot::GABot(BotConfig config) : config_(config) {}
 std::string GABot::GetName() const { return config_.name; }
@@ -419,13 +421,14 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
 
     double total_ms = timer.ElapsedMs();
     
-    // Timing debug output
-    cerr << "[" << config_.name << " T" << turn_count_ << "] "
-         << "Opp:" << std::fixed << std::setprecision(1) << opp_ms << "ms "
-         << "Our:" << our_ms << "ms "
-         << "Total:" << total_ms << "ms "
-         << "Role:R" << runner_idx_ << "/B" << blocker_idx_
-         << " Score:" << std::setprecision(0) << our_plan.score << endl;
+    if (verbose) {
+        cerr << "[" << config_.name << " T" << turn_count_ << "] "
+             << "Opp:" << std::fixed << std::setprecision(1) << opp_ms << "ms "
+             << "Our:" << our_ms << "ms "
+             << "Total:" << total_ms << "ms "
+             << "Role:R" << runner_idx_ << "/B" << blocker_idx_
+             << " Score:" << std::setprecision(0) << our_plan.score << endl;
+    }
 
     std::vector<PodAction> actions(2);
     

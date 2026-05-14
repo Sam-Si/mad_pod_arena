@@ -94,19 +94,21 @@ void PrintConfig(const BotConfig& c) {
 
 void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
     if (!label.empty()) logger << "// === " << label << " ===" << std::endl;
-    logger << "config.horizon = " << w.horizon << ";" << std::endl;
-    logger << "config.population = " << w.population << ";" << std::endl;
-    logger << "config.dist_weight = " << w.dist_weight << ";" << std::endl;
-    logger << "config.align_weight = " << w.align_weight << ";" << std::endl;
-    logger << "config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
-    logger << "config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
-    logger << "config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
-    logger << "config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
-    logger << "config.block_weight = " << w.block_weight << ";" << std::endl;
-    logger << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
-    logger << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
-    logger << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
-    logger << "config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
+    logger << "    BotConfig config;" << std::endl;
+    logger << "    config.name = \"" << w.name << "\";" << std::endl;
+    logger << "    config.horizon = " << w.horizon << ";" << std::endl;
+    logger << "    config.population = " << w.population << ";" << std::endl;
+    logger << "    config.dist_weight = " << w.dist_weight << ";" << std::endl;
+    logger << "    config.align_weight = " << w.align_weight << ";" << std::endl;
+    logger << "    config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
+    logger << "    config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
+    logger << "    config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
+    logger << "    config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
+    logger << "    config.block_weight = " << w.block_weight << ";" << std::endl;
+    logger << "    config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
+    logger << "    config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
+    logger << "    config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
+    logger << "    config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
 }
 
 std::pair<int, int> PlayMatch(BotConfig confA, BotConfig confB, int maps_per_match) {
@@ -167,6 +169,9 @@ int main(int argc, char** argv) {
         players[i].config = RandomConfig(i);
     }
     
+    GABot::verbose = false; // Ensure bots are quiet during tournament
+    auto last_status_print = std::chrono::steady_clock::now();
+    
     int culling_rounds = 6; // 10000 -> 5000 -> 2500 -> 1250 -> 625 -> 312 -> 156
     for (int r = 1; r <= culling_rounds; ++r) {
         logger << "Round " << r << "/" << culling_rounds << " (" << players.size() << " bots)..." << std::flush;
@@ -211,6 +216,22 @@ int main(int argc, char** argv) {
                 int elo_change = 32 * (scoreA - expectedA);
                 players[pA].elo += elo_change;
                 players[pB].elo -= elo_change;
+            }
+
+            // Periodic status update
+            auto now = std::chrono::steady_clock::now();
+            if (std::chrono::duration_cast<std::chrono::minutes>(now - last_status_print).count() >= 5) {
+                std::vector<Player> temp_sort = players;
+                std::sort(temp_sort.begin(), temp_sort.end(), [](const Player& a, const Player& b) {
+                    if (a.wins != b.wins) return a.wins > b.wins;
+                    return a.elo > b.elo;
+                });
+                logger << "\n--- PERIODIC LEADER UPDATE (T+" 
+                       << std::chrono::duration_cast<std::chrono::minutes>(now - last_status_print).count() 
+                       << "m) ---" << std::endl;
+                PrintCopyableConfig(temp_sort[0].config, "Current Leader: " + temp_sort[0].config.name);
+                logger << "----------------------------\n" << std::endl;
+                last_status_print = now;
             }
         }
         
@@ -275,6 +296,22 @@ int main(int argc, char** argv) {
                 int elo_change = 32 * (scoreA - expectedA);
                 players[pA].elo += elo_change;
                 players[pB].elo -= elo_change;
+            }
+
+            // Periodic status update
+            auto now = std::chrono::steady_clock::now();
+            if (std::chrono::duration_cast<std::chrono::minutes>(now - last_status_print).count() >= 5) {
+                std::vector<Player> temp_sort = players;
+                std::sort(temp_sort.begin(), temp_sort.end(), [](const Player& a, const Player& b) {
+                    if (a.wins != b.wins) return a.wins > b.wins;
+                    return a.elo > b.elo;
+                });
+                logger << "\n--- PERIODIC LEADER UPDATE (T+" 
+                       << std::chrono::duration_cast<std::chrono::minutes>(now - last_status_print).count() 
+                       << "m) ---" << std::endl;
+                PrintCopyableConfig(temp_sort[0].config, "Current Leader: " + temp_sort[0].config.name);
+                logger << "----------------------------\n" << std::endl;
+                last_status_print = now;
             }
         }
         

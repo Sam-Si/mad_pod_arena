@@ -58,19 +58,21 @@ void PrintConfig(const BotConfig& c) {
 
 void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
     if (!label.empty()) std::cout << "// === " << label << " ===" << std::endl;
-    std::cout << "config.horizon = " << w.horizon << ";" << std::endl;
-    std::cout << "config.population = " << w.population << ";" << std::endl;
-    std::cout << "config.dist_weight = " << w.dist_weight << ";" << std::endl;
-    std::cout << "config.align_weight = " << w.align_weight << ";" << std::endl;
-    std::cout << "config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
-    std::cout << "config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
-    std::cout << "config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
-    std::cout << "config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
-    std::cout << "config.block_weight = " << w.block_weight << ";" << std::endl;
-    std::cout << "config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
-    std::cout << "config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
-    std::cout << "config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
-    std::cout << "config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
+    std::cout << "    BotConfig config;" << std::endl;
+    std::cout << "    config.name = \"" << w.name << "\";" << std::endl;
+    std::cout << "    config.horizon = " << w.horizon << ";" << std::endl;
+    std::cout << "    config.population = " << w.population << ";" << std::endl;
+    std::cout << "    config.dist_weight = " << w.dist_weight << ";" << std::endl;
+    std::cout << "    config.align_weight = " << w.align_weight << ";" << std::endl;
+    std::cout << "    config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
+    std::cout << "    config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
+    std::cout << "    config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
+    std::cout << "    config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
+    std::cout << "    config.block_weight = " << w.block_weight << ";" << std::endl;
+    std::cout << "    config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
+    std::cout << "    config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
+    std::cout << "    config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
+    std::cout << "    config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
 }
 
 // Play a best-of-6 match: 3 random maps x 2 sides
@@ -103,6 +105,7 @@ std::pair<int, int> PlayMatch(BotConfig confA, BotConfig confB) {
 
 int main(int argc, char** argv) {
     InitLUT();
+    GABot::verbose = false;
 
     int num_bots = 32;
     int num_rounds = 5;

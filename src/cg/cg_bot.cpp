@@ -356,6 +356,7 @@ class GABot : public IBot {
     bool has_prev_best_ = false;
     Solution prev_best_;
 public:
+    static bool verbose;
     GABot(BotConfig config = BotConfig());
     std::string GetName() const override;
     void Initialize(int laps, int cp_count, const std::vector<Vec2>& cps, int team_id) override;
@@ -662,6 +663,7 @@ void GABot::Initialize(int laps, int cp_count, const std::vector<Vec2>& cps, int
     cps_ = cps;
     team_id_ = team_id;
 }
+bool GABot::verbose = false;
 static int cg_turn_count = 0;
 
 std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
@@ -692,12 +694,13 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
 
     double total_ms = timer.ElapsedMs();
     
-    // Timing debug
-    cerr << "--- TIMING T" << cg_turn_count << " ---" << endl;
-    cerr << "  Our plan:  " << fixed << setprecision(1) << our_ms << "ms" << endl;
-    cerr << "  Total:     " << total_ms << "ms" << endl;
-    cerr << "  Roles: Runner=Pod" << runner_idx_ << " Blocker=Pod" << (1-runner_idx_) << endl;
-    cerr << "  GA Score: " << setprecision(0) << our_plan.score << endl;
+    if (verbose) {
+        cerr << "--- TIMING T" << cg_turn_count << " ---" << endl;
+        cerr << "  Our plan:  " << fixed << setprecision(1) << our_ms << "ms" << endl;
+        cerr << "  Total:     " << total_ms << "ms" << endl;
+        cerr << "  Roles: Runner=Pod" << runner_idx_ << " Blocker=Pod" << (1-runner_idx_) << endl;
+        cerr << "  GA Score: " << setprecision(0) << our_plan.score << endl;
+    }
 
     std::vector<PodAction> actions(2);
     for (int i = 0; i < 2; i++) {
@@ -730,9 +733,11 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         actions[i] = {tx, ty, out_thrust};
         
         // Per-pod debug
-        string role = (i == runner_idx_) ? "RUNNER" : "BLOCKER";
-        cerr << "  " << role << " Pod" << i << ": target=(" << (int)tx << "," << (int)ty << ") thrust=" << out_thrust
-             << " gene1=" << setprecision(2) << a.gene1 << " gene2=" << a.gene2 << " gene3=" << a.gene3 << endl;
+        if (verbose) {
+            string role = (i == runner_idx_) ? "RUNNER" : "BLOCKER";
+            cerr << "  " << role << " Pod" << i << ": target=(" << (int)tx << "," << (int)ty << ") thrust=" << out_thrust
+                 << " gene1=" << setprecision(2) << a.gene1 << " gene2=" << a.gene2 << " gene3=" << a.gene3 << endl;
+        }
     }
     return actions;
 }
@@ -853,6 +858,7 @@ int main() {
     config.opp_model_ms = 0;     // No GA opponent model — using free proxy
 
     GABot bot(config);
+    GABot::verbose = true; // Enable logging in main submission bot
     bot.Initialize(laps, cp_count, cps, 0);
     vector<int> pod_laps(4, 0);
     vector<int> prev_cp(4, 1);

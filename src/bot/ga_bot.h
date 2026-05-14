@@ -47,6 +47,7 @@ class GABot : public IBot {
     int best_boost_cp_ = -1;
     int turn_count_ = 0;
 public:
+    static bool verbose;
     GABot(BotConfig config = BotConfig());
     std::string GetName() const override;
     void Initialize(int laps, int cp_count, const std::vector<Vec2>& cps, int team_id) override;
