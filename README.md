@@ -70,6 +70,16 @@ bazel run //src/tournament:tournament
 bazel run //src/tournament:tournament -- 128 6
 ```
 
+**Mega Tournament** — extreme search with multi-stage culling:
+```bash
+# Default: 10,000 bots -> 128 -> 8 -> Top 2
+# Generates a timestamped log file: tournament_log_YYYYMMDD_HHMMSS.txt
+bazel run //src/tournament:mega_tournament
+
+# Custom: start with 5,000 bots
+bazel run //src/tournament:mega_tournament -- 5000
+```
+
 The full tournament has two stages:
 1. **Swiss rounds** — pairs bots by win count, plays 6 games per match (3 random maps x 2 sides). Quickly narrows the field.
 2. **Playoff** — top 8 play a round-robin across **all 18 maps x 2 sides = 36 games per pair**. Eliminates map luck and reliably surfaces the best configuration.
