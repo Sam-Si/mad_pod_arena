@@ -146,12 +146,12 @@ void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
 
     if (angle < 0) {
         // First turn: face target directly
-        angle = std::round(GameEngine::NormalizeAngle(target_angle));
+        angle = GameEngine::NormalizeAngle(target_angle);
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        angle = std::round(GameEngine::NormalizeAngle(angle + diff));
+        angle = GameEngine::NormalizeAngle(angle + diff);
     }
 
     // Use precise trig for server action prediction (verifier accuracy)

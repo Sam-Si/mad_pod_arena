@@ -176,14 +176,14 @@ int main(int argc, char** argv) {
         std::cout << std::endl;
     }
     
-    // Final
+    // Final Swiss standings
     std::sort(players.begin(), players.end(), [](const Player& a, const Player& b) {
         if (a.wins != b.wins) return a.wins > b.wins;
         return a.elo > b.elo;
     });
     
-    std::cout << "\n========== FINAL TOP 5 ==========" << std::endl;
-    for (int i = 0; i < std::min(5, num_bots); ++i) {
+    std::cout << "\n========== SWISS TOP 10 ==========" << std::endl;
+    for (int i = 0; i < std::min(10, num_bots); ++i) {
         const auto& p = players[i];
         std::cout << std::setw(2) << (i+1) << ". " << std::setw(10) << p.config.name 
                   << " W:" << std::setw(3) << p.wins 
@@ -192,11 +192,110 @@ int main(int argc, char** argv) {
         PrintConfig(p.config);
     }
     
+    // ============================================================
+    //  PLAYOFF: Top 8 round-robin, ALL maps x 2 sides per pair
+    //  This eliminates map luck and reliably surfaces the best bot.
+    // ============================================================
+    int playoff_size = std::min(8, num_bots);
+    int total_maps = Arena::GetMapCount();
+    
+    std::cout << "\n========== PLAYOFF: Top " << playoff_size 
+              << " Round-Robin (" << total_maps << " maps x 2 sides = " 
+              << total_maps * 2 << " games/pair) ==========" << std::endl;
+    
+    struct PlayoffEntry {
+        int original_idx;
+        BotConfig config;
+        int total_wins = 0;
+        int total_losses = 0;
+        int total_draws = 0;
+        int elo = 1200;
+    };
+    
+    std::vector<PlayoffEntry> playoff(playoff_size);
+    for (int i = 0; i < playoff_size; ++i) {
+        playoff[i].original_idx = i;
+        playoff[i].config = players[i].config;
+    }
+    
+    // Play every pair across ALL maps, both sides
+    for (int i = 0; i < playoff_size; ++i) {
+        // Collect all match futures for player i against remaining opponents
+        std::vector<std::pair<int, std::future<std::pair<int, int>>>> match_futures;
+        for (int j = i + 1; j < playoff_size; ++j) {
+            BotConfig cA = playoff[i].config;
+            BotConfig cB = playoff[j].config;
+            match_futures.push_back({j, std::async(std::launch::async, [cA, cB, total_maps]() {
+                int wA = 0, wB = 0;
+                for (int m = 0; m < total_maps; ++m) {
+                    {
+                        auto botA = std::make_shared<GABot>(cA);
+                        auto botB = std::make_shared<GABot>(cB);
+                        Arena arena(botA, botB);
+                        ArenaResult res = arena.PlayGame(false, m);
+                        if (res.winner_team == 0) wA++;
+                        else if (res.winner_team == 1) wB++;
+                    }
+                    {
+                        auto botB = std::make_shared<GABot>(cB);
+                        auto botA = std::make_shared<GABot>(cA);
+                        Arena arena(botB, botA);
+                        ArenaResult res = arena.PlayGame(false, m);
+                        if (res.winner_team == 0) wB++;
+                        else if (res.winner_team == 1) wA++;
+                    }
+                }
+                return std::make_pair(wA, wB);
+            })});
+        }
+        
+        // Collect results
+        for (auto& [j, fut] : match_futures) {
+            auto [wA, wB] = fut.get();
+            int total_games = total_maps * 2;
+            int draws = total_games - wA - wB;
+            
+            playoff[i].total_wins += wA;
+            playoff[i].total_losses += wB;
+            playoff[i].total_draws += draws;
+            playoff[j].total_wins += wB;
+            playoff[j].total_losses += wA;
+            playoff[j].total_draws += draws;
+            
+            double expectedA = 1.0 / (1.0 + std::pow(10.0, (playoff[j].elo - playoff[i].elo) / 400.0));
+            double scoreA = (wA + draws * 0.5) / (double)total_games;
+            int elo_change = 32 * (scoreA - expectedA);
+            playoff[i].elo += elo_change;
+            playoff[j].elo -= elo_change;
+            
+            std::cout << "  " << playoff[i].config.name << " vs " << playoff[j].config.name 
+                      << ": " << wA << "-" << wB << " (" << draws << " draws)" << std::endl;
+        }
+    }
+    
+    std::sort(playoff.begin(), playoff.end(), [](const PlayoffEntry& a, const PlayoffEntry& b) {
+        if (a.total_wins != b.total_wins) return a.total_wins > b.total_wins;
+        return a.elo > b.elo;
+    });
+    
+    std::cout << "\n========== PLAYOFF FINAL STANDINGS ==========" << std::endl;
+    for (int i = 0; i < playoff_size; ++i) {
+        const auto& p = playoff[i];
+        double win_rate = 100.0 * p.total_wins / (double)(p.total_wins + p.total_losses + p.total_draws);
+        std::cout << std::setw(2) << (i+1) << ". " << std::setw(10) << p.config.name 
+                  << " W:" << std::setw(4) << p.total_wins 
+                  << " L:" << std::setw(4) << p.total_losses 
+                  << " D:" << std::setw(3) << p.total_draws
+                  << " WR:" << std::fixed << std::setprecision(1) << std::setw(5) << win_rate << "%"
+                  << " Elo:" << std::setw(5) << p.elo << std::endl;
+        PrintConfig(p.config);
+    }
+    
     std::cout << std::endl;
-    PrintCopyableConfig(players[0].config, "1st PLACE");
+    PrintCopyableConfig(playoff[0].config, "CHAMPION");
     std::cout << std::endl;
-    if (num_bots >= 2)
-        PrintCopyableConfig(players[1].config, "2nd PLACE");
+    if (playoff_size >= 2)
+        PrintCopyableConfig(playoff[1].config, "RUNNER-UP");
     
     return 0;
 }

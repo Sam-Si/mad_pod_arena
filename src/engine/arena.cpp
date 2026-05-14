@@ -69,7 +69,7 @@ void Arena::GenerateMap(int map_idx) {
         pods_[i].pos.y = cps_[0].y + offset_y;
         
         Vec2 dir = cps_[1].Sub(pods_[i].pos);
-        pods_[i].angle = std::round(GameEngine::NormalizeAngle(GameEngine::RadToDeg(std::atan2(dir.y, dir.x))));
+        pods_[i].angle = GameEngine::NormalizeAngle(GameEngine::RadToDeg(std::atan2(dir.y, dir.x)));
         pods_[i].next_cp_id = 1;
     }
 }
