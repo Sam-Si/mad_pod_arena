@@ -130,7 +130,8 @@ void Pod::ApplyGAAction(int angle_shift, int thrust_val) {
     if (angle < 0) angle = 0;
     else angle = GameEngine::NormalizeAngle(angle + angle_shift);
 
-    int a_idx = ((int)angle) % 360;
+    int a_idx = ((int)std::round(angle)) % 360;
+    if (a_idx < 0) a_idx += 360;
     vel.x += cos_lut[a_idx] * thrust_val;
     vel.y += sin_lut[a_idx] * thrust_val;
 }
@@ -145,12 +146,12 @@ void Pod::ApplyServerAction(double tx, double ty, int thrust_val) {
 
     if (angle < 0) {
         // First turn: face target directly
-        angle = GameEngine::NormalizeAngle(target_angle);
+        angle = std::round(GameEngine::NormalizeAngle(target_angle));
     } else {
         double diff = GameEngine::ShortestAngleDiff(angle, target_angle);
         if (diff > 18.0) diff = 18.0;
         if (diff < -18.0) diff = -18.0;
-        angle = GameEngine::NormalizeAngle(angle + diff);
+        angle = std::round(GameEngine::NormalizeAngle(angle + diff));
     }
 
     // Use precise trig for server action prediction (verifier accuracy)
@@ -581,7 +582,7 @@ Solution Evolution::RunGA(const vector<Pod>& base_pods, const vector<Vec2>& cps,
                 PhysicsSimulator::SimulateTurn(sim_env);
 
                 for(int p = 0; p < 4; ++p) {
-                    if (sim_env[p].pos.DistanceSq(cps[sim_env[p].next_cp_id]) < 360000) {
+                    if (sim_env[p].pos.DistanceSq(cps[sim_env[p].next_cp_id]) <= 360000) {
                         sim_env[p].next_cp_id = (sim_env[p].next_cp_id + 1) % cps.size();
                     }
                 }
@@ -706,7 +707,8 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         DecodeGeneToAction(a, p, cps_, pods, opp_start_idx, i == runner_idx_);
 
         double target_angle = GameEngine::NormalizeAngle(p.angle);
-        int a_idx = ((int)target_angle) % 360;
+        int a_idx = ((int)std::round(target_angle)) % 360;
+        if (a_idx < 0) a_idx += 360;
         double tx = p.pos.x + cos_lut[a_idx] * 10000.0;
         double ty = p.pos.y + sin_lut[a_idx] * 10000.0;
         
@@ -901,7 +903,7 @@ int main() {
                 double angle_err = 0;
                 if (env[i].angle >= 0 && predicted[i].angle >= 0) {
                     // Server reports integer angle; compare against truncated prediction
-                    angle_err = std::abs(GameEngine::ShortestAngleDiff((int)env[i].angle, (int)predicted[i].angle));
+                    angle_err = std::abs(GameEngine::ShortestAngleDiff((int)env[i].angle, (int)std::round(predicted[i].angle)));
                 }
 
                 bool had_opp_col = pred_had_opp_collision[i];

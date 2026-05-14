@@ -437,7 +437,8 @@ std::vector<PodAction> GABot::GetActions(const std::vector<Pod>& pods) {
         DecodeGeneToAction(a, p, cps_, pods, opp_start_idx, true, config_);
         
         double target_angle = GameEngine::NormalizeAngle(p.angle);
-        int a_idx = ((int)target_angle) % 360;
+        int a_idx = ((int)std::round(target_angle)) % 360;
+        if (a_idx < 0) a_idx += 360;
         double tx = p.pos.x + cos_lut[a_idx] * 10000.0;
         double ty = p.pos.y + sin_lut[a_idx] * 10000.0;
         
