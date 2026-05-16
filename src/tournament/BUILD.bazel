@@ -21,3 +21,11 @@ cc_binary(
     copts = ["-std=c++17", "-O3", "-pthread"],
     linkopts = ["-pthread"],
 )
+
+cc_binary(
+    name = "benchmark_tournament",
+    srcs = ["benchmark_tournament.cpp", "legacy_wrapper.h"],
+    deps = ["//src/engine", "//src/bot:ga_bot", "//src/legacy_bot:legacy_bot_hdr"],
+    copts = ["-std=c++17", "-O3", "-pthread", "-Isrc"],
+    linkopts = ["-pthread"],
+)

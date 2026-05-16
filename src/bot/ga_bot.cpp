@@ -13,6 +13,22 @@ void Action::Randomize() {
     gene3 = FastRandInt(0, 1000) / 1000.0;
 }
 
+void BotConfig::Randomize() {
+    horizon = FastRandInt(4, 8);
+    population = FastRandInt(20, 80);
+    dist_weight = FastRandInt(5, 25) / 10.0;
+    align_weight = FastRandInt(5, 50) / 10.0;
+    speed_bonus = FastRandInt(0, 10) / 10.0;
+    lateral_penalty = FastRandInt(0, 20) / 10.0;
+    angle_penalty = FastRandInt(10, 60);
+    corner_cut_dist = FastRandInt(0, 600);
+    block_weight = FastRandInt(0, 100) / 10.0;
+    shield_penalty = FastRandInt(0, 100);
+    shield_ram_dist = FastRandInt(600, 1200);
+    opp_penalty = FastRandInt(0, 20) / 10.0;
+    opp_model_ms = 5.0 + FastRandInt(0, 9) * 5.0; // 5..50ms
+}
+
 void Action::Mutate() {
     double r = FastRandInt(0, 100);
     if (r < 33) {

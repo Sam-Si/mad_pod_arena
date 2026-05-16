@@ -4,3 +4,10 @@ cc_binary(
     srcs = ["cg_bot.cpp"],
     copts = ["-std=c++17", "-O3"],
 )
+
+cc_binary(
+    name = "cg_bot_verify",
+    srcs = ["cg_bot.cpp"],
+    copts = ["-std=c++17", "-O3", "-DLOCAL_VERIFY"],
+    deps = ["//src/legacy_bot:legacy_bot_hdr"],
+)
