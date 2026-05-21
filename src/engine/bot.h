@@ -1,6 +1,7 @@
 #pragma once
 #include "src/engine/engine.h"
 #include <vector>
+#include <string>
 
 struct BotConfig {
     // GA Core
