@@ -27,6 +27,8 @@ struct BotConfig {
     double opp_model_ms = 15.0;     // ms spent modeling opponent (rest goes to our GA)
 
     std::string name = "DefaultGA";
+
+    void Randomize();
 };
 
 class IBot {

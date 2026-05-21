@@ -10,6 +10,14 @@
 
 using namespace std;
 
+#ifdef LOCAL_VERIFY
+#define PI LEGACY_PI
+#define main legacy_main
+#include "../legacy_bot/legacy_bot.cpp"
+#undef main
+#undef PI
+#endif
+
 
 extern const double PI;
 extern double cos_lut[360];
@@ -1050,6 +1058,108 @@ int main() {
         // Run full simulation
         PhysicsSimulator::SimulateTurn(predicted);
         
+#ifdef LOCAL_VERIFY
+        // Compare with Legacy Physics
+        {
+            static bool initialized = false;
+            static Game legacyGame;
+            static MapData map;
+            if (!initialized) {
+                map.nBeacons = cp_count;
+                map.nLaps = laps;
+                for (int i = 0; i < cp_count; i++) {
+                    map.beacons[i].pos = {cps[i].x, cps[i].y};
+                }
+                map.preCalculateBeaconStuff();
+                legacyGame.mapData = &map;
+                initialized = true;
+            }
+
+            // Sync legacy state
+            for (int i = 0; i < 4; i++) {
+                legacyGame.ships[i].pos = {env[i].pos.x, env[i].pos.y};
+                legacyGame.ships[i].speed = {env[i].vel.x, env[i].vel.y};
+                legacyGame.ships[i].angle = Angle(env[i].angle * PI / 180.0);
+                // Correctly map shield state
+                legacyGame.ships[i].shieldCounter = env[i].shield_cd > 0 ? env[i].shield_cd + 1 : 0;
+                legacyGame.ships[i].inverseShipMass = (env[i].shield_cd > 0) ? 0.1 : 1.0;
+                legacyGame.ships[i].nextBeacon = env[i].next_cp_id;
+                legacyGame.ships[i].lapNumber = env[i].laps_completed;
+            }
+
+            // Apply Actions
+            for (int i = 0; i < 2; i++) {
+                double target_angle = std::atan2(last_output[i].ty - env[i].pos.y, last_output[i].tx - env[i].pos.x);
+                double angle_diff = target_angle - (env[i].angle * PI / 180.0);
+                while (angle_diff > PI) angle_diff -= 2 * PI;
+                while (angle_diff < -PI) angle_diff += 2 * PI;
+                
+                GameAction ga(angle_diff, last_output[i].thrust, last_output[i].was_shield);
+                legacyGame.ships[i].applyGameAction(ga);
+            }
+            // Opponent proxy actions (same as our proxy)
+            for (int i = 2; i < 4; i++) {
+                double target_angle = std::atan2(cps[env[i].next_cp_id].y - env[i].pos.y, cps[env[i].next_cp_id].x - env[i].pos.x);
+                double angle_diff = target_angle - (env[i].angle * PI / 180.0);
+                while (angle_diff > PI) angle_diff -= 2 * PI;
+                while (angle_diff < -PI) angle_diff += 2 * PI;
+                GameAction ga(angle_diff, 200, false);
+                legacyGame.ships[i].applyGameAction(ga);
+            }
+
+            // Simulate turn in legacy engine
+            GameSimulator sim;
+            sim.simulGame = legacyGame;
+            sim.currentTime = 0.0;
+            sim.simulGame.turnNumber = 0;
+            
+            // Re-implement the collision loop from simulateFutureSpecialA(1)
+            double tmin = 0.0;
+            double tmax = 1.0;
+            bool oneTurnFinished = false;
+            while(!oneTurnFinished) {
+                oneTurnFinished = true;
+                bool foundIntersect = false;
+                double timeIntersect = 1e8;
+                int ship1, ship2;
+                for (int i = 0; i < 4 ; ++i) {
+                    for (int j = i+1; j < 4; ++j) {
+                        double timeResult = sim.simulGame.ships[i].intersectTime(sim.simulGame.ships[j], 640000.0);
+                        if (timeResult < tmax && timeResult > tmin && timeResult < timeIntersect) {
+                            ship1 = i; ship2 = j;
+                            timeIntersect = timeResult;
+                            foundIntersect = true;
+                        }
+                    }
+                }
+                if(foundIntersect) {
+                    sim.bounce(sim.simulGame.ships[ship1], sim.simulGame.ships[ship2], timeIntersect);
+                    tmin = timeIntersect;
+                    oneTurnFinished = false;
+                }
+            }
+            for(int i = 0; i < 4 ; ++i) {
+                sim.simulGame.ships[i].updatePosition(1.0);
+                sim.simulGame.ships[i].speed *= 0.85;
+                sim.simulGame.ships[i].truncateAll();
+            }
+
+            // Compare Results
+            for (int i = 0; i < 4; i++) {
+                double dx = std::abs(predicted[i].pos.x - sim.simulGame.ships[i].pos.x);
+                double dy = std::abs(predicted[i].pos.y - sim.simulGame.ships[i].pos.y);
+                double dvx = std::abs(predicted[i].vel.x - sim.simulGame.ships[i].speed.x);
+                double dvy = std::abs(predicted[i].vel.y - sim.simulGame.ships[i].speed.y);
+                
+                if (dx > 0.001 || dy > 0.001 || dvx > 0.001 || dvy > 0.001) {
+                    cerr << "MISMATCH Pod " << i << " turn " << cg_turn_count << endl;
+                    cerr << "  Our: Pos(" << predicted[i].pos.x << "," << predicted[i].pos.y << ") Vel(" << predicted[i].vel.x << "," << predicted[i].vel.y << ")" << endl;
+                    cerr << "  Leg: Pos(" << sim.simulGame.ships[i].pos.x << "," << sim.simulGame.ships[i].pos.y << ") Vel(" << sim.simulGame.ships[i].speed.x << "," << sim.simulGame.ships[i].speed.y << ")" << endl;
+                }
+            }
+        }
+#endif
+
         // Post-hoc: check if our pods are close enough to opponent pods that collision likely occurred
         // Use the env state (pre-move) and predicted state to detect
         for (int our = 0; our < 2; our++) {
