@@ -3,6 +3,7 @@
 #include "src/engine/bot.h"
 #include <memory>
 #include <vector>
+#include <string>
 
 struct ArenaResult {
     int winner_team; // 0 or 1. -1 for draw.
