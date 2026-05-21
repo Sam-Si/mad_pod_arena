@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+exports_files(["legacy_bot.cpp"])
+
+cc_library(
+    name = "legacy_bot_lib",
+    srcs = ["legacy_bot.cpp"],
+    copts = ["-std=c++17", "-O3", "-Dmain=legacy_main"],
+    visibility = ["//visibility:public"],
+)
+
+# Export as header for including in other files
+cc_library(
+    name = "legacy_bot_hdr",
+    hdrs = ["legacy_bot.cpp"],
+    visibility = ["//visibility:public"],
+)
