@@ -1,6 +1,9 @@
 # Mad Pod Racing - Genetic Algorithm Bot
 ## Context & State Dump for AI Collaborators
 
+> [!IMPORTANT]
+> **Legacy Bot Read-Only Rule**: The legacy bot located in `src/legacy_bot` is strictly a read-only reference bot. Under no circumstances should its code or files be modified.
+
 ### Problem Statement
 This project implements a competitive AI bot for the [CodinGame Mad Pod Racing](https://www.codingame.com/multiplayer/bot-programming/mad-pod-racing) challenge. The goal is to control two pods racing around a circuit of checkpoints faster than the opponent's two pods. Each team designates a **Runner** (focuses on finishing the race) and a **Blocker** (focuses on disrupting the opponent's runner).
 
@@ -83,6 +86,7 @@ mad_pod_arena/
 │   ├── cg/cg_bot.cpp          # Monolithic file for CodinGame IDE (copy-paste this)
 │   ├── engine/                 # Physics engine (engine.cpp/h, arena.cpp/h, bot.h)
 │   ├── bot/                    # GA bot (ga_bot.cpp/h)
+│   ├── legacy_bot/            # [READ-ONLY] Legacy reference bot (NEVER MODIFY!)
 │   └── tournament/             # Swiss tournament runner
 ├── scripts/                    # Python utility scripts
 ├── tools/                      # Physics validator, test tools

@@ -54,7 +54,7 @@ struct Pod {
 
     Pod();
     double Mass() const;
-    void ApplyGAAction(int angle_shift, int thrust);
+    void ApplyGAAction(double angle_shift, int thrust);
     void ApplyServerAction(double tx, double ty, int thrust_val);
     void Move(double t);
     void EndTurn();

@@ -1,37 +1,29 @@
 #pragma once
 #include "src/engine/bot.h"
+#include <vector>
+#include <string>
 
 const int MAX_HORIZON = 8;
-const int MAX_POPULATION = 100;
+const int MAX_POP = 48;
 
 struct Action {
-    double gene1; // Meta / Shield
-    double gene2; // Steering
-    double gene3; // Thrust
-
+    double angle;  // Angle shift [-18, 18]
+    int thrust;    // [0, 200] or -1 for shield
     void Randomize();
-    void Mutate();
+    void MutateAggressive(double amplitude);
+    void SmallMutate();
 };
 
 struct Solution {
     double score;
-    Action moves[2][MAX_HORIZON];
-
+    Action runner_moves[MAX_HORIZON];
+    Action blocker_moves[MAX_HORIZON];
+    int runner_shield_step;
+    int blocker_shield_step;
     Solution();
     void Randomize(int horizon);
-    void MutateFrom(const Solution& parent, int horizon);
-};
-
-class Evolution {
-public:
-    static double EvaluatePod(const Pod& pod, const std::vector<Vec2>& cps, int initial_cp, const BotConfig& config);
-    static void ApplyBasicProxy(Pod& p, const std::vector<Vec2>& cps);
-    static Solution RunGA(const std::vector<Pod>& base_pods, const std::vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx = 0, const Solution* warm_start = nullptr);
-};
-
-// Heuristic blocker: deterministic CHASE/RAM/SHIELD state machine
-struct HeuristicBlocker {
-    static PodAction GetAction(const Pod& blocker, const std::vector<Pod>& pods, const std::vector<Vec2>& cps, int opp_start_idx, const BotConfig& config);
+    void MutateFromOne(const Solution& parent, int horizon, double amplitude);
+    void CrossoverFromTwo(const Solution& a, const Solution& b, int horizon);
 };
 
 class GABot : public IBot {
@@ -44,8 +36,12 @@ class GABot : public IBot {
     BotConfig config_;
     bool has_prev_best_ = false;
     Solution prev_best_;
-    int best_boost_cp_ = -1;
     int turn_count_ = 0;
+    std::vector<double> cp_distances_;
+    std::vector<Vec2> entry_points_;
+    std::vector<Vec2> ram_rest_points_;
+    std::vector<double> dist_to_end_;
+    int total_cps_in_race_ = 0;
 public:
     static bool verbose;
     GABot(BotConfig config = BotConfig());

@@ -6,26 +6,26 @@
 struct BotConfig {
     // GA Core
     int horizon = 6;           // Turns of lookahead (4-8)
-    int population = 40;       // GA population size (20-80)
+    int population = 50;       // GA population size (20-100)
     
     // Runner Evaluation Weights
-    double dist_weight = 1.0;       // Distance-to-CP penalty
-    double align_weight = 2.0;      // Velocity alignment reward
-    double speed_bonus = 0.3;       // Raw speed reward
-    double lateral_penalty = 0.8;   // Sideways drift penalty
-    double angle_penalty = 30.0;    // Angle-to-target penalty
-    double corner_cut_dist = 400.0; // Corner-cutting offset (units)
+    double dist_weight = 1.5;       // Distance-to-CP penalty
+    double align_weight = 3.0;      // Velocity alignment reward
+    double speed_bonus = 0.5;       // Raw speed reward
+    double lateral_penalty = 0.5;   // Sideways drift penalty
+    double angle_penalty = 25.0;    // Angle-to-target penalty
+    double corner_cut_dist = 300.0; // Corner-cutting offset (units)
     
     // Blocker Weights
-    double block_weight = 5.0;      // Blocker aggressiveness
+    double block_weight = 1.0;      // Blocker aggressiveness (was 5.0 - way too dominant)
     double shield_penalty = 50.0;   // Shield usage penalty
     double shield_ram_dist = 850.0; // Distance to trigger shield-ram
     
     // Coordination
-    double opp_penalty = 1.0;       // Penalize opponent's progress in eval
+    double opp_penalty = 0.5;       // Penalize opponent's progress in eval
     
     // Time allocation
-    double opp_model_ms = 15.0;     // ms spent modeling opponent (rest goes to our GA)
+    double opp_model_ms = 0.0;      // Skip opponent GA model - use proxy instead
 
     std::string name = "DefaultGA";
 
