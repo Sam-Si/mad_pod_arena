@@ -109,7 +109,8 @@ struct SimCtx {
     int start_idx;
     int opp_start_idx;
     int runner_idx;
-    int ram_beacon;  // Which CP the blocker should camp near
+    int ram_beacon;       // Which CP the blocker should camp near
+    bool risk_timeout;    // If true, blocker races instead of blocking
 };
 
 // ======== SIMULATE + EVALUATE (combined GA: both pods GA-controlled) ========
@@ -157,9 +158,9 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
             b_thr = -1;
         g_sim[blocker_pod].ApplyGAAction(sol.blocker_moves[t].angle, b_thr);
 
-        // Opponent runner: aim at their next CP (simple proxy)
+        // Opponent runner: aim at entry point for corner cutting (matches legacy behavior)
         {
-            const Vec2& tgt = cps[g_sim[opp_runner].next_cp_id];
+            const Vec2& tgt = ep[g_sim[opp_runner].next_cp_id];
             double desired = GameEngine::RadToDeg(atan2(tgt.y - g_sim[opp_runner].pos.y,
                                                          tgt.x - g_sim[opp_runner].pos.x));
             double shift = GameEngine::ShortestAngleDiff(g_sim[opp_runner].angle, desired);
@@ -167,7 +168,7 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
             g_sim[opp_runner].ApplyGAAction(shift, 200);
         }
 
-        // Opponent blocker: chase our runner with velocity lead
+        // Opponent blocker: chase our runner with velocity lead + shield on close approach
         {
             double tx = g_sim[runner_pod].pos.x + g_sim[runner_pod].vel.x;
             double ty = g_sim[runner_pod].pos.y + g_sim[runner_pod].vel.y;
@@ -175,7 +176,10 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
                                                          tx - g_sim[opp_blocker].pos.x));
             double shift = GameEngine::ShortestAngleDiff(g_sim[opp_blocker].angle, desired);
             shift = max(-18.0, min(18.0, shift));
-            g_sim[opp_blocker].ApplyGAAction(shift, 200);
+            int opp_thr = 200;
+            double opp_dist = g_sim[opp_blocker].pos.Distance(g_sim[runner_pod].pos);
+            if (opp_dist < 900 && g_sim[opp_blocker].shield_cd == 0) opp_thr = -1;
+            g_sim[opp_blocker].ApplyGAAction(shift, opp_thr);
         }
 
         PhysicsSimulator::SimulateTurn(g_sim);
@@ -245,20 +249,43 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
         score += 1.5 * opp_run.pos.Distance(cps[opp_run.next_cp_id]);
     }
 
-    // Blocker positioning: reward being near the ram rest point of the targeted beacon
-    // (matches legacy COEFFEVAL_RAM_REPLACENEAROBJECTIVE = 0.03 * COEFFEVAL_GLOBALRAM = 1.5)
+    // Blocker evaluation (depends on timeout risk)
     {
         const Pod& blocker = g_sim[blocker_pod];
-        const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
-        double bd = blocker.pos.Distance(rrp);
-        score -= 0.045 * bd;
 
-        // Bonus for blocker facing toward opponent runner
-        double dx = opp_run.pos.x - blocker.pos.x;
-        double dy = opp_run.pos.y - blocker.pos.y;
-        double desired = GameEngine::RadToDeg(atan2(dy, dx));
-        double face_diff = GameEngine::ShortestAngleDiff(blocker.angle, desired);
-        score -= 1.5 * 20.0 * fabs(face_diff) / 180.0;  // Normalized to ~0-30 range
+        if (ctx.risk_timeout) {
+            // Timeout risk: blocker races to its own CPs (matches legacy riskTimeout behavior)
+            if (blocker.laps_completed < ctx.laps) {
+                int blocker_lin = blocker.laps_completed * n + blocker.next_cp_id;
+                score -= dte[blocker_lin] + blocker.pos.Distance(ep[blocker.next_cp_id]);
+            }
+        } else {
+            // Normal blocking: match legacy COEFFEVAL_GLOBALRAM = 1.5
+
+            // Near ram rest point with distance threshold (legacy: acceptable dist = 300)
+            const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
+            double bd = blocker.pos.Distance(rrp);
+            double d_adj = bd - 300.0;
+            if (d_adj < 0) d_adj *= 0.1;  // Soft penalty when already close
+            score -= 0.045 * d_adj;
+
+            // Facing opponent runner (legacy: -20.0 * 1.5 * |angle_diff|)
+            double dx = opp_run.pos.x - blocker.pos.x;
+            double dy = opp_run.pos.y - blocker.pos.y;
+            double desired_rad = atan2(dy, dx);
+            double blocker_rad = blocker.angle * PI / 180.0;
+            double face_diff = atan2(sin(desired_rad - blocker_rad), cos(desired_rad - blocker_rad));
+            score -= 30.0 * fabs(face_diff);
+
+            // Stay in front of opponent (between opponent and their target CP)
+            double bx = blocker.pos.x - opp_run.pos.x;
+            double by = blocker.pos.y - opp_run.pos.y;
+            double cx = (*ctx.cps)[opp_run.next_cp_id].x - opp_run.pos.x;
+            double cy = (*ctx.cps)[opp_run.next_cp_id].y - opp_run.pos.y;
+            double cross_val = fabs(bx * cy - by * cx);
+            double dot_val = bx * cx + by * cy;
+            score -= 30.0 * atan2(cross_val, dot_val);
+        }
     }
 
     // Shield cost/thrust bonus (match legacy coefficients)
@@ -358,7 +385,23 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
         fill_seed(idx + 5, 200, 1.0,  0,           MAX_HORIZON); // runner shield t=0
         fill_seed(idx + 6, 200, 1.0,  MAX_HORIZON, 1);           // blocker shield t=1
         fill_seed(idx + 7, 200, 1.0,  1,           MAX_HORIZON); // runner shield t=1
-        idx += 8;
+
+        // Seed with blocker aiming at ram rest point instead of opponent
+        if (idx + 8 < pop_size) {
+            const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
+            Pod bsim2 = base_pods[blocker_pod];
+            for (int t = 0; t < horizon; ++t) {
+                pop[idx + 8].runner_moves[t] = runner_h[t];
+                pop[idx + 8].blocker_moves[t] = MakeGoToTarget(bsim2, rrp.x, rrp.y, 200);
+                bsim2.ApplyGAAction(pop[idx + 8].blocker_moves[t].angle, 200);
+                bsim2.pos.x += bsim2.vel.x; bsim2.pos.y += bsim2.vel.y;
+                bsim2.vel.x = trunc(bsim2.vel.x * 0.85); bsim2.vel.y = trunc(bsim2.vel.y * 0.85);
+                bsim2.pos.x = round(bsim2.pos.x); bsim2.pos.y = round(bsim2.pos.y);
+            }
+            pop[idx + 8].runner_shield_step = MAX_HORIZON;
+            pop[idx + 8].blocker_shield_step = MAX_HORIZON;
+        }
+        idx += 9;
     }
 
     // Fill remaining with random
@@ -548,6 +591,7 @@ vector<PodAction> GABot::GetActions(const vector<Pod>& pods) {
     ctx.opp_start_idx = opp_start_idx;
     ctx.runner_idx = runner_idx_;
     ctx.ram_beacon = ram_beacon;
+    ctx.risk_timeout = pods[start_idx + blocker_idx_].timeout >= 60;
 
     Solution best = RunGA(pods, timer, 75.0, ctx, config_, has_prev_best_ ? &prev_best_ : nullptr);
     prev_best_ = best;
