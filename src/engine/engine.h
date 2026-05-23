@@ -7,6 +7,7 @@
 extern const double PI;
 extern double cos_lut[360];
 extern double sin_lut[360];
+extern thread_local bool g_friendly_collision;
 
 void InitLUT();
 uint32_t FastRand();
@@ -54,7 +55,7 @@ struct Pod {
 
     Pod();
     double Mass() const;
-    void ApplyGAAction(int angle_shift, int thrust);
+    void ApplyGAAction(double angle_shift, int thrust);
     void ApplyServerAction(double tx, double ty, int thrust_val);
     void Move(double t);
     void EndTurn();
@@ -64,5 +65,5 @@ class PhysicsSimulator {
 public:
     static double GetCollisionTime(const Pod& p1, const Pod& p2);
     static void ResolveCollision(Pod& p1, Pod& p2);
-    static void SimulateTurn(std::vector<Pod>& pods);
+    static void SimulateTurn(Pod* pods);
 };

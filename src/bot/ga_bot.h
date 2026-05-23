@@ -2,50 +2,52 @@
 #include "src/engine/bot.h"
 
 const int MAX_HORIZON = 8;
-const int MAX_POPULATION = 100;
+const int MAX_POP = 64;
 
 struct Action {
-    double gene1; // Meta / Shield
-    double gene2; // Steering
-    double gene3; // Thrust
-
+    double angle = 0;  // Angle shift [-18, 18] in degrees
+    int thrust = 0;    // [0, 200]
     void Randomize();
-    void Mutate();
+    void MutateAggressive(double amplitude);
+    void SmallMutate();
 };
 
+// Solution encodes moves for BOTH runner and blocker (combined GA).
 struct Solution {
     double score;
-    Action moves[2][MAX_HORIZON];
+    Action runner_moves[MAX_HORIZON];
+    Action blocker_moves[MAX_HORIZON];
+    int runner_shield_step;   // Turn to use shield (0-2 active, >=3 no shield)
+    int blocker_shield_step;
 
     Solution();
     void Randomize(int horizon);
-    void MutateFrom(const Solution& parent, int horizon);
+    void MutateFromOne(const Solution& parent, int horizon, double amplitude);
+    void CrossoverFromTwo(const Solution& a, const Solution& b, int horizon);
 };
 
-class Evolution {
-public:
-    static double EvaluatePod(const Pod& pod, const std::vector<Vec2>& cps, int initial_cp, const BotConfig& config);
-    static void ApplyBasicProxy(Pod& p, const std::vector<Vec2>& cps);
-    static Solution RunGA(const std::vector<Pod>& base_pods, const std::vector<Vec2>& cps, Timer& timer, double time_limit_ms, int target_team, const Solution* enemy_plan, const BotConfig& config, int runner_idx = 0, const Solution* warm_start = nullptr);
-};
-
-// Heuristic blocker: deterministic CHASE/RAM/SHIELD state machine
-struct HeuristicBlocker {
-    static PodAction GetAction(const Pod& blocker, const std::vector<Pod>& pods, const std::vector<Vec2>& cps, int opp_start_idx, const BotConfig& config);
-};
+Action MakeGoToTarget(const Pod& pod, double tx, double ty, int thrust_val = 200);
 
 class GABot : public IBot {
-    int laps_;
-    int cp_count_;
+    int laps_ = 3;
+    int cp_count_ = 0;
     std::vector<Vec2> cps_;
-    int team_id_;
+    int team_id_ = 0;
     int runner_idx_ = 0;
     int blocker_idx_ = 1;
     BotConfig config_;
     bool has_prev_best_ = false;
     Solution prev_best_;
-    int best_boost_cp_ = -1;
     int turn_count_ = 0;
+    double avg_dist_ = 0.0;
+
+    // Pre-computed race geometry
+    std::vector<double> dist_to_end_;    // [linear_idx] remaining distance to finish
+    std::vector<Vec2> entry_points_;     // [cp_id] smart checkpoint entry points
+    std::vector<Vec2> ram_rest_points_;  // [cp_id] blocker camping positions
+    std::vector<double> cp_distances_;
+    int total_cps_in_race_ = 0;
+
 public:
     static bool verbose;
     GABot(BotConfig config = BotConfig());

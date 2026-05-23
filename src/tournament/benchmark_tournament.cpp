@@ -14,99 +14,69 @@
 
 std::mutex log_mutex;
 
-void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
-    std::lock_guard<std::mutex> lock(log_mutex);
-    if (!label.empty()) std::cout << "// === " << label << " ===" << std::endl;
-    std::cout << "    BotConfig config;" << std::endl;
-    std::cout << "    config.name = \"" << w.name << "\";" << std::endl;
-    std::cout << "    config.horizon = " << w.horizon << ";" << std::endl;
-    std::cout << "    config.population = " << w.population << ";" << std::endl;
-    std::cout << "    config.dist_weight = " << w.dist_weight << ";" << std::endl;
-    std::cout << "    config.align_weight = " << w.align_weight << ";" << std::endl;
-    std::cout << "    config.speed_bonus = " << w.speed_bonus << ";" << std::endl;
-    std::cout << "    config.lateral_penalty = " << w.lateral_penalty << ";" << std::endl;
-    std::cout << "    config.angle_penalty = " << w.angle_penalty << ";" << std::endl;
-    std::cout << "    config.corner_cut_dist = " << w.corner_cut_dist << ";" << std::endl;
-    std::cout << "    config.block_weight = " << w.block_weight << ";" << std::endl;
-    std::cout << "    config.shield_penalty = " << w.shield_penalty << ";" << std::endl;
-    std::cout << "    config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
-    std::cout << "    config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
-    std::cout << "    config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
-}
-
-// Play a match against LegacyBot
-std::pair<int, int> PlayMatchAgainstLegacy(BotConfig confA) {
-    int winsA = 0;
-    int winsLegacy = 0;
-    
-    // Use 1 map for quick screening
-    std::vector<int> map_indices = {0};
-    for (int map_idx : map_indices) {
-        // Round 1: A is Team 0
-        {
-            auto botA = std::make_shared<GABot>(confA);
-            auto botLegacy = std::make_shared<LegacyBotWrapper>();
-            Arena arena(botA, botLegacy);
-            ArenaResult res = arena.PlayGame(false, map_idx);
-            if (res.winner_team == 0) winsA++;
-            else if (res.winner_team == 1) winsLegacy++;
-        }
-        // Round 2: A is Team 1
-        {
-            auto botA = std::make_shared<GABot>(confA);
-            auto botLegacy = std::make_shared<LegacyBotWrapper>();
-            Arena arena(botLegacy, botA);
-            ArenaResult res = arena.PlayGame(false, map_idx);
-            if (res.winner_team == 1) winsA++;
-            else if (res.winner_team == 0) winsLegacy++;
-        }
-    }
-    return {winsA, winsLegacy};
-}
-
 int main(int argc, char** argv) {
-    int num_bots = 100;
-    if (argc > 1) num_bots = std::atoi(argv[1]);
+    InitLUT();
+    GABot::verbose = (argc > 4 && std::string(argv[4]) == "-v");
 
-    std::cout << "--- BENCHMARK TOURNAMENT vs LEGACY BOT ---" << std::endl;
-    std::cout << "Testing " << num_bots << " random configurations..." << std::endl;
+    int total_maps = Arena::GetMapCount();
+    int start_map = 0;
+    int end_map = total_maps;
+    int repeats = 1;
+    
+    if (argc > 1) start_map = std::atoi(argv[1]);
+    if (argc > 2) end_map = std::atoi(argv[2]);
+    if (argc > 3) repeats = std::atoi(argv[3]);
+    if (end_map > total_maps) end_map = total_maps;
+    if (start_map < 0) start_map = 0;
 
-    GABot::verbose = false; // Keep it quiet
+    BotConfig config;
+    config.name = "GABot";
 
-    std::vector<std::future<std::pair<int, int>>> futures;
-    std::vector<BotConfig> configs;
+    std::cout << "=== GABot vs LegacyBot: Maps " << start_map << "-" << (end_map-1) 
+              << ", " << repeats << " repeats/side ===" << std::endl;
 
-    for (int i = 0; i < num_bots; i++) {
-        BotConfig c;
-        c.name = "Bot_" + std::to_string(i);
-        c.Randomize();
-        configs.push_back(c);
+    int total_ga_wins = 0, total_legacy_wins = 0, total_draws = 0;
+    
+    for (int m = start_map; m < end_map; ++m) {
+        int ga_wins = 0, legacy_wins = 0, draws = 0;
         
-        futures.push_back(std::async(std::launch::async, PlayMatchAgainstLegacy, c));
-        
-        // Batching to prevent thread explosion
-        if (futures.size() >= 100) {
-            for (size_t j = 0; j < futures.size(); j++) {
-                auto res = futures[j].get();
-                if (res.first > res.second) {
-                    PrintCopyableConfig(configs[configs.size() - futures.size() + j], 
-                        configs[configs.size() - futures.size() + j].name + " BEAT LEGACY (" + std::to_string(res.first) + "-" + std::to_string(res.second) + ")");
-                }
+        for (int r = 0; r < repeats; ++r) {
+            {
+                auto ga = std::make_shared<GABot>(config);
+                auto legacy = std::make_shared<LegacyBotWrapper>();
+                Arena arena(ga, legacy);
+                ArenaResult res = arena.PlayGame(false, m);
+                if (res.winner_team == 0) ga_wins++;
+                else if (res.winner_team == 1) legacy_wins++;
+                else draws++;
             }
-            futures.clear();
-            std::cout << "Progress: " << i + 1 << "/" << num_bots << std::endl;
+            {
+                auto legacy = std::make_shared<LegacyBotWrapper>();
+                auto ga = std::make_shared<GABot>(config);
+                Arena arena(legacy, ga);
+                ArenaResult res = arena.PlayGame(false, m);
+                if (res.winner_team == 1) ga_wins++;
+                else if (res.winner_team == 0) legacy_wins++;
+                else draws++;
+            }
         }
+        
+        total_ga_wins += ga_wins;
+        total_legacy_wins += legacy_wins;
+        total_draws += draws;
+        
+        const char* status = (ga_wins > legacy_wins) ? "WIN" : (ga_wins < legacy_wins) ? "LOSS" : "DRAW";
+        std::cout << "Map " << std::setw(2) << m << ": GA " << ga_wins 
+                  << " - Legacy " << legacy_wins << " (draws: " << draws 
+                  << ") [" << status << "]" << std::endl;
     }
 
-    // Final batch
-    for (size_t j = 0; j < futures.size(); j++) {
-        auto res = futures[j].get();
-        if (res.first > res.second) {
-            PrintCopyableConfig(configs[configs.size() - futures.size() + j], 
-                configs[configs.size() - futures.size() + j].name + " BEAT LEGACY (" + std::to_string(res.first) + "-" + std::to_string(res.second) + ")");
-        }
-    }
+    int total_games = total_ga_wins + total_legacy_wins + total_draws;
+    double win_rate = (total_games > 0) ? 100.0 * total_ga_wins / total_games : 0.0;
+    std::cout << "\n=== TOTALS ===" << std::endl;
+    std::cout << "GA Wins: " << total_ga_wins << "  Legacy Wins: " << total_legacy_wins 
+              << "  Draws: " << total_draws << std::endl;
+    std::cout << "Win Rate: " << std::fixed << std::setprecision(1) << win_rate << "%" << std::endl;
 
-    std::cout << "Benchmark complete." << std::endl;
     return 0;
 }
