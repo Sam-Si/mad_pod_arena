@@ -20,11 +20,37 @@ using namespace std;
 #undef PI
 #endif
 
-constexpr double SPEED_FACTOR = 10.0;
+// === Tunable Constants & Time Limits ===
+constexpr double TURN_TIME_LIMIT_MS = 75.0;
+constexpr double FIRST_TURN_TIME_LIMIT_MS = 1000.0;
+
+// === Physics & Engine Constants ===
+constexpr double COLLISION_RADIUS_SQ = 640000.0;
+constexpr double CP_RADIUS_SQ = 360000.0;
+constexpr double MIN_IMPULSE = 120.0;
+
+// === Runner & Blocker Heuristic Weights ===
+constexpr double RUNNER_BYPASS_WEIGHT = 20.0;
+constexpr double RUNNER_FAST_ACT_PENALTY = 1000.0;
+constexpr double OPPONENT_DELAY_WEIGHT = 10000.0;
+constexpr double OPPONENT_DISTANCE_WEIGHT = 10.0;
+constexpr double BLOCKER_REST_THRESHOLD = 300.0;
+constexpr double BLOCKER_REST_SOFT_FACTOR = 0.1;
+constexpr double BLOCKER_REST_PENALTY_FACTOR = 0.045;
+constexpr double BLOCKER_FACING_WEIGHT = 30.0;
+constexpr double BLOCKER_STAY_IN_FRONT_WEIGHT = 30.0;
+
+// === Shield Costs & Thrust Bonuses ===
+constexpr double RUNNER_SHIELD_COST = 330.0;
+constexpr double RUNNER_THRUST_BONUS = 0.16;
+constexpr double BLOCKER_SHIELD_COST = 495.0;
+constexpr double BLOCKER_THRUST_BONUS = 0.06;
 
 extern const double PI;
 extern double cos_lut[360];
 extern double sin_lut[360];
+extern thread_local bool g_friendly_collision;
+extern thread_local int g_runner_id;
 
 void InitLUT();
 uint32_t FastRand();
@@ -46,6 +72,7 @@ struct Vec2 {
     double DistanceSq(const Vec2& o) const;
     double Distance(const Vec2& o) const;
 };
+
 
 class GameEngine {
 public:
@@ -82,7 +109,7 @@ class PhysicsSimulator {
 public:
     static double GetCollisionTime(const Pod& p1, const Pod& p2);
     static void ResolveCollision(Pod& p1, Pod& p2);
-    static void SimulateTurn(std::vector<Pod>& pods);
+    static void SimulateTurn(Pod* pods);
 };
 
 struct BotConfig {
@@ -108,6 +135,10 @@ struct BotConfig {
     
     // Time allocation
     double opp_model_ms = 0.0;      // Skip opponent GA model - use proxy instead
+
+    double runner_bypass_weight = 20.0;
+    double blocker_stay_in_front_weight = 30.0;
+    double blocker_facing_weight = 30.0;
 
     std::string name = "DefaultGA";
 
@@ -165,6 +196,7 @@ class GABot : public IBot {
     bool has_prev_best_ = false;
     Solution prev_best_;
     int turn_count_ = 0;
+    double avg_dist_ = 0.0;
 
     // Pre-computed race geometry
     std::vector<double> dist_to_end_;    // [linear_idx] remaining distance to finish
@@ -198,6 +230,7 @@ const double PI = 3.14159265358979323846;
 double cos_lut[360];
 double sin_lut[360];
 thread_local uint32_t xor_state = 2463534242;
+thread_local bool g_friendly_collision = false;
 
 void InitLUT() {
     for (int i = 0; i < 360; ++i) {
@@ -214,7 +247,9 @@ uint32_t FastRand() {
 }
 
 int FastRandInt(int min, int max) {
-    return min + (FastRand() % (max - min + 1));
+    uint32_t range = max - min + 1;
+    uint64_t multi = (uint64_t)FastRand() * range;
+    return min + (int)(multi >> 32);
 }
 
 void Timer::Start() { start_time = std::chrono::high_resolution_clock::now(); }
@@ -295,6 +330,11 @@ void Pod::EndTurn() {
 double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     double x = p1.pos.x - p2.pos.x;
     double y = p1.pos.y - p2.pos.y;
+    double c = x * x + y * y - 640000.0; 
+
+    // High-performance Geometric Early Exit: pods > 2000 units apart cannot collide
+    if (c > 3360000.0) return -1.0;
+
     double vx = p1.vel.x - p2.vel.x;
     double vy = p1.vel.y - p2.vel.y;
 
@@ -302,9 +342,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     if (a < 0.00001) return -1.0;
 
     double b = 2.0 * (x * vx + y * vy);
-    double c = x * x + y * y - 640000.0; 
 
-    if (c < 0.0) return 0.0;
+    // High-performance early exit: if outside radius and moving apart, they will never collide
+    if (c >= 0.0 && b >= 0.0) return -1.0;
 
     double delta = b * b - 4.0 * a * c;
     if (delta < 0.0) return -1.0;
@@ -315,6 +355,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
 }
 
 void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
+    if ((p1.id == 0 && p2.id == 1) || (p1.id == 2 && p2.id == 3)) {
+        g_friendly_collision = true;
+    }
     double m1 = p1.Mass();
     double m2 = p2.Mass();
     double mcoeff = (m1 + m2) / (m1 * m2);
@@ -347,7 +390,7 @@ void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
     p2.vel.y += fy / m2;
 }
 
-void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
+void PhysicsSimulator::SimulateTurn(Pod* p) {
     double t_current = 0.0;
     int col_count = 0;
     while (t_current < 1.0 && col_count < 10) {
@@ -355,41 +398,80 @@ void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
         Pod* col_p1 = nullptr;
         Pod* col_p2 = nullptr;
 
-        for (size_t i = 0; i < pods.size(); ++i) {
-            for (size_t j = i + 1; j < pods.size(); ++j) {
-                double t = GetCollisionTime(pods[i], pods[j]);
-                if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) {
-                    first_col_t = t;
-                    col_p1 = &pods[i];
-                    col_p2 = &pods[j];
-                }
-            }
-        }
+        // Fully unrolled collision time calculations (exactly 6 pairs for 4 pods)
+        double t;
+        t = GetCollisionTime(p[0], p[1]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[1]; }
+        t = GetCollisionTime(p[0], p[2]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[2]; }
+        t = GetCollisionTime(p[0], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[3]; }
+        t = GetCollisionTime(p[1], p[2]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[1]; col_p2 = &p[2]; }
+        t = GetCollisionTime(p[1], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[1]; col_p2 = &p[3]; }
+        t = GetCollisionTime(p[2], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[2]; col_p2 = &p[3]; }
 
         if (first_col_t > 1.0 - t_current) {
-            for (auto& pod : pods) pod.Move(1.0 - t_current);
+            p[0].Move(1.0 - t_current);
+            p[1].Move(1.0 - t_current);
+            p[2].Move(1.0 - t_current);
+            p[3].Move(1.0 - t_current);
             t_current = 1.0;
             break;
         }
 
         if (first_col_t < 0.0001) first_col_t = 0.0001;
 
-        for (auto& pod : pods) pod.Move(first_col_t);
+        p[0].Move(first_col_t);
+        p[1].Move(first_col_t);
+        p[2].Move(first_col_t);
+        p[3].Move(first_col_t);
+
         if (col_p1 && col_p2) ResolveCollision(*col_p1, *col_p2);
         t_current += first_col_t;
         col_count++;
     }
     
     if (t_current < 1.0) {
-        for (auto& pod : pods) pod.Move(1.0 - t_current);
+        p[0].Move(1.0 - t_current);
+        p[1].Move(1.0 - t_current);
+        p[2].Move(1.0 - t_current);
+        p[3].Move(1.0 - t_current);
     }
     
-    for (auto& pod : pods) pod.EndTurn();
+    p[0].EndTurn();
+    p[1].EndTurn();
+    p[2].EndTurn();
+    p[3].EndTurn();
 }
 
 // ======== BOT IMPLEMENTATION ========
 // Thread-local reusable simulation buffer (eliminates heap alloc per Simulate call)
-static thread_local vector<Pod> g_sim(4);
+static thread_local Pod g_sim[4];
+
+static inline double GetCPIntersectionTime(const Pod& p, const Vec2& cp) {
+    double x = p.pos.x - cp.x;
+    double y = p.pos.y - cp.y;
+    double vx = p.vel.x;
+    double vy = p.vel.y;
+
+    double a = vx * vx + vy * vy;
+    if (a < 0.00001) return -1.0;
+
+    double b = 2.0 * (x * vx + y * vy);
+    double c = x * x + y * y - 360000.0;
+
+    if (c < 0.0) return 0.0;
+
+    double delta = b * b - 4.0 * a * c;
+    if (delta < 0.0) return -1.0;
+
+    double t = (-b - std::sqrt(delta)) / (2.0 * a);
+    if (t < 0.0) return -1.0;
+    return t;
+}
 
 // ======== ACTION ========
 void Action::Randomize() {
@@ -435,6 +517,10 @@ void BotConfig::Randomize() {
     shield_ram_dist = FastRandInt(600, 1200);
     opp_penalty = FastRandInt(0, 20) / 10.0;
     opp_model_ms = 0;
+
+    runner_bypass_weight = FastRandInt(50, 500) / 10.0;
+    blocker_stay_in_front_weight = FastRandInt(50, 400) / 10.0;
+    blocker_facing_weight = FastRandInt(50, 400) / 10.0;
 }
 
 Action MakeGoToTarget(const Pod& pod, double tx, double ty, int thrust_val) {
@@ -492,6 +578,9 @@ struct SimCtx {
     int runner_idx;
     int ram_beacon;       // Which CP the blocker should camp near
     bool risk_timeout;    // If true, blocker races instead of blocking
+    const BotConfig* config; // Added
+    bool force_boost;     // Force runner to boost on Turn 0
+    Action opp_moves[MAX_HORIZON];
 };
 
 // ======== SIMULATE + EVALUATE (combined GA: both pods GA-controlled) ========
@@ -503,9 +592,16 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
     const auto& cps = *ctx.cps;
     const auto& dte = *ctx.dist_to_end;
     const auto& ep = *ctx.entry_points;
+    const BotConfig& config = *ctx.config;
 
-    // Reuse thread-local buffer
-    g_sim.assign(base_pods.begin(), base_pods.end());
+    // Reuse thread-local buffer via zero-overhead memcpy
+    std::memcpy(g_sim, base_pods.data(), 4 * sizeof(Pod));
+    g_friendly_collision = false;
+
+    int init_cp = g_sim[runner_pod].next_cp_id;
+    int init_lap = g_sim[runner_pod].laps_completed;
+    int init_blocker_cp = g_sim[blocker_pod].next_cp_id;
+    int init_blocker_lap = g_sim[blocker_pod].laps_completed;
 
     // Identify opponent runner/blocker by race progress
     int opp0 = ctx.opp_start_idx, opp1 = ctx.opp_start_idx + 1;
@@ -526,11 +622,22 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
     int init_opp_cp = g_sim[opp_runner].next_cp_id;
     int init_opp_lap = g_sim[opp_runner].laps_completed;
 
+    // State buffers for Turn 1 evaluation
+    Pod g_sim_turn_1[4];
+    double runner_activation_turn_1 = (double)horizon + 0.3;
+    double opp_activation_turn_1 = (double)horizon + 0.3;
+
     for (int t = 0; t < horizon; ++t) {
+        Pod runner_start = g_sim[runner_pod];
+        Pod opp_runner_start = g_sim[opp_runner];
+        
         // Our runner: GA-controlled with shield
         int r_thr = sol.runner_moves[t].thrust;
-        if (t == sol.runner_shield_step && sol.runner_shield_step < 3 && g_sim[runner_pod].shield_cd == 0)
+        if (t == 0 && ctx.force_boost && g_sim[runner_pod].boost_available) {
+            r_thr = 650;
+        } else if (t == sol.runner_shield_step && sol.runner_shield_step < 3 && g_sim[runner_pod].shield_cd == 0) {
             r_thr = -1;
+        }
         g_sim[runner_pod].ApplyGAAction(sol.runner_moves[t].angle, r_thr);
 
         // Our blocker: GA-controlled with shield
@@ -539,15 +646,8 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
             b_thr = -1;
         g_sim[blocker_pod].ApplyGAAction(sol.blocker_moves[t].angle, b_thr);
 
-        // Opponent runner: aim at entry point for corner cutting (matches legacy behavior)
-        {
-            const Vec2& tgt = ep[g_sim[opp_runner].next_cp_id];
-            double desired = GameEngine::RadToDeg(atan2(tgt.y - g_sim[opp_runner].pos.y,
-                                                         tgt.x - g_sim[opp_runner].pos.x));
-            double shift = GameEngine::ShortestAngleDiff(g_sim[opp_runner].angle, desired);
-            shift = max(-18.0, min(18.0, shift));
-            g_sim[opp_runner].ApplyGAAction(shift, 200);
-        }
+        // Opponent runner: apply pre-evolved optimal GA moves!
+        g_sim[opp_runner].ApplyGAAction(ctx.opp_moves[t].angle, ctx.opp_moves[t].thrust);
 
         // Opponent blocker: chase our runner with velocity lead + shield on close approach
         {
@@ -559,123 +659,261 @@ static double SimulateAndEvaluate(const Solution& sol, const vector<Pod>& base_p
             shift = max(-18.0, min(18.0, shift));
             int opp_thr = 200;
             double opp_dist = g_sim[opp_blocker].pos.Distance(g_sim[runner_pod].pos);
-            if (opp_dist < 900 && g_sim[opp_blocker].shield_cd == 0) opp_thr = -1;
+            if (opp_dist < config.shield_ram_dist && g_sim[opp_blocker].shield_cd == 0) opp_thr = -1;
             g_sim[opp_blocker].ApplyGAAction(shift, opp_thr);
         }
 
         PhysicsSimulator::SimulateTurn(g_sim);
 
-        // Check CPs (match arena logic exactly: increment then wrap)
-        for (int p = 0; p < 4; ++p) {
-            if (g_sim[p].pos.DistanceSq(cps[g_sim[p].next_cp_id]) <= 360000) {
-                g_sim[p].next_cp_id++;
-                if (g_sim[p].next_cp_id >= n) {
-                    g_sim[p].next_cp_id = 0;
-                    g_sim[p].laps_completed++;
+        // Fully unrolled CP check sweep (exact arena logic matching)
+        {
+            // Pod 0
+            double dx0 = g_sim[0].pos.x - cps[g_sim[0].next_cp_id].x;
+            double dy0 = g_sim[0].pos.y - cps[g_sim[0].next_cp_id].y;
+            if (dx0 * dx0 + dy0 * dy0 <= 360000.0) {
+                g_sim[0].next_cp_id++;
+                if (g_sim[0].next_cp_id >= n) {
+                    g_sim[0].next_cp_id = 0;
+                    g_sim[0].laps_completed++;
                 }
-                // Track first CP activation
-                if (p == runner_pod && runner_activation > horizon)
-                    runner_activation = (double)(t + 1);
-                if (p == opp_runner && opp_activation > horizon)
-                    opp_activation = (double)(t + 1);
+                if (0 == runner_pod && runner_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(runner_start, cps[runner_start.next_cp_id]);
+                    runner_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+                if (0 == opp_runner && opp_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(opp_runner_start, cps[opp_runner_start.next_cp_id]);
+                    opp_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
             }
+            // Pod 1
+            double dx1 = g_sim[1].pos.x - cps[g_sim[1].next_cp_id].x;
+            double dy1 = g_sim[1].pos.y - cps[g_sim[1].next_cp_id].y;
+            if (dx1 * dx1 + dy1 * dy1 <= 360000.0) {
+                g_sim[1].next_cp_id++;
+                if (g_sim[1].next_cp_id >= n) {
+                    g_sim[1].next_cp_id = 0;
+                    g_sim[1].laps_completed++;
+                }
+                if (1 == runner_pod && runner_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(runner_start, cps[runner_start.next_cp_id]);
+                    runner_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+                if (1 == opp_runner && opp_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(opp_runner_start, cps[opp_runner_start.next_cp_id]);
+                    opp_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+            }
+            // Pod 2
+            double dx2 = g_sim[2].pos.x - cps[g_sim[2].next_cp_id].x;
+            double dy2 = g_sim[2].pos.y - cps[g_sim[2].next_cp_id].y;
+            if (dx2 * dx2 + dy2 * dy2 <= 360000.0) {
+                g_sim[2].next_cp_id++;
+                if (g_sim[2].next_cp_id >= n) {
+                    g_sim[2].next_cp_id = 0;
+                    g_sim[2].laps_completed++;
+                }
+                if (2 == runner_pod && runner_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(runner_start, cps[runner_start.next_cp_id]);
+                    runner_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+                if (2 == opp_runner && opp_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(opp_runner_start, cps[opp_runner_start.next_cp_id]);
+                    opp_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+            }
+            // Pod 3
+            double dx3 = g_sim[3].pos.x - cps[g_sim[3].next_cp_id].x;
+            double dy3 = g_sim[3].pos.y - cps[g_sim[3].next_cp_id].y;
+            if (dx3 * dx3 + dy3 * dy3 <= 360000.0) {
+                g_sim[3].next_cp_id++;
+                if (g_sim[3].next_cp_id >= n) {
+                    g_sim[3].next_cp_id = 0;
+                    g_sim[3].laps_completed++;
+                }
+                if (3 == runner_pod && runner_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(runner_start, cps[runner_start.next_cp_id]);
+                    runner_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+                if (3 == opp_runner && opp_activation > horizon) {
+                    double t_hit = GetCPIntersectionTime(opp_runner_start, cps[opp_runner_start.next_cp_id]);
+                    opp_activation = (double)t + (t_hit >= 0.0 ? t_hit : 0.0);
+                }
+            }
+        }
+
+        // Save state after Turn 1
+        if (t == 0) {
+            std::memcpy(g_sim_turn_1, g_sim, 4 * sizeof(Pod));
+            runner_activation_turn_1 = runner_activation;
+            opp_activation_turn_1 = opp_activation;
         }
     }
 
-    // ===== EVALUATION =====
-    const Pod& runner = g_sim[runner_pod];
-    const Pod& opp_run = g_sim[opp_runner];
+    // ===== LAMBDA STATE EVALUATION =====
+    auto evaluate_state = [&](const Pod* state, double r_act, double o_act) -> double {
+        const Pod& runner = state[runner_pod];
+        const Pod& opp_run = state[opp_runner];
 
-    double score = 0;
+        double score = 0;
 
-    // Win/loss (huge bonus)
-    if (runner.laps_completed >= ctx.laps) score += 1e9;
-    if (opp_run.laps_completed >= ctx.laps) score -= 1e9;
-
-    // Runner: minimize remaining race distance (dominant term)
-    if (runner.laps_completed < ctx.laps) {
-        int runner_lin = runner.laps_completed * n + runner.next_cp_id;
-        double runner_remain = dte[runner_lin] + runner.pos.Distance(ep[runner.next_cp_id]);
-        score -= runner_remain;
-    }
-
-    // Runner: velocity toward entry point of next CP
-    {
-        double dx = ep[runner.next_cp_id].x - runner.pos.x;
-        double dy = ep[runner.next_cp_id].y - runner.pos.y;
-        double d = sqrt(dx * dx + dy * dy);
-        if (d > 0)
-            score += (runner.vel.x * dx / d + runner.vel.y * dy / d) * 3.0;
-    }
-
-    // Fast activation bonus (reward crossing CP quickly)
-    score -= 30.0 * runner_activation;
-
-    // Bypass opponent rammer angle (reward runner being at an angle from opp blocker)
-    {
-        double ox = g_sim[opp_blocker].pos.x - runner.pos.x;
-        double oy = g_sim[opp_blocker].pos.y - runner.pos.y;
-        double cx = cps[runner.next_cp_id].x - runner.pos.x;
-        double cy = cps[runner.next_cp_id].y - runner.pos.y;
-        double cross_val = fabs(ox * cy - oy * cx);
-        double dot_val = ox * cx + oy * cy;
-        score += 20.0 * atan2(cross_val, dot_val);
-    }
-
-    // Opponent delay bonus (reward delaying opponent's CP activation)
-    score += 1500.0 * opp_activation;
-
-    // If opponent didn't cross a CP during simulation, bonus for them being far from it
-    if (opp_run.next_cp_id == init_opp_cp && opp_run.laps_completed == init_opp_lap) {
-        score += 1.5 * opp_run.pos.Distance(cps[opp_run.next_cp_id]);
-    }
-
-    // Blocker evaluation (depends on timeout risk)
-    {
-        const Pod& blocker = g_sim[blocker_pod];
-
-        if (ctx.risk_timeout) {
-            // Timeout risk: blocker races to its own CPs (matches legacy riskTimeout behavior)
-            if (blocker.laps_completed < ctx.laps) {
-                int blocker_lin = blocker.laps_completed * n + blocker.next_cp_id;
-                score -= dte[blocker_lin] + blocker.pos.Distance(ep[blocker.next_cp_id]);
+        // Boundary penalties (prevent pods drifting too far off the screen)
+        auto check_bounds = [](const Vec2& pos) {
+            if (pos.x < -1000.0 || pos.x > 17000.0 || pos.y < -1000.0 || pos.y > 10000.0) {
+                return -100000.0; // massive penalty!
             }
-        } else {
-            // Normal blocking: match legacy COEFFEVAL_GLOBALRAM = 1.5
+            return 0.0;
+        };
+        score += check_bounds(runner.pos);
+        score += check_bounds(state[blocker_pod].pos);
 
-            // Near ram rest point with distance threshold (legacy: acceptable dist = 300)
-            const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
-            double bd = blocker.pos.Distance(rrp);
-            double d_adj = bd - 300.0;
-            if (d_adj < 0) d_adj *= 0.1;  // Soft penalty when already close
-            score -= 0.045 * d_adj;
+        // Win/loss (huge bonus)
+        if (runner.laps_completed >= ctx.laps) score += 1e9;
+        if (opp_run.laps_completed >= ctx.laps) score -= 1e9;
 
-            // Facing opponent runner (legacy: -20.0 * 1.5 * |angle_diff|)
-            double dx = opp_run.pos.x - blocker.pos.x;
-            double dy = opp_run.pos.y - blocker.pos.y;
-            double desired_rad = atan2(dy, dx);
-            double blocker_rad = blocker.angle * PI / 180.0;
-            double face_diff = atan2(sin(desired_rad - blocker_rad), cos(desired_rad - blocker_rad));
-            score -= 30.0 * fabs(face_diff);
-
-            // Stay in front of opponent (between opponent and their target CP)
-            double bx = blocker.pos.x - opp_run.pos.x;
-            double by = blocker.pos.y - opp_run.pos.y;
-            double cx = (*ctx.cps)[opp_run.next_cp_id].x - opp_run.pos.x;
-            double cy = (*ctx.cps)[opp_run.next_cp_id].y - opp_run.pos.y;
-            double cross_val = fabs(bx * cy - by * cx);
-            double dot_val = bx * cx + by * cy;
-            score -= 30.0 * atan2(cross_val, dot_val);
+        // CP crossing step bonus: reward crossing CPs during simulation! (fixes CP missing/orbiting)
+        int initial_linear = init_lap * n + init_cp;
+        int current_linear = runner.laps_completed * n + runner.next_cp_id;
+        int cps_crossed = current_linear - initial_linear;
+        if (cps_crossed > 0) {
+            score += cps_crossed * 15000.0; // Massive 15000 points bonus per CP crossed!
         }
-    }
+
+        // Runner: minimize remaining race distance (dominant term)
+        if (runner.laps_completed < ctx.laps) {
+            int runner_lin = runner.laps_completed * n + runner.next_cp_id;
+            double runner_remain = dte[runner_lin] + runner.pos.Distance(ep[runner.next_cp_id]);
+            score -= runner_remain * config.dist_weight; // Parameterized
+        }
+
+        // Runner: velocity toward entry point of next CP, speed bonus, lateral penalty, and angle penalty
+        {
+            double dx = ep[runner.next_cp_id].x - runner.pos.x;
+            double dy = ep[runner.next_cp_id].y - runner.pos.y;
+            double d = sqrt(dx * dx + dy * dy);
+            if (d > 0) {
+                double nx = dx / d;
+                double ny = dy / d;
+                
+                // Velocity alignment
+                score += (runner.vel.x * nx + runner.vel.y * ny) * config.align_weight;
+                
+                // Lateral drift penalty
+                double lateral = runner.vel.x * ny - runner.vel.y * nx;
+                score -= fabs(lateral) * config.lateral_penalty;
+                
+                // Angle penalty
+                double target_angle = GameEngine::RadToDeg(atan2(dy, dx));
+                double angle_err = fabs(GameEngine::ShortestAngleDiff(runner.angle, target_angle));
+                score -= angle_err * config.angle_penalty;
+            }
+            
+            // Speed bonus
+            double speed = sqrt(runner.vel.x * runner.vel.x + runner.vel.y * runner.vel.y);
+            score += speed * config.speed_bonus;
+        }
+
+        // Fast activation bonus (reward crossing CP quickly)
+        score -= RUNNER_FAST_ACT_PENALTY * r_act;
+
+        // Bypass opponent rammer angle (reward runner being at an angle from opp blocker)
+        {
+            double ox = state[opp_blocker].pos.x - runner.pos.x;
+            double oy = state[opp_blocker].pos.y - runner.pos.y;
+            double cx = cps[runner.next_cp_id].x - runner.pos.x;
+            double cy = cps[runner.next_cp_id].y - runner.pos.y;
+            
+            double cross_val = ox * cy - oy * cx;
+            double dot_val = ox * cx + oy * cy;
+            double angle_diff = atan2(fabs(cross_val), dot_val);
+            score += config.runner_bypass_weight * angle_diff;
+        }
+
+        // Opponent delay bonus (penalize opponent progress)
+        double opp_delay_score = OPPONENT_DELAY_WEIGHT * config.opp_penalty * o_act;
+
+        // If opponent didn't cross a CP during simulation, bonus for them being far from it
+        if (opp_run.next_cp_id == init_opp_cp && opp_run.laps_completed == init_opp_lap) {
+            opp_delay_score += OPPONENT_DISTANCE_WEIGHT * config.opp_penalty * opp_run.pos.Distance(cps[opp_run.next_cp_id]);
+        }
+        score += opp_delay_score;
+
+        // Blocker evaluation (depends on timeout risk)
+        double blocker_score = 0;
+        {
+            const Pod& blocker = state[blocker_pod];
+
+            if (ctx.risk_timeout) {
+                // Timeout risk: blocker races to its own CPs (matches legacy riskTimeout behavior)
+                if (blocker.laps_completed < ctx.laps) {
+                    int blocker_lin = blocker.laps_completed * n + blocker.next_cp_id;
+                    blocker_score -= (dte[blocker_lin] + blocker.pos.Distance(ep[blocker.next_cp_id])) * config.dist_weight; // Weighted by dist_weight
+                }
+            } else {
+                // Normal blocking: camp near rest point!
+                bool enforce_camp = !(init_blocker_lap == 0 && init_blocker_cp <= 1);
+                
+                if (enforce_camp) {
+                    // Near ram rest point with distance threshold (legacy: acceptable dist = 300)
+                    const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
+                    double bd = blocker.pos.Distance(rrp);
+                    double d_adj = bd - BLOCKER_REST_THRESHOLD;
+                    if (d_adj < 0) d_adj *= BLOCKER_REST_SOFT_FACTOR;  // Soft penalty when already close
+                    blocker_score -= BLOCKER_REST_PENALTY_FACTOR * d_adj;
+
+                    // Facing opponent runner (optimized using dot product + LUT to avoid trig/atan2)
+                    double dx = opp_run.pos.x - blocker.pos.x;
+                    double dy = opp_run.pos.y - blocker.pos.y;
+                    double d_sq = dx * dx + dy * dy;
+                    if (d_sq > 0) {
+                        int ang = (int)round(blocker.angle);
+                        ang = (ang % 360 + 360) % 360;
+                        double fx = cos_lut[ang];
+                        double fy = sin_lut[ang];
+                        double dot = (fx * dx + fy * dy) / sqrt(d_sq);
+                        blocker_score -= config.blocker_facing_weight * (1.0 - dot) * 1.57;
+                    }
+
+                    // Stay in front of opponent (between opponent and their target CP)
+                    // Optimized using dot product to avoid atan2
+                    double bx = blocker.pos.x - opp_run.pos.x;
+                    double by = blocker.pos.y - opp_run.pos.y;
+                    double cx = (*ctx.cps)[opp_run.next_cp_id].x - opp_run.pos.x;
+                    double cy = (*ctx.cps)[opp_run.next_cp_id].y - opp_run.pos.y;
+                    double d1_sq = bx * bx + by * by;
+                    double d2_sq = cx * cx + cy * cy;
+                    if (d1_sq > 0 && d2_sq > 0) {
+                        double dot = (bx * cx + by * cy) / sqrt(d1_sq * d2_sq);
+                        blocker_score -= config.blocker_stay_in_front_weight * (1.0 - dot) * 1.57;
+                    }
+                } else {
+                    // Start of the race: blocker is free to seek runner and ram-boost it!
+                    double dist_to_runner = blocker.pos.Distance(runner.pos);
+                    blocker_score -= dist_to_runner * config.dist_weight * 0.1; // seek runner!
+                }
+            }
+        }
+        score += blocker_score * config.block_weight; // Weighted by block_weight
+
+        return score;
+    };
+
+    // ===== MULTI-STAGE COMBINATION =====
+    double score_turn_1 = evaluate_state(g_sim_turn_1, runner_activation_turn_1, opp_activation_turn_1);
+    double score_turn_N = evaluate_state(g_sim, runner_activation, opp_activation);
+    
+    double final_score = 0.10 * score_turn_1 + 0.90 * score_turn_N;
 
     // Shield cost/thrust bonus (match legacy coefficients)
-    if (sol.runner_shield_step == 0) score -= 330.0;
-    else score += 0.16 * max(0, sol.runner_moves[0].thrust);
-    if (sol.blocker_shield_step == 0) score -= 495.0;
-    else score += 0.06 * max(0, sol.blocker_moves[0].thrust);
+    // Applied once to final score since they only depend on Turn 0 action
+    if (sol.runner_shield_step == 0) final_score -= RUNNER_SHIELD_COST;
+    else final_score += RUNNER_THRUST_BONUS * max(0, sol.runner_moves[0].thrust);
+    if (sol.blocker_shield_step == 0) final_score -= BLOCKER_SHIELD_COST;
+    else final_score += BLOCKER_THRUST_BONUS * max(0, sol.blocker_moves[0].thrust);
 
-    return score;
+    if (g_friendly_collision) {
+        final_score -= 10000.0; // Huge friendly fire penalty!
+    }
+    return final_score;
 }
 
 // ======== STEADY-STATE GA (combined, both pods) ========
@@ -711,6 +949,7 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
         // Runner: forward-simulate go-to-entry-point
         Pod rsim = base_pods[runner_pod];
         Action runner_h[MAX_HORIZON];
+        Vec2 rsim_pos[MAX_HORIZON]; // Added
         for (int t = 0; t < horizon; ++t) {
             const Vec2& tgt = (*ctx.entry_points)[rsim.next_cp_id];
             runner_h[t] = MakeGoToTarget(rsim, tgt.x, tgt.y, 200);
@@ -718,6 +957,7 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
             rsim.pos.x += rsim.vel.x; rsim.pos.y += rsim.vel.y;
             rsim.vel.x = trunc(rsim.vel.x * 0.85); rsim.vel.y = trunc(rsim.vel.y * 0.85);
             rsim.pos.x = round(rsim.pos.x); rsim.pos.y = round(rsim.pos.y);
+            rsim_pos[t] = rsim.pos; // Save predicted position
             if (rsim.pos.DistanceSq(cps[rsim.next_cp_id]) <= 360000) {
                 rsim.next_cp_id++;
                 if (rsim.next_cp_id >= n) rsim.next_cp_id = 0;
@@ -768,7 +1008,7 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
         fill_seed(idx + 7, 200, 1.0,  1,           MAX_HORIZON); // runner shield t=1
 
         // Seed with blocker aiming at ram rest point instead of opponent
-        if (idx + 8 < pop_size) {
+        if (idx + 13 < pop_size) {
             const Vec2& rrp = (*ctx.ram_rest_points)[ctx.ram_beacon];
             Pod bsim2 = base_pods[blocker_pod];
             for (int t = 0; t < horizon; ++t) {
@@ -781,8 +1021,39 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
             }
             pop[idx + 8].runner_shield_step = MAX_HORIZON;
             pop[idx + 8].blocker_shield_step = MAX_HORIZON;
+
+            // Seed with blocker aiming at our runner's predicted path (Coordinated Boost Seed)
+            Pod bsim_boost = base_pods[blocker_pod];
+            for (int t = 0; t < horizon; ++t) {
+                pop[idx + 9].runner_moves[t] = runner_h[t];
+                pop[idx + 9].blocker_moves[t] = MakeGoToTarget(bsim_boost, rsim_pos[t].x, rsim_pos[t].y, 200);
+                bsim_boost.ApplyGAAction(pop[idx + 9].blocker_moves[t].angle, 200);
+                bsim_boost.pos.x += bsim_boost.vel.x; bsim_boost.pos.y += bsim_boost.vel.y;
+                bsim_boost.vel.x = trunc(bsim_boost.vel.x * 0.85); bsim_boost.vel.y = trunc(bsim_boost.vel.y * 0.85);
+                bsim_boost.pos.x = round(bsim_boost.pos.x); bsim_boost.pos.y = round(bsim_boost.pos.y);
+            }
+            pop[idx + 9].runner_shield_step = MAX_HORIZON;
+            pop[idx + 9].blocker_shield_step = MAX_HORIZON;
+
+            // Extreme Seeds Injection (Upgrade 3)
+            auto inject_static = [&](int i, double r_ang, int r_thr, double b_ang, int b_thr) {
+                for (int t = 0; t < horizon; ++t) {
+                    pop[i].runner_moves[t].angle = r_ang;
+                    pop[i].runner_moves[t].thrust = r_thr;
+                    pop[i].blocker_moves[t].angle = b_ang;
+                    pop[i].blocker_moves[t].thrust = b_thr;
+                }
+                pop[i].runner_shield_step = MAX_HORIZON;
+                pop[i].blocker_shield_step = MAX_HORIZON;
+            };
+
+            inject_static(idx + 10,  0.0, 200,   0.0, 200); // Extreme 1: All Max Thrust
+            inject_static(idx + 11,  0.0,   0,   0.0,   0); // Extreme 2: All Zero Thrust (Full Brake)
+            inject_static(idx + 12, -18.0, 200, -18.0, 200); // Extreme 3: All Max-Left
+            inject_static(idx + 13,  18.0, 200,  18.0, 200); // Extreme 4: All Max-Right
+
+            idx += 14;
         }
-        idx += 9;
     }
 
     // Fill remaining with random
@@ -801,9 +1072,14 @@ static Solution RunGA(const vector<Pod>& base_pods, Timer& timer, double time_li
 
     // === Steady-state evolution loop ===
     int iterations = 0;
-    while (timer.ElapsedMs() < time_limit_ms) {
-        double amplitude = 1.0 - timer.ElapsedMs() / time_limit_ms;
+    double amplitude = 1.0;
+    while (true) {
         iterations++;
+        if (iterations % 256 == 0) {
+            double elapsed = timer.ElapsedMs();
+            if (elapsed >= time_limit_ms) break;
+            amplitude = 1.0 - elapsed / time_limit_ms;
+        }
 
         // Stagnation detection (from legacy bot): if all scores converge, penalize non-best
         if (scores[best_idx] < worst_score + 0.3) {
@@ -864,6 +1140,75 @@ void GABot::Initialize(int laps, int cp_count, const vector<Vec2>& cps, int team
     has_prev_best_ = false;
     total_cps_in_race_ = laps * cp_count;
 
+    // Check if map has any sharp turns (hairpins)
+    bool has_sharp_turn = false;
+    for (int i = 0; i < cp_count; ++i) {
+        int prev = (i + cp_count - 1) % cp_count;
+        int next = (i + 1) % cp_count;
+        Vec2 v1 = cps[i].Sub(cps[prev]);
+        Vec2 v2 = cps[next].Sub(cps[i]);
+        double len1 = sqrt(v1.x * v1.x + v1.y * v1.y);
+        double len2 = sqrt(v2.x * v2.x + v2.y * v2.y);
+        if (len1 > 0 && len2 > 0) {
+            double dot = v1.x * v2.x + v1.y * v2.y;
+            double cos_theta = dot / (len1 * len2);
+            if (cos_theta < 0.2) { // Sharp turn (>= 78 degrees)
+                has_sharp_turn = true;
+                break;
+            }
+        }
+    }
+
+    double total_dist = 0;
+    for (int i = 0; i < cp_count; ++i) {
+        total_dist += cps[i].Distance(cps[(i + 1) % cp_count]);
+    }
+    avg_dist_ = total_dist / cp_count;
+
+    // Self-Adaptive Config Selection based on map complexity, turn sharpness, and average distance
+    if (config_.name == "DefaultGA") {
+        bool use_handling = (cp_count >= 5 || has_sharp_turn) && (avg_dist_ <= 6500.0);
+        if (use_handling) {
+            // Winding/Complex/Sharp Map: Use Bot_6 (High Handling, Deep Corner Cut)
+            config_.name = "Bot_6_Handling";
+            config_.horizon = 4;
+            config_.population = 80;
+            config_.dist_weight = 2.9;
+            config_.align_weight = 3.7;
+            config_.speed_bonus = 0.2;
+            config_.lateral_penalty = 1.0; // Increased from 0.0 to prevent slipping on hairpins
+            config_.angle_penalty = 60.0;
+            config_.corner_cut_dist = 600.0;
+            config_.block_weight = 4.3;
+            config_.shield_penalty = 4.0;
+            config_.shield_ram_dist = 600.0;
+            config_.opp_penalty = 1.3;
+            config_.opp_model_ms = 0.0;
+            config_.runner_bypass_weight = 25.0;
+            config_.blocker_stay_in_front_weight = 35.0;
+            config_.blocker_facing_weight = 35.0;
+        } else {
+            // Straight/Simple Map: Use Bot_1 (Optimized Speed/Blocking)
+            config_.name = "Bot_1_SpeedBlock";
+            config_.horizon = 4;
+            config_.population = 80;
+            config_.dist_weight = 2.3;
+            config_.align_weight = 1.7;
+            config_.speed_bonus = 0.6;
+            config_.lateral_penalty = 1.2;
+            config_.angle_penalty = 43.0;
+            config_.corner_cut_dist = 300.0;
+            config_.block_weight = 6.8; // Reduced from 8.4 to prevent runner blocking
+            config_.shield_penalty = 93.0;
+            config_.shield_ram_dist = 1000.0;
+            config_.opp_penalty = 1.2;    // Reduced from 2.7 to focus more on racing
+            config_.opp_model_ms = 0.0;
+            config_.runner_bypass_weight = 15.0;
+            config_.blocker_stay_in_front_weight = 25.0;
+            config_.blocker_facing_weight = 25.0;
+        }
+    }
+
     // CP distances
     cp_distances_.resize(cp_count);
     for (int i = 0; i < cp_count; i++) {
@@ -871,17 +1216,33 @@ void GABot::Initialize(int laps, int cp_count, const vector<Vec2>& cps, int team
         cp_distances_[i] = cps[i].Distance(cps[next]);
     }
 
-    // Entry points: 300 units from CP center toward (prev - next) midpoint direction
-    // This is where an optimally-cornering pod would aim (matches legacy entryPointv2)
+    // Entry points using turn angle to scale corner cutting dynamically
     entry_points_.resize(cp_count);
     for (int i = 0; i < cp_count; ++i) {
         int prev = (i + cp_count - 1) % cp_count;
         int next = (i + 1) % cp_count;
+        
+        // Calculate vectors
+        Vec2 v1 = cps[i].Sub(cps[prev]);
+        Vec2 v2 = cps[next].Sub(cps[i]);
+        double len1 = sqrt(v1.x * v1.x + v1.y * v1.y);
+        double len2 = sqrt(v2.x * v2.x + v2.y * v2.y);
+        
+        double cos_theta = 1.0; // default if straight or error
+        if (len1 > 0 && len2 > 0) {
+            double dot = v1.x * v2.x + v1.y * v2.y;
+            cos_theta = dot / (len1 * len2);
+            cos_theta = std::max(-1.0, std::min(1.0, cos_theta)); // clamp
+        }
+        
+        // Scale shift by turn sharpness: (1 - cos_theta) / 2
+        double shift_dist = config_.corner_cut_dist * (1.0 - cos_theta) / 2.0;
+        
         double dx = cps[prev].x - cps[next].x;
         double dy = cps[prev].y - cps[next].y;
         double d = sqrt(dx * dx + dy * dy);
         if (d > 0) {
-            entry_points_[i] = {cps[i].x + 300.0 * dx / d, cps[i].y + 300.0 * dy / d};
+            entry_points_[i] = {cps[i].x + shift_dist * dx / d, cps[i].y + shift_dist * dy / d};
         } else {
             entry_points_[i] = cps[i];
         }
@@ -906,7 +1267,8 @@ void GABot::Initialize(int laps, int cp_count, const vector<Vec2>& cps, int team
     // Distance-to-end lookup: dist_to_end[linear_idx] = total remaining CP-to-CP distance
     // linear_idx = laps_completed * cp_count + next_cp_id
     dist_to_end_.resize(total_cps_in_race_ + 1, 0.0);
-    for (int i = total_cps_in_race_ - 1; i >= 0; --i) {
+    dist_to_end_[total_cps_in_race_ - 1] = 0.0; // Final stretch remaining CP-to-CP distance is 0
+    for (int i = total_cps_in_race_ - 2; i >= 0; --i) {
         int cp = i % cp_count;
         int next_cp = (cp + 1) % cp_count;
         dist_to_end_[i] = dist_to_end_[i + 1] + cps[cp].Distance(cps[next_cp]);
@@ -960,6 +1322,54 @@ vector<PodAction> GABot::GetActions(const vector<Pod>& pods) {
         }
     }
 
+    // === 10MS OPPONENT GA PREDICTION SEARCH ===
+    SimCtx opp_ctx;
+    opp_ctx.cps = &cps_;
+    opp_ctx.dist_to_end = &dist_to_end_;
+    opp_ctx.entry_points = &entry_points_;
+    opp_ctx.ram_rest_points = &ram_rest_points_;
+    opp_ctx.cp_count = cp_count_;
+    opp_ctx.laps = laps_;
+    opp_ctx.start_idx = opp_start_idx;
+    opp_ctx.opp_start_idx = start_idx;
+    opp_ctx.runner_idx = opp_runner_pod - opp_start_idx;
+    opp_ctx.ram_beacon = pods[start_idx + runner_idx_].next_cp_id;
+    opp_ctx.risk_timeout = false;
+    bool opp_force_boost = false;
+    const Pod& opp_runner = pods[opp_runner_pod];
+    if (opp_runner.boost_available) {
+        double dist = opp_runner.pos.Distance(entry_points_[opp_runner.next_cp_id]);
+        double target_angle = GameEngine::RadToDeg(std::atan2(entry_points_[opp_runner.next_cp_id].y - opp_runner.pos.y,
+                                                             entry_points_[opp_runner.next_cp_id].x - opp_runner.pos.x));
+        double diff = std::abs(GameEngine::ShortestAngleDiff(opp_runner.angle, target_angle));
+        if (dist > 5000.0 && diff < 5.0) {
+            opp_force_boost = true;
+        }
+    }
+    opp_ctx.force_boost = opp_force_boost;
+    
+    BotConfig opp_config = config_;
+    opp_config.block_weight = 0.0;   // pure racing!
+    opp_config.opp_penalty = 0.0;
+    opp_config.population = 32;      // compact pool for 10ms speed
+    opp_config.horizon = 4;
+    opp_ctx.config = &opp_config;
+
+    Solution opp_sol = RunGA(pods, timer, 10.0, opp_ctx, opp_config, nullptr);
+
+    bool force_boost = false;
+    int runner_pod_idx = start_idx + runner_idx_;
+    const Pod& runner_pod = pods[runner_pod_idx];
+    if (runner_pod.boost_available) {
+        double dist = runner_pod.pos.Distance(entry_points_[runner_pod.next_cp_id]);
+        double target_angle = GameEngine::RadToDeg(std::atan2(entry_points_[runner_pod.next_cp_id].y - runner_pod.pos.y,
+                                                             entry_points_[runner_pod.next_cp_id].x - runner_pod.pos.x));
+        double diff = std::abs(GameEngine::ShortestAngleDiff(runner_pod.angle, target_angle));
+        if (dist > 5000.0 && diff < 5.0) {
+            force_boost = true;
+        }
+    }
+
     // Set up simulation context
     SimCtx ctx;
     ctx.cps = &cps_;
@@ -973,8 +1383,28 @@ vector<PodAction> GABot::GetActions(const vector<Pod>& pods) {
     ctx.runner_idx = runner_idx_;
     ctx.ram_beacon = ram_beacon;
     ctx.risk_timeout = pods[start_idx + blocker_idx_].timeout >= 60;
+    ctx.force_boost = force_boost;
 
-    Solution best = RunGA(pods, timer, 75.0 / SPEED_FACTOR, ctx, config_, has_prev_best_ ? &prev_best_ : nullptr);
+    // Populate predicted opponent moves
+    for (int t = 0; t < MAX_HORIZON; ++t) {
+        ctx.opp_moves[t] = opp_sol.runner_moves[t];
+    }
+    ctx.config = &config_; // Added
+
+    // Dynamic Horizon Scaling
+    if (turn_count_ == 1) {
+        config_.horizon = 8; // Look very far ahead on Turn 1!
+    } else {
+        // Deep-search 8 turns lookahead when our blocker is in active combat proximity with opp runner!
+        double opp_dist = pods[start_idx + blocker_idx_].pos.Distance(opp_runner.pos);
+        if (opp_dist < 3000.0) {
+            config_.horizon = 8;
+        } else {
+            config_.horizon = 6; // Standard 6 turns lookahead otherwise
+        }
+    }
+    double time_limit = (turn_count_ == 1) ? FIRST_TURN_TIME_LIMIT_MS : TURN_TIME_LIMIT_MS;
+    Solution best = RunGA(pods, timer, time_limit, ctx, config_, has_prev_best_ ? &prev_best_ : nullptr);
     prev_best_ = best;
     has_prev_best_ = true;
 
@@ -984,7 +1414,11 @@ vector<PodAction> GABot::GetActions(const vector<Pod>& pods) {
     auto make_output = [&](const Action& a, int pod_idx, int shield_step) -> PodAction {
         const Pod& pod = pods[pod_idx];
         int out_thrust = max(0, min(200, a.thrust));
-        if (shield_step == 0 && pod.shield_cd == 0) out_thrust = -1;
+        if (pod_idx == start_idx + runner_idx_ && force_boost && pod.boost_available) {
+            out_thrust = 650;
+        } else if (shield_step == 0 && pod.shield_cd == 0) {
+            out_thrust = -1;
+        }
         double shift = max(-18.0, min(18.0, a.angle));
         double final_angle = GameEngine::NormalizeAngle(pod.angle + shift);
         double rad = final_angle * PI / 180.0;
@@ -1061,6 +1495,44 @@ struct HeuristicBlocker {
     }
 };
 
+struct OutputAction {
+    int tx, ty;
+    int thrust;
+    bool was_boost;
+    bool was_shield;
+};
+
+string GetTrollMessage(int pod_id, int runner_idx, int blocker_idx, const vector<Pod>& env, const OutputAction& act, int cp_count) {
+    int opp_runner = (env[2].laps_completed * cp_count + env[2].next_cp_id > env[3].laps_completed * cp_count + env[3].next_cp_id) ? 2 : 3;
+    int opp_blocker = 5 - opp_runner; // 2 or 3
+
+    if (pod_id == runner_idx) {
+        if (act.was_boost) return "ZOOM! See ya!";
+        if (act.was_shield) return "SHIELD RAM ENGAGED!";
+        
+        double dist_to_blocker = env[pod_id].pos.Distance(env[opp_blocker].pos);
+        if (dist_to_blocker < 1000) {
+            return "Can't touch this! 🕺";
+        }
+        
+        double speed = env[pod_id].vel.Distance({0,0});
+        if (speed > 350) return "SPEEEED!";
+        return "Catch me if you can!";
+    } else {
+        if (act.was_shield) return "BOOM! Roadblock! 🛑";
+        
+        double dist_to_opp_run = env[pod_id].pos.Distance(env[opp_runner].pos);
+        if (dist_to_opp_run < 1200) {
+            Vec2 blocker_to_opp = env[opp_runner].pos.Sub(env[pod_id].pos);
+            double dot = blocker_to_opp.x * env[opp_runner].vel.x + blocker_to_opp.y * env[opp_runner].vel.y;
+            if (dot > 0) return "Behind you! 🎯";
+            return "YOU SHALL NOT PASS!";
+        }
+        
+        return "Camping is a lifestyle 🏕️";
+    }
+}
+
 // ======== MAIN GAME LOOP ========
 int main() {
     InitLUT();
@@ -1083,7 +1555,7 @@ int main() {
     }
 
     BotConfig config;
-    config.name = "CoordBot";
+    config.name = "DefaultGA";
     config.horizon = 6;
     config.population = 48;
     config.dist_weight = 1.5;
@@ -1106,12 +1578,7 @@ int main() {
 
     bool has_prediction = false;
     vector<Pod> predicted(4);
-    struct OutputAction {
-        int tx, ty;
-        int thrust;
-        bool was_boost;
-        bool was_shield;
-    };
+
     vector<OutputAction> last_output(2);
     bool pred_had_opp_collision[2] = {false, false};
     double max_pos_err_clean = 0, max_vel_err_clean = 0;
@@ -1129,6 +1596,14 @@ int main() {
             env[i].vel = Vec2(vx, vy);
             env[i].angle = (double)angle;
             env[i].next_cp_id = next_cp_id;
+            
+            if (angle < 0) {
+                Vec2 target_cp = cps[next_cp_id];
+                double rad = std::atan2(target_cp.y - env[i].pos.y, target_cp.x - env[i].pos.x);
+                env[i].angle = rad * 180.0 / PI;
+                if (env[i].angle < 0) env[i].angle += 360.0;
+            }
+            env[i].id = i; // Initialize ID to index!
             env[i].shield_cd = shield_cd_track[i];
             if (shield_cd_track[i] > 0) shield_cd_track[i]--;
         }
@@ -1209,15 +1684,10 @@ int main() {
         }
 
         for (int i = 0; i < 2; i++) {
-            bool use_boost = false;
-            if (i == runner_idx && ((runner_idx == 0 && boost_available_0) || (runner_idx == 1 && boost_available_1))) {
-                double dist = env[i].pos.Distance(cps[env[i].next_cp_id]);
-                double target_angle = GameEngine::RadToDeg(std::atan2(cps[env[i].next_cp_id].y - env[i].pos.y, cps[env[i].next_cp_id].x - env[i].pos.x));
-                double diff = std::abs(GameEngine::ShortestAngleDiff(env[i].angle, target_angle));
-                if (dist > 5000 && diff < 5.0) {
-                    use_boost = true;
-                    if (runner_idx == 0) boost_available_0 = false; else boost_available_1 = false;
-                }
+            bool use_boost = (actions[i].thrust == 650);
+            if (use_boost) {
+                if (i == 0) boost_available_0 = false;
+                else boost_available_1 = false;
             }
 
             int out_thrust = actions[i].thrust;
@@ -1232,14 +1702,15 @@ int main() {
             last_output[i].was_shield = (out_thrust == -1);
             last_output[i].thrust = use_boost ? 650 : out_thrust;
 
+            string msg = GetTrollMessage(i, runner_idx, blocker_idx, env, last_output[i], cp_count);
             if (use_boost) {
-                cout << last_output[i].tx << " " << last_output[i].ty << " BOOST" << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " BOOST " << msg << endl;
                 shield_cd_track[i] = 0;
             } else if (out_thrust == -1) {
-                cout << last_output[i].tx << " " << last_output[i].ty << " SHIELD" << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " SHIELD " << msg << endl;
                 shield_cd_track[i] = 3;
             } else {
-                cout << last_output[i].tx << " " << last_output[i].ty << " " << out_thrust << endl;
+                cout << last_output[i].tx << " " << last_output[i].ty << " " << out_thrust << " " << msg << endl;
             }
         }
         
@@ -1268,7 +1739,7 @@ int main() {
         pred_had_opp_collision[0] = false;
         pred_had_opp_collision[1] = false;
         
-        PhysicsSimulator::SimulateTurn(predicted);
+        PhysicsSimulator::SimulateTurn(predicted.data());
         
 #ifdef LOCAL_VERIFY
         {

@@ -4,6 +4,7 @@ const double PI = 3.14159265358979323846;
 double cos_lut[360];
 double sin_lut[360];
 thread_local uint32_t xor_state = 2463534242;
+thread_local bool g_friendly_collision = false;
 
 void InitLUT() {
     for (int i = 0; i < 360; ++i) {
@@ -20,7 +21,9 @@ uint32_t FastRand() {
 }
 
 int FastRandInt(int min, int max) {
-    return min + (FastRand() % (max - min + 1));
+    uint32_t range = max - min + 1;
+    uint64_t multi = (uint64_t)FastRand() * range;
+    return min + (int)(multi >> 32);
 }
 
 void Timer::Start() { start_time = std::chrono::high_resolution_clock::now(); }
@@ -102,6 +105,11 @@ void Pod::EndTurn() {
 double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     double x = p1.pos.x - p2.pos.x;
     double y = p1.pos.y - p2.pos.y;
+    double c = x * x + y * y - 640000.0;
+
+    // High-performance Geometric Early Exit: pods > 2000 units apart cannot collide
+    if (c > 3360000.0) return -1.0;
+
     double vx = p1.vel.x - p2.vel.x;
     double vy = p1.vel.y - p2.vel.y;
 
@@ -109,10 +117,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
     if (a < 0.00001) return -1.0;
 
     double b = 2.0 * (x * vx + y * vy);
-    double c = x * x + y * y - 640000.0; 
 
-    // If pods are already overlapping, force immediate resolution
-    if (c < 0.0) return 0.0;
+    // High-performance early exit: if outside radius and moving apart, they will never collide
+    if (c >= 0.0 && b >= 0.0) return -1.0;
 
     double delta = b * b - 4.0 * a * c;
     if (delta < 0.0) return -1.0;
@@ -123,7 +130,9 @@ double PhysicsSimulator::GetCollisionTime(const Pod& p1, const Pod& p2) {
 }
 
 void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
-    // Exact replica of the Magus bounce method
+    if ((p1.id == 0 && p2.id == 1) || (p1.id == 2 && p2.id == 3)) {
+        g_friendly_collision = true;
+    }
     double m1 = p1.Mass();
     double m2 = p2.Mass();
     double mcoeff = (m1 + m2) / (m1 * m2);
@@ -159,7 +168,7 @@ void PhysicsSimulator::ResolveCollision(Pod& p1, Pod& p2) {
     p2.vel.y += fy / m2;
 }
 
-void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
+void PhysicsSimulator::SimulateTurn(Pod* p) {
     double t_current = 0.0;
     int col_count = 0;
     while (t_current < 1.0 && col_count < 10) {
@@ -167,34 +176,51 @@ void PhysicsSimulator::SimulateTurn(std::vector<Pod>& pods) {
         Pod* col_p1 = nullptr;
         Pod* col_p2 = nullptr;
 
-        for (size_t i = 0; i < pods.size(); ++i) {
-            for (size_t j = i + 1; j < pods.size(); ++j) {
-                double t = GetCollisionTime(pods[i], pods[j]);
-                if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) {
-                    first_col_t = t;
-                    col_p1 = &pods[i];
-                    col_p2 = &pods[j];
-                }
-            }
-        }
+        // Fully unrolled collision time calculations (exactly 6 pairs for 4 pods)
+        double t;
+        t = GetCollisionTime(p[0], p[1]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[1]; }
+        t = GetCollisionTime(p[0], p[2]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[2]; }
+        t = GetCollisionTime(p[0], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[0]; col_p2 = &p[3]; }
+        t = GetCollisionTime(p[1], p[2]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[1]; col_p2 = &p[2]; }
+        t = GetCollisionTime(p[1], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[1]; col_p2 = &p[3]; }
+        t = GetCollisionTime(p[2], p[3]);
+        if (t >= 0.0 && t + t_current < 1.0 && t < first_col_t) { first_col_t = t; col_p1 = &p[2]; col_p2 = &p[3]; }
 
         if (first_col_t > 1.0 - t_current) {
-            for (auto& pod : pods) pod.Move(1.0 - t_current);
+            p[0].Move(1.0 - t_current);
+            p[1].Move(1.0 - t_current);
+            p[2].Move(1.0 - t_current);
+            p[3].Move(1.0 - t_current);
             t_current = 1.0;
             break;
         }
 
-        if (first_col_t < 0.0001) first_col_t = 0.0001; // Avoid infinite loops
+        if (first_col_t < 0.0001) first_col_t = 0.0001;
 
-        for (auto& pod : pods) pod.Move(first_col_t);
+        p[0].Move(first_col_t);
+        p[1].Move(first_col_t);
+        p[2].Move(first_col_t);
+        p[3].Move(first_col_t);
+
         if (col_p1 && col_p2) ResolveCollision(*col_p1, *col_p2);
         t_current += first_col_t;
         col_count++;
     }
     
     if (t_current < 1.0) {
-        for (auto& pod : pods) pod.Move(1.0 - t_current);
+        p[0].Move(1.0 - t_current);
+        p[1].Move(1.0 - t_current);
+        p[2].Move(1.0 - t_current);
+        p[3].Move(1.0 - t_current);
     }
     
-    for (auto& pod : pods) pod.EndTurn();
+    p[0].EndTurn();
+    p[1].EndTurn();
+    p[2].EndTurn();
+    p[3].EndTurn();
 }

@@ -27,6 +27,10 @@ struct BotConfig {
     // Time allocation
     double opp_model_ms = 0.0;      // Skip opponent GA model - use proxy instead
 
+    double runner_bypass_weight = 20.0;
+    double blocker_stay_in_front_weight = 30.0;
+    double blocker_facing_weight = 30.0;
+
     std::string name = "DefaultGA";
 
     void Randomize();

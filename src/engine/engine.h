@@ -7,6 +7,7 @@
 extern const double PI;
 extern double cos_lut[360];
 extern double sin_lut[360];
+extern thread_local bool g_friendly_collision;
 
 void InitLUT();
 uint32_t FastRand();
@@ -64,5 +65,5 @@ class PhysicsSimulator {
 public:
     static double GetCollisionTime(const Pod& p1, const Pod& p2);
     static void ResolveCollision(Pod& p1, Pod& p2);
-    static void SimulateTurn(std::vector<Pod>& pods);
+    static void SimulateTurn(Pod* pods);
 };

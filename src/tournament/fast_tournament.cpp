@@ -42,6 +42,10 @@ BotConfig RandomConfig(int id) {
     // Time allocation
     c.opp_model_ms = 5.0 + FastRandInt(0, 9) * 5.0;       // 5..50ms
 
+    c.runner_bypass_weight = FastRandInt(50, 500) / 10.0;
+    c.blocker_stay_in_front_weight = FastRandInt(50, 400) / 10.0;
+    c.blocker_facing_weight = FastRandInt(50, 400) / 10.0;
+
     return c;
 }
 
@@ -53,7 +57,10 @@ void PrintConfig(const BotConfig& c) {
               << " | block=" << c.block_weight << " shield=" << c.shield_penalty
               << " ram=" << c.shield_ram_dist
               << " | opp=" << c.opp_penalty
-              << " | opp_ms=" << c.opp_model_ms << std::endl;
+              << " | opp_ms=" << c.opp_model_ms
+              << " | bypass=" << c.runner_bypass_weight
+              << " front=" << c.blocker_stay_in_front_weight
+              << " face=" << c.blocker_facing_weight << std::endl;
 }
 
 void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
@@ -73,6 +80,9 @@ void PrintCopyableConfig(const BotConfig& w, const std::string& label = "") {
     std::cout << "    config.shield_ram_dist = " << w.shield_ram_dist << ";" << std::endl;
     std::cout << "    config.opp_penalty = " << w.opp_penalty << ";" << std::endl;
     std::cout << "    config.opp_model_ms = " << w.opp_model_ms << ";" << std::endl;
+    std::cout << "    config.runner_bypass_weight = " << w.runner_bypass_weight << ";" << std::endl;
+    std::cout << "    config.blocker_stay_in_front_weight = " << w.blocker_stay_in_front_weight << ";" << std::endl;
+    std::cout << "    config.blocker_facing_weight = " << w.blocker_facing_weight << ";" << std::endl;
 }
 
 // Play a best-of-6 match: 3 random maps x 2 sides

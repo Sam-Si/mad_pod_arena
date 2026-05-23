@@ -39,6 +39,7 @@ class GABot : public IBot {
     bool has_prev_best_ = false;
     Solution prev_best_;
     int turn_count_ = 0;
+    double avg_dist_ = 0.0;
 
     // Pre-computed race geometry
     std::vector<double> dist_to_end_;    // [linear_idx] remaining distance to finish
