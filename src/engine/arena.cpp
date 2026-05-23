@@ -95,7 +95,7 @@ ArenaResult Arena::PlayGame(bool verbose, int map_idx) {
         pods_[3].ApplyServerAction(actions1[1].tx, actions1[1].ty, actions1[1].thrust);
 
         // Simulate physics
-        PhysicsSimulator::SimulateTurn(pods_);
+        PhysicsSimulator::SimulateTurn(pods_.data());
 
         // Check CPs, timeouts, and wins
         bool team0_won = false;
