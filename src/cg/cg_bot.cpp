@@ -139,6 +139,7 @@ struct BotConfig {
     double runner_bypass_weight = 20.0;
     double blocker_stay_in_front_weight = 30.0;
     double blocker_facing_weight = 30.0;
+    double runner_evasion_weight = 0.3;
 
     std::string name = "DefaultGA";
 
@@ -521,6 +522,7 @@ void BotConfig::Randomize() {
     runner_bypass_weight = FastRandInt(50, 500) / 10.0;
     blocker_stay_in_front_weight = FastRandInt(50, 400) / 10.0;
     blocker_facing_weight = FastRandInt(50, 400) / 10.0;
+    runner_evasion_weight = FastRandInt(1, 10) / 10.0;
 }
 
 Action MakeGoToTarget(const Pod& pod, double tx, double ty, int thrust_val) {
@@ -1187,6 +1189,7 @@ void GABot::Initialize(int laps, int cp_count, const vector<Vec2>& cps, int team
             config_.runner_bypass_weight = 25.0;
             config_.blocker_stay_in_front_weight = 35.0;
             config_.blocker_facing_weight = 35.0;
+            config_.runner_evasion_weight = 1.5;
         } else {
             // Straight/Simple Map: Use Bot_1 (Optimized Speed/Blocking)
             config_.name = "Bot_1_SpeedBlock";
@@ -1206,6 +1209,7 @@ void GABot::Initialize(int laps, int cp_count, const vector<Vec2>& cps, int team
             config_.runner_bypass_weight = 15.0;
             config_.blocker_stay_in_front_weight = 25.0;
             config_.blocker_facing_weight = 25.0;
+            config_.runner_evasion_weight = 1.0;
         }
     }
 

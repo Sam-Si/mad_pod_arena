@@ -1,31 +1,9 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
-cc_binary(
-    name = "tournament",
-    srcs = ["tournament.cpp"],
-    deps = ["//src/engine", "//src/bot:ga_bot"],
-    copts = ["-std=c++17", "-O3", "-pthread"],
-    linkopts = ["-pthread"],
-)
-
-cc_binary(
-    name = "fast_tournament",
-    srcs = ["fast_tournament.cpp"],
-    deps = ["//src/engine", "//src/bot:ga_bot"],
-    copts = ["-std=c++17", "-O3", "-pthread"],
-    linkopts = ["-pthread"],
-)
-cc_binary(
-    name = "mega_tournament",
-    srcs = ["mega_tournament.cpp"],
-    deps = ["//src/engine", "//src/bot:ga_bot"],
-    copts = ["-std=c++17", "-O3", "-pthread"],
-    linkopts = ["-pthread"],
-)
+load("@rules_cc//cc:defs.bzl", "cc_binary")
 
 cc_binary(
     name = "benchmark_tournament",
-    srcs = ["benchmark_tournament.cpp", "legacy_wrapper.h"],
-    deps = ["//src/engine", "//src/bot:ga_bot", "//src/legacy_bot:legacy_bot_hdr"],
+    srcs = ["benchmark_tournament.cpp", "cg_bot_wrapper.h", "legacy_wrapper.h"],
+    deps = ["//src/engine", "//src/cg:cg_bot_hdr", "//src/legacy_bot:legacy_bot_hdr"],
     copts = ["-std=c++17", "-O3", "-pthread", "-Isrc"],
     linkopts = ["-pthread"],
 )

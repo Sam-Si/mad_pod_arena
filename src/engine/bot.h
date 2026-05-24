@@ -30,6 +30,7 @@ struct BotConfig {
     double runner_bypass_weight = 20.0;
     double blocker_stay_in_front_weight = 30.0;
     double blocker_facing_weight = 30.0;
+    double runner_evasion_weight = 1.0;
 
     std::string name = "DefaultGA";
 

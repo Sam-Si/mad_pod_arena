@@ -1,8 +1,16 @@
 load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+
 cc_binary(
     name = "cg_bot",
     srcs = ["cg_bot.cpp"],
     copts = ["-std=c++17", "-O3"],
+)
+
+# Export cg_bot.cpp as a header for inclusion by the benchmark wrapper
+cc_library(
+    name = "cg_bot_hdr",
+    hdrs = ["cg_bot.cpp"],
+    visibility = ["//visibility:public"],
 )
 
 cc_binary(
