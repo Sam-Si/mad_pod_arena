@@ -1,0 +1,55 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Build & test (Bazel)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-${{ runner.os }}-${{ hashFiles('.bazelversion', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.bazel', '**/*.bzl') }}
+          restore-keys: |
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Build all targets
+        run: bazel build --config=ci //...
+
+      - name: Run Bazel tests
+        run: bazel test --config=ci //...
+
+      - name: Build key binaries (sanity)
+        run: |
+          bazel build --config=ci \
+            //src/cg:cg_bot \
+            //src/tournament:benchmark_tournament \
+            //src/physics:verify_battles

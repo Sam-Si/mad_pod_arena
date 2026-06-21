@@ -1,0 +1,36 @@
+# Common defaults
+common --enable_bzlmod
+common --lockfile_mode=update
+
+# Faster incremental builds locally
+build --incompatible_strict_action_env
+build --disk_cache=~/.cache/bazel-disk-cache
+
+# Warnings / hygiene for C++
+build --cxxopt=-std=c++17
+build --host_cxxopt=-std=c++17
+build --copt=-Wall
+build --copt=-Wextra
+build --per_file_copt=external/.*@-w
+
+# Tests
+test --test_output=errors
+test --test_summary=detailed
+
+# Release profile (opt)
+build:release --compilation_mode=opt
+build:release --copt=-O3
+build:release --copt=-DNDEBUG
+build:release --copt=-fno-math-errno
+build:release --copt=-fomit-frame-pointer
+
+# Machine-specific release (local only; do not use in CI)
+build:native --config=release
+build:native --copt=-march=native
+build:native --copt=-mtune=native
+
+# CI profile: reproducible, no machine-specific flags
+build:ci --compilation_mode=opt
+build:ci --copt=-O2
+build:ci --copt=-DNDEBUG
+build:ci --lockfile_mode=error

@@ -1,0 +1,47 @@
+name: Scheduled tests
+
+on:
+  schedule:
+    # Daily at 06:15 UTC
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-tests
+  cancel-in-progress: false
+
+jobs:
+  nightly:
+    name: Nightly Bazel suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-nightly-${{ runner.os }}-${{ hashFiles('.bazelversion', 'MODULE.bazel', 'MODULE.bazel.lock') }}
+          restore-keys: |
+            bazel-nightly-${{ runner.os }}-
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Build + test (release profile)
+        run: |
+          bazel build --config=ci //...
+          bazel test --config=ci //... --test_output=errors

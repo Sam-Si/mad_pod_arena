@@ -1,40 +1,87 @@
-bazel-*
-logs/
-*.o
-*.log
-.DS_Store
-bin/
-scratch/
+# =============================================================================
+# mad_pod_arena — comprehensive .gitignore
+# C++/Bazel arena + Python helpers + CodinGame battle data tooling
+# =============================================================================
 
-# Bazel
-.bazel/
+# -----------------------------------------------------------------------------
+# Bazel (symlinks, caches, local overrides)
+# -----------------------------------------------------------------------------
 /bazel-*
 /bazel-bin
 /bazel-out
 /bazel-testlogs
 /bazel-genfiles
 /bazel-execroot
-MODULE.bazel.lock
+.bazel/
+.bazelbsp/
 .bazelrc.local
 *.bazel~
+# Lockfile is committed for reproducible Bzlmod deps (remove this line only if
+# you deliberately want lockfile out of version control).
+# MODULE.bazel.lock
 
-# ============================================================================
-# LOCAL TOOLS
+# Local bazelisk binary if dropped in-repo
 /bazelisk
-/bin/
 
-# ============================================================================
-# PROTOBUF GENERATED FILES
-*_pb2.py
-*_pb2_grpc.py
-*.pb.cc
-*.pb.h
-*.pbobjc.m
+# -----------------------------------------------------------------------------
+# C / C++ build artifacts (non-Bazel / IDE / ad-hoc g++)
+# -----------------------------------------------------------------------------
+*.o
+*.a
+*.lib
+*.obj
+*.lo
+*.la
+*.slo
+*.ko
+*.elf
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.pch
+*.gch
+*.pdb
+*.ilk
+*.dSYM/
+*.su
+*.idb
+*.iobj
+*.ipdb
 
-# Protobuf generated
+# Coverage / profiling
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+perf.data
+perf.data.old
+
+# CMake (if used alongside Bazel)
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake-build-*/
+cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+compile_commands.json
+_deps/
+
+# Clang / LLVM tooling outputs
+.cache/clangd/
+.cache/ccls/
+.ccls-cache/
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
 __pycache__/
 *.py[cod]
-*.py[diw]
 *$py.class
 *.so
 .Python
@@ -51,61 +98,56 @@ sdist/
 var/
 wheels/
 pip-wheel-metadata/
+share/python-wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
-# Virtual Environments
+# Virtual environments
 .venv/
 venv/
 ENV/
 env/
-# Python
-coverage.xml
-*.cover
-*.py,cover
-.hypothesis/
+.envrc
+
+# Test / type / lint caches
 .pytest_cache/
 pytest_cache/
 .mypy_cache/
-.mypy.ini
 .ruff_cache/
 .pytype/
 .pyre/
 .pyright/
-pyproject.toml.local
+.tox/
+.nox/
+.hypothesis/
 cython_debug/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+cover/
+nosetests.xml
+.cache
 
-# C/C++ BUILD ARTIFACTS
-# ============================================================================
-*.o
-*.a
-*.lib
-*.obj
-*.ko
-*.elf
-*.pch
-*.pdb
-*.ilk
-*.gch
-*.dSYM/
+# Protobuf generated (if ever added)
+*_pb2.py
+*_pb2_grpc.py
+*.pb.cc
+*.pb.h
+*.pbobjc.m
 
-# CMake (if used alongside Bazel)
-CMakeFiles/
-CTestTestfile.cmake
-_deps/
-
-# Code Coverage
-*.gcno
-*.gcda
-*.gcov
-
-pip-log.txt
-pip-delete-this-directory.txt
-# IDE & EDITOR CONFIGURATION
-# ============================================================================
+# -----------------------------------------------------------------------------
+# IDE / editor
+# -----------------------------------------------------------------------------
 .idea/
 .vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
 *.swp
 *.swo
 *~
@@ -114,63 +156,67 @@ pip-delete-this-directory.txt
 .project
 .classpath
 .settings/
-*.sublime-project
-*.code-workspace
-.DS_Store
+*.iml
 
-# VS Code
-.vscode/settings.json
-# C/C++
-
-# ============================================================================
-# DOCKER & CONTAINERIZATION
-# ============================================================================
-.dockerignore
-docker-compose.override.yml
-.docker/
-
-# Logs
-# DEV CONTAINER
-# ============================================================================
-.devcontainer/local.env
-# IDEs/Editors
-# OS & TEMPORARY FILES
-# ============================================================================
+# -----------------------------------------------------------------------------
+# OS / temp / local scratch
+# -----------------------------------------------------------------------------
 .DS_Store
 .AppleDouble
 .LSOverride
-*.swp
-*.swo
-*~
-.~*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+._*
+.Spotlight-V100
+.Trashes
+
 *.tmp
 *.temp
-.vscode-server
-.vscode-server-insiders
+*.bak
+*.backup
+*.orig
+*.rej
+*.log
 
-# Misc
-# ============================================================================
-# ============================================================================
-*.pyc
-*.pyo
-*.pyd
-
-# GENERATED FILES
-# ============================================================================
-*.generated.py
-generated/
-
-# ============================================================================
-# LOCAL/TEMPORARY WORK
-# ============================================================================
-.local/
+# Project-specific local dirs / temp dumps
+logs/
+scratch/
+/bin/
 .tmp/
 tmp/
 temp/
-*.bak
-*.backup
+.local/
+tmp.txt
+tmp_*.txt
+
+# Secrets / local env
 .env
 .env.*
+!.env.example
+
+# Archives accidentally dropped in tree
 *.tar
+*.tar.gz
+*.tgz
 *.zip
-*.gz
+*.7z
+*.rar
+
+# -----------------------------------------------------------------------------
+# Containers / remote editors
+# -----------------------------------------------------------------------------
+.docker/
+docker-compose.override.yml
+.devcontainer/local.env
+.vscode-server/
+.vscode-server-insiders/
+
+# -----------------------------------------------------------------------------
+# Misc generated / local-only
+# -----------------------------------------------------------------------------
+generated/
+*.generated.py
+.cursor/
+.cursorignore
+.cursorindexingignore
