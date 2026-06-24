@@ -1,0 +1,4826 @@
+{
+  "gameId": 884485328,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 10047,
+          "y": 5979
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 13892,
+          "y": 1913
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 8000,
+          "y": 3254
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 2699,
+          "y": 7023
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 9684.0,
+          "y": 5635.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 10410.0,
+          "y": 6323.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 8957.0,
+          "y": 4948.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 11137.0,
+          "y": 7010.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 9684.0,
+          "y": 5635.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 10410.0,
+          "y": 6323.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 8957.0,
+          "y": 4948.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 11137.0,
+          "y": 7010.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 464,
+      "log": "$0 rank: 2\n$1 rank: 1\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "18473 864 BOOST"
+      },
+      {
+        "turn": 2,
+        "command": "77677 -67699 BOOST"
+      },
+      {
+        "turn": 3,
+        "command": "17448 -1622 200"
+      },
+      {
+        "turn": 4,
+        "command": "51666 -86155 200"
+      },
+      {
+        "turn": 5,
+        "command": "16183 -3557 SHIELD"
+      },
+      {
+        "turn": 6,
+        "command": "78069 -69241 0"
+      },
+      {
+        "turn": 7,
+        "command": "14649 -4893 200"
+      },
+      {
+        "turn": 8,
+        "command": "93168 -52519 0"
+      },
+      {
+        "turn": 9,
+        "command": "11969 -5767 173"
+      },
+      {
+        "turn": 10,
+        "command": "106725 -24583 0"
+      },
+      {
+        "turn": 11,
+        "command": "9210 -5613 166"
+      },
+      {
+        "turn": 12,
+        "command": "110822 6115 SHIELD"
+      },
+      {
+        "turn": 13,
+        "command": "8577 -5552 68"
+      },
+      {
+        "turn": 14,
+        "command": "109287 21404 SHIELD"
+      },
+      {
+        "turn": 15,
+        "command": "6340 -4352 SHIELD"
+      },
+      {
+        "turn": 16,
+        "command": "101959 44329 0"
+      },
+      {
+        "turn": 17,
+        "command": "5595 -3621 SHIELD"
+      },
+      {
+        "turn": 18,
+        "command": "84636 70050 0"
+      },
+      {
+        "turn": 19,
+        "command": "4653 -2065 SHIELD"
+      },
+      {
+        "turn": 20,
+        "command": "60129 89128 200"
+      },
+      {
+        "turn": 21,
+        "command": "3981 305 SHIELD"
+      },
+      {
+        "turn": 22,
+        "command": "30853 99673 2"
+      },
+      {
+        "turn": 23,
+        "command": "3989 1821 177"
+      },
+      {
+        "turn": 24,
+        "command": "-310 100635 200"
+      },
+      {
+        "turn": 25,
+        "command": "4203 2857 177"
+      },
+      {
+        "turn": 26,
+        "command": "-30320 92100 200"
+      },
+      {
+        "turn": 27,
+        "command": "4407 3220 171"
+      },
+      {
+        "turn": 28,
+        "command": "-56289 74860 200"
+      },
+      {
+        "turn": 29,
+        "command": "4836 4448 200"
+      },
+      {
+        "turn": 30,
+        "command": "-75712 50569 200"
+      },
+      {
+        "turn": 31,
+        "command": "4850 4726 200"
+      },
+      {
+        "turn": 32,
+        "command": "-85999 24988 0"
+      },
+      {
+        "turn": 33,
+        "command": "4377 4078 200"
+      },
+      {
+        "turn": 34,
+        "command": "-88446 -5879 18"
+      },
+      {
+        "turn": 35,
+        "command": "4279 5143 200"
+      },
+      {
+        "turn": 36,
+        "command": "-82428 -32710 200"
+      },
+      {
+        "turn": 37,
+        "command": "3254 3597 200"
+      },
+      {
+        "turn": 38,
+        "command": "-67178 -59631 0"
+      },
+      {
+        "turn": 39,
+        "command": "3665 6685 200"
+      },
+      {
+        "turn": 40,
+        "command": "-44260 -80418 0"
+      },
+      {
+        "turn": 41,
+        "command": "1860 3967 200"
+      },
+      {
+        "turn": 42,
+        "command": "-67794 -59358 200"
+      },
+      {
+        "turn": 43,
+        "command": "953 3677 164"
+      },
+      {
+        "turn": 44,
+        "command": "-71376 -55225 9"
+      },
+      {
+        "turn": 45,
+        "command": "149 764 SHIELD"
+      },
+      {
+        "turn": 46,
+        "command": "-84786 -30669 0"
+      },
+      {
+        "turn": 47,
+        "command": "438 -2013 SHIELD"
+      },
+      {
+        "turn": 48,
+        "command": "-69909 -58051 200"
+      },
+      {
+        "turn": 49,
+        "command": "1350 -4024 200"
+      },
+      {
+        "turn": 50,
+        "command": "-71543 -56403 200"
+      },
+      {
+        "turn": 51,
+        "command": "-905 -1350 SHIELD"
+      },
+      {
+        "turn": 52,
+        "command": "-86943 -28513 5"
+      },
+      {
+        "turn": 53,
+        "command": "-2016 694 SHIELD"
+      },
+      {
+        "turn": 54,
+        "command": "-72864 -55916 131"
+      },
+      {
+        "turn": 55,
+        "command": "-2747 2041 200"
+      },
+      {
+        "turn": 56,
+        "command": "-72423 -57190 200"
+      },
+      {
+        "turn": 57,
+        "command": "-3209 5376 199"
+      },
+      {
+        "turn": 58,
+        "command": "-88277 -29856 SHIELD"
+      },
+      {
+        "turn": 59,
+        "command": "-2620 8476 155"
+      },
+      {
+        "turn": 60,
+        "command": "-94829 831 SHIELD"
+      },
+      {
+        "turn": 61,
+        "command": "-1103 11059 96"
+      },
+      {
+        "turn": 62,
+        "command": "-91510 31864 SHIELD"
+      },
+      {
+        "turn": 63,
+        "command": "1073 12963 145"
+      },
+      {
+        "turn": 64,
+        "command": "-78707 60202 0"
+      },
+      {
+        "turn": 65,
+        "command": "3655 14075 137"
+      },
+      {
+        "turn": 66,
+        "command": "-57725 83070 121"
+      },
+      {
+        "turn": 67,
+        "command": "5532 14448 65"
+      },
+      {
+        "turn": 68,
+        "command": "-30663 98227 200"
+      },
+      {
+        "turn": 69,
+        "command": "8218 13985 98"
+      },
+      {
+        "turn": 70,
+        "command": "-207 104188 200"
+      },
+      {
+        "turn": 71,
+        "command": "8145 14337 SHIELD"
+      },
+      {
+        "turn": 72,
+        "command": "16976 103469 200"
+      },
+      {
+        "turn": 73,
+        "command": "10513 12904 185"
+      },
+      {
+        "turn": 74,
+        "command": "43571 96158 129"
+      },
+      {
+        "turn": 75,
+        "command": "12230 10713 SHIELD"
+      },
+      {
+        "turn": 76,
+        "command": "13265 104679 0"
+      },
+      {
+        "turn": 77,
+        "command": "13109 8014 SHIELD"
+      },
+      {
+        "turn": 78,
+        "command": "43415 96942 200"
+      },
+      {
+        "turn": 79,
+        "command": "13166 6357 186"
+      },
+      {
+        "turn": 80,
+        "command": "69416 80055 200"
+      },
+      {
+        "turn": 81,
+        "command": "12658 3832 187"
+      },
+      {
+        "turn": 82,
+        "command": "88977 55941 6"
+      },
+      {
+        "turn": 83,
+        "command": "12596 4022 SHIELD"
+      },
+      {
+        "turn": 84,
+        "command": "100085 26904 134"
+      },
+      {
+        "turn": 85,
+        "command": "12079 3052 164"
+      },
+      {
+        "turn": 86,
+        "command": "101765 -4166 200"
+      },
+      {
+        "turn": 87,
+        "command": "11030 1891 104"
+      },
+      {
+        "turn": 88,
+        "command": "93903 -34261 200"
+      },
+      {
+        "turn": 89,
+        "command": "9702 702 96"
+      },
+      {
+        "turn": 90,
+        "command": "83832 -52340 200"
+      },
+      {
+        "turn": 91,
+        "command": "9719 1118 200"
+      },
+      {
+        "turn": 92,
+        "command": "86320 -49577 200"
+      },
+      {
+        "turn": 93,
+        "command": "9800 1253 200"
+      },
+      {
+        "turn": 94,
+        "command": "95349 -34526 200"
+      },
+      {
+        "turn": 95,
+        "command": "10146 1396 200"
+      },
+      {
+        "turn": 96,
+        "command": "104120 -4550 200"
+      },
+      {
+        "turn": 97,
+        "command": "11803 3576 200"
+      },
+      {
+        "turn": 98,
+        "command": "103254 26465 200"
+      },
+      {
+        "turn": 99,
+        "command": "12916 6353 SHIELD"
+      },
+      {
+        "turn": 100,
+        "command": "92476 55625 200"
+      },
+      {
+        "turn": 101,
+        "command": "13274 7344 156"
+      },
+      {
+        "turn": 102,
+        "command": "103284 26710 SHIELD"
+      },
+      {
+        "turn": 103,
+        "command": "13399 8534 156"
+      },
+      {
+        "turn": 104,
+        "command": "104882 -808 0"
+      },
+      {
+        "turn": 105,
+        "command": "13758 5242 188"
+      },
+      {
+        "turn": 106,
+        "command": "97553 -31082 0"
+      },
+      {
+        "turn": 107,
+        "command": "13767 5431 200"
+      },
+      {
+        "turn": 108,
+        "command": "85730 -52203 200"
+      },
+      {
+        "turn": 109,
+        "command": "13598 4061 200"
+      },
+      {
+        "turn": 110,
+        "command": "63764 -74147 200"
+      },
+      {
+        "turn": 111,
+        "command": "12683 960 200"
+      },
+      {
+        "turn": 112,
+        "command": "78371 -61455 200"
+      },
+      {
+        "turn": 113,
+        "command": "11441 -1363 196"
+      },
+      {
+        "turn": 114,
+        "command": "96225 -35661 200"
+      },
+      {
+        "turn": 115,
+        "command": "12894 -523 SHIELD"
+      },
+      {
+        "turn": 116,
+        "command": "79214 -61806 0"
+      },
+      {
+        "turn": 117,
+        "command": "14683 1966 192"
+      },
+      {
+        "turn": 118,
+        "command": "88406 -51139 9"
+      },
+      {
+        "turn": 119,
+        "command": "15482 4627 146"
+      },
+      {
+        "turn": 120,
+        "command": "67030 -73798 200"
+      },
+      {
+        "turn": 121,
+        "command": "15362 7343 200"
+      },
+      {
+        "turn": 122,
+        "command": "89186 -51582 SHIELD"
+      },
+      {
+        "turn": 123,
+        "command": "14264 9997 185"
+      },
+      {
+        "turn": 124,
+        "command": "103260 -23707 0"
+      },
+      {
+        "turn": 125,
+        "command": "13009 11785 194"
+      },
+      {
+        "turn": 126,
+        "command": "107920 7066 0"
+      },
+      {
+        "turn": 127,
+        "command": "14171 11147 196"
+      },
+      {
+        "turn": 128,
+        "command": "102746 37701 136"
+      },
+      {
+        "turn": 129,
+        "command": "16379 8740 198"
+      },
+      {
+        "turn": 130,
+        "command": "99769 45668 SHIELD"
+      },
+      {
+        "turn": 131,
+        "command": "17578 6848 200"
+      },
+      {
+        "turn": 132,
+        "command": "82924 71780 199"
+      },
+      {
+        "turn": 133,
+        "command": "17767 4001 145"
+      },
+      {
+        "turn": 134,
+        "command": "99463 47020 SHIELD"
+      },
+      {
+        "turn": 135,
+        "command": "17117 1214 200"
+      },
+      {
+        "turn": 136,
+        "command": "82155 72866 200"
+      },
+      {
+        "turn": 137,
+        "command": "16186 -751 200"
+      },
+      {
+        "turn": 138,
+        "command": "93984 57580 200"
+      },
+      {
+        "turn": 139,
+        "command": "15034 -2377 SHIELD"
+      },
+      {
+        "turn": 140,
+        "command": "104944 33759 200"
+      },
+      {
+        "turn": 141,
+        "command": "14270 -3190 175"
+      },
+      {
+        "turn": 142,
+        "command": "109413 2721 0"
+      },
+      {
+        "turn": 143,
+        "command": "16797 -1505 138"
+      },
+      {
+        "turn": 144,
+        "command": "104076 -28138 200"
+      },
+      {
+        "turn": 145,
+        "command": "15479 -2871 152"
+      },
+      {
+        "turn": 146,
+        "command": "89817 -55828 0"
+      },
+      {
+        "turn": 147,
+        "command": "18007 -757 200"
+      },
+      {
+        "turn": 148,
+        "command": "104905 -28249 200"
+      },
+      {
+        "turn": 149,
+        "command": "18969 -38 200"
+      },
+      {
+        "turn": 150,
+        "command": "110501 -4512 0"
+      },
+      {
+        "turn": 151,
+        "command": "18280 -1783 82"
+      },
+      {
+        "turn": 152,
+        "command": "107457 -23448 SHIELD"
+      },
+      {
+        "turn": 153,
+        "command": "16279 -3955 168"
+      },
+      {
+        "turn": 154,
+        "command": "94616 -51877 SHIELD"
+      },
+      {
+        "turn": 155,
+        "command": "13605 -4821 113"
+      },
+      {
+        "turn": 156,
+        "command": "73622 -74877 SHIELD"
+      },
+      {
+        "turn": 157,
+        "command": "10726 -4868 177"
+      },
+      {
+        "turn": 158,
+        "command": "56185 -86055 82"
+      },
+      {
+        "turn": 159,
+        "command": "9377 -4680 125"
+      },
+      {
+        "turn": 160,
+        "command": "26513 -95288 11"
+      },
+      {
+        "turn": 161,
+        "command": "12608 -5286 121"
+      },
+      {
+        "turn": 162,
+        "command": "42043 -91963 199"
+      },
+      {
+        "turn": 163,
+        "command": "15789 -5001 68"
+      },
+      {
+        "turn": 164,
+        "command": "11239 -96379 0"
+      },
+      {
+        "turn": 165,
+        "command": "18642 -3813 161"
+      },
+      {
+        "turn": 166,
+        "command": "-19422 -90997 97"
+      },
+      {
+        "turn": 167,
+        "command": "20169 -2637 169"
+      },
+      {
+        "turn": 168,
+        "command": "-46778 -76574 0"
+      },
+      {
+        "turn": 169,
+        "command": "19587 -3731 113"
+      },
+      {
+        "turn": 170,
+        "command": "-55815 -68883 40"
+      },
+      {
+        "turn": 171,
+        "command": "18129 -5378 SHIELD"
+      },
+      {
+        "turn": 172,
+        "command": "-74463 -44128 0"
+      },
+      {
+        "turn": 173,
+        "command": "18437 -5591 200"
+      },
+      {
+        "turn": 174,
+        "command": "-78732 -34839 160"
+      },
+      {
+        "turn": 175,
+        "command": "20320 -4411 SHIELD"
+      },
+      {
+        "turn": 176,
+        "command": "-85788 -4581 0"
+      },
+      {
+        "turn": 177,
+        "command": "21888 -2683 200"
+      },
+      {
+        "turn": 178,
+        "command": "-84384 19544 198"
+      },
+      {
+        "turn": 179,
+        "command": "22359 -2092 SHIELD"
+      },
+      {
+        "turn": 180,
+        "command": "-74194 48963 0"
+      },
+      {
+        "turn": 181,
+        "command": "23151 779 SHIELD"
+      },
+      {
+        "turn": 182,
+        "command": "-79736 36061 125"
+      },
+      {
+        "turn": 183,
+        "command": "23035 3210 185"
+      },
+      {
+        "turn": 184,
+        "command": "-64573 63335 200"
+      },
+      {
+        "turn": 185,
+        "command": "22020 6012 165"
+      },
+      {
+        "turn": 186,
+        "command": "-63649 64748 188"
+      },
+      {
+        "turn": 187,
+        "command": "22283 5051 69"
+      },
+      {
+        "turn": 188,
+        "command": "-76096 45811 200"
+      },
+      {
+        "turn": 189,
+        "command": "21535 6331 191"
+      },
+      {
+        "turn": 190,
+        "command": "-58142 71176 200"
+      },
+      {
+        "turn": 191,
+        "command": "20965 7330 142"
+      },
+      {
+        "turn": 192,
+        "command": "-32787 89349 200"
+      },
+      {
+        "turn": 193,
+        "command": "22577 4801 132"
+      },
+      {
+        "turn": 194,
+        "command": "-57556 70140 200"
+      },
+      {
+        "turn": 195,
+        "command": "23420 2530 153"
+      },
+      {
+        "turn": 196,
+        "command": "-75460 44327 200"
+      },
+      {
+        "turn": 197,
+        "command": "22941 5483 130"
+      },
+      {
+        "turn": 198,
+        "command": "-84754 14339 121"
+      },
+      {
+        "turn": 199,
+        "command": "21345 7877 0"
+      },
+      {
+        "turn": 200,
+        "command": "-78020 39454 200"
+      },
+      {
+        "turn": 201,
+        "command": "18972 9930 200"
+      },
+      {
+        "turn": 202,
+        "command": "-61798 65752 200"
+      },
+      {
+        "turn": 203,
+        "command": "16146 11244 0"
+      },
+      {
+        "turn": 204,
+        "command": "-66643 60249 200"
+      },
+      {
+        "turn": 205,
+        "command": "13109 11391 200"
+      },
+      {
+        "turn": 206,
+        "command": "-44681 82036 200"
+      },
+      {
+        "turn": 207,
+        "command": "9984 10805 200"
+      },
+      {
+        "turn": 208,
+        "command": "-45258 82246 200"
+      },
+      {
+        "turn": 209,
+        "command": "7176 9476 199"
+      },
+      {
+        "turn": 210,
+        "command": "-29179 92028 200"
+      },
+      {
+        "turn": 211,
+        "command": "5010 7581 200"
+      },
+      {
+        "turn": 212,
+        "command": "447 100598 96"
+      },
+      {
+        "turn": 213,
+        "command": "3421 5484 155"
+      },
+      {
+        "turn": 214,
+        "command": "31175 99457 2"
+      },
+      {
+        "turn": 215,
+        "command": "2609 4741 127"
+      },
+      {
+        "turn": 216,
+        "command": "-507 101518 SHIELD"
+      },
+      {
+        "turn": 217,
+        "command": "1829 2217 163"
+      },
+      {
+        "turn": 218,
+        "command": "-4342 101453 SHIELD"
+      },
+      {
+        "turn": 219,
+        "command": "1151 2770 200"
+      },
+      {
+        "turn": 220,
+        "command": "-34577 92611 SHIELD"
+      },
+      {
+        "turn": 221,
+        "command": "440 2240 0"
+      },
+      {
+        "turn": 222,
+        "command": "-16889 99585 3"
+      },
+      {
+        "turn": 223,
+        "command": "-258 3251 SHIELD"
+      },
+      {
+        "turn": 224,
+        "command": "-45697 87080 SHIELD"
+      },
+      {
+        "turn": 225,
+        "command": "-427 1503 179"
+      },
+      {
+        "turn": 226,
+        "command": "-17469 99956 200"
+      },
+      {
+        "turn": 227,
+        "command": "443 -1098 200"
+      },
+      {
+        "turn": 228,
+        "command": "-46514 87321 200"
+      },
+      {
+        "turn": 229,
+        "command": "-14 -334 200"
+      },
+      {
+        "turn": 230,
+        "command": "-67914 69137 200"
+      },
+      {
+        "turn": 231,
+        "command": "1159 -2281 199"
+      },
+      {
+        "turn": 232,
+        "command": "-68248 69202 200"
+      },
+      {
+        "turn": 233,
+        "command": "-662 405 200"
+      },
+      {
+        "turn": 234,
+        "command": "-65145 73248 200"
+      },
+      {
+        "turn": 235,
+        "command": "-1716 3375 200"
+      },
+      {
+        "turn": 236,
+        "command": "-68037 70992 194"
+      },
+      {
+        "turn": 237,
+        "command": "-2235 4683 200"
+      },
+      {
+        "turn": 238,
+        "command": "-85657 45135 SHIELD"
+      },
+      {
+        "turn": 239,
+        "command": "-2205 7500 193"
+      },
+      {
+        "turn": 240,
+        "command": "-94246 15238 0"
+      },
+      {
+        "turn": 241,
+        "command": "-1333 10206 173"
+      },
+      {
+        "turn": 242,
+        "command": "-95197 3315 179"
+      },
+      {
+        "turn": 243,
+        "command": "-1381 11102 131"
+      },
+      {
+        "turn": 244,
+        "command": "-91197 -23944 0"
+      },
+      {
+        "turn": 245,
+        "command": "445 13102 109"
+      },
+      {
+        "turn": 246,
+        "command": "-77783 -51867 69"
+      },
+      {
+        "turn": 247,
+        "command": "2763 14289 185"
+      },
+      {
+        "turn": 248,
+        "command": "-56362 -74245 146"
+      },
+      {
+        "turn": 249,
+        "command": "5293 14648 183"
+      },
+      {
+        "turn": 250,
+        "command": "-29089 -88941 SHIELD"
+      },
+      {
+        "turn": 251,
+        "command": "7878 13188 200"
+      },
+      {
+        "turn": 252,
+        "command": "1414 -94283 81"
+      },
+      {
+        "turn": 253,
+        "command": "8698 12330 200"
+      },
+      {
+        "turn": 254,
+        "command": "21977 -92381 200"
+      },
+      {
+        "turn": 255,
+        "command": "5814 13677 200"
+      },
+      {
+        "turn": 256,
+        "command": "26865 -91180 200"
+      },
+      {
+        "turn": 257,
+        "command": "2712 14283 SHIELD"
+      },
+      {
+        "turn": 258,
+        "command": "55476 -78898 200"
+      },
+      {
+        "turn": 259,
+        "command": "1666 14355 179"
+      },
+      {
+        "turn": 260,
+        "command": "43104 -85570 200"
+      },
+      {
+        "turn": 261,
+        "command": "128 14166 SHIELD"
+      },
+      {
+        "turn": 262,
+        "command": "69379 -68815 200"
+      },
+      {
+        "turn": 263,
+        "command": "-184 14122 SHIELD"
+      },
+      {
+        "turn": 264,
+        "command": "89011 -44427 200"
+      },
+      {
+        "turn": 265,
+        "command": "521 14330 SHIELD"
+      },
+      {
+        "turn": 266,
+        "command": "70577 -67273 200"
+      },
+      {
+        "turn": 267,
+        "command": "2968 14640 200"
+      },
+      {
+        "turn": 268,
+        "command": "44749 -84670 124"
+      },
+      {
+        "turn": 269,
+        "command": "3689 14627 166"
+      },
+      {
+        "turn": 270,
+        "command": "14819 -93323 200"
+      },
+      {
+        "turn": 271,
+        "command": "591 14363 168"
+      },
+      {
+        "turn": 272,
+        "command": "-16302 -92454 SHIELD"
+      },
+      {
+        "turn": 273,
+        "command": "-2273 13147 180"
+      },
+      {
+        "turn": 274,
+        "command": "15091 -93735 164"
+      },
+      {
+        "turn": 275,
+        "command": "-2176 13123 198"
+      },
+      {
+        "turn": 276,
+        "command": "-16101 -92530 125"
+      },
+      {
+        "turn": 277,
+        "command": "584 14315 200"
+      },
+      {
+        "turn": 278,
+        "command": "-32912 -87636 200"
+      },
+      {
+        "turn": 279,
+        "command": "3543 14744 135"
+      },
+      {
+        "turn": 280,
+        "command": "-60059 -71920 140"
+      },
+      {
+        "turn": 281,
+        "command": "4934 14683 200"
+      },
+      {
+        "turn": 282,
+        "command": "-33067 -87494 160"
+      },
+      {
+        "turn": 283,
+        "command": "5802 14549 200"
+      },
+      {
+        "turn": 284,
+        "command": "-60257 -71752 SHIELD"
+      },
+      {
+        "turn": 285,
+        "command": "7369 13742 191"
+      },
+      {
+        "turn": 286,
+        "command": "-81261 -48386 0"
+      },
+      {
+        "turn": 287,
+        "command": "9216 12331 97"
+      },
+      {
+        "turn": 288,
+        "command": "-82254 -46808 0"
+      },
+      {
+        "turn": 289,
+        "command": "10344 11141 200"
+      },
+      {
+        "turn": 290,
+        "command": "-68206 -64437 SHIELD"
+      },
+      {
+        "turn": 291,
+        "command": "8278 13415 SHIELD"
+      },
+      {
+        "turn": 292,
+        "command": "-76381 -55224 SHIELD"
+      },
+      {
+        "turn": 293,
+        "command": "6825 14126 199"
+      },
+      {
+        "turn": 294,
+        "command": "-91639 -27794 SHIELD"
+      },
+      {
+        "turn": 295,
+        "command": "3870 14912 188"
+      },
+      {
+        "turn": 296,
+        "command": "-97685 2974 SHIELD"
+      },
+      {
+        "turn": 297,
+        "command": "759 14759 200"
+      },
+      {
+        "turn": 298,
+        "command": "-91779 -27691 SHIELD"
+      },
+      {
+        "turn": 299,
+        "command": "-2203 13662 200"
+      },
+      {
+        "turn": 300,
+        "command": "-97803 3060 0"
+      },
+      {
+        "turn": 301,
+        "command": "-2591 13566 SHIELD"
+      },
+      {
+        "turn": 302,
+        "command": "-94035 34147 SHIELD"
+      },
+      {
+        "turn": 303,
+        "command": "-85 14594 18"
+      },
+      {
+        "turn": 304,
+        "command": "-80851 62530 SHIELD"
+      },
+      {
+        "turn": 305,
+        "command": "2914 14790 174"
+      },
+      {
+        "turn": 306,
+        "command": "-94105 34198 SHIELD"
+      },
+      {
+        "turn": 307,
+        "command": "3502 14687 200"
+      },
+      {
+        "turn": 308,
+        "command": "-97945 3163 0"
+      },
+      {
+        "turn": 309,
+        "command": "5596 14067 200"
+      },
+      {
+        "turn": 310,
+        "command": "-91997 -27533 SHIELD"
+      },
+      {
+        "turn": 311,
+        "command": "7869 12954 200"
+      },
+      {
+        "turn": 312,
+        "command": "-76847 -54884 0"
+      },
+      {
+        "turn": 313,
+        "command": "8532 12822 200"
+      },
+      {
+        "turn": 314,
+        "command": "-53980 -76211 0"
+      },
+      {
+        "turn": 315,
+        "command": "10776 10836 200"
+      },
+      {
+        "turn": 316,
+        "command": "-25637 -89424 0"
+      },
+      {
+        "turn": 317,
+        "command": "12317 8388 200"
+      },
+      {
+        "turn": 318,
+        "command": "5407 -93230 0"
+      },
+      {
+        "turn": 319,
+        "command": "13044 5695 200"
+      },
+      {
+        "turn": 320,
+        "command": "36111 -87255 200"
+      },
+      {
+        "turn": 321,
+        "command": "12918 3007 200"
+      },
+      {
+        "turn": 322,
+        "command": "63537 -72271 200"
+      },
+      {
+        "turn": 323,
+        "command": "12313 973 200"
+      },
+      {
+        "turn": 324,
+        "command": "85051 -49703 200"
+      },
+      {
+        "turn": 325,
+        "command": "12634 499 200"
+      },
+      {
+        "turn": 326,
+        "command": "98588 -21726 200"
+      },
+      {
+        "turn": 327,
+        "command": "13437 415 200"
+      },
+      {
+        "turn": 328,
+        "command": "98551 -23775 200"
+      },
+      {
+        "turn": 329,
+        "command": "13784 -292 200"
+      },
+      {
+        "turn": 330,
+        "command": "102529 -8832 200"
+      },
+      {
+        "turn": 331,
+        "command": "14875 -364 200"
+      },
+      {
+        "turn": 332,
+        "command": "100787 -21145 200"
+      },
+      {
+        "turn": 333,
+        "command": "15364 -1140 200"
+      },
+      {
+        "turn": 334,
+        "command": "102412 -18105 200"
+      },
+      {
+        "turn": 335,
+        "command": "16232 -1633 200"
+      },
+      {
+        "turn": 336,
+        "command": "105453 12767 0"
+      },
+      {
+        "turn": 337,
+        "command": "15436 -3456 189"
+      },
+      {
+        "turn": 338,
+        "command": "104379 -17028 200"
+      },
+      {
+        "turn": 339,
+        "command": "16425 -4006 183"
+      },
+      {
+        "turn": 340,
+        "command": "101349 -30725 200"
+      },
+      {
+        "turn": 341,
+        "command": "19368 -2917 200"
+      },
+      {
+        "turn": 342,
+        "command": "105698 -19328 SHIELD"
+      },
+      {
+        "turn": 343,
+        "command": "19722 -4148 200"
+      },
+      {
+        "turn": 344,
+        "command": "108628 11620 SHIELD"
+      },
+      {
+        "turn": 345,
+        "command": "22371 -2566 SHIELD"
+      },
+      {
+        "turn": 346,
+        "command": "106674 26873 0"
+      },
+      {
+        "turn": 347,
+        "command": "22867 -3309 SHIELD"
+      },
+      {
+        "turn": 348,
+        "command": "108952 18135 SHIELD"
+      },
+      {
+        "turn": 349,
+        "command": "23904 -2717 200"
+      },
+      {
+        "turn": 350,
+        "command": "109410 17975 SHIELD"
+      },
+      {
+        "turn": 351,
+        "command": "25079 -107 188"
+      },
+      {
+        "turn": 352,
+        "command": "100131 47595 0"
+      },
+      {
+        "turn": 353,
+        "command": "25448 1102 SHIELD"
+      },
+      {
+        "turn": 354,
+        "command": "82071 72792 1"
+      },
+      {
+        "turn": 355,
+        "command": "25650 -1466 195"
+      },
+      {
+        "turn": 356,
+        "command": "57039 91085 0"
+      },
+      {
+        "turn": 357,
+        "command": "26022 -511 200"
+      },
+      {
+        "turn": 358,
+        "command": "27521 100671 0"
+      },
+      {
+        "turn": 359,
+        "command": "25641 -3803 SHIELD"
+      },
+      {
+        "turn": 360,
+        "command": "-3563 100602 200"
+      },
+      {
+        "turn": 361,
+        "command": "26403 -1268 129"
+      },
+      {
+        "turn": 362,
+        "command": "-33179 91074 180"
+      },
+      {
+        "turn": 363,
+        "command": "26527 317 196"
+      },
+      {
+        "turn": 364,
+        "command": "-58455 72962 200"
+      },
+      {
+        "turn": 365,
+        "command": "25985 2884 SHIELD"
+      },
+      {
+        "turn": 366,
+        "command": "-76956 48027 200"
+      },
+      {
+        "turn": 367,
+        "command": "24484 5453 155"
+      },
+      {
+        "turn": 368,
+        "command": "-86896 18682 114"
+      },
+      {
+        "turn": 369,
+        "command": "23865 6122 200"
+      },
+      {
+        "turn": 370,
+        "command": "-87240 -12237 200"
+      },
+      {
+        "turn": 371,
+        "command": "21381 7836 181"
+      },
+      {
+        "turn": 372,
+        "command": "-78062 -41713 190"
+      },
+      {
+        "turn": 373,
+        "command": "18456 8683 197"
+      },
+      {
+        "turn": 374,
+        "command": "-60257 -66874 0"
+      },
+      {
+        "turn": 375,
+        "command": "15411 8766 200"
+      },
+      {
+        "turn": 376,
+        "command": "-35442 -85136 0"
+      },
+      {
+        "turn": 377,
+        "command": "12487 8061 200"
+      },
+      {
+        "turn": 378,
+        "command": "-6108 -94696 35"
+      },
+      {
+        "turn": 379,
+        "command": "9924 6622 200"
+      },
+      {
+        "turn": 380,
+        "command": "10917 -95856 70"
+      },
+      {
+        "turn": 381,
+        "command": "7930 4574 200"
+      },
+      {
+        "turn": 382,
+        "command": "29656 -93709 200"
+      },
+      {
+        "turn": 383,
+        "command": "6692 2279 200"
+      },
+      {
+        "turn": 384,
+        "command": "58647 -82712 SHIELD"
+      },
+      {
+        "turn": 385,
+        "command": "6081 1540 200"
+      },
+      {
+        "turn": 386,
+        "command": "82776 -63204 0"
+      },
+      {
+        "turn": 387,
+        "command": "5470 2125 200"
+      },
+      {
+        "turn": 388,
+        "command": "62769 -80312 200"
+      },
+      {
+        "turn": 389,
+        "command": "4736 1612 200"
+      },
+      {
+        "turn": 390,
+        "command": "85887 -59507 SHIELD"
+      },
+      {
+        "turn": 391,
+        "command": "4066 523 200"
+      },
+      {
+        "turn": 392,
+        "command": "101417 -32522 143"
+      },
+      {
+        "turn": 393,
+        "command": "3038 3000 200"
+      },
+      {
+        "turn": 394,
+        "command": "100681 -34239 200"
+      },
+      {
+        "turn": 395,
+        "command": "2143 3891 SHIELD"
+      },
+      {
+        "turn": 396,
+        "command": "84486 -61136 200"
+      },
+      {
+        "turn": 397,
+        "command": "2121 6905 SHIELD"
+      },
+      {
+        "turn": 398,
+        "command": "100124 -34200 200"
+      },
+      {
+        "turn": 399,
+        "command": "1230 6563 174"
+      },
+      {
+        "turn": 400,
+        "command": "106905 -3673 0"
+      },
+      {
+        "turn": 401,
+        "command": "35 4143 176"
+      },
+      {
+        "turn": 402,
+        "command": "103961 27530 SHIELD"
+      },
+      {
+        "turn": 403,
+        "command": "-516 3024 183"
+      },
+      {
+        "turn": 404,
+        "command": "91551 56359 200"
+      },
+      {
+        "turn": 405,
+        "command": "-504 6208 200"
+      },
+      {
+        "turn": 406,
+        "command": "70868 79995 60"
+      },
+      {
+        "turn": 407,
+        "command": "80 8682 SHIELD"
+      },
+      {
+        "turn": 408,
+        "command": "51855 92512 0"
+      },
+      {
+        "turn": 409,
+        "command": "-22 8775 188"
+      },
+      {
+        "turn": 410,
+        "command": "51742 92529 200"
+      },
+      {
+        "turn": 411,
+        "command": "-788 7668 200"
+      },
+      {
+        "turn": 412,
+        "command": "23703 102101 0"
+      },
+      {
+        "turn": 413,
+        "command": "-1599 5834 168"
+      },
+      {
+        "turn": 414,
+        "command": "-7583 102810 SHIELD"
+      },
+      {
+        "turn": 415,
+        "command": "-2057 3389 200"
+      },
+      {
+        "turn": 416,
+        "command": "-37506 93800 200"
+      },
+      {
+        "turn": 417,
+        "command": "-2141 5270 200"
+      },
+      {
+        "turn": 418,
+        "command": "-63137 75972 200"
+      },
+      {
+        "turn": 419,
+        "command": "-1721 7754 194"
+      },
+      {
+        "turn": 420,
+        "command": "-79389 55641 200"
+      },
+      {
+        "turn": 421,
+        "command": "-1138 9614 147"
+      },
+      {
+        "turn": 422,
+        "command": "-89798 31785 200"
+      },
+      {
+        "turn": 423,
+        "command": "29 11491 171"
+      },
+      {
+        "turn": 424,
+        "command": "-93803 857 200"
+      },
+      {
+        "turn": 425,
+        "command": "571 12414 195"
+      },
+      {
+        "turn": 426,
+        "command": "-90793 30458 200"
+      },
+      {
+        "turn": 427,
+        "command": "1197 13264 200"
+      },
+      {
+        "turn": 428,
+        "command": "-94607 8360 160"
+      },
+      {
+        "turn": 429,
+        "command": "3470 14311 159"
+      },
+      {
+        "turn": 430,
+        "command": "-94480 -7062 200"
+      },
+      {
+        "turn": 431,
+        "command": "5969 14441 174"
+      },
+      {
+        "turn": 432,
+        "command": "-86440 -36845 200"
+      },
+      {
+        "turn": 433,
+        "command": "7959 13784 199"
+      },
+      {
+        "turn": 434,
+        "command": "-95633 -6482 200"
+      },
+      {
+        "turn": 435,
+        "command": "8339 13405 200"
+      },
+      {
+        "turn": 436,
+        "command": "-94838 24964 200"
+      },
+      {
+        "turn": 437,
+        "command": "10038 11520 145"
+      },
+      {
+        "turn": 438,
+        "command": "-84433 54432 200"
+      },
+      {
+        "turn": 439,
+        "command": "10697 10244 13"
+      },
+      {
+        "turn": 440,
+        "command": "-80301 62024 200"
+      },
+      {
+        "turn": 441,
+        "command": "9955 11524 198"
+      },
+      {
+        "turn": 442,
+        "command": "-66087 79474 200"
+      },
+      {
+        "turn": 443,
+        "command": "10765 9055 200"
+      },
+      {
+        "turn": 444,
+        "command": "-63790 82096 149"
+      },
+      {
+        "turn": 445,
+        "command": "10808 6554 SHIELD"
+      },
+      {
+        "turn": 446,
+        "command": "-46945 94418 200"
+      },
+      {
+        "turn": 447,
+        "command": "9906 3920 200"
+      },
+      {
+        "turn": 448,
+        "command": "-50026 92936 175"
+      },
+      {
+        "turn": 449,
+        "command": "8766 2435 200"
+      },
+      {
+        "turn": 450,
+        "command": "-74087 73167 0"
+      },
+      {
+        "turn": 451,
+        "command": "7158 1032 200"
+      },
+      {
+        "turn": 452,
+        "command": "-90051 48525 0"
+      },
+      {
+        "turn": 453,
+        "command": "4444 -424 SHIELD"
+      },
+      {
+        "turn": 454,
+        "command": "-98216 18550 36"
+      },
+      {
+        "turn": 455,
+        "command": "6729 1261 200"
+      },
+      {
+        "turn": 456,
+        "command": "-96672 -12481 0"
+      },
+      {
+        "turn": 457,
+        "command": "7430 2152 200"
+      },
+      {
+        "turn": 458,
+        "command": "-95061 -19074 96"
+      },
+      {
+        "turn": 459,
+        "command": "4878 421 200"
+      },
+      {
+        "turn": 460,
+        "command": "-99032 12107 0"
+      },
+      {
+        "turn": 461,
+        "command": "5138 718 SHIELD"
+      },
+      {
+        "turn": 462,
+        "command": "-93196 42926 0"
+      },
+      {
+        "turn": 463,
+        "command": "6661 1939 200"
+      },
+      {
+        "turn": 464,
+        "command": "-99279 12304 200"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "16743 -1416 192"
+      },
+      {
+        "turn": 2,
+        "command": "39358 -88925 BOOST"
+      },
+      {
+        "turn": 3,
+        "command": "16689 -1706 125"
+      },
+      {
+        "turn": 4,
+        "command": "7830 -93553 200"
+      },
+      {
+        "turn": 5,
+        "command": "18431 -239 200"
+      },
+      {
+        "turn": 6,
+        "command": "37512 -90905 200"
+      },
+      {
+        "turn": 7,
+        "command": "18695 -444 200"
+      },
+      {
+        "turn": 8,
+        "command": "6974 -94760 200"
+      },
+      {
+        "turn": 9,
+        "command": "19662 162 199"
+      },
+      {
+        "turn": 10,
+        "command": "-22834 -88701 38"
+      },
+      {
+        "turn": 11,
+        "command": "18113 -2719 178"
+      },
+      {
+        "turn": 12,
+        "command": "-49268 -73471 135"
+      },
+      {
+        "turn": 13,
+        "command": "16377 -4653 200"
+      },
+      {
+        "turn": 14,
+        "command": "-69726 -50676 200"
+      },
+      {
+        "turn": 15,
+        "command": "16200 -5299 184"
+      },
+      {
+        "turn": 16,
+        "command": "-48554 -74423 200"
+      },
+      {
+        "turn": 17,
+        "command": "16999 -5600 200"
+      },
+      {
+        "turn": 18,
+        "command": "-69414 -51748 198"
+      },
+      {
+        "turn": 19,
+        "command": "14313 -7163 200"
+      },
+      {
+        "turn": 20,
+        "command": "-82243 -23763 200"
+      },
+      {
+        "turn": 21,
+        "command": "17388 -6832 200"
+      },
+      {
+        "turn": 22,
+        "command": "-85341 6531 200"
+      },
+      {
+        "turn": 23,
+        "command": "19041 -6626 200"
+      },
+      {
+        "turn": 24,
+        "command": "-85316 -4671 200"
+      },
+      {
+        "turn": 25,
+        "command": "19982 -6841 152"
+      },
+      {
+        "turn": 26,
+        "command": "-84887 -12257 200"
+      },
+      {
+        "turn": 27,
+        "command": "19895 -7706 SHIELD"
+      },
+      {
+        "turn": 28,
+        "command": "-83991 18318 200"
+      },
+      {
+        "turn": 29,
+        "command": "19889 -7886 200"
+      },
+      {
+        "turn": 30,
+        "command": "-73363 46920 200"
+      },
+      {
+        "turn": 31,
+        "command": "18509 -9068 200"
+      },
+      {
+        "turn": 32,
+        "command": "-54338 70993 200"
+      },
+      {
+        "turn": 33,
+        "command": "20424 -7619 200"
+      },
+      {
+        "turn": 34,
+        "command": "-40939 81378 200"
+      },
+      {
+        "turn": 35,
+        "command": "21597 -6128 SHIELD"
+      },
+      {
+        "turn": 36,
+        "command": "-29132 88016 200"
+      },
+      {
+        "turn": 37,
+        "command": "20384 -7821 SHIELD"
+      },
+      {
+        "turn": 38,
+        "command": "-40282 82264 200"
+      },
+      {
+        "turn": 39,
+        "command": "20552 -7687 200"
+      },
+      {
+        "turn": 40,
+        "command": "-31589 87571 200"
+      },
+      {
+        "turn": 41,
+        "command": "19661 -8682 37"
+      },
+      {
+        "turn": 42,
+        "command": "-57698 70003 200"
+      },
+      {
+        "turn": 43,
+        "command": "19091 -9231 181"
+      },
+      {
+        "turn": 44,
+        "command": "-34177 87634 200"
+      },
+      {
+        "turn": 45,
+        "command": "20642 -7695 SHIELD"
+      },
+      {
+        "turn": 46,
+        "command": "-28406 91155 200"
+      },
+      {
+        "turn": 47,
+        "command": "21119 -7050 66"
+      },
+      {
+        "turn": 48,
+        "command": "-7247 98256 200"
+      },
+      {
+        "turn": 49,
+        "command": "19268 -9207 SHIELD"
+      },
+      {
+        "turn": 50,
+        "command": "-37330 88836 200"
+      },
+      {
+        "turn": 51,
+        "command": "18979 -9478 200"
+      },
+      {
+        "turn": 52,
+        "command": "-62836 70835 200"
+      },
+      {
+        "turn": 53,
+        "command": "18826 -9626 177"
+      },
+      {
+        "turn": 54,
+        "command": "-77204 53715 SHIELD"
+      },
+      {
+        "turn": 55,
+        "command": "20315 -8207 195"
+      },
+      {
+        "turn": 56,
+        "command": "-89256 25336 200"
+      },
+      {
+        "turn": 57,
+        "command": "21216 -6957 SHIELD"
+      },
+      {
+        "turn": 58,
+        "command": "-88051 30850 200"
+      },
+      {
+        "turn": 59,
+        "command": "20925 -7422 200"
+      },
+      {
+        "turn": 60,
+        "command": "-81116 49063 200"
+      },
+      {
+        "turn": 61,
+        "command": "21691 -6075 124"
+      },
+      {
+        "turn": 62,
+        "command": "-88217 31549 200"
+      },
+      {
+        "turn": 63,
+        "command": "22548 -3084 SHIELD"
+      },
+      {
+        "turn": 64,
+        "command": "-92210 9546 200"
+      },
+      {
+        "turn": 65,
+        "command": "22435 30 199"
+      },
+      {
+        "turn": 66,
+        "command": "-86122 40437 200"
+      },
+      {
+        "turn": 67,
+        "command": "21362 2959 171"
+      },
+      {
+        "turn": 68,
+        "command": "-71020 67849 SHIELD"
+      },
+      {
+        "turn": 69,
+        "command": "19434 5416 128"
+      },
+      {
+        "turn": 70,
+        "command": "-71479 68118 SHIELD"
+      },
+      {
+        "turn": 71,
+        "command": "16839 7158 199"
+      },
+      {
+        "turn": 72,
+        "command": "-87512 41251 0"
+      },
+      {
+        "turn": 73,
+        "command": "13916 8195 199"
+      },
+      {
+        "turn": 74,
+        "command": "-90115 34844 158"
+      },
+      {
+        "turn": 75,
+        "command": "10884 8433 200"
+      },
+      {
+        "turn": 76,
+        "command": "-76681 63129 200"
+      },
+      {
+        "turn": 77,
+        "command": "7986 7853 200"
+      },
+      {
+        "turn": 78,
+        "command": "-55186 85774 2"
+      },
+      {
+        "turn": 79,
+        "command": "5458 6518 200"
+      },
+      {
+        "turn": 80,
+        "command": "-77122 63388 200"
+      },
+      {
+        "turn": 81,
+        "command": "3914 5336 200"
+      },
+      {
+        "turn": 82,
+        "command": "-55725 86110 200"
+      },
+      {
+        "turn": 83,
+        "command": "3245 5362 200"
+      },
+      {
+        "turn": 84,
+        "command": "-28505 101141 SHIELD"
+      },
+      {
+        "turn": 85,
+        "command": "2700 5837 200"
+      },
+      {
+        "turn": 86,
+        "command": "2000 106853 SHIELD"
+      },
+      {
+        "turn": 87,
+        "command": "1786 5653 200"
+      },
+      {
+        "turn": 88,
+        "command": "32947 102663 0"
+      },
+      {
+        "turn": 89,
+        "command": "1166 6413 200"
+      },
+      {
+        "turn": 90,
+        "command": "1936 107158 SHIELD"
+      },
+      {
+        "turn": 91,
+        "command": "908 8102 196"
+      },
+      {
+        "turn": 92,
+        "command": "-28900 101844 SHIELD"
+      },
+      {
+        "turn": 93,
+        "command": "-74 8374 197"
+      },
+      {
+        "turn": 94,
+        "command": "1892 107378 SHIELD"
+      },
+      {
+        "turn": 95,
+        "command": "-442 9870 SHIELD"
+      },
+      {
+        "turn": 96,
+        "command": "-28937 102030 1"
+      },
+      {
+        "turn": 97,
+        "command": "-137 11756 200"
+      },
+      {
+        "turn": 98,
+        "command": "-3370 107306 SHIELD"
+      },
+      {
+        "turn": 99,
+        "command": "-1667 10228 192"
+      },
+      {
+        "turn": 100,
+        "command": "-33866 100329 SHIELD"
+      },
+      {
+        "turn": 101,
+        "command": "-1293 9479 184"
+      },
+      {
+        "turn": 102,
+        "command": "-60693 84266 SHIELD"
+      },
+      {
+        "turn": 103,
+        "command": "-1254 7689 200"
+      },
+      {
+        "turn": 104,
+        "command": "-81226 60697 SHIELD"
+      },
+      {
+        "turn": 105,
+        "command": "-971 7414 200"
+      },
+      {
+        "turn": 106,
+        "command": "-93456 31933 0"
+      },
+      {
+        "turn": 107,
+        "command": "-561 8690 151"
+      },
+      {
+        "turn": 108,
+        "command": "-96186 795 0"
+      },
+      {
+        "turn": 109,
+        "command": "-169 9953 160"
+      },
+      {
+        "turn": 110,
+        "command": "-89151 -29665 0"
+      },
+      {
+        "turn": 111,
+        "command": "-44 10750 SHIELD"
+      },
+      {
+        "turn": 112,
+        "command": "-73039 -56462 48"
+      },
+      {
+        "turn": 113,
+        "command": "1468 13121 SHIELD"
+      },
+      {
+        "turn": 114,
+        "command": "-63386 -66511 63"
+      },
+      {
+        "turn": 115,
+        "command": "-509 10715 197"
+      },
+      {
+        "turn": 116,
+        "command": "-37221 -83610 0"
+      },
+      {
+        "turn": 117,
+        "command": "1213 13352 200"
+      },
+      {
+        "turn": 118,
+        "command": "-7063 -91756 187"
+      },
+      {
+        "turn": 119,
+        "command": "3645 15281 SHIELD"
+      },
+      {
+        "turn": 120,
+        "command": "24108 -90346 135"
+      },
+      {
+        "turn": 121,
+        "command": "6537 16324 196"
+      },
+      {
+        "turn": 122,
+        "command": "53284 -79458 200"
+      },
+      {
+        "turn": 123,
+        "command": "9594 16388 SHIELD"
+      },
+      {
+        "turn": 124,
+        "command": "77671 -60216 200"
+      },
+      {
+        "turn": 125,
+        "command": "12354 15553 153"
+      },
+      {
+        "turn": 126,
+        "command": "94923 -34491 200"
+      },
+      {
+        "turn": 127,
+        "command": "14866 13803 SHIELD"
+      },
+      {
+        "turn": 128,
+        "command": "103382 -4787 200"
+      },
+      {
+        "turn": 129,
+        "command": "16448 11798 200"
+      },
+      {
+        "turn": 130,
+        "command": "102251 25997 200"
+      },
+      {
+        "turn": 131,
+        "command": "17543 9099 SHIELD"
+      },
+      {
+        "turn": 132,
+        "command": "94163 50257 200"
+      },
+      {
+        "turn": 133,
+        "command": "17658 8443 SHIELD"
+      },
+      {
+        "turn": 134,
+        "command": "103208 27148 200"
+      },
+      {
+        "turn": 135,
+        "command": "17779 6380 181"
+      },
+      {
+        "turn": 136,
+        "command": "92285 56028 SHIELD"
+      },
+      {
+        "turn": 137,
+        "command": "17750 6224 SHIELD"
+      },
+      {
+        "turn": 138,
+        "command": "72851 79886 12"
+      },
+      {
+        "turn": 139,
+        "command": "17733 7285 SHIELD"
+      },
+      {
+        "turn": 140,
+        "command": "46893 96373 200"
+      },
+      {
+        "turn": 141,
+        "command": "17392 4186 200"
+      },
+      {
+        "turn": 142,
+        "command": "17024 103864 194"
+      },
+      {
+        "turn": 143,
+        "command": "16710 2400 200"
+      },
+      {
+        "turn": 144,
+        "command": "27803 102342 200"
+      },
+      {
+        "turn": 145,
+        "command": "17168 3536 200"
+      },
+      {
+        "turn": 146,
+        "command": "-3235 103536 0"
+      },
+      {
+        "turn": 147,
+        "command": "17704 6623 SHIELD"
+      },
+      {
+        "turn": 148,
+        "command": "5622 104297 200"
+      },
+      {
+        "turn": 149,
+        "command": "17156 3547 180"
+      },
+      {
+        "turn": 150,
+        "command": "-11550 102438 32"
+      },
+      {
+        "turn": 151,
+        "command": "17400 4388 200"
+      },
+      {
+        "turn": 152,
+        "command": "19796 104331 140"
+      },
+      {
+        "turn": 153,
+        "command": "16440 1962 200"
+      },
+      {
+        "turn": 154,
+        "command": "50118 96590 96"
+      },
+      {
+        "turn": 155,
+        "command": "15572 655 200"
+      },
+      {
+        "turn": 156,
+        "command": "76481 79939 0"
+      },
+      {
+        "turn": 157,
+        "command": "15620 397 200"
+      },
+      {
+        "turn": 158,
+        "command": "96276 55956 0"
+      },
+      {
+        "turn": 159,
+        "command": "15797 33 200"
+      },
+      {
+        "turn": 160,
+        "command": "107577 27028 200"
+      },
+      {
+        "turn": 161,
+        "command": "16521 120 200"
+      },
+      {
+        "turn": 162,
+        "command": "109485 -3936 200"
+      },
+      {
+        "turn": 163,
+        "command": "17123 -134 200"
+      },
+      {
+        "turn": 164,
+        "command": "101817 -33941 200"
+      },
+      {
+        "turn": 165,
+        "command": "15775 -2589 SHIELD"
+      },
+      {
+        "turn": 166,
+        "command": "85323 -60078 200"
+      },
+      {
+        "turn": 167,
+        "command": "16806 -2524 SHIELD"
+      },
+      {
+        "turn": 168,
+        "command": "61622 -79816 200"
+      },
+      {
+        "turn": 169,
+        "command": "19197 -419 200"
+      },
+      {
+        "turn": 170,
+        "command": "36434 -90456 200"
+      },
+      {
+        "turn": 171,
+        "command": "20508 1548 180"
+      },
+      {
+        "turn": 172,
+        "command": "5840 -93557 200"
+      },
+      {
+        "turn": 173,
+        "command": "20109 -471 191"
+      },
+      {
+        "turn": 174,
+        "command": "-24171 -87037 163"
+      },
+      {
+        "turn": 175,
+        "command": "20286 -825 SHIELD"
+      },
+      {
+        "turn": 176,
+        "command": "-50648 -71513 200"
+      },
+      {
+        "turn": 177,
+        "command": "20739 -525 165"
+      },
+      {
+        "turn": 178,
+        "command": "-56920 -66274 200"
+      },
+      {
+        "turn": 179,
+        "command": "19409 -3003 200"
+      },
+      {
+        "turn": 180,
+        "command": "-44993 -77162 200"
+      },
+      {
+        "turn": 181,
+        "command": "20006 -2581 162"
+      },
+      {
+        "turn": 182,
+        "command": "-34817 -84476 200"
+      },
+      {
+        "turn": 183,
+        "command": "20900 -1513 200"
+      },
+      {
+        "turn": 184,
+        "command": "-37689 -82898 200"
+      },
+      {
+        "turn": 185,
+        "command": "19262 -4162 200"
+      },
+      {
+        "turn": 186,
+        "command": "-43314 -79032 88"
+      },
+      {
+        "turn": 187,
+        "command": "17206 -6137 SHIELD"
+      },
+      {
+        "turn": 188,
+        "command": "-65676 -57317 200"
+      },
+      {
+        "turn": 189,
+        "command": "14494 -7259 SHIELD"
+      },
+      {
+        "turn": 190,
+        "command": "-80403 -29827 200"
+      },
+      {
+        "turn": 191,
+        "command": "12215 -7422 200"
+      },
+      {
+        "turn": 192,
+        "command": "-65644 -57614 200"
+      },
+      {
+        "turn": 193,
+        "command": "11447 -7398 182"
+      },
+      {
+        "turn": 194,
+        "command": "-80046 -30223 200"
+      },
+      {
+        "turn": 195,
+        "command": "8587 -6417 151"
+      },
+      {
+        "turn": 196,
+        "command": "-85425 325 122"
+      },
+      {
+        "turn": 197,
+        "command": "9414 -6763 179"
+      },
+      {
+        "turn": 198,
+        "command": "-82861 24394 107"
+      },
+      {
+        "turn": 199,
+        "command": "9053 -6696 190"
+      },
+      {
+        "turn": 200,
+        "command": "-83027 22745 200"
+      },
+      {
+        "turn": 201,
+        "command": "9250 -7081 59"
+      },
+      {
+        "turn": 202,
+        "command": "-84681 -8411 200"
+      },
+      {
+        "turn": 203,
+        "command": "12146 -8147 143"
+      },
+      {
+        "turn": 204,
+        "command": "-76745 -38517 139"
+      },
+      {
+        "turn": 205,
+        "command": "10650 -8264 SHIELD"
+      },
+      {
+        "turn": 206,
+        "command": "-84514 -11521 200"
+      },
+      {
+        "turn": 207,
+        "command": "11921 -8811 200"
+      },
+      {
+        "turn": 208,
+        "command": "-75646 -41266 SHIELD"
+      },
+      {
+        "turn": 209,
+        "command": "12879 -9125 195"
+      },
+      {
+        "turn": 210,
+        "command": "-57939 -66747 41"
+      },
+      {
+        "turn": 211,
+        "command": "13851 -9290 SHIELD"
+      },
+      {
+        "turn": 212,
+        "command": "-33076 -85228 200"
+      },
+      {
+        "turn": 213,
+        "command": "13267 -9518 102"
+      },
+      {
+        "turn": 214,
+        "command": "-7016 -94428 171"
+      },
+      {
+        "turn": 215,
+        "command": "10104 -9349 182"
+      },
+      {
+        "turn": 216,
+        "command": "22410 -95960 200"
+      },
+      {
+        "turn": 217,
+        "command": "13171 -9810 SHIELD"
+      },
+      {
+        "turn": 218,
+        "command": "-8852 -93746 200"
+      },
+      {
+        "turn": 219,
+        "command": "10023 -9596 196"
+      },
+      {
+        "turn": 220,
+        "command": "-22281 -89836 7"
+      },
+      {
+        "turn": 221,
+        "command": "10672 -9849 200"
+      },
+      {
+        "turn": 222,
+        "command": "6504 -96384 71"
+      },
+      {
+        "turn": 223,
+        "command": "7706 -8860 176"
+      },
+      {
+        "turn": 224,
+        "command": "35906 -94263 200"
+      },
+      {
+        "turn": 225,
+        "command": "5218 -7002 0"
+      },
+      {
+        "turn": 226,
+        "command": "4682 -96808 0"
+      },
+      {
+        "turn": 227,
+        "command": "3451 -4465 199"
+      },
+      {
+        "turn": 228,
+        "command": "-20815 -91466 101"
+      },
+      {
+        "turn": 229,
+        "command": "2394 -1590 200"
+      },
+      {
+        "turn": 230,
+        "command": "-48223 -76654 0"
+      },
+      {
+        "turn": 231,
+        "command": "2138 1401 200"
+      },
+      {
+        "turn": 232,
+        "command": "-69598 -54074 200"
+      },
+      {
+        "turn": 233,
+        "command": "2703 4264 200"
+      },
+      {
+        "turn": 234,
+        "command": "-83017 -26087 200"
+      },
+      {
+        "turn": 235,
+        "command": "4025 6762 200"
+      },
+      {
+        "turn": 236,
+        "command": "-87189 4600 200"
+      },
+      {
+        "turn": 237,
+        "command": "5970 8684 200"
+      },
+      {
+        "turn": 238,
+        "command": "-81724 35007 172"
+      },
+      {
+        "turn": 239,
+        "command": "3403 7829 200"
+      },
+      {
+        "turn": 240,
+        "command": "-67147 62171 200"
+      },
+      {
+        "turn": 241,
+        "command": "3161 8578 200"
+      },
+      {
+        "turn": 242,
+        "command": "-44925 83462 200"
+      },
+      {
+        "turn": 243,
+        "command": "2920 9401 200"
+      },
+      {
+        "turn": 244,
+        "command": "-17242 96811 200"
+      },
+      {
+        "turn": 245,
+        "command": "1659 9635 200"
+      },
+      {
+        "turn": 246,
+        "command": "-11095 98799 200"
+      },
+      {
+        "turn": 247,
+        "command": "1840 10897 188"
+      },
+      {
+        "turn": 248,
+        "command": "-40878 88037 200"
+      },
+      {
+        "turn": 249,
+        "command": "4075 12769 183"
+      },
+      {
+        "turn": 250,
+        "command": "-65779 68902 200"
+      },
+      {
+        "turn": 251,
+        "command": "1149 12793 SHIELD"
+      },
+      {
+        "turn": 252,
+        "command": "-81213 47993 200"
+      },
+      {
+        "turn": 253,
+        "command": "939 13634 200"
+      },
+      {
+        "turn": 254,
+        "command": "-86197 39036 200"
+      },
+      {
+        "turn": 255,
+        "command": "-1319 13178 200"
+      },
+      {
+        "turn": 256,
+        "command": "-71359 66717 200"
+      },
+      {
+        "turn": 257,
+        "command": "-1838 13574 170"
+      },
+      {
+        "turn": 258,
+        "command": "-48947 88275 53"
+      },
+      {
+        "turn": 259,
+        "command": "-3213 13084 SHIELD"
+      },
+      {
+        "turn": 260,
+        "command": "-48217 89786 200"
+      },
+      {
+        "turn": 261,
+        "command": "-3608 13321 SHIELD"
+      },
+      {
+        "turn": 262,
+        "command": "-20153 102668 200"
+      },
+      {
+        "turn": 263,
+        "command": "-3644 13958 156"
+      },
+      {
+        "turn": 264,
+        "command": "10845 105295 200"
+      },
+      {
+        "turn": 265,
+        "command": "-4822 13263 200"
+      },
+      {
+        "turn": 266,
+        "command": "31354 101695 0"
+      },
+      {
+        "turn": 267,
+        "command": "-3970 14709 SHIELD"
+      },
+      {
+        "turn": 268,
+        "command": "24514 103409 0"
+      },
+      {
+        "turn": 269,
+        "command": "-6072 12488 199"
+      },
+      {
+        "turn": 270,
+        "command": "32904 101245 1"
+      },
+      {
+        "turn": 271,
+        "command": "-6047 12998 47"
+      },
+      {
+        "turn": 272,
+        "command": "42693 97683 200"
+      },
+      {
+        "turn": 273,
+        "command": "-7164 10948 151"
+      },
+      {
+        "turn": 274,
+        "command": "12375 105451 0"
+      },
+      {
+        "turn": 275,
+        "command": "-7706 7998 88"
+      },
+      {
+        "turn": 276,
+        "command": "-18803 103438 0"
+      },
+      {
+        "turn": 277,
+        "command": "-7341 5041 SHIELD"
+      },
+      {
+        "turn": 278,
+        "command": "-47671 91920 0"
+      },
+      {
+        "turn": 279,
+        "command": "-6127 2524 192"
+      },
+      {
+        "turn": 280,
+        "command": "-71513 71983 0"
+      },
+      {
+        "turn": 281,
+        "command": "-6645 3192 195"
+      },
+      {
+        "turn": 282,
+        "command": "-87986 45597 0"
+      },
+      {
+        "turn": 283,
+        "command": "-7019 3718 128"
+      },
+      {
+        "turn": 284,
+        "command": "-95465 15364 179"
+      },
+      {
+        "turn": 285,
+        "command": "-5184 1315 SHIELD"
+      },
+      {
+        "turn": 286,
+        "command": "-93385 -15726 200"
+      },
+      {
+        "turn": 287,
+        "command": "-6921 3383 194"
+      },
+      {
+        "turn": 288,
+        "command": "-81946 -44678 200"
+      },
+      {
+        "turn": 289,
+        "command": "-7166 3727 200"
+      },
+      {
+        "turn": 290,
+        "command": "-62244 -68700 200"
+      },
+      {
+        "turn": 291,
+        "command": "-7041 3466 SHIELD"
+      },
+      {
+        "turn": 292,
+        "command": "-78516 -50489 200"
+      },
+      {
+        "turn": 293,
+        "command": "-8310 6378 194"
+      },
+      {
+        "turn": 294,
+        "command": "-56660 -72881 200"
+      },
+      {
+        "turn": 295,
+        "command": "-8632 9347 190"
+      },
+      {
+        "turn": 296,
+        "command": "-55273 -73982 200"
+      },
+      {
+        "turn": 297,
+        "command": "-8604 10065 186"
+      },
+      {
+        "turn": 298,
+        "command": "-43572 -81590 200"
+      },
+      {
+        "turn": 299,
+        "command": "-7770 13090 SHIELD"
+      },
+      {
+        "turn": 300,
+        "command": "-19324 -91091 200"
+      },
+      {
+        "turn": 301,
+        "command": "-6044 15699 200"
+      },
+      {
+        "turn": 302,
+        "command": "-48551 -79870 200"
+      },
+      {
+        "turn": 303,
+        "command": "-5440 16322 179"
+      },
+      {
+        "turn": 304,
+        "command": "-19579 -91917 0"
+      },
+      {
+        "turn": 305,
+        "command": "-6196 15592 SHIELD"
+      },
+      {
+        "turn": 306,
+        "command": "12049 -93897 16"
+      },
+      {
+        "turn": 307,
+        "command": "-3778 17569 200"
+      },
+      {
+        "turn": 308,
+        "command": "42761 -86173 101"
+      },
+      {
+        "turn": 309,
+        "command": "-868 18696 200"
+      },
+      {
+        "turn": 310,
+        "command": "69635 -69556 200"
+      },
+      {
+        "turn": 311,
+        "command": "2247 18865 171"
+      },
+      {
+        "turn": 312,
+        "command": "90167 -45708 200"
+      },
+      {
+        "turn": 313,
+        "command": "5262 18059 1"
+      },
+      {
+        "turn": 314,
+        "command": "102416 -16903 200"
+      },
+      {
+        "turn": 315,
+        "command": "7881 16359 200"
+      },
+      {
+        "turn": 316,
+        "command": "105243 14090 200"
+      },
+      {
+        "turn": 317,
+        "command": "9981 14080 200"
+      },
+      {
+        "turn": 318,
+        "command": "99089 42667 200"
+      },
+      {
+        "turn": 319,
+        "command": "11386 11387 200"
+      },
+      {
+        "turn": 320,
+        "command": "89106 62497 200"
+      },
+      {
+        "turn": 321,
+        "command": "11987 8498 200"
+      },
+      {
+        "turn": 322,
+        "command": "103682 34434 200"
+      },
+      {
+        "turn": 323,
+        "command": "11747 5654 200"
+      },
+      {
+        "turn": 324,
+        "command": "108959 3559 179"
+      },
+      {
+        "turn": 325,
+        "command": "10710 3100 200"
+      },
+      {
+        "turn": 326,
+        "command": "104488 -27165 88"
+      },
+      {
+        "turn": 327,
+        "command": "11187 2769 200"
+      },
+      {
+        "turn": 328,
+        "command": "90700 -54745 153"
+      },
+      {
+        "turn": 329,
+        "command": "12176 2823 200"
+      },
+      {
+        "turn": 330,
+        "command": "69081 -76532 43"
+      },
+      {
+        "turn": 331,
+        "command": "12725 2262 200"
+      },
+      {
+        "turn": 332,
+        "command": "41739 -90327 141"
+      },
+      {
+        "turn": 333,
+        "command": "12905 1264 200"
+      },
+      {
+        "turn": 334,
+        "command": "11459 -94885 88"
+      },
+      {
+        "turn": 335,
+        "command": "13985 1008 200"
+      },
+      {
+        "turn": 336,
+        "command": "-18759 -89712 200"
+      },
+      {
+        "turn": 337,
+        "command": "12225 -1302 0"
+      },
+      {
+        "turn": 338,
+        "command": "-45944 -75433 200"
+      },
+      {
+        "turn": 339,
+        "command": "10100 -2619 78"
+      },
+      {
+        "turn": 340,
+        "command": "-33990 -83538 200"
+      },
+      {
+        "turn": 341,
+        "command": "7585 -3046 197"
+      },
+      {
+        "turn": 342,
+        "command": "-54858 -68615 200"
+      },
+      {
+        "turn": 343,
+        "command": "5423 -2789 179"
+      },
+      {
+        "turn": 344,
+        "command": "-64233 -58905 199"
+      },
+      {
+        "turn": 345,
+        "command": "3194 -1667 200"
+      },
+      {
+        "turn": 346,
+        "command": "-79591 -32223 0"
+      },
+      {
+        "turn": 347,
+        "command": "1456 116 200"
+      },
+      {
+        "turn": 348,
+        "command": "-84321 -2661 200"
+      },
+      {
+        "turn": 349,
+        "command": "382 2374 198"
+      },
+      {
+        "turn": 350,
+        "command": "-79638 27402 200"
+      },
+      {
+        "turn": 351,
+        "command": "86 4873 SHIELD"
+      },
+      {
+        "turn": 352,
+        "command": "-65869 54970 200"
+      },
+      {
+        "turn": 353,
+        "command": "580 6854 200"
+      },
+      {
+        "turn": 354,
+        "command": "-70962 45442 200"
+      },
+      {
+        "turn": 355,
+        "command": "1626 8512 200"
+      },
+      {
+        "turn": 356,
+        "command": "-66458 52581 200"
+      },
+      {
+        "turn": 357,
+        "command": "3447 10095 137"
+      },
+      {
+        "turn": 358,
+        "command": "-66562 52369 200"
+      },
+      {
+        "turn": 359,
+        "command": "5434 10987 SHIELD"
+      },
+      {
+        "turn": 360,
+        "command": "-68668 49338 200"
+      },
+      {
+        "turn": 361,
+        "command": "7672 11382 196"
+      },
+      {
+        "turn": 362,
+        "command": "-67206 52341 200"
+      },
+      {
+        "turn": 363,
+        "command": "9845 11246 200"
+      },
+      {
+        "turn": 364,
+        "command": "-65752 55380 200"
+      },
+      {
+        "turn": 365,
+        "command": "7853 10996 200"
+      },
+      {
+        "turn": 366,
+        "command": "-62139 61192 200"
+      },
+      {
+        "turn": 367,
+        "command": "6759 10646 200"
+      },
+      {
+        "turn": 368,
+        "command": "-49356 75192 200"
+      },
+      {
+        "turn": 369,
+        "command": "9783 10916 183"
+      },
+      {
+        "turn": 370,
+        "command": "-70566 52011 200"
+      },
+      {
+        "turn": 371,
+        "command": "12751 10385 186"
+      },
+      {
+        "turn": 372,
+        "command": "-54712 72626 200"
+      },
+      {
+        "turn": 373,
+        "command": "14160 10023 SHIELD"
+      },
+      {
+        "turn": 374,
+        "command": "-32685 89139 10"
+      },
+      {
+        "turn": 375,
+        "command": "13415 10761 200"
+      },
+      {
+        "turn": 376,
+        "command": "-10444 97949 SHIELD"
+      },
+      {
+        "turn": 377,
+        "command": "15577 9543 198"
+      },
+      {
+        "turn": 378,
+        "command": "18464 100670 197"
+      },
+      {
+        "turn": 379,
+        "command": "14341 10720 200"
+      },
+      {
+        "turn": 380,
+        "command": "-11485 98692 SHIELD"
+      },
+      {
+        "turn": 381,
+        "command": "14201 11000 SHIELD"
+      },
+      {
+        "turn": 382,
+        "command": "-40900 87261 SHIELD"
+      },
+      {
+        "turn": 383,
+        "command": "15064 10558 23"
+      },
+      {
+        "turn": 384,
+        "command": "-27202 94507 SHIELD"
+      },
+      {
+        "turn": 385,
+        "command": "16225 9632 182"
+      },
+      {
+        "turn": 386,
+        "command": "-54313 78601 137"
+      },
+      {
+        "turn": 387,
+        "command": "16107 9872 166"
+      },
+      {
+        "turn": 388,
+        "command": "-27744 94891 81"
+      },
+      {
+        "turn": 389,
+        "command": "13611 11850 163"
+      },
+      {
+        "turn": 390,
+        "command": "-54773 78926 200"
+      },
+      {
+        "turn": 391,
+        "command": "10730 13094 0"
+      },
+      {
+        "turn": 392,
+        "command": "-75478 55440 197"
+      },
+      {
+        "turn": 393,
+        "command": "7653 13420 199"
+      },
+      {
+        "turn": 394,
+        "command": "-55257 79183 200"
+      },
+      {
+        "turn": 395,
+        "command": "4663 13001 SHIELD"
+      },
+      {
+        "turn": 396,
+        "command": "-50132 83676 200"
+      },
+      {
+        "turn": 397,
+        "command": "3030 12420 161"
+      },
+      {
+        "turn": 398,
+        "command": "-72282 61695 200"
+      },
+      {
+        "turn": 399,
+        "command": "1168 10948 192"
+      },
+      {
+        "turn": 400,
+        "command": "-78990 51618 65"
+      },
+      {
+        "turn": 401,
+        "command": "-15 9320 192"
+      },
+      {
+        "turn": 402,
+        "command": "-59910 76491 SHIELD"
+      },
+      {
+        "turn": 403,
+        "command": "-877 6570 200"
+      },
+      {
+        "turn": 404,
+        "command": "-41864 90144 146"
+      },
+      {
+        "turn": 405,
+        "command": "-1137 6116 200"
+      },
+      {
+        "turn": 406,
+        "command": "-66308 70611 200"
+      },
+      {
+        "turn": 407,
+        "command": "-1300 7888 194"
+      },
+      {
+        "turn": 408,
+        "command": "-83510 44536 200"
+      },
+      {
+        "turn": 409,
+        "command": "-1997 5334 200"
+      },
+      {
+        "turn": 410,
+        "command": "-87626 35042 200"
+      },
+      {
+        "turn": 411,
+        "command": "-2550 4815 196"
+      },
+      {
+        "turn": 412,
+        "command": "-86989 38640 200"
+      },
+      {
+        "turn": 413,
+        "command": "-2360 1944 169"
+      },
+      {
+        "turn": 414,
+        "command": "-72434 66325 200"
+      },
+      {
+        "turn": 415,
+        "command": "-1333 -591 200"
+      },
+      {
+        "turn": 416,
+        "command": "-50230 88059 0"
+      },
+      {
+        "turn": 417,
+        "command": "368 -2539 0"
+      },
+      {
+        "turn": 418,
+        "command": "-22448 101567 78"
+      },
+      {
+        "turn": 419,
+        "command": "2639 -3279 0"
+      },
+      {
+        "turn": 420,
+        "command": "8109 105363 83"
+      },
+      {
+        "turn": 421,
+        "command": "5183 -3097 14"
+      },
+      {
+        "turn": 422,
+        "command": "23281 103656 200"
+      },
+      {
+        "turn": 423,
+        "command": "7364 -2142 51"
+      },
+      {
+        "turn": 424,
+        "command": "21247 104228 20"
+      },
+      {
+        "turn": 425,
+        "command": "8345 -1282 173"
+      },
+      {
+        "turn": 426,
+        "command": "45877 96614 SHIELD"
+      },
+      {
+        "turn": 427,
+        "command": "10086 364 186"
+      },
+      {
+        "turn": 428,
+        "command": "71589 79318 85"
+      },
+      {
+        "turn": 429,
+        "command": "11721 2822 199"
+      },
+      {
+        "turn": 430,
+        "command": "90659 54834 SHIELD"
+      },
+      {
+        "turn": 431,
+        "command": "11613 4107 200"
+      },
+      {
+        "turn": 432,
+        "command": "76230 74644 200"
+      },
+      {
+        "turn": 433,
+        "command": "11525 4822 200"
+      },
+      {
+        "turn": 434,
+        "command": "51491 93982 114"
+      },
+      {
+        "turn": 435,
+        "command": "11859 7539 0"
+      },
+      {
+        "turn": 436,
+        "command": "75925 75031 29"
+      },
+      {
+        "turn": 437,
+        "command": "11476 5083 200"
+      },
+      {
+        "turn": 438,
+        "command": "93171 49499 200"
+      },
+      {
+        "turn": 439,
+        "command": "11414 5475 200"
+      },
+      {
+        "turn": 440,
+        "command": "102026 19690 200"
+      },
+      {
+        "turn": 441,
+        "command": "11271 4779 200"
+      },
+      {
+        "turn": 442,
+        "command": "101647 -9613 200"
+      },
+      {
+        "turn": 443,
+        "command": "11549 4833 200"
+      },
+      {
+        "turn": 444,
+        "command": "91993 -39019 200"
+      },
+      {
+        "turn": 445,
+        "command": "12132 5313 200"
+      },
+      {
+        "turn": 446,
+        "command": "99433 -22919 200"
+      },
+      {
+        "turn": 447,
+        "command": "12583 4907 200"
+      },
+      {
+        "turn": 448,
+        "command": "87955 -47952 200"
+      },
+      {
+        "turn": 449,
+        "command": "13243 4784 200"
+      },
+      {
+        "turn": 450,
+        "command": "86734 -50937 133"
+      },
+      {
+        "turn": 451,
+        "command": "13938 4452 200"
+      },
+      {
+        "turn": 452,
+        "command": "65382 -73244 0"
+      },
+      {
+        "turn": 453,
+        "command": "14646 3919 200"
+      },
+      {
+        "turn": 454,
+        "command": "38160 -87604 150"
+      },
+      {
+        "turn": 455,
+        "command": "15536 3673 200"
+      },
+      {
+        "turn": 456,
+        "command": "9605 -92758 2"
+      },
+      {
+        "turn": 457,
+        "command": "14914 684 140"
+      },
+      {
+        "turn": 458,
+        "command": "-20866 -88638 SHIELD"
+      },
+      {
+        "turn": 459,
+        "command": "17326 3057 200"
+      },
+      {
+        "turn": 460,
+        "command": "-48547 -75121 0"
+      },
+      {
+        "turn": 461,
+        "command": "18252 5656 196"
+      },
+      {
+        "turn": 462,
+        "command": "-19989 -88993 175"
+      },
+      {
+        "turn": 463,
+        "command": "18032 2193 200"
+      },
+      {
+        "turn": 464,
+        "command": "-47739 -75411 0"
+      }
+    ]
+  }
+}

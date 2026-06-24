@@ -1,0 +1,530 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimal-ui">
+    <title>Coders Strikes Back</title>
+    <link type="text/css" rel="stylesheet" href="assets/css/github-markdown.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/pilcrow.css">
+    <link type="text/css" rel="stylesheet" href="assets/css/hljs-github.min.css"/>
+  </head>
+  <body>
+    <article class="markdown-body"><h1 id="coders-strikes-back"><a class="header-link" href="#coders-strikes-back"></a>Coders Strikes Back</h1>
+<h2 id="1-introduction"><a class="header-link" href="#1-introduction"></a>1 Introduction</h2>
+<p>The purpose of this document is to help you create a &quot;good&quot; artificial intelligence for the &quot;Coders Strike Back&quot; game from <a href="https://www.codingame.com/">CodinGame</a>. I will try to keep this document agnostic with respect to programming language. There will therefore only be &quot;pseudo code&quot; and no working code. This pseudo code will 95% resemble C++ because it is the language I used. Do not expect to find entire classes that you would then be able to copy paste, if you want to implement what is described here you&#39;ll have to code.</p>
+<h2 id="2-prerequisites"><a class="header-link" href="#2-prerequisites"></a>2 Prerequisites</h2>
+<p>Here are the few things you need to be familiar with in order to not be completely lost whilst reading this document:</p>
+<ul class="list">
+<li>Know object oriented programming (classes,inheritance...)</li>
+<li>Basic algorithms</li>
+<li>How a puzzle works on <a href="https://www.codingame.com/">CodinGame</a></li>
+<li>Some knowledge of maths</li>
+</ul>
+<h2 id="3-conception"><a class="header-link" href="#3-conception"></a>3 Conception</h2>
+<p>Before going any further, it will be simpler for me to just show you a UML diagram that represents all the classes I used.</p>
+<p class="img-container"><img src="http://files.magusgeek.com/csb/uml.png" /></p>
+<p>More detailed explanations:</p>
+<ul class="list">
+<li><code>Point</code>: This class is only used to represent a point on the map. Most of my classes inherit from <code>Point</code> because it is much simpler for what follows.</li>
+<li><code>Unit</code>: I created this class for Poker Chip Race but I pretty much used it as is for this contest. This class simply represents a &quot;unit&quot; which possesses a unique id, a radius, a speed along x and y. It inherits from <code>Point</code>, to have the x and y attributes, but also for practical reasons in functions.</li>
+<li><code>Checkpoint</code>: Represents a checkpoint.</li>
+<li><code>Pod</code>: Represents a pod.</li>
+<li><code>Collision</code>: Represents a collision between 2 <code>Unit</code> with the time <code>t</code> at which the collision will happen.</li>
+<li><code>Solution</code> and <code>Move</code> will be detailed in the section of this document concerning genetic evolution.</li>
+</ul>
+<p>Further details:</p>
+<ul class="list">
+<li>Why does <code>Checkpoint</code> inherit from <code>Unit</code> when it can&#39;t move? : They can&#39;t move but I use the <code>Unit</code> class in my prediction of collisions. And to know if I pass a checkpoint, I consider it as a collision with the checkpoint. You will see in what follows that this simplifies things.</li>
+<li>Why is <code>r</code> a float when it can only have two different integer values(400 and 600) ? : For performance reasons. Multiplying and dividing integers with floats implies a cast of the integers to floats. So instead of casting it over and over, I keep it as a float.</li>
+<li>Why no <code>Vector</code> class ? : The answer is simple. Even if having a <code>Vector</code> class would have made my code &quot;cleaner&quot;, clean code and performance are often mutually exclusive. In my code there are only 3 or 4 very specific spots where vectorial operations are used. But these specific spots are called hundreds of thousands of time every turn. Using a <code>Vector</code> class just to make 4 places more &quot;clean&quot; would have lost me allot of performance.</li>
+</ul>
+<h2 id="4-simulation"><a class="header-link" href="#4-simulation"></a>4 Simulation</h2>
+<p>To make an efficient artificial intelligence, we need to be able to simulate the upcoming turns to be able to tell what is going to happen. At a minimum we need to be able to predict movements. Being able to predict collisions is obviously even better.</p>
+<p>We will start by the movements as they are simpler. In a turn each pod will do the following things in this order:</p>
+<ul class="list">
+<li>The pod will turn towards its target. If the pod wants to turn by more than 18° to face its target, it only turns by 18°.</li>
+<li>We then apply the requested thrust to the speed of the pod (between 0 and 200)</li>
+<li>The pod moves according to its new speed</li>
+<li>We reduce the speed of the pod by 15%, in other words we multiply the speed by 0.85</li>
+<li>The x and y attributes of the pod are rounded to the nearest integer</li>
+<li>The vx and vy attributes of the pod are truncated</li>
+</ul>
+<p>In order to easily simulate I recommend you clone all the pods at the beginning of the turn. This will allow you to get back to the initial state very easily after having simulated several turns. Some languages have built-in <code>clone</code> methods, otherwise you will have to code it yourself.</p>
+<h3 id="4-1-some-reminders"><a class="header-link" href="#4-1-some-reminders"></a>4.1 Some reminders</h3>
+<p>Before diving in, here is the pseudo code for some simple utility methods of my classes:</p>
+<h4 id="4-1-1-distance-and-distance2-methods-of-point-"><a class="header-link" href="#4-1-1-distance-and-distance2-methods-of-point-"></a>4.1.1 <code>distance</code> and <code>distance2</code> methods of <code>Point</code></h4>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">distance2</span><span class="hljs-params">(Point p)</span> </span>{
+    <span class="hljs-keyword">return</span> (<span class="hljs-keyword">this</span>.x - p.x)*(<span class="hljs-keyword">this</span>.x - p.x) + (<span class="hljs-keyword">this</span>.y - p.y)*(<span class="hljs-keyword">this</span>.y - p.y);
+}
+
+<span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">distance</span><span class="hljs-params">(Point p)</span> </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-built_in">sqrt</span>(<span class="hljs-keyword">this</span>.distance2(p));
+}</code></pre><p>Why 2 functions for the distance ? Just because <code>sqrt</code> is slow, whatever the language. Performance will be better if you can avoid it. Sometimes we need the square of the distance for some calculations, so we will call <code>distance2</code> directly.</p>
+<h3 id="4-2-rotation"><a class="header-link" href="#4-2-rotation"></a>4.2 Rotation</h3>
+<p>To know how a pod will turn you must first know the angular difference between the current angle of the pod and the target. The current angle of the pod is given in the inputs of the program between 0 and 359. An angle of 0 corresponds to facing east, 90 is south, 180 west and 270 north. Here is the pseudo code for the <code>getAngle(Point p)</code> method of the <code>Pod</code> class:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">getAngle</span><span class="hljs-params">(Point p)</span> </span>{
+    <span class="hljs-keyword">float</span> d = <span class="hljs-keyword">this</span>.distance(p);
+    <span class="hljs-keyword">float</span> dx = (p.x - <span class="hljs-keyword">this</span>.x) / d;
+    <span class="hljs-keyword">float</span> dy = (p.y - <span class="hljs-keyword">this</span>.y) / d;
+
+    <span class="hljs-comment">// Simple trigonometry. We multiply by 180.0 / PI to convert radiants to degrees.</span>
+    <span class="hljs-keyword">float</span> a = <span class="hljs-built_in">acos</span>(dx) * <span class="hljs-number">180.0</span> / PI;
+
+    <span class="hljs-comment">// If the point I want is below me, I have to shift the angle for it to be correct</span>
+    <span class="hljs-keyword">if</span> (dy &lt; <span class="hljs-number">0</span>) {
+        a = <span class="hljs-number">360.0</span> - a;
+    }
+
+    <span class="hljs-keyword">return</span> a;
+}</code></pre><p>This function returns the angle that the pod would need to face the given point. So if the point is exactly at the top right of the pod this function will return <code>315</code>. We then need to know by how much (and in which direction) the pod must turn to face that point. This is the goal of the <code>diffAngle</code> method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">diffAngle</span><span class="hljs-params">(Point p)</span> </span>{
+    <span class="hljs-keyword">float</span> a = <span class="hljs-keyword">this</span>.getAngle(p);
+
+    <span class="hljs-comment">// To know whether we should turn clockwise or not we look at the two ways and keep the smallest</span>
+    <span class="hljs-comment">// The ternary operators replace the use of a modulo operator which would be slower</span>
+    <span class="hljs-keyword">float</span> right = <span class="hljs-keyword">this</span>.angle &lt;= a ? a - <span class="hljs-keyword">this</span>.angle : <span class="hljs-number">360.0</span> - <span class="hljs-keyword">this</span>.angle + a;
+    <span class="hljs-keyword">float</span> left = <span class="hljs-keyword">this</span>.angle &gt;= a ? <span class="hljs-keyword">this</span>.angle - a : <span class="hljs-keyword">this</span>.angle + <span class="hljs-number">360.0</span> - a;
+
+    <span class="hljs-keyword">if</span> (right &lt; left) {
+        <span class="hljs-keyword">return</span> right;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// We return a negative angle if we must rotate to left</span>
+        <span class="hljs-keyword">return</span> -left;
+    }
+}</code></pre><p>We therefore have an angle and a direction in which to turn. The direction is given by the sign of the result. If it is negative we turn to the left, otherwise the right. The only thing left to do is to actually turn, which is done by the <code>rotate</code> method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">rotate</span><span class="hljs-params">(Point p)</span> </span>{
+    <span class="hljs-keyword">float</span> a = <span class="hljs-keyword">this</span>.diffAngle(p);
+
+    <span class="hljs-comment">// Can't turn by more than 18° in one turn</span>
+    <span class="hljs-keyword">if</span> (a &gt; <span class="hljs-number">18.0</span>) {
+        a = <span class="hljs-number">18.0</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a &lt; -<span class="hljs-number">18.0</span>) {
+        a = -<span class="hljs-number">18.0</span>;
+    }
+
+    <span class="hljs-keyword">this</span>.angle += a;
+
+    <span class="hljs-comment">// The % operator is slow. If we can avoid it, it's better.</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.angle &gt;= <span class="hljs-number">360.0</span>) {
+        <span class="hljs-keyword">this</span>.angle = <span class="hljs-keyword">this</span>.angle - <span class="hljs-number">360.0</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.angle &lt; <span class="hljs-number">0.0</span>) {
+        <span class="hljs-keyword">this</span>.angle += <span class="hljs-number">360.0</span>;
+    }
+}</code></pre><h3 id="4-3-applying-the-thrust"><a class="header-link" href="#4-3-applying-the-thrust"></a>4.3 Applying the thrust</h3>
+<p>Now that the pod is turned we need to apply the thrust. This is the role of the <code>boost</code> method :</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">boost</span><span class="hljs-params">(<span class="hljs-keyword">int</span> thrust)</span> </span>{
+  <span class="hljs-comment">// Don't forget that a pod which has activated its shield cannot accelerate for 3 turns</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.shield) {
+        <span class="hljs-keyword">return</span>;
+    }
+
+    <span class="hljs-comment">// Conversion of the angle to radiants</span>
+    <span class="hljs-keyword">float</span> ra = <span class="hljs-keyword">this</span>.angle * PI / <span class="hljs-number">180.0</span>;
+
+    <span class="hljs-comment">// Trigonometry</span>
+    <span class="hljs-keyword">this</span>.vx += <span class="hljs-built_in">cos</span>(ra) * thrust;
+    <span class="hljs-keyword">this</span>.vy += <span class="hljs-built_in">sin</span>(ra) * thrust;
+}</code></pre><h3 id="4-4-moving"><a class="header-link" href="#4-4-moving"></a>4.4 Moving</h3>
+<p>The only thing left to do is to move the pod with the <code>move</code> method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">move</span><span class="hljs-params">(<span class="hljs-keyword">float</span> t)</span> </span>{
+    <span class="hljs-keyword">this</span>.x += <span class="hljs-keyword">this</span>.vx * t;
+    <span class="hljs-keyword">this</span>.y += <span class="hljs-keyword">this</span>.vy * t;
+}</code></pre><p>What is the purpose of this <code>t</code> parameter ? It will be useful later when we&#39;ll want to simulate an entire turn while taking into account collisions. It is used to indicate by how much the pod should move forward. If <code>t</code> is <code>1.0</code> then the pod will move for a turn&#39;s worth. If it&#39;s <code>0.5</code> it will only move for half a turn&#39;s worth. If you don&#39;t want to simulate collisions you can replace <code>t</code> by <code>1.0</code>.</p>
+<h3 id="4-5-after-the-move"><a class="header-link" href="#4-5-after-the-move"></a>4.5 After the move</h3>
+<p>Once the pod has moved we need to apply friction and round (or truncate) the values. This is what the <code>end</code> method does:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">end</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">this</span>.x = round(<span class="hljs-keyword">this</span>.x);
+    <span class="hljs-keyword">this</span>.y = round(<span class="hljs-keyword">this</span>.y);
+    <span class="hljs-keyword">this</span>.vx = truncate(<span class="hljs-keyword">this</span>.vx * <span class="hljs-number">0.85</span>);
+    <span class="hljs-keyword">this</span>.vy = truncate(<span class="hljs-keyword">this</span>.vy * <span class="hljs-number">0.85</span>);
+
+    <span class="hljs-comment">// Don't forget that the timeout goes down by 1 each turn. It is reset to 100 when you pass a checkpoint</span>
+    <span class="hljs-keyword">this</span>.timeout -= <span class="hljs-number">1</span>;
+}</code></pre><p><strong>Warning</strong>: This is pseudo code, <code>truncate</code> doesn&#39;t exist. But if you don&#39;t want to have rounding errors I advise you don&#39;t use <code>floor</code>. Why? It&#39;s very simple, just run the following code in the language of your choice:</p>
+<pre class="hljs"><code>print<span class="hljs-list">(<span class="hljs-keyword">floor</span><span class="hljs-list">(<span class="hljs-number">1.5</span>)</span>)</span><span class="hljs-comment">;</span>
+print<span class="hljs-list">(<span class="hljs-keyword">floor</span><span class="hljs-list">(<span class="hljs-keyword">-1</span>.<span class="hljs-number">5</span>)</span>)</span><span class="hljs-comment">;</span></code></pre><p>The output will be something along the lines of <code>1.0 -2.0</code>. Indeed, <code>floor</code> doesn&#39;t do what you&#39;d like on negative numbers. If your language allows it, it is better to cast <code>this.vx</code> and <code>this.vy</code> to integers, this will truncate all the decimal places. If you can&#39;t cast then you&#39;ll need to <code>floor</code> or <code>ceil</code> depending on whether the number is positive or negative.</p>
+<h2 id="4-6-simulating-an-entire-turn"><a class="header-link" href="#4-6-simulating-an-entire-turn"></a>4.6 Simulating an entire turn</h2>
+<p>You are now able to simulate the motion of a pod for an entire turn and therefore to predict which position the pod will be in, in the following turn, assuming it aimed for a specific point with a specific thrust. This is the <code>play</code> method:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">play</span><span class="hljs-params">(Point p, <span class="hljs-keyword">int</span> thrust)</span> </span>{
+    <span class="hljs-keyword">this</span>.rotate(p);
+    <span class="hljs-keyword">this</span>.boost(thrust);
+    <span class="hljs-keyword">this</span>.move(<span class="hljs-number">1.0</span>);
+    <span class="hljs-keyword">this</span>.end();
+}</code></pre><p>You are not yet able to predict collisions and their effects, but just with this you will be able to test several angles and speeds and choose the best. If you do predictions over several turns to choose the best path for your pods you should be able to reach top 50 easily.</p>
+<h3 id="4-7-predict-a-collision"><a class="header-link" href="#4-7-predict-a-collision"></a>4.7 Predict a collision</h3>
+<p>We now discuss the most complicated part of simulating an entire turn: collisions. We have 2 objects of the <code>Unit</code> class and we want to know when these 2 objects will collide during the turn. This is what the <code>collision</code> method of <code>Unit</code> does. But before discussing the code in detail, a little bit of theory.</p>
+<p>First of all there are collisions we can immediately detect because the two objects are already touching each other. If the distance between 2 objects is less than the sum of the two radii they collide immediately.</p>
+<p>But how do we detect that 2 moving objects will collide ? We can start by simplifying the problem. We can change reference frame and place ourselves in the reference frame of one of the two units. Doing this simplifies the problem: we now have to detect whether a moving object will collide with a stationary object. This is where geometry comes in.</p>
+<p>The moving object moves along a line. To know if the objects will collide we have to look at the shortest distance between the stationary object and that line. If this distance is less than the sum of the two radii, they might collide. To confirm whether or not they will, we have to look at the speed of the moving object to check if it is moving towards or away from the stationary object. If it is moving towards it then we need to look at how long it will take for the moving object to reach the stationary one. If a collision takes a time <code>t</code> longer than <code>1.0</code> then we know the collision will take place in the next turns and we can ignore it.</p>
+<p>As a start here is the code of the <code>closest</code> method of <code>Point</code>. It allows us to find the closest point on a line (described by two points) to another point.</p>
+<pre class="hljs"><code><span class="hljs-function">Point <span class="hljs-title">closest</span><span class="hljs-params">(Point a, Point b)</span> </span>{
+    <span class="hljs-keyword">float</span> da = b.y - a.y;
+    <span class="hljs-keyword">float</span> db = a.x - b.x;
+    <span class="hljs-keyword">float</span> c1 = da*a.x + db*a.y;
+    <span class="hljs-keyword">float</span> c2 = -db*<span class="hljs-keyword">this</span>.x + da*<span class="hljs-keyword">this</span>.y;
+    <span class="hljs-keyword">float</span> det = da*da + db*db;
+    <span class="hljs-keyword">float</span> cx = <span class="hljs-number">0</span>;
+    <span class="hljs-keyword">float</span> cy = <span class="hljs-number">0</span>;
+
+    <span class="hljs-keyword">if</span> (det != <span class="hljs-number">0</span>) {
+        cx = (da*c1 - db*c2) / det;
+        cy = (da*c2 + db*c1) / det;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// The point is already on the line</span>
+        cx = <span class="hljs-keyword">this</span>.x;
+        cy = <span class="hljs-keyword">this</span>.y;
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Point(cx, cy);
+}</code></pre><p>Now we can discuss the code the <code>collision</code> method of <code>Unit</code>:</p>
+<pre class="hljs"><code>Collision collision(Unit u) {
+    <span class="hljs-comment">// Square of the distance</span>
+    <span class="hljs-built_in">float</span> <span class="hljs-built_in">dist</span> = <span class="hljs-keyword">this</span>.distance2(u);
+
+    <span class="hljs-comment">// Sum of the radii squared</span>
+    <span class="hljs-built_in">float</span> sr = (<span class="hljs-keyword">this</span>.r + u.r)*(<span class="hljs-keyword">this</span>.r + u.r);
+
+    <span class="hljs-comment">// We take everything squared to avoid calling sqrt uselessly. It is better for performances</span>
+
+    <span class="hljs-keyword">if</span> (<span class="hljs-built_in">dist</span> &lt; sr) {
+        <span class="hljs-comment">// Objects are already touching each other. We have an immediate collision.</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Collision(<span class="hljs-keyword">this</span>, u, <span class="hljs-number">0.0</span>);
+    }
+
+    <span class="hljs-comment">// Optimisation. Objects with the same speed will never collide</span>
+    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.vx == u.vx &amp;&amp; <span class="hljs-keyword">this</span>.vy == u.vy) {
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    }
+
+    <span class="hljs-comment">// We place ourselves in the reference frame of u. u is therefore stationary and is at (0,0)</span>
+    <span class="hljs-built_in">float</span> x = <span class="hljs-keyword">this</span>.x - u.x;
+    <span class="hljs-built_in">float</span> y = <span class="hljs-keyword">this</span>.y - u.y;
+    Point myp = <span class="hljs-keyword">new</span> Point(x, y);
+    <span class="hljs-built_in">float</span> vx = <span class="hljs-keyword">this</span>.vx - u.vx;
+    <span class="hljs-built_in">float</span> vy = <span class="hljs-keyword">this</span>.vy - u.vy;
+    Point up = <span class="hljs-keyword">new</span> Point(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)
+
+    <span class="hljs-comment">// We look for the closest point to u (which is in (0,0)) on the line described by our speed vector</span>
+    Point p = up.closest(myp, <span class="hljs-keyword">new</span> Point(x + vx, y + vy));
+
+    <span class="hljs-comment">// Square of the distance between u and the closest point to u on the line described by our speed vector</span>
+    <span class="hljs-built_in">float</span> pdist = up.distance2(p);
+
+    <span class="hljs-comment">// Square of the distance between us and that point</span>
+    <span class="hljs-built_in">float</span> mypdist = myp.distance2(p);
+
+    <span class="hljs-comment">// If the distance between u and this line is less than the sum of the radii, there might be a collision</span>
+    <span class="hljs-keyword">if</span> (pdist &lt; sr) {
+     <span class="hljs-comment">// Our speed on the line</span>
+        <span class="hljs-built_in">float</span> length = <span class="hljs-built_in">sqrt</span>(vx*vx + vy*vy);
+
+        <span class="hljs-comment">// We move along the line to find the point of impact</span>
+        <span class="hljs-built_in">float</span> backdist = <span class="hljs-built_in">sqrt</span>(sr - pdist);
+        p.x = p.x - backdist * (vx / length);
+        p.y = p.y - backdist * (vy / length);
+
+        <span class="hljs-comment">// If the point is now further away it means we are not going the right way, therefore the collision won't happen</span>
+        <span class="hljs-keyword">if</span> (myp.distance2(p) &gt; mypdist) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        pdist = p.distance(myp);
+
+        <span class="hljs-comment">// The point of impact is further than what we can travel in one turn</span>
+        <span class="hljs-keyword">if</span> (pdist &gt; length) {
+            <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+        }
+
+        <span class="hljs-comment">// Time needed to reach the impact point</span>
+        <span class="hljs-built_in">float</span> t = pdist / length;
+
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> Collision(<span class="hljs-keyword">this</span>, u, t);
+    }
+
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+}</code></pre><p>With this method, we can therefore know if 2 objects of <code>Unit</code> type will collide during a turn, and more importantly, when they will.</p>
+<h3 id="4-8-the-consequences-of-a-collision"><a class="header-link" href="#4-8-the-consequences-of-a-collision"></a>4.8 The consequences of a collision</h3>
+<p>Here we have to distinguish several types of collisions. First and foremost a very easy collision type is the collision of a <code>Pod</code> and a <code>Checkpoint</code>. There is no bounce, we just need to increment de checkpoints-passed counter of the pod and reset its timeout to 100.</p>
+<p>Now the complicated case: 2 pods collide. The collisions in this contest are perfect elastic collisions with a half-momentum of 120. You didn&#39;t understand? Me neither. Frankly I would&#39;ve never found this code without the help of Neumann and pb4608. But here is the code of my <code>bounce</code> method from the <code>Pod</code> class: </p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">bounce</span><span class="hljs-params">(Unit u)</span> </span>{
+    <span class="hljs-keyword">if</span> (u instanceof Checkpoint) {
+        <span class="hljs-comment">// Collision with a checkpoint</span>
+        <span class="hljs-keyword">this</span>.bounceWithCheckpoint((Checkpoint) u);
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-comment">// If a pod has its shield active its mass is 10 otherwise it's 1</span>
+        <span class="hljs-keyword">float</span> m1 = <span class="hljs-keyword">this</span>.shield ? <span class="hljs-number">10</span> : <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">float</span> m2 = u.shield ? <span class="hljs-number">10</span> : <span class="hljs-number">1</span>;
+        <span class="hljs-keyword">float</span> mcoeff = (m1 + m2) / (m1 * m2);
+
+        <span class="hljs-keyword">float</span> nx = <span class="hljs-keyword">this</span>.x - u.x;
+        <span class="hljs-keyword">float</span> ny = <span class="hljs-keyword">this</span>.y - u.y;
+
+        <span class="hljs-comment">// Square of the distance between the 2 pods. This value could be hardcoded because it is always 800²</span>
+        <span class="hljs-keyword">float</span> nxnysquare = nx*nx + ny*ny;
+
+        <span class="hljs-keyword">float</span> dvx = <span class="hljs-keyword">this</span>.vx - u.vx;
+        <span class="hljs-keyword">float</span> dvy = <span class="hljs-keyword">this</span>.vy - u.vy;
+
+        <span class="hljs-comment">// fx and fy are the components of the impact vector. product is just there for optimisation purposes</span>
+        <span class="hljs-keyword">float</span> product = nx*dvx + ny*dvy;
+        <span class="hljs-keyword">float</span> fx = (nx * product) / (nxnysquare * mcoeff);
+        <span class="hljs-keyword">float</span> fy = (ny * product) / (nxnysquare * mcoeff);
+
+        <span class="hljs-comment">// We apply the impact vector once</span>
+        <span class="hljs-keyword">this</span>.vx -= fx / m1;
+        <span class="hljs-keyword">this</span>.vy -= fy / m1;
+        u.vx += fx / m2;
+        u.vy += fy / m2;
+
+        <span class="hljs-comment">// If the norm of the impact vector is less than 120, we normalize it to 120</span>
+        <span class="hljs-keyword">float</span> impulse = <span class="hljs-built_in">sqrt</span>(fx*fx + fy*fy);
+        <span class="hljs-keyword">if</span> (impulse &lt; <span class="hljs-number">120.0</span>) {
+            fx = fx * <span class="hljs-number">120.0</span> / impulse;
+            fy = fy * <span class="hljs-number">120.0</span> / impulse;
+        }
+
+        <span class="hljs-comment">// We apply the impact vector a second time</span>
+        <span class="hljs-keyword">this</span>.vx -= fx / m1;
+        <span class="hljs-keyword">this</span>.vy -= fy / m1;
+        u.vx += fx / m2;
+        u.vy += fy / m2;
+
+        <span class="hljs-comment">// This is one of the rare places where a Vector class would have made the code more readable.</span>
+        <span class="hljs-comment">// But this place is called so often that I can't pay a performance price to make it more readable.</span>
+    }
+}</code></pre><p><strong>Warning</strong>: This method rests on the hypothesis that the 2 pods have moved to their respective impact points. The explanation of how to move your pods and play out collisions with the goal of simulating an entire turn is found in the &quot;Simulating an entire turn&quot; chapter.</p>
+<h3 id="4-9-the-effects-of-the-shield"><a class="header-link" href="#4-9-the-effects-of-the-shield"></a>4.9 The effects of the shield</h3>
+<p>As written in the comments of the <code>bounce</code> method in the previous chapter, the only effect of the shield is to multiply the mass of a pod by 10. The consequence of this is that when a pod with its shield on collides with a pod without its shield on, the impact vector will apply 10 times more to the shieldless pod. Don&#39;t forget that the shield prevents the pod from accelerating in the next 3 turns after the shield. The pod can give whatever thrust it wants but it will be disregarded. You can however shield again during those 3 turns, but obviously the 3 turn counter is reset.</p>
+<h2 id="4-10-predicting-that-a-pod-will-pass-a-checkpoint"><a class="header-link" href="#4-10-predicting-that-a-pod-will-pass-a-checkpoint"></a>4.10 Predicting that a pod will pass a checkpoint</h2>
+<p>This is the reason why my <code>Checkpoint</code> class inherits from <code>Unit</code>. Passing through a checkpoint is nothing more than colliding with it. The only difference is that there is no bounce to apply. You only have to increment the checkpoint-passed counter and reset the timeout to 100.</p>
+<h3 id="4-11-simulating-an-entire-turn"><a class="header-link" href="#4-11-simulating-an-entire-turn"></a>4.11 Simulating an entire turn</h3>
+<p>With all the previously described methods, we can simulate an entire turn of the game. How do we proceed? We first need to look at all the collisions that will take place during the turn and keep the one that will happen first. We then move the pods until the time <code>t</code> of that collision. We play out that collision and we then start over and over until we no longer have any collisions. We can then move the pods to the end of the turn. But be careful, when we play out a collision we have to recompute future collisions because a collision between 2 <code>Unit</code> can prevent another collision from happening or lead to a new one.</p>
+<p>To recompute the new collisions there are 2 ways:</p>
+<ul class="list">
+<li>Run the same calculations again and take the collision that&#39;s happening the soonest</li>
+<li>Store the previously found collisions, get rid of collisions concerning the 2 <code>Unit</code> that had the previous collision and recompute only the collisions of those 2 <code>Unit</code> with the others</li>
+</ul>
+<p>On paper the second solution looks like it will lead to better performance. But in fact the first one was better for this contest because on average there are too few collisions per turn for the second solution to be faster. However if you want to apply this principle to a game like Poker Chip Race, I recommence you use the second solution.</p>
+<p>With these principles in mind we can write the code of the <code>play</code> function which will simulate an entire turn.</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">play</span><span class="hljs-params">(Pod[] pods, Checkpoint[] checkpoints)</span> </span>{
+    <span class="hljs-comment">// This tracks the time during the turn. The goal is to reach 1.0</span>
+    <span class="hljs-keyword">float</span> t = <span class="hljs-number">0.0</span>;
+
+    <span class="hljs-keyword">while</span> (t &lt; <span class="hljs-number">1.0</span>) {
+        Collision firstCollision = null;
+
+        <span class="hljs-comment">// We look for all the collisions that are going to occur during the turn</span>
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pods.length; ++i) {
+            <span class="hljs-comment">// Collision with another pod?</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> j = i + <span class="hljs-number">1</span>; j &lt; pods.length; ++j) {
+                Collision col = pods[i].collision(pods[j]);
+
+                <span class="hljs-comment">// If the collision occurs earlier than the one we currently have we keep it</span>
+                <span class="hljs-keyword">if</span> (col != null &amp;&amp; col.t + t &lt; <span class="hljs-number">1.0</span> &amp;&amp; (firstCollision == null || col.t &lt; firstCollision.t)) {
+                    firstCollision = col;
+                }
+            }
+
+            <span class="hljs-comment">// Collision with another checkpoint?</span>
+            <span class="hljs-comment">// It is unnecessary to check all checkpoints here. We only test the pod's next checkpoint.</span>
+            <span class="hljs-comment">// We could look for the collisions of the pod with all the checkpoints, but if such a collision happens it wouldn't impact the game in any way</span>
+            Collision col = pods[i].collision(checkpoints[pods[i].nextCheckpointId]);
+
+            <span class="hljs-comment">// If the collision happens earlier than the current one we keep it</span>
+            <span class="hljs-keyword">if</span> (col != null &amp;&amp; col.t + t &lt; <span class="hljs-number">1.0</span> &amp;&amp; (firstCollision == null || col.t &lt; firstCollision.t)) {
+                firstCollision = col;
+            }
+        }
+
+        <span class="hljs-keyword">if</span> (firstCollision == null) {
+            <span class="hljs-comment">// No collision, we can move the pods until the end of the turn</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pods.length; ++i) {
+                pods[i].move(<span class="hljs-number">1.0</span> - t);
+            }
+
+            <span class="hljs-comment">// End of the turn</span>
+            t = <span class="hljs-number">1.0</span>;
+        } <span class="hljs-keyword">else</span> {
+            <span class="hljs-comment">// Move the pods to reach the time `t` of the collision</span>
+            <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pods.length; ++i) {
+                pods[i].move(firstCollision.t);
+            }
+
+            <span class="hljs-comment">// Play out the collision</span>
+            firstCollision.a.bounce(firstCollision.b);
+
+            t += firstCollision.t;
+        }
+    }
+
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pods.length; ++i) {
+        pods[i].end();
+    }
+}</code></pre><p><strong>Possible Optimisations</strong>:</p>
+<ul class="list">
+<li>This code could be further optimised. But I didn&#39;t have the time to do so. One thing is this code recomputes all collisions even when a pod collides with its checkpoint. This is unnecessary because such a collision doesn&#39;t change the speed vector of the pod. We could therefore just store the collisions and play out the next one without recomputing all collisions.</li>
+<li>if you want to use the 2nd solution suggested before this code, be careful and do benchmark the performance, there is a risk that by storing and sorting the collisions (or going through them to find the one that is happening the soonest) you will incur more overhead than by just recomputing everything.</li>
+</ul>
+<p><strong>Possible bugs</strong>:</p>
+<ul class="list">
+<li>The most frequent bug here is the infinite loop, which can happen because of rounding errors and comparing floats. When you move the pods to their impact points in anticipation of a collision, it can happen that at the next iteration of the loop we detect an immediate collision (because the pods are touching), which leads to a nice infinite loop. This is a bug you can easily avoid by adding a security to the above function. You store the previous collision of the while loop and if you find a collision with a <code>t</code> of <code>0</code> concerning the same 2 <code>Unit</code>, ignore it.  </li>
+</ul>
+<h3 id="4-12-simulating-the-future"><a class="header-link" href="#4-12-simulating-the-future"></a>4.12 Simulating the future</h3>
+<p>With the function of the previous chapter you can simulate an entire turn. But if you&#39;ve been paying attention you will have noticed that simulating a turn with pods that do nothing (they face their current direction and don&#39;t thrust) is useful but not so interesting. We want to test what will happen if we play this or that move. Here is a simple code you can adapt that will simulate the entire turn assuming the pods all aim for the <code>(8000,4500)</code> point with a speed of <code>200</code>:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">test</span><span class="hljs-params">(Pod[] pods, Checkpoint[] checkpoints)</span> </span>{
+    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; pods.length; ++i) {
+        pods[i].rotate(<span class="hljs-keyword">new</span> Point(<span class="hljs-number">8000</span>, <span class="hljs-number">4500</span>));
+        pods[i].boost(<span class="hljs-number">200</span>);
+    }
+
+    play(pods, checkpoints);
+}</code></pre><h3 id="4-13-how-to-manage-the-shield-"><a class="header-link" href="#4-13-how-to-manage-the-shield-"></a>4.13 How to manage the shield?</h3>
+<p>This is clearly not the hardest thing to manage. My <code>Pod</code> class simply has a <code>activeShield</code> method which changes the <code>shield</code> attribute to <code>true</code> and which initialises the counter of 3 turns (to remember it can&#39;t thrust for 3 turns).</p>
+<h2 id="5-the-brains-of-the-pods"><a class="header-link" href="#5-the-brains-of-the-pods"></a>5 The brains of the pods</h2>
+<p>Now that we know how to simulate the next turns, we can see further. Technically we can see as far as we want! For example 10 turns later. But this wouldn&#39;t be so useful. From here there are many solutions. We can test allot of possibilities and look at the next turn to choose the best move, or even in 5 turns. We could be tempted to test all possibilities but there are way too many. In what follows I will describe one possible solution. There are others and I will give links at the end.</p>
+<h3 id="5-1-the-evaluation-function"><a class="header-link" href="#5-1-the-evaluation-function"></a>5.1 The evaluation function</h3>
+<p>Whatever the method we use, an evaluation function is mandatory. The evaluation function takes the state of the game at a certain time and gives it a score. This is the most crucial part of your code. This is the part that determines absolutely everything. It will determine the behavior of your pods, the way they move, defend, avoid others, help each other... It can also determine the way you will predict your opponent&#39;s moves.</p>
+<p>Several high ranking players have explained their evaluation function. Here I will explain what I put in mine:</p>
+<ul class="list">
+<li>If I have lost (the opponent finished the race or one of my timeouts is on 0), I return <code>-Infinity</code>. The worst possible score.</li>
+<li>On the contrary if I have won (I finished the race or my opponent has one of his timeouts on 0), I return <code>+Infinity</code>. The best possible score.</li>
+<li>For each player, I consider that there is a &quot;runner&quot; pod and a &quot;hunter&quot; pod. The &quot;hunter&quot; term isn&#39;t the most appropriate but it&#39;s the best I found.</li>
+<li>My score starts with a line like this: <code>score += myRunner.score() - hisRunner.score();</code>. The more I am ahead, the better.</li>
+<li>I then try to keep my hunter close to the checkpoint of his runner: <code>score += myChaser.distance(hisRunner.checkpoint());</code></li>
+<li>I try to keep my hunter aiming for the enemy runner: <code>score -= myChaser.diffAngle(hisRunner);</code></li>
+</ul>
+<p>The idea is then to apply different coefficients to these different parameters to reach something you like. You can add parameters, remove some, etc...
+For example in my case, I multiply the first parameter (the difference between the score of the runners) by 50 to make sure it is always the dominating term.</p>
+<p>The <code>score</code> method of my <code>Pod</code> class is very simple. It looks like this:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">float</span> <span class="hljs-title">score</span><span class="hljs-params">()</span> </span>{
+    <span class="hljs-keyword">return</span> checked*<span class="hljs-number">50000</span> - <span class="hljs-keyword">this</span>.distance(<span class="hljs-keyword">this</span>.checkpoint());
+}</code></pre><p>This is simply the number of checkpoints I have passed multiplied by <code>50000</code> minus the distance between the pod and its next checkpoint. <code>50000</code> is obviously an arbitrary value. We just need a big enough number for the number of checkpoints passed to always be the most important term.</p>
+<p>At the beginning of every turn, I look at the score of all the pods. This allows me to choose who is my runner and who is my hunter. I do the same for the opponent.</p>
+<h3 id="5-2-genetic-evolution"><a class="header-link" href="#5-2-genetic-evolution"></a>5.2 Genetic evolution</h3>
+<p>Genetic evolution is one of the possible ways to choose which moves our pods will make. The principle is quite simple and is based on genetic evolution as is found in nature with survival of the fittest.</p>
+<p>The basic idea is to start with a starting population of X solutions (in my code X is 5, but you can take other values). Every solution has a score and a capacity to adapt. The we take some of these solutions at random and we mutate them randomly. We can also cross them between each other to make new ones. From here there are several possible implementations of genetic evolution:</p>
+<ul class="list">
+<li>We always keep the X best solutions. So when we generate a new solution (by mutation or crossing), we look at its score and if it is worse than our X current solutions we throw it away. But if it is better than one of them we keep it and we throw away the worse of the X+1 solutions.</li>
+<li>An other implementation is to never throw away solutions but to always evolve the current solutions. But if you do this, you have to be careful as to how you do your crossings and mutations as explained on this page <a href="https://en.wikipedia.org/wiki/Genetic_algorithm">page from wikipedia</a>.</li>
+</ul>
+<p>From having tried the 2 methods, the first one gave the best results for me.</p>
+<p>We repeat for 150ms (the longest time your program can take to answer each turn). The pseudo algorithm looks like this: </p>
+<pre class="hljs"><code><span class="hljs-type">Solution</span><span class="hljs-literal">[]</span> solutions = generatePopulation<span class="hljs-literal">()</span>;
+
+<span class="hljs-keyword">while</span> (time &lt; <span class="hljs-number">150</span>) {
+    <span class="hljs-type">Solution</span> solution = solutions[random(<span class="hljs-number">0</span>, <span class="hljs-type">X</span>)].mutate<span class="hljs-literal">()</span>;
+
+    <span class="hljs-keyword">if</span> (solution.score<span class="hljs-literal">()</span> &gt; minScore) {
+        keepSolution<span class="hljs-literal">()</span>;
+    }
+}</code></pre><p>This code is obviously overly simplified. But the idea is there. We can go more into details now.</p>
+<h4 id="5-2-1-what-is-a-solution-"><a class="header-link" href="#5-2-1-what-is-a-solution-"></a>5.2.1 What is a solution?</h4>
+<p>In my code a solution is a list of pairs of moves. A move for the first pod and a move for the second pod. For genetic evolution to work correctly, we need a move to be independent from the current state of the pod. In my code, my <code>Move</code> class looks like this:</p>
+<pre class="hljs"><code><span class="hljs-keyword">class</span> <span class="hljs-title">Move</span> {
+    <span class="hljs-keyword">float</span> angle; <span class="hljs-comment">// Between -18.0 and +18.0</span>
+    <span class="hljs-keyword">int</span> thrust; <span class="hljs-comment">// Between -1 and 200</span>
+}</code></pre><p>I added something special and not so clean to manage shields. In my code I defined the following constant: <code>const int SHIELD = - 1;</code>. This avoids me having to manage an extra attribute in my <code>Move</code> class and I gain in performance. If a <code>Move</code> has a <code>thrust</code> of <code>-1</code>, the pod will activate its shield. Having a <code>Move</code> class built this way allows me to have a move independent of the pod. The pod can be in any state, it will still be able to make a <code>Move</code> whatever its situation.</p>
+<p>My <code>Solution</code> class is therefore simple as well:</p>
+<pre class="hljs"><code><span class="hljs-label">class</span> Solution {
+    <span class="hljs-keyword">Move[] </span><span class="hljs-keyword">moves1;
+</span>    <span class="hljs-keyword">Move[] </span><span class="hljs-keyword">moves2;
+</span>}</code></pre><p><code>moves1</code> are the moves of my first pod and <code>moves2</code> are the movements of my second pod. You still have to choose over how many turns you want to test your solutions. I tried several values from 5 to 10. It&#39;s 6 turns that gave me the best results.</p>
+<p>You also have to implement the <code>score</code> method of <code>Solution</code>, which will simulate the desired number of turns and use the evaluation function at the end of the simulation to return the score of the solution.</p>
+<pre class="hljs"><code><span class="hljs-type">float</span> score() {
+    // <span class="hljs-type">Play</span> <span class="hljs-keyword">out</span> the turns
+    <span class="hljs-keyword">for</span> (<span class="hljs-type">int</span> i = <span class="hljs-number">0</span>; i &lt; moves1.length; ++i) {
+        // <span class="hljs-type">Apply</span> the moves to the pods before playing
+        myPod1.apply(moves1[i]);
+        myPod2.apply(moves2[i]);
+
+        play();
+    }
+
+    // <span class="hljs-type">Compute</span> the score
+    <span class="hljs-type">float</span> <span class="hljs-literal">result</span> = evaluation();
+
+    // <span class="hljs-type">Reset</span> everyone to their initial states
+    load();
+
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">result</span>;
+}</code></pre><p>The <code>apply</code> method of my pods only applies a move to the pod. It turns the pod, applies the thrust (or the shield). Earlier I spoke of my <code>load</code> function. After a simulation you need to put everyone back in their original state, this is what my <code>load</code> function does.</p>
+<h4 id="5-2-2-mutations-and-crossings"><a class="header-link" href="#5-2-2-mutations-and-crossings"></a>5.2.2 Mutations and Crossings</h4>
+<p>There are 2 ways to evolve a solution. One is by mutation and the other is by crossing.</p>
+<p>Mutation is taking one or more moves at random in a preexisting solution and to change them randomly.
+Crossing is taking 2 solutions and from them to create one (or more than one sometimes) new solution by randomly picking moves from the 2 solutions.</p>
+<p>But be careful, you can&#39;t do it any old way. For evolution to work properly, you first need to have &quot;big&quot; evolutions and as you go on, evolutions become smaller and smaller. To give an example, here is the <code>mutate</code> method of my <code>Move</code> class:</p>
+<pre class="hljs"><code><span class="hljs-keyword">void</span> mutate(<span class="hljs-built_in">float</span> amplitude) {
+    <span class="hljs-built_in">float</span> ramin = <span class="hljs-keyword">this</span>.angle - <span class="hljs-number">36.0</span> * amplitude;
+    <span class="hljs-built_in">float</span> ramax = <span class="hljs-keyword">this</span>.angle + <span class="hljs-number">36.0</span> * amplitude;
+
+    <span class="hljs-keyword">if</span> (ramin &lt; -<span class="hljs-number">18.0</span>) {
+        ramin = -<span class="hljs-number">18.0</span>;
+    }
+
+    <span class="hljs-keyword">if</span> (ramax &gt; <span class="hljs-number">18.0</span>) {
+        ramax = <span class="hljs-number">18.0</span>;
+    }
+
+    angle = <span class="hljs-built_in">random</span>(ramin, ramax);
+
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.shield &amp;&amp; <span class="hljs-built_in">random</span>(<span class="hljs-number">0</span>, <span class="hljs-number">100</span>) &lt; SHIELD_PROB) {
+        <span class="hljs-keyword">this</span>.shield = <span class="hljs-keyword">true</span>;
+    } <span class="hljs-keyword">else</span> {
+        <span class="hljs-built_in">int</span> pmin = <span class="hljs-keyword">this</span>.thrust - <span class="hljs-number">200</span> * amplitude;
+        <span class="hljs-built_in">int</span> pmax = <span class="hljs-keyword">this</span>.thrust + <span class="hljs-number">200</span> * amplitude;
+
+        <span class="hljs-keyword">if</span> (pmin &lt; <span class="hljs-number">0</span>) {
+            pmin = <span class="hljs-number">0</span>;
+        }
+
+        <span class="hljs-keyword">if</span> (pmax &gt; <span class="hljs-number">0</span>) {
+            pmax = <span class="hljs-number">200</span>;
+        }
+
+        <span class="hljs-keyword">this</span>.thrust = <span class="hljs-built_in">random</span>(pmin, pmax);
+
+        <span class="hljs-keyword">this</span>.shield = <span class="hljs-keyword">false</span>;
+    }
+}</code></pre><p>As the code shows, I have an <code>amplitude</code> parameter which allows me to &quot;dose&quot; the random mutations of a <code>Move</code>. At the beginning of a turn of my AI, this parameter is <code>1.0</code> to have maximal mutations. The more I advance in my evolutions and my simulations, the smaller it gets. This produces better evolutions.</p>
+<p>The shield is a case in its own right, I just have a constant <code>SHIELD_PROB</code> which indicates the probability that a <code>Move</code> will mutate into an activation of the shield. In my final version this constant was <code>20</code>.</p>
+<h4 id="5-2-3-creating-the-starting-pool-of-solutions"><a class="header-link" href="#5-2-3-creating-the-starting-pool-of-solutions"></a>5.2.3 Creating the starting pool of solutions</h4>
+<p>To create the starting solutions there are several methods:</p>
+<ul class="list">
+<li>Completely at random</li>
+<li>Make solutions with a simple AI</li>
+<li>Take the winning solution of the previous turn (after having taken away its first <code>Move</code> of course, and after having added another move at the end either randomly or with a simple AI)</li>
+<li>A mix of the previous 3 ways</li>
+</ul>
+<p>In my code my starting population is composed of 3 random solutions, 1 solution made by a simple AI (<code>if</code> based AI) and I take the winning solution from the previous turn.</p>
+<h2 id="predicting-the-enemie-s-moves"><a class="header-link" href="#predicting-the-enemie-s-moves"></a>Predicting the enemie&#39;s moves</h2>
+<p>If you looked carefully at the code I gave for the <code>score</code> method of <code>Solution</code>, you will have noticed that we don&#39;t move the opponent&#39;s pods. We consider that they will just wait (they don&#39;t turn and they don&#39;t thrust). This is obviously wrong because the opponent will very often move. This is why we need a way to predict his moves. This is a crucial part of your code. The more accurate your predictions, the more ruthless your AI will be. In my case, my solution wasn&#39;t good and that&#39;s why my AI got crushed by Jeff06, pb4608 and Owl.</p>
+<p>In my code I use a very simple AI to predict the moves of my opponent. And it doesn&#39;t work well. My AI is very simple and is often very far from the moves my opponent does. Note that this doesn&#39;t prevent cooperation between your pods (which rarely depends on the opponent&#39;s moves), But this could prevent your runner from avoiding the enemy hunter and could prevent your hunter from blocking the enemy runner.</p>
+<p>Jeff06 went for another solution. He does a genetic evolution for the opponent (considering his own pods will wait) for 10ms. He keeps the best solution found for the opponent and then he evolves his own moves assuming the opponent will make those moves. Given that Jeff06 won the contest, I deduce that his solution is much better than mine!</p>
+<h3 id="5-3-converting-a-move-for-output"><a class="header-link" href="#5-3-converting-a-move-for-output"></a>5.3 Converting a <code>Move</code> for output</h3>
+<p>The last step is to convert the first <code>Move</code> of the best solution from the evolution to output it to stdout. But stdout doesn&#39;t take a <code>Move</code> made up of an angle change and a thrust. We have to use some trigonometry:</p>
+<pre class="hljs"><code><span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">output</span><span class="hljs-params">(Move* move)</span> </span>{
+    <span class="hljs-keyword">float</span> a = angle + move.angle;
+
+    <span class="hljs-keyword">if</span> (a &gt;= <span class="hljs-number">360.0</span>) {
+        a = a - <span class="hljs-number">360.0</span>;
+    } <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (a &lt; <span class="hljs-number">0.0</span>) {
+        a += <span class="hljs-number">360.0</span>;
+    }
+
+    <span class="hljs-comment">// Look for a point corresponding to the angle we want</span>
+    <span class="hljs-comment">// Multiply by 10000.0 to limit rounding errors</span>
+    a = a * PI / <span class="hljs-number">180.0</span>;
+    <span class="hljs-keyword">float</span> px = <span class="hljs-keyword">this</span>.x + <span class="hljs-built_in">cos</span>(a) * <span class="hljs-number">10000.0</span>;
+    <span class="hljs-keyword">float</span> py = <span class="hljs-keyword">this</span>.y + <span class="hljs-built_in">sin</span>(a) * <span class="hljs-number">10000.0</span>;
+
+    <span class="hljs-keyword">if</span> (move.shield) {
+        print(round(px), round(py), <span class="hljs-string">"SHIELD"</span>);
+        activateShield();
+    } <span class="hljs-keyword">else</span> {
+        print(round(px), round(py), move.power);
+    }
+}</code></pre><h2 id="6-other-solutions"><a class="header-link" href="#6-other-solutions"></a>6 Other solutions</h2>
+<p>I was not the only one who used a genetic algorithm. Jeff06, Neumann and pb4608 did it as well (with more success than me because they beat me). Owl used a minimax / alpha-beta method by reducing the possible moves to 7 per pod. You are welcome to go read their explanations on the forum and on the <a href="https://www.codingame.com/">CodinGame</a> blog.</p>
+    </article>
+  </body>
+</html>

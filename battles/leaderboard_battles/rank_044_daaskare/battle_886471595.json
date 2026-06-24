@@ -1,0 +1,5606 @@
+{
+  "gameId": 886471595,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 9429,
+          "y": 7255
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 5975,
+          "y": 4233
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 14637,
+          "y": 1420
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 3470,
+          "y": 7212
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 9100.0,
+          "y": 7631.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 9758.0,
+          "y": 6879.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 8441.0,
+          "y": 8384.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 10417.0,
+          "y": 6126.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 9100.0,
+          "y": 7631.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 9758.0,
+          "y": 6879.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 8441.0,
+          "y": 8384.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 10417.0,
+          "y": 6126.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 464,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 466,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 468,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 470,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 472,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 474,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 476,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 478,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 480,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 482,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 484,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 486,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 488,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 490,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 492,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 494,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 496,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 498,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 500,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 502,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 504,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 506,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 508,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 510,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 512,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 514,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 516,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 518,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 520,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 522,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 524,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 526,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 528,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 530,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 532,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 534,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 536,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 538,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 540,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 542,
+      "log": "$0 rank: 2\n$1 rank: 1\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "-1198 2815 BOOST"
+      },
+      {
+        "turn": 2,
+        "command": "2013 724 200 ANGLE -10"
+      },
+      {
+        "turn": 3,
+        "command": "7630 3794 0"
+      },
+      {
+        "turn": 4,
+        "command": "222 2353 200 ANGLE -14"
+      },
+      {
+        "turn": 5,
+        "command": "7748 4791 0"
+      },
+      {
+        "turn": 6,
+        "command": "-49 2105 150 ANGLE 0"
+      },
+      {
+        "turn": 7,
+        "command": "8357 5152 0"
+      },
+      {
+        "turn": 8,
+        "command": "1267 83 200 ANGLE 14"
+      },
+      {
+        "turn": 9,
+        "command": "13844 11752 200"
+      },
+      {
+        "turn": 10,
+        "command": "89 531 50 ANGLE -6"
+      },
+      {
+        "turn": 11,
+        "command": "10722 1875 0"
+      },
+      {
+        "turn": 12,
+        "command": "-297 271 0 ANGLE 0"
+      },
+      {
+        "turn": 13,
+        "command": "15007 -515 200"
+      },
+      {
+        "turn": 14,
+        "command": "-379 -195 200 ANGLE 2"
+      },
+      {
+        "turn": 15,
+        "command": "-1450 883 200"
+      },
+      {
+        "turn": 16,
+        "command": "1767 -2321 0 ANGLE 18"
+      },
+      {
+        "turn": 17,
+        "command": "6149 2970 200"
+      },
+      {
+        "turn": 18,
+        "command": "4405 -3517 SHIELD"
+      },
+      {
+        "turn": 19,
+        "command": "14069 10371 200"
+      },
+      {
+        "turn": 20,
+        "command": "7211 -3663 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 21,
+        "command": "16012 2091 200"
+      },
+      {
+        "turn": 22,
+        "command": "9876 -2782 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 23,
+        "command": "14246 1649 200"
+      },
+      {
+        "turn": 24,
+        "command": "6668 -3918 0 SHIELD 0 ANGLE -18"
+      },
+      {
+        "turn": 25,
+        "command": "13089 4437 200"
+      },
+      {
+        "turn": 26,
+        "command": "8788 -3304 150 ANGLE 14"
+      },
+      {
+        "turn": 27,
+        "command": "10642 12658 200"
+      },
+      {
+        "turn": 28,
+        "command": "11288 -1819 200 ANGLE 18"
+      },
+      {
+        "turn": 29,
+        "command": "12647 3143 200"
+      },
+      {
+        "turn": 30,
+        "command": "12908 367 200 ANGLE 18"
+      },
+      {
+        "turn": 31,
+        "command": "13264 1690 200"
+      },
+      {
+        "turn": 32,
+        "command": "13906 2981 50 ANGLE 18"
+      },
+      {
+        "turn": 33,
+        "command": "11730 3934 200"
+      },
+      {
+        "turn": 34,
+        "command": "14015 5835 200 ANGLE 18"
+      },
+      {
+        "turn": 35,
+        "command": "10618 3853 167"
+      },
+      {
+        "turn": 36,
+        "command": "13358 8649 200 ANGLE 18"
+      },
+      {
+        "turn": 37,
+        "command": "7037 2985 0"
+      },
+      {
+        "turn": 38,
+        "command": "11928 11147 200 ANGLE 18"
+      },
+      {
+        "turn": 39,
+        "command": "14966 8654 0"
+      },
+      {
+        "turn": 40,
+        "command": "9748 13035 200 ANGLE 18"
+      },
+      {
+        "turn": 41,
+        "command": "9045 -6120 45"
+      },
+      {
+        "turn": 42,
+        "command": "7716 14018 200 ANGLE 14"
+      },
+      {
+        "turn": 43,
+        "command": "11139 -147 74"
+      },
+      {
+        "turn": 44,
+        "command": "10726 12870 200 ANGLE -18"
+      },
+      {
+        "turn": 45,
+        "command": "9627 2626 200"
+      },
+      {
+        "turn": 46,
+        "command": "13274 11051 0 ANGLE -18"
+      },
+      {
+        "turn": 47,
+        "command": "2535 7170 0"
+      },
+      {
+        "turn": 48,
+        "command": "15011 8580 150 ANGLE -18"
+      },
+      {
+        "turn": 49,
+        "command": "6489 7361 200"
+      },
+      {
+        "turn": 50,
+        "command": "15936 5786 0 ANGLE -18"
+      },
+      {
+        "turn": 51,
+        "command": "18500 7928 200"
+      },
+      {
+        "turn": 52,
+        "command": "15833 2916 0 ANGLE -18"
+      },
+      {
+        "turn": 53,
+        "command": "3322 3443 74"
+      },
+      {
+        "turn": 54,
+        "command": "15728 2125 0 ANGLE -6"
+      },
+      {
+        "turn": 55,
+        "command": "7029 6965 SHIELD"
+      },
+      {
+        "turn": 56,
+        "command": "15928 2294 0 ANGLE 0"
+      },
+      {
+        "turn": 57,
+        "command": "1379 7361 200"
+      },
+      {
+        "turn": 58,
+        "command": "16223 2763 0 ANGLE 2"
+      },
+      {
+        "turn": 59,
+        "command": "1458 5938 200"
+      },
+      {
+        "turn": 60,
+        "command": "16481 3214 0 ANGLE 2"
+      },
+      {
+        "turn": 61,
+        "command": "14058 -8830 200"
+      },
+      {
+        "turn": 62,
+        "command": "16705 3650 0 ANGLE 2"
+      },
+      {
+        "turn": 63,
+        "command": "3535 7291 200"
+      },
+      {
+        "turn": 64,
+        "command": "16808 3736 0 ANGLE 0"
+      },
+      {
+        "turn": 65,
+        "command": "2747 7383 200"
+      },
+      {
+        "turn": 66,
+        "command": "16895 3809 0 ANGLE 0"
+      },
+      {
+        "turn": 67,
+        "command": "3136 5983 200"
+      },
+      {
+        "turn": 68,
+        "command": "16968 3871 0 ANGLE 0"
+      },
+      {
+        "turn": 69,
+        "command": "4356 6523 200"
+      },
+      {
+        "turn": 70,
+        "command": "17030 3923 0 ANGLE 0"
+      },
+      {
+        "turn": 71,
+        "command": "4536 6629 200"
+      },
+      {
+        "turn": 72,
+        "command": "15759 1131 0 ANGLE -18"
+      },
+      {
+        "turn": 73,
+        "command": "4253 6932 200"
+      },
+      {
+        "turn": 74,
+        "command": "13670 -1120 SHIELD"
+      },
+      {
+        "turn": 75,
+        "command": "8539 5631 200"
+      },
+      {
+        "turn": 76,
+        "command": "10970 -2606 0 SHIELD -2 ANGLE -18"
+      },
+      {
+        "turn": 77,
+        "command": "2625 11477 200"
+      },
+      {
+        "turn": 78,
+        "command": "13738 -1063 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 79,
+        "command": "7926 7937 200"
+      },
+      {
+        "turn": 80,
+        "command": "15897 1247 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 81,
+        "command": "17959 19771 200"
+      },
+      {
+        "turn": 82,
+        "command": "17242 4101 200 ANGLE 18"
+      },
+      {
+        "turn": 83,
+        "command": "23747 3097 102"
+      },
+      {
+        "turn": 84,
+        "command": "17833 7166 0 ANGLE 18"
+      },
+      {
+        "turn": 85,
+        "command": "2775 9026 200"
+      },
+      {
+        "turn": 86,
+        "command": "17414 10203 200 ANGLE 18"
+      },
+      {
+        "turn": 87,
+        "command": "7112 4728 200"
+      },
+      {
+        "turn": 88,
+        "command": "16236 12980 200 ANGLE 18"
+      },
+      {
+        "turn": 89,
+        "command": "15268 -1742 200"
+      },
+      {
+        "turn": 90,
+        "command": "14367 15252 0 ANGLE 18"
+      },
+      {
+        "turn": 91,
+        "command": "18572 5126 200"
+      },
+      {
+        "turn": 92,
+        "command": "11286 16272 0 ANGLE 18"
+      },
+      {
+        "turn": 93,
+        "command": "5565 5454 200"
+      },
+      {
+        "turn": 94,
+        "command": "7973 16396 200 ANGLE 18"
+      },
+      {
+        "turn": 95,
+        "command": "6227 4071 200"
+      },
+      {
+        "turn": 96,
+        "command": "4719 15781 150 ANGLE 18"
+      },
+      {
+        "turn": 97,
+        "command": "7518 7760 200"
+      },
+      {
+        "turn": 98,
+        "command": "1776 14390 100 ANGLE 18"
+      },
+      {
+        "turn": 99,
+        "command": "3038 7060 200"
+      },
+      {
+        "turn": 100,
+        "command": "-594 12288 200 ANGLE 18"
+      },
+      {
+        "turn": 101,
+        "command": "7734 10326 200"
+      },
+      {
+        "turn": 102,
+        "command": "-2284 9721 200 ANGLE 18"
+      },
+      {
+        "turn": 103,
+        "command": "4974 7830 200"
+      },
+      {
+        "turn": 104,
+        "command": "-3168 6899 200 ANGLE 18"
+      },
+      {
+        "turn": 105,
+        "command": "5464 6342 146"
+      },
+      {
+        "turn": 106,
+        "command": "-3198 4061 200 ANGLE 18"
+      },
+      {
+        "turn": 107,
+        "command": "9340 15121 200"
+      },
+      {
+        "turn": 108,
+        "command": "-4515 7262 200 ANGLE -18"
+      },
+      {
+        "turn": 109,
+        "command": "6168 7480 200"
+      },
+      {
+        "turn": 110,
+        "command": "-4848 4904 200 ANGLE 14"
+      },
+      {
+        "turn": 111,
+        "command": "13647 10190 0"
+      },
+      {
+        "turn": 112,
+        "command": "-3863 1799 100 ANGLE 18"
+      },
+      {
+        "turn": 113,
+        "command": "11519 9958 0"
+      },
+      {
+        "turn": 114,
+        "command": "-5556 4351 0 ANGLE -18"
+      },
+      {
+        "turn": 115,
+        "command": "4185 5613 200"
+      },
+      {
+        "turn": 116,
+        "command": "-4547 1274 0 ANGLE 18"
+      },
+      {
+        "turn": 117,
+        "command": "573 1814 200"
+      },
+      {
+        "turn": 118,
+        "command": "-5183 1662 200 ANGLE -4"
+      },
+      {
+        "turn": 119,
+        "command": "9820 7903 200"
+      },
+      {
+        "turn": 120,
+        "command": "-3613 -1042 200 ANGLE 18"
+      },
+      {
+        "turn": 121,
+        "command": "9718 8096 135"
+      },
+      {
+        "turn": 122,
+        "command": "-1462 -3127 SHIELD"
+      },
+      {
+        "turn": 123,
+        "command": "1660 6381 200"
+      },
+      {
+        "turn": 124,
+        "command": "1220 -4238 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 125,
+        "command": "1522 -857 200"
+      },
+      {
+        "turn": 126,
+        "command": "4077 -4322 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 127,
+        "command": "10182 6657 200"
+      },
+      {
+        "turn": 128,
+        "command": "6772 -3411 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 129,
+        "command": "9438 8762 200"
+      },
+      {
+        "turn": 130,
+        "command": "9011 -1620 200 ANGLE 18"
+      },
+      {
+        "turn": 131,
+        "command": "8046 6898 200"
+      },
+      {
+        "turn": 132,
+        "command": "10701 719 200 ANGLE 18"
+      },
+      {
+        "turn": 133,
+        "command": "9306 7978 200"
+      },
+      {
+        "turn": 134,
+        "command": "11682 3418 200 ANGLE 18"
+      },
+      {
+        "turn": 135,
+        "command": "9706 3441 200"
+      },
+      {
+        "turn": 136,
+        "command": "11984 5560 200 ANGLE 14"
+      },
+      {
+        "turn": 137,
+        "command": "7891 7223 200"
+      },
+      {
+        "turn": 138,
+        "command": "12419 2210 200 ANGLE -18"
+      },
+      {
+        "turn": 139,
+        "command": "6097 7051 200"
+      },
+      {
+        "turn": 140,
+        "command": "12581 303 200 ANGLE -10"
+      },
+      {
+        "turn": 141,
+        "command": "6683 6589 200"
+      },
+      {
+        "turn": 142,
+        "command": "13094 111 200 ANGLE -2"
+      },
+      {
+        "turn": 143,
+        "command": "-1752 -1976 33"
+      },
+      {
+        "turn": 144,
+        "command": "13014 -1319 50 ANGLE -10"
+      },
+      {
+        "turn": 145,
+        "command": "16251 6665 200"
+      },
+      {
+        "turn": 146,
+        "command": "14453 312 200 ANGLE 10"
+      },
+      {
+        "turn": 147,
+        "command": "7490 5955 0"
+      },
+      {
+        "turn": 148,
+        "command": "13576 -2380 0 ANGLE -18"
+      },
+      {
+        "turn": 149,
+        "command": "18070 448 200"
+      },
+      {
+        "turn": 150,
+        "command": "15813 294 200 ANGLE 18"
+      },
+      {
+        "turn": 151,
+        "command": "8531 7237 72"
+      },
+      {
+        "turn": 152,
+        "command": "16073 -693 200 ANGLE -6"
+      },
+      {
+        "turn": 153,
+        "command": "-1629 1072 200"
+      },
+      {
+        "turn": 154,
+        "command": "14885 -3057 0 ANGLE -18"
+      },
+      {
+        "turn": 155,
+        "command": "3607 -1943 200"
+      },
+      {
+        "turn": 156,
+        "command": "12911 -4739 150 ANGLE -18"
+      },
+      {
+        "turn": 157,
+        "command": "7232 7190 200"
+      },
+      {
+        "turn": 158,
+        "command": "10416 -5344 150 ANGLE -18"
+      },
+      {
+        "turn": 159,
+        "command": "6313 4326 200"
+      },
+      {
+        "turn": 160,
+        "command": "7720 -5119 200 ANGLE -18"
+      },
+      {
+        "turn": 161,
+        "command": "8296 7036 200"
+      },
+      {
+        "turn": 162,
+        "command": "5093 -4153 200 ANGLE -18"
+      },
+      {
+        "turn": 163,
+        "command": "11710 5632 200"
+      },
+      {
+        "turn": 164,
+        "command": "2864 -1995 200 ANGLE -18"
+      },
+      {
+        "turn": 165,
+        "command": "8847 8345 200"
+      },
+      {
+        "turn": 166,
+        "command": "1164 728 200 ANGLE -18"
+      },
+      {
+        "turn": 167,
+        "command": "9480 6436 200"
+      },
+      {
+        "turn": 168,
+        "command": "1064 776 200 ANGLE 0"
+      },
+      {
+        "turn": 169,
+        "command": "17081 11857 SHIELD"
+      },
+      {
+        "turn": 170,
+        "command": "800 729 150 ANGLE 0"
+      },
+      {
+        "turn": 171,
+        "command": "7388 7773 36"
+      },
+      {
+        "turn": 172,
+        "command": "1207 754 200 ANGLE 4"
+      },
+      {
+        "turn": 173,
+        "command": "14872 8789 0"
+      },
+      {
+        "turn": 174,
+        "command": "3111 -1162 200 ANGLE 18"
+      },
+      {
+        "turn": 175,
+        "command": "3550 4489 6"
+      },
+      {
+        "turn": 176,
+        "command": "4314 -1923 150 ANGLE 10"
+      },
+      {
+        "turn": 177,
+        "command": "11953 8427 200"
+      },
+      {
+        "turn": 178,
+        "command": "4075 -1805 200 ANGLE 0"
+      },
+      {
+        "turn": 179,
+        "command": "6672 12538 200"
+      },
+      {
+        "turn": 180,
+        "command": "6646 -3098 0 ANGLE 18"
+      },
+      {
+        "turn": 181,
+        "command": "9090 5442 200"
+      },
+      {
+        "turn": 182,
+        "command": "6365 -2924 150 ANGLE 0"
+      },
+      {
+        "turn": 183,
+        "command": "0 1375 200"
+      },
+      {
+        "turn": 184,
+        "command": "6322 -3075 50 ANGLE 0"
+      },
+      {
+        "turn": 185,
+        "command": "9151 11400 200"
+      },
+      {
+        "turn": 186,
+        "command": "9374 -3333 SHIELD"
+      },
+      {
+        "turn": 187,
+        "command": "5934 8051 200"
+      },
+      {
+        "turn": 188,
+        "command": "12367 -2616 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 189,
+        "command": "9637 13619 200"
+      },
+      {
+        "turn": 190,
+        "command": "15033 -1030 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 191,
+        "command": "17362 6203 200"
+      },
+      {
+        "turn": 192,
+        "command": "17168 1190 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 193,
+        "command": "9305 3093 0"
+      },
+      {
+        "turn": 194,
+        "command": "18461 3951 SHIELD"
+      },
+      {
+        "turn": 195,
+        "command": "7885 5205 0"
+      },
+      {
+        "turn": 196,
+        "command": "18817 6269 0 SHIELD -2 ANGLE 14"
+      },
+      {
+        "turn": 197,
+        "command": "8039 7197 200"
+      },
+      {
+        "turn": 198,
+        "command": "18378 9274 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 199,
+        "command": "8321 6969 200"
+      },
+      {
+        "turn": 200,
+        "command": "16999 11990 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 201,
+        "command": "10314 4733 200"
+      },
+      {
+        "turn": 202,
+        "command": "17034 11929 100 ANGLE 0"
+      },
+      {
+        "turn": 203,
+        "command": "5737 12816 200"
+      },
+      {
+        "turn": 204,
+        "command": "14932 14149 200 ANGLE 18"
+      },
+      {
+        "turn": 205,
+        "command": "7588 6817 200"
+      },
+      {
+        "turn": 206,
+        "command": "14265 14887 200 ANGLE 6"
+      },
+      {
+        "turn": 207,
+        "command": "8487 -2575 200"
+      },
+      {
+        "turn": 208,
+        "command": "16974 13233 200 ANGLE -18"
+      },
+      {
+        "turn": 209,
+        "command": "11928 121 SHIELD"
+      },
+      {
+        "turn": 210,
+        "command": "19063 11010 SHIELD"
+      },
+      {
+        "turn": 211,
+        "command": "9106 5501 200"
+      },
+      {
+        "turn": 212,
+        "command": "19292 10600 0 SHIELD -2 ANGLE -4"
+      },
+      {
+        "turn": 213,
+        "command": "17039 -3472 200"
+      },
+      {
+        "turn": 214,
+        "command": "18942 10708 0 SHIELD -1 ANGLE 0"
+      },
+      {
+        "turn": 215,
+        "command": "9270 7290 0"
+      },
+      {
+        "turn": 216,
+        "command": "18645 10799 0 SHIELD 0 ANGLE 0"
+      },
+      {
+        "turn": 217,
+        "command": "8542 7396 0"
+      },
+      {
+        "turn": 218,
+        "command": "18393 10876 200 ANGLE 0"
+      },
+      {
+        "turn": 219,
+        "command": "4022 2482 0"
+      },
+      {
+        "turn": 220,
+        "command": "16850 13746 200 ANGLE 18"
+      },
+      {
+        "turn": 221,
+        "command": "14812 3002 171"
+      },
+      {
+        "turn": 222,
+        "command": "18503 11245 200 ANGLE -18"
+      },
+      {
+        "turn": 223,
+        "command": "10252 3186 200"
+      },
+      {
+        "turn": 224,
+        "command": "19403 8442 200 ANGLE -18"
+      },
+      {
+        "turn": 225,
+        "command": "10066 8425 200"
+      },
+      {
+        "turn": 226,
+        "command": "19479 5572 0 ANGLE -18"
+      },
+      {
+        "turn": 227,
+        "command": "7093 8750 200"
+      },
+      {
+        "turn": 228,
+        "command": "18544 2935 200 ANGLE -18"
+      },
+      {
+        "turn": 229,
+        "command": "6346 5682 200"
+      },
+      {
+        "turn": 230,
+        "command": "16906 704 0 ANGLE -18"
+      },
+      {
+        "turn": 231,
+        "command": "9034 7266 200"
+      },
+      {
+        "turn": 232,
+        "command": "14589 -765 50 ANGLE -18"
+      },
+      {
+        "turn": 233,
+        "command": "5051 6200 200"
+      },
+      {
+        "turn": 234,
+        "command": "11892 -1369 200 ANGLE -18"
+      },
+      {
+        "turn": 235,
+        "command": "8848 5851 200"
+      },
+      {
+        "turn": 236,
+        "command": "11518 -1574 200 ANGLE -4"
+      },
+      {
+        "turn": 237,
+        "command": "8538 4154 113"
+      },
+      {
+        "turn": 238,
+        "command": "11437 -1930 200 ANGLE -2"
+      },
+      {
+        "turn": 239,
+        "command": "19303 2378 47"
+      },
+      {
+        "turn": 240,
+        "command": "9929 -2174 200 ANGLE -10"
+      },
+      {
+        "turn": 241,
+        "command": "10287 3671 0"
+      },
+      {
+        "turn": 242,
+        "command": "11089 -3007 200 ANGLE 6"
+      },
+      {
+        "turn": 243,
+        "command": "15886 7681 200"
+      },
+      {
+        "turn": 244,
+        "command": "13610 -3785 200 ANGLE 14"
+      },
+      {
+        "turn": 245,
+        "command": "18830 2865 200"
+      },
+      {
+        "turn": 246,
+        "command": "11959 -4640 200 ANGLE -10"
+      },
+      {
+        "turn": 247,
+        "command": "16263 1323 200"
+      },
+      {
+        "turn": 248,
+        "command": "8975 -4836 0 ANGLE -18"
+      },
+      {
+        "turn": 249,
+        "command": "13122 1252 200"
+      },
+      {
+        "turn": 250,
+        "command": "6347 -3988 0 ANGLE -18"
+      },
+      {
+        "turn": 251,
+        "command": "14424 3425 200"
+      },
+      {
+        "turn": 252,
+        "command": "4340 -2276 0 ANGLE -18"
+      },
+      {
+        "turn": 253,
+        "command": "15593 4268 200"
+      },
+      {
+        "turn": 254,
+        "command": "3155 53 200 ANGLE -18"
+      },
+      {
+        "turn": 255,
+        "command": "13300 3008 200"
+      },
+      {
+        "turn": 256,
+        "command": "2720 2654 150 ANGLE -18"
+      },
+      {
+        "turn": 257,
+        "command": "12839 3867 200"
+      },
+      {
+        "turn": 258,
+        "command": "2433 2226 100 ANGLE 0"
+      },
+      {
+        "turn": 259,
+        "command": "7265 5527 200"
+      },
+      {
+        "turn": 260,
+        "command": "2794 4918 200 ANGLE -18"
+      },
+      {
+        "turn": 261,
+        "command": "11913 7382 200"
+      },
+      {
+        "turn": 262,
+        "command": "3930 7373 200 ANGLE -18"
+      },
+      {
+        "turn": 263,
+        "command": "8094 -2328 SHIELD"
+      },
+      {
+        "turn": 264,
+        "command": "5734 9361 200 ANGLE -18"
+      },
+      {
+        "turn": 265,
+        "command": "19767 6545 200"
+      },
+      {
+        "turn": 266,
+        "command": "5599 8908 200 ANGLE 0"
+      },
+      {
+        "turn": 267,
+        "command": "13641 1168 200"
+      },
+      {
+        "turn": 268,
+        "command": "5687 8297 200 ANGLE 0"
+      },
+      {
+        "turn": 269,
+        "command": "13929 208 200"
+      },
+      {
+        "turn": 270,
+        "command": "6259 8297 200 ANGLE -4"
+      },
+      {
+        "turn": 271,
+        "command": "15409 -174 197"
+      },
+      {
+        "turn": 272,
+        "command": "9097 9197 100 ANGLE -18"
+      },
+      {
+        "turn": 273,
+        "command": "14131 -4453 166"
+      },
+      {
+        "turn": 274,
+        "command": "6019 8175 200 ANGLE 18"
+      },
+      {
+        "turn": 275,
+        "command": "10684 7259 SHIELD"
+      },
+      {
+        "turn": 276,
+        "command": "5220 8001 200 ANGLE 4"
+      },
+      {
+        "turn": 277,
+        "command": "14105 1651 200"
+      },
+      {
+        "turn": 278,
+        "command": "5248 8499 200 ANGLE -2"
+      },
+      {
+        "turn": 279,
+        "command": "15757 1342 200"
+      },
+      {
+        "turn": 280,
+        "command": "4619 8761 200 ANGLE 2"
+      },
+      {
+        "turn": 281,
+        "command": "14490 208 200"
+      },
+      {
+        "turn": 282,
+        "command": "3654 8916 200 ANGLE 4"
+      },
+      {
+        "turn": 283,
+        "command": "7279 -9837 SHIELD"
+      },
+      {
+        "turn": 284,
+        "command": "3494 9740 200 ANGLE -2"
+      },
+      {
+        "turn": 285,
+        "command": "4131 5890 0"
+      },
+      {
+        "turn": 286,
+        "command": "5840 11759 200 ANGLE -18"
+      },
+      {
+        "turn": 287,
+        "command": "2310 6965 200"
+      },
+      {
+        "turn": 288,
+        "command": "8474 12923 0 ANGLE -18"
+      },
+      {
+        "turn": 289,
+        "command": "5051 6079 200"
+      },
+      {
+        "turn": 290,
+        "command": "11145 12991 0 ANGLE -18"
+      },
+      {
+        "turn": 291,
+        "command": "3458 10227 34"
+      },
+      {
+        "turn": 292,
+        "command": "13542 12039 0 ANGLE -18"
+      },
+      {
+        "turn": 293,
+        "command": "733 8411 200"
+      },
+      {
+        "turn": 294,
+        "command": "15386 10231 0 ANGLE -18"
+      },
+      {
+        "turn": 295,
+        "command": "5259 -7731 200"
+      },
+      {
+        "turn": 296,
+        "command": "16464 7803 0 ANGLE -18"
+      },
+      {
+        "turn": 297,
+        "command": "26985 3198 200"
+      },
+      {
+        "turn": 298,
+        "command": "16637 5044 0 ANGLE -18"
+      },
+      {
+        "turn": 299,
+        "command": "4344 8465 200"
+      },
+      {
+        "turn": 300,
+        "command": "15864 2267 0 ANGLE -18"
+      },
+      {
+        "turn": 301,
+        "command": "2458 10348 200"
+      },
+      {
+        "turn": 302,
+        "command": "14198 -221 0 ANGLE -18"
+      },
+      {
+        "turn": 303,
+        "command": "3158 9464 200"
+      },
+      {
+        "turn": 304,
+        "command": "11784 -2143 0 ANGLE -18"
+      },
+      {
+        "turn": 305,
+        "command": "16485 7711 200"
+      },
+      {
+        "turn": 306,
+        "command": "8841 -3287 0 ANGLE -18"
+      },
+      {
+        "turn": 307,
+        "command": "20878 4896 200"
+      },
+      {
+        "turn": 308,
+        "command": "5646 -3516 150 ANGLE -18"
+      },
+      {
+        "turn": 309,
+        "command": "4390 9206 200"
+      },
+      {
+        "turn": 310,
+        "command": "2494 -2940 150 ANGLE -18"
+      },
+      {
+        "turn": 311,
+        "command": "8577 4969 200"
+      },
+      {
+        "turn": 312,
+        "command": "-363 -1581 150 ANGLE -18"
+      },
+      {
+        "turn": 313,
+        "command": "5216 6619 200"
+      },
+      {
+        "turn": 314,
+        "command": "2180 -3350 0 ANGLE 18"
+      },
+      {
+        "turn": 315,
+        "command": "2561 7352 200"
+      },
+      {
+        "turn": 316,
+        "command": "5086 -4161 0 ANGLE 18"
+      },
+      {
+        "turn": 317,
+        "command": "4063 5561 200"
+      },
+      {
+        "turn": 318,
+        "command": "8051 -3961 0 ANGLE 18"
+      },
+      {
+        "turn": 319,
+        "command": "11046 -9816 200"
+      },
+      {
+        "turn": 320,
+        "command": "8596 -3898 200 ANGLE 4"
+      },
+      {
+        "turn": 321,
+        "command": "7813 8428 200"
+      },
+      {
+        "turn": 322,
+        "command": "6188 -4764 50 ANGLE -14"
+      },
+      {
+        "turn": 323,
+        "command": "-7837 16 200"
+      },
+      {
+        "turn": 324,
+        "command": "3042 -4920 200 ANGLE -18"
+      },
+      {
+        "turn": 325,
+        "command": "6963 7610 200"
+      },
+      {
+        "turn": 326,
+        "command": "6106 -5551 200 ANGLE 18"
+      },
+      {
+        "turn": 327,
+        "command": "4550 6957 200"
+      },
+      {
+        "turn": 328,
+        "command": "2953 -5982 200 ANGLE -18"
+      },
+      {
+        "turn": 329,
+        "command": "3847 9320 SHIELD"
+      },
+      {
+        "turn": 330,
+        "command": "6011 -6847 SHIELD"
+      },
+      {
+        "turn": 331,
+        "command": "6227 11116 200"
+      },
+      {
+        "turn": 332,
+        "command": "6305 -6232 0 SHIELD -2 ANGLE 4"
+      },
+      {
+        "turn": 333,
+        "command": "9148 7637 0"
+      },
+      {
+        "turn": 334,
+        "command": "8874 -4602 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 335,
+        "command": "6971 -2054 200"
+      },
+      {
+        "turn": 336,
+        "command": "8543 -4083 0 SHIELD 0 ANGLE 0"
+      },
+      {
+        "turn": 337,
+        "command": "12900 -7097 200"
+      },
+      {
+        "turn": 338,
+        "command": "9159 -3103 50 ANGLE 6"
+      },
+      {
+        "turn": 339,
+        "command": "2884 8286 200"
+      },
+      {
+        "turn": 340,
+        "command": "10788 -1171 200 ANGLE 14"
+      },
+      {
+        "turn": 341,
+        "command": "4297 7050 9"
+      },
+      {
+        "turn": 342,
+        "command": "10759 -1023 100 ANGLE 0"
+      },
+      {
+        "turn": 343,
+        "command": "-4904 5004 200"
+      },
+      {
+        "turn": 344,
+        "command": "8378 -2934 200 ANGLE -18"
+      },
+      {
+        "turn": 345,
+        "command": "1031 6536 200"
+      },
+      {
+        "turn": 346,
+        "command": "5599 -4179 200 ANGLE -18"
+      },
+      {
+        "turn": 347,
+        "command": "2860 5848 200"
+      },
+      {
+        "turn": 348,
+        "command": "2637 -4644 150 ANGLE -18"
+      },
+      {
+        "turn": 349,
+        "command": "13442 4572 0"
+      },
+      {
+        "turn": 350,
+        "command": "-264 -4238 200 ANGLE -18"
+      },
+      {
+        "turn": 351,
+        "command": "7637 4482 0"
+      },
+      {
+        "turn": 352,
+        "command": "-2866 -3060 200 ANGLE -18"
+      },
+      {
+        "turn": 353,
+        "command": "6990 -5349 200"
+      },
+      {
+        "turn": 354,
+        "command": "-4821 -1092 150 ANGLE -18"
+      },
+      {
+        "turn": 355,
+        "command": "5311 6520 200"
+      },
+      {
+        "turn": 356,
+        "command": "-5698 1727 200 ANGLE -18"
+      },
+      {
+        "turn": 357,
+        "command": "710 -5084 200"
+      },
+      {
+        "turn": 358,
+        "command": "-5851 4723 200 ANGLE -18"
+      },
+      {
+        "turn": 359,
+        "command": "2811 5250 200"
+      },
+      {
+        "turn": 360,
+        "command": "-6072 5697 50 ANGLE -4"
+      },
+      {
+        "turn": 361,
+        "command": "-548 -7223 200"
+      },
+      {
+        "turn": 362,
+        "command": "-5508 9302 100 ANGLE -18"
+      },
+      {
+        "turn": 363,
+        "command": "6093 5211 200"
+      },
+      {
+        "turn": 364,
+        "command": "-4091 12393 200 ANGLE -18"
+      },
+      {
+        "turn": 365,
+        "command": "2899 4613 200"
+      },
+      {
+        "turn": 366,
+        "command": "-5943 10388 200 ANGLE 18"
+      },
+      {
+        "turn": 367,
+        "command": "13099 -1667 200"
+      },
+      {
+        "turn": 368,
+        "command": "-7114 7941 200 ANGLE 18"
+      },
+      {
+        "turn": 369,
+        "command": "-4963 170 200"
+      },
+      {
+        "turn": 370,
+        "command": "-6992 5159 200 ANGLE 18"
+      },
+      {
+        "turn": 371,
+        "command": "6084 6221 200"
+      },
+      {
+        "turn": 372,
+        "command": "-6093 2424 200 ANGLE 18"
+      },
+      {
+        "turn": 373,
+        "command": "2061 6537 184"
+      },
+      {
+        "turn": 374,
+        "command": "-7079 4859 200 ANGLE -14"
+      },
+      {
+        "turn": 375,
+        "command": "4188 7732 200"
+      },
+      {
+        "turn": 376,
+        "command": "-6228 2013 0 ANGLE 18"
+      },
+      {
+        "turn": 377,
+        "command": "4487 7441 200"
+      },
+      {
+        "turn": 378,
+        "command": "-4131 -328 200 ANGLE 18"
+      },
+      {
+        "turn": 379,
+        "command": "3666 6885 200"
+      },
+      {
+        "turn": 380,
+        "command": "-4659 83 200 ANGLE -4"
+      },
+      {
+        "turn": 381,
+        "command": "-2505 10483 200"
+      },
+      {
+        "turn": 382,
+        "command": "-3903 -744 200 ANGLE 6"
+      },
+      {
+        "turn": 383,
+        "command": "2015 6539 200"
+      },
+      {
+        "turn": 384,
+        "command": "-5500 898 0 ANGLE -14"
+      },
+      {
+        "turn": 385,
+        "command": "1775 6350 200"
+      },
+      {
+        "turn": 386,
+        "command": "-4996 242 200 ANGLE 4"
+      },
+      {
+        "turn": 387,
+        "command": "3706 7332 200"
+      },
+      {
+        "turn": 388,
+        "command": "-6418 2902 150 ANGLE -18"
+      },
+      {
+        "turn": 389,
+        "command": "2722 6999 200"
+      },
+      {
+        "turn": 390,
+        "command": "-7079 5890 200 ANGLE -18"
+      },
+      {
+        "turn": 391,
+        "command": "4248 -4534 122"
+      },
+      {
+        "turn": 392,
+        "command": "-6610 9089 200 ANGLE -18"
+      },
+      {
+        "turn": 393,
+        "command": "4702 -2739 200"
+      },
+      {
+        "turn": 394,
+        "command": "-6848 6115 50 ANGLE 18"
+      },
+      {
+        "turn": 395,
+        "command": "4168 4380 200"
+      },
+      {
+        "turn": 396,
+        "command": "-6165 3185 200 ANGLE 18"
+      },
+      {
+        "turn": 397,
+        "command": "4468 7826 200"
+      },
+      {
+        "turn": 398,
+        "command": "-4618 585 200 ANGLE 18"
+      },
+      {
+        "turn": 399,
+        "command": "2620 7746 200"
+      },
+      {
+        "turn": 400,
+        "command": "-3316 -591 200 ANGLE 10"
+      },
+      {
+        "turn": 401,
+        "command": "4525 6383 200"
+      },
+      {
+        "turn": 402,
+        "command": "-5302 1735 200 ANGLE -18"
+      },
+      {
+        "turn": 403,
+        "command": "3015 8373 200"
+      },
+      {
+        "turn": 404,
+        "command": "-4671 817 200 ANGLE 6"
+      },
+      {
+        "turn": 405,
+        "command": "6859 8957 200"
+      },
+      {
+        "turn": 406,
+        "command": "-5366 2295 50 ANGLE -10"
+      },
+      {
+        "turn": 407,
+        "command": "3582 6596 200"
+      },
+      {
+        "turn": 408,
+        "command": "-5838 3909 100 ANGLE -10"
+      },
+      {
+        "turn": 409,
+        "command": "5113 7348 181"
+      },
+      {
+        "turn": 410,
+        "command": "-6244 6975 200 ANGLE -18"
+      },
+      {
+        "turn": 411,
+        "command": "1871 8740 200"
+      },
+      {
+        "turn": 412,
+        "command": "-6019 4564 200 ANGLE 14"
+      },
+      {
+        "turn": 413,
+        "command": "3581 7015 200"
+      },
+      {
+        "turn": 414,
+        "command": "-4723 1801 200 ANGLE 18"
+      },
+      {
+        "turn": 415,
+        "command": "4465 7402 200"
+      },
+      {
+        "turn": 416,
+        "command": "-3083 52 200 ANGLE 14"
+      },
+      {
+        "turn": 417,
+        "command": "2278 7558 126"
+      },
+      {
+        "turn": 418,
+        "command": "-4945 2578 100 ANGLE -18"
+      },
+      {
+        "turn": 419,
+        "command": "9060 6340 200"
+      },
+      {
+        "turn": 420,
+        "command": "-3063 131 150 ANGLE 18"
+      },
+      {
+        "turn": 421,
+        "command": "9347 7562 200"
+      },
+      {
+        "turn": 422,
+        "command": "-499 -1617 200 ANGLE 18"
+      },
+      {
+        "turn": 423,
+        "command": "9583 7777 200"
+      },
+      {
+        "turn": 424,
+        "command": "2593 -2352 0 ANGLE 18"
+      },
+      {
+        "turn": 425,
+        "command": "6985 7711 200"
+      },
+      {
+        "turn": 426,
+        "command": "5814 -2129 50 ANGLE 18"
+      },
+      {
+        "turn": 427,
+        "command": "10312 8119 200"
+      },
+      {
+        "turn": 428,
+        "command": "8861 -1017 200 ANGLE 18"
+      },
+      {
+        "turn": 429,
+        "command": "3192 9454 200"
+      },
+      {
+        "turn": 430,
+        "command": "9029 -1116 200 ANGLE 0"
+      },
+      {
+        "turn": 431,
+        "command": "6932 3699 200"
+      },
+      {
+        "turn": 432,
+        "command": "11763 506 100 ANGLE 18"
+      },
+      {
+        "turn": 433,
+        "command": "6890 5413 0"
+      },
+      {
+        "turn": 434,
+        "command": "13830 2780 200 ANGLE 18"
+      },
+      {
+        "turn": 435,
+        "command": "8186 4774 0"
+      },
+      {
+        "turn": 436,
+        "command": "15156 5438 200 ANGLE 18"
+      },
+      {
+        "turn": 437,
+        "command": "12196 912 0"
+      },
+      {
+        "turn": 438,
+        "command": "15648 8255 200 ANGLE 18"
+      },
+      {
+        "turn": 439,
+        "command": "7650 5417 83"
+      },
+      {
+        "turn": 440,
+        "command": "15290 10985 100 ANGLE 18"
+      },
+      {
+        "turn": 441,
+        "command": "6275 6362 33"
+      },
+      {
+        "turn": 442,
+        "command": "14057 13336 200 ANGLE 18"
+      },
+      {
+        "turn": 443,
+        "command": "1676 9339 0"
+      },
+      {
+        "turn": 444,
+        "command": "12184 15151 0 ANGLE 18"
+      },
+      {
+        "turn": 445,
+        "command": "1721 6503 200"
+      },
+      {
+        "turn": 446,
+        "command": "9778 16082 0 ANGLE 18"
+      },
+      {
+        "turn": 447,
+        "command": "9018 6505 200"
+      },
+      {
+        "turn": 448,
+        "command": "7148 16040 200 ANGLE 18"
+      },
+      {
+        "turn": 449,
+        "command": "8137 7825 200"
+      },
+      {
+        "turn": 450,
+        "command": "4577 15229 200 ANGLE 18"
+      },
+      {
+        "turn": 451,
+        "command": "6710 4497 200"
+      },
+      {
+        "turn": 452,
+        "command": "2315 13700 50 ANGLE 18"
+      },
+      {
+        "turn": 453,
+        "command": "5046 5156 200"
+      },
+      {
+        "turn": 454,
+        "command": "684 11471 200 ANGLE 18"
+      },
+      {
+        "turn": 455,
+        "command": "6572 3572 200"
+      },
+      {
+        "turn": 456,
+        "command": "-38 8638 0 ANGLE 18"
+      },
+      {
+        "turn": 457,
+        "command": "9160 5266 200"
+      },
+      {
+        "turn": 458,
+        "command": "201 5626 0 ANGLE 18"
+      },
+      {
+        "turn": 459,
+        "command": "14732 944 200"
+      },
+      {
+        "turn": 460,
+        "command": "1376 2765 0 ANGLE 18"
+      },
+      {
+        "turn": 461,
+        "command": "9051 -10 200"
+      },
+      {
+        "turn": 462,
+        "command": "3390 350 200 ANGLE 18"
+      },
+      {
+        "turn": 463,
+        "command": "10417 6442 139"
+      },
+      {
+        "turn": 464,
+        "command": "5926 -1519 200 ANGLE 18"
+      },
+      {
+        "turn": 465,
+        "command": "4614 9701 200"
+      },
+      {
+        "turn": 466,
+        "command": "8808 -2676 200 ANGLE 18"
+      },
+      {
+        "turn": 467,
+        "command": "10101 3555 200"
+      },
+      {
+        "turn": 468,
+        "command": "11815 -3024 200 ANGLE 18"
+      },
+      {
+        "turn": 469,
+        "command": "15880 4905 200"
+      },
+      {
+        "turn": 470,
+        "command": "14707 -2544 200 ANGLE 18"
+      },
+      {
+        "turn": 471,
+        "command": "14936 2604 200"
+      },
+      {
+        "turn": 472,
+        "command": "13795 -3622 200 ANGLE -6"
+      },
+      {
+        "turn": 473,
+        "command": "13374 1576 200"
+      },
+      {
+        "turn": 474,
+        "command": "13901 -4346 200 ANGLE 0"
+      },
+      {
+        "turn": 475,
+        "command": "5536 -8074 200"
+      },
+      {
+        "turn": 476,
+        "command": "11018 -5850 200 ANGLE -18"
+      },
+      {
+        "turn": 477,
+        "command": "10864 7000 200"
+      },
+      {
+        "turn": 478,
+        "command": "14220 -6026 150 ANGLE 18"
+      },
+      {
+        "turn": 479,
+        "command": "9994 7293 SHIELD"
+      },
+      {
+        "turn": 480,
+        "command": "17088 -5300 200 ANGLE 18"
+      },
+      {
+        "turn": 481,
+        "command": "20863 6863 SHIELD"
+      },
+      {
+        "turn": 482,
+        "command": "14693 -7818 SHIELD"
+      },
+      {
+        "turn": 483,
+        "command": "14500 1364 200"
+      },
+      {
+        "turn": 484,
+        "command": "12181 -8875 0 SHIELD -2 ANGLE -18"
+      },
+      {
+        "turn": 485,
+        "command": "13041 3064 59"
+      },
+      {
+        "turn": 486,
+        "command": "9550 -8858 0 SHIELD -1 ANGLE -18"
+      },
+      {
+        "turn": 487,
+        "command": "16456 4267 200"
+      },
+      {
+        "turn": 488,
+        "command": "9963 -9075 0 SHIELD 0 ANGLE 0"
+      },
+      {
+        "turn": 489,
+        "command": "13452 5782 200"
+      },
+      {
+        "turn": 490,
+        "command": "9313 -8953 150 ANGLE -6"
+      },
+      {
+        "turn": 491,
+        "command": "-2496 -1661 200"
+      },
+      {
+        "turn": 492,
+        "command": "6823 -7733 100 ANGLE -18"
+      },
+      {
+        "turn": 493,
+        "command": "8082 -11426 200"
+      },
+      {
+        "turn": 494,
+        "command": "5696 -6875 0 ANGLE -10"
+      },
+      {
+        "turn": 495,
+        "command": "14276 2815 0"
+      },
+      {
+        "turn": 496,
+        "command": "4117 -4532 200 ANGLE -18"
+      },
+      {
+        "turn": 497,
+        "command": "16364 1245 101"
+      },
+      {
+        "turn": 498,
+        "command": "3230 -1829 200 ANGLE -18"
+      },
+      {
+        "turn": 499,
+        "command": "8665 1339 SHIELD"
+      },
+      {
+        "turn": 500,
+        "command": "3776 -5143 0 ANGLE 18"
+      },
+      {
+        "turn": 501,
+        "command": "15496 1493 200"
+      },
+      {
+        "turn": 502,
+        "command": "3530 -2182 200 ANGLE -18"
+      },
+      {
+        "turn": 503,
+        "command": "17654 4244 200"
+      },
+      {
+        "turn": 504,
+        "command": "3975 870 200 ANGLE -18"
+      },
+      {
+        "turn": 505,
+        "command": "14565 1398 0"
+      },
+      {
+        "turn": 506,
+        "command": "5138 3772 200 ANGLE -18"
+      },
+      {
+        "turn": 507,
+        "command": "12868 2239 200"
+      },
+      {
+        "turn": 508,
+        "command": "5571 4734 200 ANGLE -6"
+      },
+      {
+        "turn": 509,
+        "command": "9819 -13488 200"
+      },
+      {
+        "turn": 510,
+        "command": "7505 7135 200 ANGLE -18"
+      },
+      {
+        "turn": 511,
+        "command": "26268 -1923 0"
+      },
+      {
+        "turn": 512,
+        "command": "8193 7753 200 ANGLE -4"
+      },
+      {
+        "turn": 513,
+        "command": "7579 -11773 200"
+      },
+      {
+        "turn": 514,
+        "command": "6876 7050 50 ANGLE 10"
+      },
+      {
+        "turn": 515,
+        "command": "15579 -3238 200"
+      },
+      {
+        "turn": 516,
+        "command": "4937 4949 200 ANGLE 18"
+      },
+      {
+        "turn": 517,
+        "command": "12955 -1053 200"
+      },
+      {
+        "turn": 518,
+        "command": "3668 2408 100 ANGLE 18"
+      },
+      {
+        "turn": 519,
+        "command": "13957 1090 SHIELD"
+      },
+      {
+        "turn": 520,
+        "command": "3232 324 SHIELD"
+      },
+      {
+        "turn": 521,
+        "command": "17988 -7262 164"
+      },
+      {
+        "turn": 522,
+        "command": "3604 -499 0 SHIELD -2 ANGLE 6"
+      },
+      {
+        "turn": 523,
+        "command": "13480 2203 40"
+      },
+      {
+        "turn": 524,
+        "command": "4761 -3305 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 525,
+        "command": "14421 -251 41"
+      },
+      {
+        "turn": 526,
+        "command": "5125 -3458 0 SHIELD 0 ANGLE 2"
+      },
+      {
+        "turn": 527,
+        "command": "15969 -8806 200"
+      },
+      {
+        "turn": 528,
+        "command": "5140 -3013 200 ANGLE -2"
+      },
+      {
+        "turn": 529,
+        "command": "8917 3539 200"
+      },
+      {
+        "turn": 530,
+        "command": "6902 -5551 200 ANGLE 18"
+      },
+      {
+        "turn": 531,
+        "command": "15358 1934 0"
+      },
+      {
+        "turn": 532,
+        "command": "6731 -5669 150 ANGLE 0"
+      },
+      {
+        "turn": 533,
+        "command": "14283 4890 200"
+      },
+      {
+        "turn": 534,
+        "command": "6478 -5873 150 ANGLE 0"
+      },
+      {
+        "turn": 535,
+        "command": "14011 1985 132"
+      },
+      {
+        "turn": 536,
+        "command": "8654 -8032 200 ANGLE 18"
+      },
+      {
+        "turn": 537,
+        "command": "15359 1712 200"
+      },
+      {
+        "turn": 538,
+        "command": "8808 -8495 200 ANGLE 0"
+      },
+      {
+        "turn": 539,
+        "command": "13903 968 200"
+      },
+      {
+        "turn": 540,
+        "command": "9003 -9080 100 ANGLE 0"
+      },
+      {
+        "turn": 541,
+        "command": "16296 3998 200"
+      },
+      {
+        "turn": 542,
+        "command": "9121 -9664 200 ANGLE 0"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "11006 -6796 200"
+      },
+      {
+        "turn": 2,
+        "command": "1145 2380 200 ANGLE -2"
+      },
+      {
+        "turn": 3,
+        "command": "6925 3393 191"
+      },
+      {
+        "turn": 4,
+        "command": "270 5333 200 ANGLE -18"
+      },
+      {
+        "turn": 5,
+        "command": "8928 7465 0"
+      },
+      {
+        "turn": 6,
+        "command": "12 5448 200 ANGLE -2"
+      },
+      {
+        "turn": 7,
+        "command": "-303 -1275 122"
+      },
+      {
+        "turn": 8,
+        "command": "280 2031 200 ANGLE 18"
+      },
+      {
+        "turn": 9,
+        "command": "5649 1571 200"
+      },
+      {
+        "turn": 10,
+        "command": "-780 4733 200 ANGLE -18"
+      },
+      {
+        "turn": 11,
+        "command": "5073 6438 0"
+      },
+      {
+        "turn": 12,
+        "command": "-1160 6841 200 ANGLE -14"
+      },
+      {
+        "turn": 13,
+        "command": "1599 2803 0"
+      },
+      {
+        "turn": 14,
+        "command": "-1981 5925 200 ANGLE 4"
+      },
+      {
+        "turn": 15,
+        "command": "8831 16467 54"
+      },
+      {
+        "turn": 16,
+        "command": "-1857 8750 SHIELD"
+      },
+      {
+        "turn": 17,
+        "command": "13516 13960 200"
+      },
+      {
+        "turn": 18,
+        "command": "-699 11092 0 SHIELD -2 ANGLE -18"
+      },
+      {
+        "turn": 19,
+        "command": "-1518 9598 112"
+      },
+      {
+        "turn": 20,
+        "command": "1272 12757 0 SHIELD -1 ANGLE -18"
+      },
+      {
+        "turn": 21,
+        "command": "6420 2242 200"
+      },
+      {
+        "turn": 22,
+        "command": "3784 13592 0 SHIELD 0 ANGLE -18"
+      },
+      {
+        "turn": 23,
+        "command": "7761 3194 153"
+      },
+      {
+        "turn": 24,
+        "command": "6533 13491 0 ANGLE -18"
+      },
+      {
+        "turn": 25,
+        "command": "10358 3610 0"
+      },
+      {
+        "turn": 26,
+        "command": "9203 12444 150 ANGLE -18"
+      },
+      {
+        "turn": 27,
+        "command": "9883 5069 0"
+      },
+      {
+        "turn": 28,
+        "command": "11559 10672 200 ANGLE -18"
+      },
+      {
+        "turn": 29,
+        "command": "2788 -3408 SHIELD"
+      },
+      {
+        "turn": 30,
+        "command": "13404 8337 200 ANGLE -18"
+      },
+      {
+        "turn": 31,
+        "command": "12081 281 29"
+      },
+      {
+        "turn": 32,
+        "command": "14569 5610 200 ANGLE -18"
+      },
+      {
+        "turn": 33,
+        "command": "6620 4856 156"
+      },
+      {
+        "turn": 34,
+        "command": "14654 6862 200 ANGLE 6"
+      },
+      {
+        "turn": 35,
+        "command": "7559 15588 200"
+      },
+      {
+        "turn": 36,
+        "command": "15498 4706 200 ANGLE -14"
+      },
+      {
+        "turn": 37,
+        "command": "14631 -4304 200"
+      },
+      {
+        "turn": 38,
+        "command": "15710 1821 200 ANGLE -18"
+      },
+      {
+        "turn": 39,
+        "command": "4466 5589 200"
+      },
+      {
+        "turn": 40,
+        "command": "15082 -884 200 ANGLE -18"
+      },
+      {
+        "turn": 41,
+        "command": "6796 3748 SHIELD"
+      },
+      {
+        "turn": 42,
+        "command": "15428 -1450 200 ANGLE -4"
+      },
+      {
+        "turn": 43,
+        "command": "12511 538 120"
+      },
+      {
+        "turn": 44,
+        "command": "16008 -1844 200 ANGLE -2"
+      },
+      {
+        "turn": 45,
+        "command": "16574 5263 200"
+      },
+      {
+        "turn": 46,
+        "command": "17060 -1806 200 ANGLE 2"
+      },
+      {
+        "turn": 47,
+        "command": "12346 198 49"
+      },
+      {
+        "turn": 48,
+        "command": "19442 611 200 ANGLE 18"
+      },
+      {
+        "turn": 49,
+        "command": "14592 1528 200"
+      },
+      {
+        "turn": 50,
+        "command": "18847 -2466 0 ANGLE -18"
+      },
+      {
+        "turn": 51,
+        "command": "14413 1920 200"
+      },
+      {
+        "turn": 52,
+        "command": "20230 -1897 200 ANGLE 6"
+      },
+      {
+        "turn": 53,
+        "command": "13189 2056 200"
+      },
+      {
+        "turn": 54,
+        "command": "22288 632 200 ANGLE 18"
+      },
+      {
+        "turn": 55,
+        "command": "10773 4363 200"
+      },
+      {
+        "turn": 56,
+        "command": "21968 -2594 SHIELD"
+      },
+      {
+        "turn": 57,
+        "command": "13594 -483 200"
+      },
+      {
+        "turn": 58,
+        "command": "23067 15 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 59,
+        "command": "11244 2370 174"
+      },
+      {
+        "turn": 60,
+        "command": "23235 2902 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 61,
+        "command": "14591 -547 200"
+      },
+      {
+        "turn": 62,
+        "command": "22442 5755 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 63,
+        "command": "13086 1583 200"
+      },
+      {
+        "turn": 64,
+        "command": "22492 5264 200 ANGLE -2"
+      },
+      {
+        "turn": 65,
+        "command": "18596 831 168"
+      },
+      {
+        "turn": 66,
+        "command": "21155 7869 50 ANGLE 18"
+      },
+      {
+        "turn": 67,
+        "command": "15233 2613 0"
+      },
+      {
+        "turn": 68,
+        "command": "19474 9465 200 ANGLE 18"
+      },
+      {
+        "turn": 69,
+        "command": "18642 6274 78"
+      },
+      {
+        "turn": 70,
+        "command": "17266 10498 150 ANGLE 18"
+      },
+      {
+        "turn": 71,
+        "command": "13818 1432 123"
+      },
+      {
+        "turn": 72,
+        "command": "14735 10777 200 ANGLE 18"
+      },
+      {
+        "turn": 73,
+        "command": "14413 1410 200"
+      },
+      {
+        "turn": 74,
+        "command": "18321 10510 200 ANGLE -18"
+      },
+      {
+        "turn": 75,
+        "command": "6826 11212 200"
+      },
+      {
+        "turn": 76,
+        "command": "15679 11179 200 ANGLE 18"
+      },
+      {
+        "turn": 77,
+        "command": "11989 3642 200"
+      },
+      {
+        "turn": 78,
+        "command": "12994 11027 0 ANGLE 18"
+      },
+      {
+        "turn": 79,
+        "command": "13646 1949 200"
+      },
+      {
+        "turn": 80,
+        "command": "12935 11060 200 ANGLE 4"
+      },
+      {
+        "turn": 81,
+        "command": "15217 5821 200"
+      },
+      {
+        "turn": 82,
+        "command": "10953 9718 200 ANGLE 18"
+      },
+      {
+        "turn": 83,
+        "command": "13921 1116 200"
+      },
+      {
+        "turn": 84,
+        "command": "11364 10174 200 ANGLE 0"
+      },
+      {
+        "turn": 85,
+        "command": "10834 754 200"
+      },
+      {
+        "turn": 86,
+        "command": "11077 10226 200 ANGLE 4"
+      },
+      {
+        "turn": 87,
+        "command": "15342 10254 200"
+      },
+      {
+        "turn": 88,
+        "command": "9400 8302 200 ANGLE 18"
+      },
+      {
+        "turn": 89,
+        "command": "16620 1284 200"
+      },
+      {
+        "turn": 90,
+        "command": "9216 8397 200 ANGLE 4"
+      },
+      {
+        "turn": 91,
+        "command": "17472 4117 200"
+      },
+      {
+        "turn": 92,
+        "command": "9116 9094 200 ANGLE 0"
+      },
+      {
+        "turn": 93,
+        "command": "16316 6505 200"
+      },
+      {
+        "turn": 94,
+        "command": "8142 6713 150 ANGLE 18"
+      },
+      {
+        "turn": 95,
+        "command": "14655 6893 200"
+      },
+      {
+        "turn": 96,
+        "command": "7824 7690 200 ANGLE -2"
+      },
+      {
+        "turn": 97,
+        "command": "26806 5215 200"
+      },
+      {
+        "turn": 98,
+        "command": "7554 5231 200 ANGLE 18"
+      },
+      {
+        "turn": 99,
+        "command": "16815 7543 200"
+      },
+      {
+        "turn": 100,
+        "command": "6826 8878 200 ANGLE -18"
+      },
+      {
+        "turn": 101,
+        "command": "18594 -739 200"
+      },
+      {
+        "turn": 102,
+        "command": "6240 7000 100 ANGLE 14"
+      },
+      {
+        "turn": 103,
+        "command": "15312 18111 82"
+      },
+      {
+        "turn": 104,
+        "command": "5719 7220 200 ANGLE 2"
+      },
+      {
+        "turn": 105,
+        "command": "22701 18649 200"
+      },
+      {
+        "turn": 106,
+        "command": "6052 4705 200 ANGLE 18"
+      },
+      {
+        "turn": 107,
+        "command": "15294 196 115"
+      },
+      {
+        "turn": 108,
+        "command": "7340 2710 200 ANGLE 18"
+      },
+      {
+        "turn": 109,
+        "command": "14899 75 158"
+      },
+      {
+        "turn": 110,
+        "command": "9320 1278 200 ANGLE 18"
+      },
+      {
+        "turn": 111,
+        "command": "13597 -315 SHIELD"
+      },
+      {
+        "turn": 112,
+        "command": "6174 3201 0 ANGLE -18"
+      },
+      {
+        "turn": 113,
+        "command": "7480 867 200"
+      },
+      {
+        "turn": 114,
+        "command": "8486 1648 200 ANGLE 18"
+      },
+      {
+        "turn": 115,
+        "command": "15078 1009 200"
+      },
+      {
+        "turn": 116,
+        "command": "5680 3500 200 ANGLE -18"
+      },
+      {
+        "turn": 117,
+        "command": "-418 8042 0"
+      },
+      {
+        "turn": 118,
+        "command": "3453 5902 200 ANGLE -18"
+      },
+      {
+        "turn": 119,
+        "command": "12574 8547 0"
+      },
+      {
+        "turn": 120,
+        "command": "2824 6038 200 ANGLE -2"
+      },
+      {
+        "turn": 121,
+        "command": "9886 11070 0"
+      },
+      {
+        "turn": 122,
+        "command": "2245 5802 200 ANGLE 0"
+      },
+      {
+        "turn": 123,
+        "command": "5331 12095 0"
+      },
+      {
+        "turn": 124,
+        "command": "1733 5203 200 ANGLE 2"
+      },
+      {
+        "turn": 125,
+        "command": "3174 7857 200"
+      },
+      {
+        "turn": 126,
+        "command": "304 6470 200 ANGLE -10"
+      },
+      {
+        "turn": 127,
+        "command": "7602 6801 200"
+      },
+      {
+        "turn": 128,
+        "command": "-406 5791 200 ANGLE 2"
+      },
+      {
+        "turn": 129,
+        "command": "6058 7738 200"
+      },
+      {
+        "turn": 130,
+        "command": "-1169 5101 200 ANGLE 2"
+      },
+      {
+        "turn": 131,
+        "command": "4412 7963 200"
+      },
+      {
+        "turn": 132,
+        "command": "-496 2035 SHIELD"
+      },
+      {
+        "turn": 133,
+        "command": "4637 8047 200"
+      },
+      {
+        "turn": 134,
+        "command": "1067 -343 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 135,
+        "command": "4339 8050 200"
+      },
+      {
+        "turn": 136,
+        "command": "3269 -1843 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 137,
+        "command": "1711 9507 200"
+      },
+      {
+        "turn": 138,
+        "command": "5810 -2351 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 139,
+        "command": "697 3380 200"
+      },
+      {
+        "turn": 140,
+        "command": "8369 -1846 SHIELD"
+      },
+      {
+        "turn": 141,
+        "command": "99 373 200"
+      },
+      {
+        "turn": 142,
+        "command": "4906 -2719 0 SHIELD -2 ANGLE -18"
+      },
+      {
+        "turn": 143,
+        "command": "-2039 8455 0"
+      },
+      {
+        "turn": 144,
+        "command": "7602 -2158 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 145,
+        "command": "13755 -1484 200"
+      },
+      {
+        "turn": 146,
+        "command": "4255 -2983 0 SHIELD 0 ANGLE -18"
+      },
+      {
+        "turn": 147,
+        "command": "2654 8636 200"
+      },
+      {
+        "turn": 148,
+        "command": "7049 -2381 100 ANGLE 18"
+      },
+      {
+        "turn": 149,
+        "command": "3396 7654 SHIELD"
+      },
+      {
+        "turn": 150,
+        "command": "9003 -1378 SHIELD"
+      },
+      {
+        "turn": 151,
+        "command": "241 7537 0"
+      },
+      {
+        "turn": 152,
+        "command": "10863 734 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 153,
+        "command": "3241 6669 200"
+      },
+      {
+        "turn": 154,
+        "command": "11787 3488 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 155,
+        "command": "13380 2134 200"
+      },
+      {
+        "turn": 156,
+        "command": "11830 5852 0 SHIELD 0 ANGLE 14"
+      },
+      {
+        "turn": 157,
+        "command": "13070 1659 198"
+      },
+      {
+        "turn": 158,
+        "command": "11199 8946 200 ANGLE 18"
+      },
+      {
+        "turn": 159,
+        "command": "5155 7696 200"
+      },
+      {
+        "turn": 160,
+        "command": "10783 9976 200 ANGLE 6"
+      },
+      {
+        "turn": 161,
+        "command": "17521 4546 200"
+      },
+      {
+        "turn": 162,
+        "command": "10753 10394 200 ANGLE 2"
+      },
+      {
+        "turn": 163,
+        "command": "15204 1486 200"
+      },
+      {
+        "turn": 164,
+        "command": "11143 10221 200 ANGLE -2"
+      },
+      {
+        "turn": 165,
+        "command": "5437 3927 200"
+      },
+      {
+        "turn": 166,
+        "command": "11556 10418 200 ANGLE 0"
+      },
+      {
+        "turn": 167,
+        "command": "4091 7504 200"
+      },
+      {
+        "turn": 168,
+        "command": "12691 7582 200 ANGLE -18"
+      },
+      {
+        "turn": 169,
+        "command": "16601 222 200"
+      },
+      {
+        "turn": 170,
+        "command": "13134 5552 200 ANGLE -14"
+      },
+      {
+        "turn": 171,
+        "command": "10574 -2154 200"
+      },
+      {
+        "turn": 172,
+        "command": "12766 3060 200 ANGLE -18"
+      },
+      {
+        "turn": 173,
+        "command": "12733 482 182"
+      },
+      {
+        "turn": 174,
+        "command": "11609 894 200 ANGLE -18"
+      },
+      {
+        "turn": 175,
+        "command": "12394 1055 200"
+      },
+      {
+        "turn": 176,
+        "command": "9809 -734 200 ANGLE -18"
+      },
+      {
+        "turn": 177,
+        "command": "14347 5739 200"
+      },
+      {
+        "turn": 178,
+        "command": "8259 -1566 200 ANGLE -14"
+      },
+      {
+        "turn": 179,
+        "command": "7350 8389 0"
+      },
+      {
+        "turn": 180,
+        "command": "5830 -1918 SHIELD"
+      },
+      {
+        "turn": 181,
+        "command": "910 13176 200"
+      },
+      {
+        "turn": 182,
+        "command": "8164 -2261 SHIELD"
+      },
+      {
+        "turn": 183,
+        "command": "8853 7171 200"
+      },
+      {
+        "turn": 184,
+        "command": "6952 -2322 0 SHIELD -2 ANGLE -10"
+      },
+      {
+        "turn": 185,
+        "command": "12073 -461 0"
+      },
+      {
+        "turn": 186,
+        "command": "7364 -2380 0 SHIELD -1 ANGLE 0"
+      },
+      {
+        "turn": 187,
+        "command": "11101 1674 0"
+      },
+      {
+        "turn": 188,
+        "command": "10842 -2374 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 189,
+        "command": "13987 2000 127"
+      },
+      {
+        "turn": 190,
+        "command": "10101 -2543 200 ANGLE -6"
+      },
+      {
+        "turn": 191,
+        "command": "15967 5589 200"
+      },
+      {
+        "turn": 192,
+        "command": "13415 -2073 200 ANGLE 18"
+      },
+      {
+        "turn": 193,
+        "command": "12091 928 17"
+      },
+      {
+        "turn": 194,
+        "command": "16398 -844 200 ANGLE 18"
+      },
+      {
+        "turn": 195,
+        "command": "9076 1328 0"
+      },
+      {
+        "turn": 196,
+        "command": "14100 -2934 200 ANGLE -18"
+      },
+      {
+        "turn": 197,
+        "command": "9587 5488 200"
+      },
+      {
+        "turn": 198,
+        "command": "11258 -4150 0 ANGLE -18"
+      },
+      {
+        "turn": 199,
+        "command": "12436 -5498 200"
+      },
+      {
+        "turn": 200,
+        "command": "8081 -4215 0 ANGLE -18"
+      },
+      {
+        "turn": 201,
+        "command": "7877 2812 200"
+      },
+      {
+        "turn": 202,
+        "command": "5150 -3279 0 ANGLE -18"
+      },
+      {
+        "turn": 203,
+        "command": "7584 6517 200"
+      },
+      {
+        "turn": 204,
+        "command": "2746 -1470 150 ANGLE -18"
+      },
+      {
+        "turn": 205,
+        "command": "8533 4479 200"
+      },
+      {
+        "turn": 206,
+        "command": "986 900 200 ANGLE -18"
+      },
+      {
+        "turn": 207,
+        "command": "4744 3711 200"
+      },
+      {
+        "turn": 208,
+        "command": "75 3296 200 ANGLE -18"
+      },
+      {
+        "turn": 209,
+        "command": "8577 8663 200"
+      },
+      {
+        "turn": 210,
+        "command": "-28 5845 200 ANGLE -18"
+      },
+      {
+        "turn": 211,
+        "command": "15115 45 200"
+      },
+      {
+        "turn": 212,
+        "command": "682 8291 200 ANGLE -18"
+      },
+      {
+        "turn": 213,
+        "command": "10925 -1639 200"
+      },
+      {
+        "turn": 214,
+        "command": "2128 10390 100 ANGLE -18"
+      },
+      {
+        "turn": 215,
+        "command": "18328 1717 200"
+      },
+      {
+        "turn": 216,
+        "command": "2976 11100 100 ANGLE -10"
+      },
+      {
+        "turn": 217,
+        "command": "18707 3552 200"
+      },
+      {
+        "turn": 218,
+        "command": "1003 9735 200 ANGLE 10"
+      },
+      {
+        "turn": 219,
+        "command": "-2697 8360 200"
+      },
+      {
+        "turn": 220,
+        "command": "407 9479 200 ANGLE 0"
+      },
+      {
+        "turn": 221,
+        "command": "5201 1459 200"
+      },
+      {
+        "turn": 222,
+        "command": "2447 10857 200 ANGLE -18"
+      },
+      {
+        "turn": 223,
+        "command": "5208 1817 200"
+      },
+      {
+        "turn": 224,
+        "command": "4780 11226 0 ANGLE -18"
+      },
+      {
+        "turn": 225,
+        "command": "5804 1547 200"
+      },
+      {
+        "turn": 226,
+        "command": "7280 10637 50 ANGLE -18"
+      },
+      {
+        "turn": 227,
+        "command": "3738 -1901 95"
+      },
+      {
+        "turn": 228,
+        "command": "6768 10418 150 ANGLE 0"
+      },
+      {
+        "turn": 229,
+        "command": "4713 429 SHIELD"
+      },
+      {
+        "turn": 230,
+        "command": "5686 10523 200 ANGLE 4"
+      },
+      {
+        "turn": 231,
+        "command": "11420 1307 0"
+      },
+      {
+        "turn": 232,
+        "command": "8082 9035 200 ANGLE -18"
+      },
+      {
+        "turn": 233,
+        "command": "12981 -2165 137"
+      },
+      {
+        "turn": 234,
+        "command": "5365 9550 200 ANGLE 14"
+      },
+      {
+        "turn": 235,
+        "command": "-561 5119 200"
+      },
+      {
+        "turn": 236,
+        "command": "1922 9712 200 ANGLE 18"
+      },
+      {
+        "turn": 237,
+        "command": "15759 5899 SHIELD"
+      },
+      {
+        "turn": 238,
+        "command": "4749 9545 150 ANGLE -18"
+      },
+      {
+        "turn": 239,
+        "command": "20246 1054 SHIELD"
+      },
+      {
+        "turn": 240,
+        "command": "7419 8557 0 ANGLE -18"
+      },
+      {
+        "turn": 241,
+        "command": "17654 -765 101"
+      },
+      {
+        "turn": 242,
+        "command": "8974 7075 200 ANGLE -14"
+      },
+      {
+        "turn": 243,
+        "command": "14468 1630 200"
+      },
+      {
+        "turn": 244,
+        "command": "6240 9055 200 ANGLE 18"
+      },
+      {
+        "turn": 245,
+        "command": "13382 7935 174"
+      },
+      {
+        "turn": 246,
+        "command": "8632 7433 200 ANGLE -18"
+      },
+      {
+        "turn": 247,
+        "command": "-538 4092 200"
+      },
+      {
+        "turn": 248,
+        "command": "10040 5855 200 ANGLE -14"
+      },
+      {
+        "turn": 249,
+        "command": "1998 6042 200"
+      },
+      {
+        "turn": 250,
+        "command": "10109 6273 200 ANGLE 0"
+      },
+      {
+        "turn": 251,
+        "command": "6891 6879 200"
+      },
+      {
+        "turn": 252,
+        "command": "11461 3807 200 ANGLE -18"
+      },
+      {
+        "turn": 253,
+        "command": "13657 -956 28"
+      },
+      {
+        "turn": 254,
+        "command": "10732 7156 200 ANGLE 18"
+      },
+      {
+        "turn": 255,
+        "command": "7454 6503 200"
+      },
+      {
+        "turn": 256,
+        "command": "12358 4698 200 ANGLE -18"
+      },
+      {
+        "turn": 257,
+        "command": "-4797 -4364 200"
+      },
+      {
+        "turn": 258,
+        "command": "12474 6800 200 ANGLE 10"
+      },
+      {
+        "turn": 259,
+        "command": "17548 -1698 200"
+      },
+      {
+        "turn": 260,
+        "command": "13820 4890 200 ANGLE -14"
+      },
+      {
+        "turn": 261,
+        "command": "-3544 1999 200"
+      },
+      {
+        "turn": 262,
+        "command": "14668 2858 200 ANGLE -14"
+      },
+      {
+        "turn": 263,
+        "command": "9654 -4484 200"
+      },
+      {
+        "turn": 264,
+        "command": "14693 500 200 ANGLE -18"
+      },
+      {
+        "turn": 265,
+        "command": "11902 -345 181"
+      },
+      {
+        "turn": 266,
+        "command": "13868 -1553 200 ANGLE -18"
+      },
+      {
+        "turn": 267,
+        "command": "9624 2805 72"
+      },
+      {
+        "turn": 268,
+        "command": "12332 -3171 200 ANGLE -18"
+      },
+      {
+        "turn": 269,
+        "command": "8936 -555 200"
+      },
+      {
+        "turn": 270,
+        "command": "10271 -4167 200 ANGLE -18"
+      },
+      {
+        "turn": 271,
+        "command": "13070 1215 200"
+      },
+      {
+        "turn": 272,
+        "command": "11721 -4089 200 ANGLE 4"
+      },
+      {
+        "turn": 273,
+        "command": "8620 2745 200"
+      },
+      {
+        "turn": 274,
+        "command": "15268 -3034 200 ANGLE 18"
+      },
+      {
+        "turn": 275,
+        "command": "11531 2249 0"
+      },
+      {
+        "turn": 276,
+        "command": "15984 -3428 200 ANGLE 0"
+      },
+      {
+        "turn": 277,
+        "command": "14573 2420 100"
+      },
+      {
+        "turn": 278,
+        "command": "16704 -3928 200 ANGLE 0"
+      },
+      {
+        "turn": 279,
+        "command": "13131 520 200"
+      },
+      {
+        "turn": 280,
+        "command": "19715 -2385 50 ANGLE 18"
+      },
+      {
+        "turn": 281,
+        "command": "11925 -936 92"
+      },
+      {
+        "turn": 282,
+        "command": "18645 -4640 200 ANGLE -14"
+      },
+      {
+        "turn": 283,
+        "command": "9147 14433 66"
+      },
+      {
+        "turn": 284,
+        "command": "19323 -5250 SHIELD"
+      },
+      {
+        "turn": 285,
+        "command": "9306 -1475 200"
+      },
+      {
+        "turn": 286,
+        "command": "21835 -3323 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 287,
+        "command": "13680 1024 0"
+      },
+      {
+        "turn": 288,
+        "command": "21741 -3743 0 SHIELD -1 ANGLE -2"
+      },
+      {
+        "turn": 289,
+        "command": "13059 -3249 200"
+      },
+      {
+        "turn": 290,
+        "command": "23252 -1068 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 291,
+        "command": "16433 6532 0"
+      },
+      {
+        "turn": 292,
+        "command": "21907 -3952 200 ANGLE -18"
+      },
+      {
+        "turn": 293,
+        "command": "17565 4923 0"
+      },
+      {
+        "turn": 294,
+        "command": "19921 -6363 50 ANGLE -18"
+      },
+      {
+        "turn": 295,
+        "command": "10308 3647 0"
+      },
+      {
+        "turn": 296,
+        "command": "17353 -7992 200 ANGLE -18"
+      },
+      {
+        "turn": 297,
+        "command": "14232 1772 0"
+      },
+      {
+        "turn": 298,
+        "command": "14512 -8848 200 ANGLE -18"
+      },
+      {
+        "turn": 299,
+        "command": "2872 7961 200"
+      },
+      {
+        "turn": 300,
+        "command": "11633 -8871 0 ANGLE -18"
+      },
+      {
+        "turn": 301,
+        "command": "3755 8682 200"
+      },
+      {
+        "turn": 302,
+        "command": "9024 -7885 200 ANGLE -18"
+      },
+      {
+        "turn": 303,
+        "command": "15367 1119 200"
+      },
+      {
+        "turn": 304,
+        "command": "6846 -6204 100 ANGLE -18"
+      },
+      {
+        "turn": 305,
+        "command": "4373 5436 200"
+      },
+      {
+        "turn": 306,
+        "command": "5373 -3926 200 ANGLE -18"
+      },
+      {
+        "turn": 307,
+        "command": "26360 6322 0"
+      },
+      {
+        "turn": 308,
+        "command": "4650 -1331 0 ANGLE -18"
+      },
+      {
+        "turn": 309,
+        "command": "14221 -5011 56"
+      },
+      {
+        "turn": 310,
+        "command": "4748 -4170 200 ANGLE 14"
+      },
+      {
+        "turn": 311,
+        "command": "4510 4664 200"
+      },
+      {
+        "turn": 312,
+        "command": "4112 -1458 200 ANGLE -18"
+      },
+      {
+        "turn": 313,
+        "command": "13205 -2240 200"
+      },
+      {
+        "turn": 314,
+        "command": "4444 1010 100 ANGLE -18"
+      },
+      {
+        "turn": 315,
+        "command": "12898 -2795 200"
+      },
+      {
+        "turn": 316,
+        "command": "3379 -2582 200 ANGLE 18"
+      },
+      {
+        "turn": 317,
+        "command": "7295 -12223 200"
+      },
+      {
+        "turn": 318,
+        "command": "2855 -3379 200 ANGLE 2"
+      },
+      {
+        "turn": 319,
+        "command": "4084 7767 200"
+      },
+      {
+        "turn": 320,
+        "command": "2851 -845 200 ANGLE -18"
+      },
+      {
+        "turn": 321,
+        "command": "3512 8750 200"
+      },
+      {
+        "turn": 322,
+        "command": "3697 1344 200 ANGLE -18"
+      },
+      {
+        "turn": 323,
+        "command": "3166 8457 200"
+      },
+      {
+        "turn": 324,
+        "command": "5257 3135 200 ANGLE -18"
+      },
+      {
+        "turn": 325,
+        "command": "2312 -2044 156"
+      },
+      {
+        "turn": 326,
+        "command": "5072 3314 200 ANGLE -4"
+      },
+      {
+        "turn": 327,
+        "command": "4105 7184 200"
+      },
+      {
+        "turn": 328,
+        "command": "7150 4330 200 ANGLE -18"
+      },
+      {
+        "turn": 329,
+        "command": "19365 5473 200"
+      },
+      {
+        "turn": 330,
+        "command": "7079 4559 200 ANGLE -4"
+      },
+      {
+        "turn": 331,
+        "command": "6976 -3017 200"
+      },
+      {
+        "turn": 332,
+        "command": "8845 4889 150 ANGLE -14"
+      },
+      {
+        "turn": 333,
+        "command": "2951 7092 200"
+      },
+      {
+        "turn": 334,
+        "command": "7528 5353 200 ANGLE 4"
+      },
+      {
+        "turn": 335,
+        "command": "3346 9788 200"
+      },
+      {
+        "turn": 336,
+        "command": "9995 5336 200 ANGLE -18"
+      },
+      {
+        "turn": 337,
+        "command": "9049 4036 200"
+      },
+      {
+        "turn": 338,
+        "command": "7866 6467 200 ANGLE 10"
+      },
+      {
+        "turn": 339,
+        "command": "4723 6045 0"
+      },
+      {
+        "turn": 340,
+        "command": "7524 7241 0 ANGLE 0"
+      },
+      {
+        "turn": 341,
+        "command": "2962 3268 0"
+      },
+      {
+        "turn": 342,
+        "command": "10193 6879 200 ANGLE -18"
+      },
+      {
+        "turn": 343,
+        "command": "4687 5477 200"
+      },
+      {
+        "turn": 344,
+        "command": "7082 8633 SHIELD"
+      },
+      {
+        "turn": 345,
+        "command": "4609 7204 200"
+      },
+      {
+        "turn": 346,
+        "command": "3826 9311 0 SHIELD -2 ANGLE 18"
+      },
+      {
+        "turn": 347,
+        "command": "9892 5649 200"
+      },
+      {
+        "turn": 348,
+        "command": "778 8865 0 SHIELD -1 ANGLE 18"
+      },
+      {
+        "turn": 349,
+        "command": "5017 7096 0"
+      },
+      {
+        "turn": 350,
+        "command": "-1832 7468 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 351,
+        "command": "-2444 5108 200"
+      },
+      {
+        "turn": 352,
+        "command": "-516 8903 200 ANGLE -10"
+      },
+      {
+        "turn": 353,
+        "command": "-29 2712 0"
+      },
+      {
+        "turn": 354,
+        "command": "-661 9356 200 ANGLE 0"
+      },
+      {
+        "turn": 355,
+        "command": "4045 5366 200"
+      },
+      {
+        "turn": 356,
+        "command": "-1436 9558 200 ANGLE 4"
+      },
+      {
+        "turn": 357,
+        "command": "4315 8593 0"
+      },
+      {
+        "turn": 358,
+        "command": "-2240 9864 200 ANGLE 4"
+      },
+      {
+        "turn": 359,
+        "command": "10808 9137 0"
+      },
+      {
+        "turn": 360,
+        "command": "149 11987 200 ANGLE -18"
+      },
+      {
+        "turn": 361,
+        "command": "4019 6629 200"
+      },
+      {
+        "turn": 362,
+        "command": "3056 13012 200 ANGLE -18"
+      },
+      {
+        "turn": 363,
+        "command": "4116 5234 200"
+      },
+      {
+        "turn": 364,
+        "command": "3339 13555 200 ANGLE -2"
+      },
+      {
+        "turn": 365,
+        "command": "12338 -553 200"
+      },
+      {
+        "turn": 366,
+        "command": "3271 14190 200 ANGLE 0"
+      },
+      {
+        "turn": 367,
+        "command": "-569 12941 168"
+      },
+      {
+        "turn": 368,
+        "command": "6317 14656 150 ANGLE -18"
+      },
+      {
+        "turn": 369,
+        "command": "-1844 1899 200"
+      },
+      {
+        "turn": 370,
+        "command": "9173 14206 0 ANGLE -18"
+      },
+      {
+        "turn": 371,
+        "command": "6386 6665 0"
+      },
+      {
+        "turn": 372,
+        "command": "11514 12810 200 ANGLE -18"
+      },
+      {
+        "turn": 373,
+        "command": "9605 3128 0"
+      },
+      {
+        "turn": 374,
+        "command": "13262 10814 200 ANGLE -18"
+      },
+      {
+        "turn": 375,
+        "command": "5955 6324 200"
+      },
+      {
+        "turn": 376,
+        "command": "14266 8423 200 ANGLE -18"
+      },
+      {
+        "turn": 377,
+        "command": "8443 8475 200"
+      },
+      {
+        "turn": 378,
+        "command": "14690 7252 200 ANGLE -10"
+      },
+      {
+        "turn": 379,
+        "command": "5866 7802 200"
+      },
+      {
+        "turn": 380,
+        "command": "14465 4695 200 ANGLE -18"
+      },
+      {
+        "turn": 381,
+        "command": "3278 2482 200"
+      },
+      {
+        "turn": 382,
+        "command": "13441 2385 150 ANGLE -18"
+      },
+      {
+        "turn": 383,
+        "command": "8562 5696 200"
+      },
+      {
+        "turn": 384,
+        "command": "11698 582 200 ANGLE -18"
+      },
+      {
+        "turn": 385,
+        "command": "6777 -5663 200"
+      },
+      {
+        "turn": 386,
+        "command": "9462 -572 200 ANGLE -18"
+      },
+      {
+        "turn": 387,
+        "command": "-7019 1167 200"
+      },
+      {
+        "turn": 388,
+        "command": "6962 -960 200 ANGLE -18"
+      },
+      {
+        "turn": 389,
+        "command": "4717 5389 200"
+      },
+      {
+        "turn": 390,
+        "command": "4449 -539 200 ANGLE -18"
+      },
+      {
+        "turn": 391,
+        "command": "9429 7255 200"
+      },
+      {
+        "turn": 392,
+        "command": "2710 203 200 ANGLE -14"
+      },
+      {
+        "turn": 393,
+        "command": "8397 6805 200"
+      },
+      {
+        "turn": 394,
+        "command": "752 1898 200 ANGLE -18"
+      },
+      {
+        "turn": 395,
+        "command": "7783 2698 200"
+      },
+      {
+        "turn": 396,
+        "command": "-347 3963 200 ANGLE -18"
+      },
+      {
+        "turn": 397,
+        "command": "4753 6208 200"
+      },
+      {
+        "turn": 398,
+        "command": "-234 3179 200 ANGLE 0"
+      },
+      {
+        "turn": 399,
+        "command": "6859 7579 200"
+      },
+      {
+        "turn": 400,
+        "command": "10 1468 200 ANGLE 6"
+      },
+      {
+        "turn": 401,
+        "command": "5953 3703 200"
+      },
+      {
+        "turn": 402,
+        "command": "-961 3829 0 ANGLE -18"
+      },
+      {
+        "turn": 403,
+        "command": "8182 3826 200"
+      },
+      {
+        "turn": 404,
+        "command": "-915 6363 200 ANGLE -18"
+      },
+      {
+        "turn": 405,
+        "command": "7316 10971 SHIELD"
+      },
+      {
+        "turn": 406,
+        "command": "-78 8796 0 ANGLE -18"
+      },
+      {
+        "turn": 407,
+        "command": "10409 7408 192"
+      },
+      {
+        "turn": 408,
+        "command": "1700 10703 150 ANGLE -18"
+      },
+      {
+        "turn": 409,
+        "command": "8213 7093 SHIELD"
+      },
+      {
+        "turn": 410,
+        "command": "4220 11814 200 ANGLE -18"
+      },
+      {
+        "turn": 411,
+        "command": "10543 4868 94"
+      },
+      {
+        "turn": 412,
+        "command": "7083 12255 200 ANGLE -18"
+      },
+      {
+        "turn": 413,
+        "command": "8640 8100 135"
+      },
+      {
+        "turn": 414,
+        "command": "3989 11424 200 ANGLE 18"
+      },
+      {
+        "turn": 415,
+        "command": "8105 3006 0"
+      },
+      {
+        "turn": 416,
+        "command": "2322 10709 200 ANGLE 10"
+      },
+      {
+        "turn": 417,
+        "command": "7902 6686 0"
+      },
+      {
+        "turn": 418,
+        "command": "5000 12167 0 ANGLE -18"
+      },
+      {
+        "turn": 419,
+        "command": "5975 4233 200"
+      },
+      {
+        "turn": 420,
+        "command": "1949 11143 0 ANGLE 18"
+      },
+      {
+        "turn": 421,
+        "command": "6360 11401 200"
+      },
+      {
+        "turn": 422,
+        "command": "2103 11492 200 ANGLE -2"
+      },
+      {
+        "turn": 423,
+        "command": "7659 6717 0"
+      },
+      {
+        "turn": 424,
+        "command": "4801 12929 0 ANGLE -18"
+      },
+      {
+        "turn": 425,
+        "command": "6922 4133 200"
+      },
+      {
+        "turn": 426,
+        "command": "7736 13361 0 ANGLE -18"
+      },
+      {
+        "turn": 427,
+        "command": "5516 5192 0"
+      },
+      {
+        "turn": 428,
+        "command": "10598 12778 150 ANGLE -18"
+      },
+      {
+        "turn": 429,
+        "command": "12096 7343 193"
+      },
+      {
+        "turn": 430,
+        "command": "13147 11403 200 ANGLE -18"
+      },
+      {
+        "turn": 431,
+        "command": "11319 8674 200"
+      },
+      {
+        "turn": 432,
+        "command": "15187 9400 200 ANGLE -18"
+      },
+      {
+        "turn": 433,
+        "command": "9900 4741 200"
+      },
+      {
+        "turn": 434,
+        "command": "14420 11291 200 ANGLE 10"
+      },
+      {
+        "turn": 435,
+        "command": "15280 5704 200"
+      },
+      {
+        "turn": 436,
+        "command": "14304 12332 200 ANGLE 4"
+      },
+      {
+        "turn": 437,
+        "command": "9548 4584 200"
+      },
+      {
+        "turn": 438,
+        "command": "14753 12844 SHIELD"
+      },
+      {
+        "turn": 439,
+        "command": "6609 5819 200"
+      },
+      {
+        "turn": 440,
+        "command": "16963 10377 0 SHIELD -2 ANGLE -18"
+      },
+      {
+        "turn": 441,
+        "command": "10363 7161 200"
+      },
+      {
+        "turn": 442,
+        "command": "18295 7758 0 SHIELD -1 ANGLE -18"
+      },
+      {
+        "turn": 443,
+        "command": "6991 7620 0"
+      },
+      {
+        "turn": 444,
+        "command": "17754 11154 0 SHIELD 0 ANGLE 18"
+      },
+      {
+        "turn": 445,
+        "command": "8019 9477 59"
+      },
+      {
+        "turn": 446,
+        "command": "18986 8505 0 ANGLE -18"
+      },
+      {
+        "turn": 447,
+        "command": "5945 4406 200"
+      },
+      {
+        "turn": 448,
+        "command": "19309 8404 200 ANGLE -2"
+      },
+      {
+        "turn": 449,
+        "command": "9523 6866 200"
+      },
+      {
+        "turn": 450,
+        "command": "18984 11484 200 ANGLE 18"
+      },
+      {
+        "turn": 451,
+        "command": "11849 3034 200"
+      },
+      {
+        "turn": 452,
+        "command": "20389 8592 SHIELD"
+      },
+      {
+        "turn": 453,
+        "command": "15612 8714 200"
+      },
+      {
+        "turn": 454,
+        "command": "20553 10436 0 SHIELD -2 ANGLE 10"
+      },
+      {
+        "turn": 455,
+        "command": "9943 8159 200"
+      },
+      {
+        "turn": 456,
+        "command": "21334 7501 0 SHIELD -1 ANGLE -18"
+      },
+      {
+        "turn": 457,
+        "command": "11379 7887 0"
+      },
+      {
+        "turn": 458,
+        "command": "21674 8343 0 SHIELD 0 ANGLE 4"
+      },
+      {
+        "turn": 459,
+        "command": "8193 5808 200"
+      },
+      {
+        "turn": 460,
+        "command": "21582 5360 200 ANGLE -18"
+      },
+      {
+        "turn": 461,
+        "command": "11954 9349 SHIELD"
+      },
+      {
+        "turn": 462,
+        "command": "21066 3164 200 ANGLE -14"
+      },
+      {
+        "turn": 463,
+        "command": "8615 5954 0"
+      },
+      {
+        "turn": 464,
+        "command": "19583 772 200 ANGLE -18"
+      },
+      {
+        "turn": 465,
+        "command": "25461 11473 0"
+      },
+      {
+        "turn": 466,
+        "command": "21829 3543 200 ANGLE 18"
+      },
+      {
+        "turn": 467,
+        "command": "15725 11374 200"
+      },
+      {
+        "turn": 468,
+        "command": "22712 4665 200 ANGLE 6"
+      },
+      {
+        "turn": 469,
+        "command": "14906 8811 0"
+      },
+      {
+        "turn": 470,
+        "command": "21537 2120 200 ANGLE -18"
+      },
+      {
+        "turn": 471,
+        "command": "7857 5037 SHIELD"
+      },
+      {
+        "turn": 472,
+        "command": "19704 83 200 ANGLE -18"
+      },
+      {
+        "turn": 473,
+        "command": "8517 5604 131"
+      },
+      {
+        "turn": 474,
+        "command": "17390 -1268 200 ANGLE -18"
+      },
+      {
+        "turn": 475,
+        "command": "8986 5826 144"
+      },
+      {
+        "turn": 476,
+        "command": "14823 -1823 200 ANGLE -18"
+      },
+      {
+        "turn": 477,
+        "command": "9054 7123 200"
+      },
+      {
+        "turn": 478,
+        "command": "12253 -1544 200 ANGLE -18"
+      },
+      {
+        "turn": 479,
+        "command": "9460 7195 0"
+      },
+      {
+        "turn": 480,
+        "command": "11623 -1703 200 ANGLE -6"
+      },
+      {
+        "turn": 481,
+        "command": "9152 3785 0"
+      },
+      {
+        "turn": 482,
+        "command": "9833 -947 200 ANGLE -14"
+      },
+      {
+        "turn": 483,
+        "command": "15507 2886 200"
+      },
+      {
+        "turn": 484,
+        "command": "9581 -1449 200 ANGLE -2"
+      },
+      {
+        "turn": 485,
+        "command": "13657 5795 200"
+      },
+      {
+        "turn": 486,
+        "command": "7637 340 200 ANGLE -18"
+      },
+      {
+        "turn": 487,
+        "command": "16661 2367 200"
+      },
+      {
+        "turn": 488,
+        "command": "7047 233 200 ANGLE -4"
+      },
+      {
+        "turn": 489,
+        "command": "14790 116 200"
+      },
+      {
+        "turn": 490,
+        "command": "6364 182 200 ANGLE -4"
+      },
+      {
+        "turn": 491,
+        "command": "17215 755 200"
+      },
+      {
+        "turn": 492,
+        "command": "6173 -1457 200 ANGLE 6"
+      },
+      {
+        "turn": 493,
+        "command": "6103 8122 200"
+      },
+      {
+        "turn": 494,
+        "command": "5508 -2100 200 ANGLE 0"
+      },
+      {
+        "turn": 495,
+        "command": "9468 4877 200"
+      },
+      {
+        "turn": 496,
+        "command": "6464 -5351 200 ANGLE 18"
+      },
+      {
+        "turn": 497,
+        "command": "12936 7580 200"
+      },
+      {
+        "turn": 498,
+        "command": "7519 -7617 200 ANGLE 14"
+      },
+      {
+        "turn": 499,
+        "command": "10287 5381 200"
+      },
+      {
+        "turn": 500,
+        "command": "4453 -6216 200 ANGLE -18"
+      },
+      {
+        "turn": 501,
+        "command": "9502 7204 200"
+      },
+      {
+        "turn": 502,
+        "command": "1951 -3579 0 ANGLE -18"
+      },
+      {
+        "turn": 503,
+        "command": "10613 4707 200"
+      },
+      {
+        "turn": 504,
+        "command": "396 -123 200 ANGLE -18"
+      },
+      {
+        "turn": 505,
+        "command": "5830 3019 200"
+      },
+      {
+        "turn": 506,
+        "command": "-237 3302 200 ANGLE -18"
+      },
+      {
+        "turn": 507,
+        "command": "8002 5055 200"
+      },
+      {
+        "turn": 508,
+        "command": "33 6465 200 ANGLE -18"
+      },
+      {
+        "turn": 509,
+        "command": "8964 4959 200"
+      },
+      {
+        "turn": 510,
+        "command": "1105 9143 200 ANGLE -18"
+      },
+      {
+        "turn": 511,
+        "command": "11633 13216 200"
+      },
+      {
+        "turn": 512,
+        "command": "2818 11149 200 ANGLE -18"
+      },
+      {
+        "turn": 513,
+        "command": "4979 7120 200"
+      },
+      {
+        "turn": 514,
+        "command": "4951 12349 200 ANGLE -18"
+      },
+      {
+        "turn": 515,
+        "command": "13185 9237 200"
+      },
+      {
+        "turn": 516,
+        "command": "7252 12680 200 ANGLE -18"
+      },
+      {
+        "turn": 517,
+        "command": "-1771 -436 200"
+      },
+      {
+        "turn": 518,
+        "command": "9460 12154 200 ANGLE -18"
+      },
+      {
+        "turn": 519,
+        "command": "10240 8032 200"
+      },
+      {
+        "turn": 520,
+        "command": "11327 10864 200 ANGLE -18"
+      },
+      {
+        "turn": 521,
+        "command": "11492 5274 200"
+      },
+      {
+        "turn": 522,
+        "command": "12645 8966 200 ANGLE -18"
+      },
+      {
+        "turn": 523,
+        "command": "10032 9225 200"
+      },
+      {
+        "turn": 524,
+        "command": "13261 6676 200 ANGLE -18"
+      },
+      {
+        "turn": 525,
+        "command": "9942 7029 200"
+      },
+      {
+        "turn": 526,
+        "command": "13096 4242 200 ANGLE -18"
+      },
+      {
+        "turn": 527,
+        "command": "8853 7241 200"
+      },
+      {
+        "turn": 528,
+        "command": "13471 4757 200 ANGLE 0"
+      },
+      {
+        "turn": 529,
+        "command": "15917 4158 200"
+      },
+      {
+        "turn": 530,
+        "command": "12658 2303 200 ANGLE -18"
+      },
+      {
+        "turn": 531,
+        "command": "3439 -1412 200"
+      },
+      {
+        "turn": 532,
+        "command": "11124 227 200 ANGLE -18"
+      },
+      {
+        "turn": 533,
+        "command": "8540 7337 200"
+      },
+      {
+        "turn": 534,
+        "command": "9018 -1268 200 ANGLE -18"
+      },
+      {
+        "turn": 535,
+        "command": "7206 6227 200"
+      },
+      {
+        "turn": 536,
+        "command": "11947 -258 200 ANGLE 14"
+      },
+      {
+        "turn": 537,
+        "command": "9065 6517 174"
+      },
+      {
+        "turn": 538,
+        "command": "12757 -480 150 ANGLE 0"
+      },
+      {
+        "turn": 539,
+        "command": "8475 -449 156"
+      },
+      {
+        "turn": 540,
+        "command": "13529 -792 200 ANGLE 0"
+      },
+      {
+        "turn": 541,
+        "command": "8762 5796 200"
+      },
+      {
+        "turn": 542,
+        "command": "14583 -1023 SHIELD"
+      }
+    ]
+  }
+}

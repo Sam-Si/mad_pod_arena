@@ -1,0 +1,30 @@
+load("@rules_cc//cc:defs.bzl", "cc_library", "cc_binary", "cc_test")
+
+cc_library(
+    name = "physics",
+    hdrs = [
+        "physics.h",
+        "json_minimal.h",
+        "maps.h",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+cc_binary(
+    name = "verify_battles",
+    srcs = ["verify_battles.cpp"],
+    deps = [":physics"],
+)
+
+# Text-protocol driver used by sim/physics_driver.py (Python verification harness)
+cc_binary(
+    name = "replay_driver",
+    srcs = ["replay_driver.cpp"],
+    deps = [":physics"],
+)
+
+cc_test(
+    name = "test_physics",
+    srcs = ["test_physics.cpp"],
+    deps = [":physics"],
+)

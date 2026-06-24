@@ -1,0 +1,90 @@
+name: Scheduled tests
+
+on:
+  schedule:
+    # Daily at 06:15 UTC
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: scheduled-tests
+  cancel-in-progress: false
+
+jobs:
+  nightly-build:
+    name: Nightly Bazel suite
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-nightly-${{ runner.os }}-${{ hashFiles('.bazelversion', 'MODULE.bazel', 'MODULE.bazel.lock') }}
+          restore-keys: |
+            bazel-nightly-${{ runner.os }}-
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Build + unit tests
+        run: |
+          bazel build --config=ci //...
+          bazel test --config=ci //... --test_output=errors
+
+  # Broader corpus — informational. Golden gate lives in ci.yml.
+  nightly-physics-leaderboard:
+    name: Nightly physics (leaderboard sample)
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-nightly-phys-${{ runner.os }}-${{ hashFiles('src/physics/**') }}
+          restore-keys: |
+            bazel-nightly-${{ runner.os }}-
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Retention check
+        run: python3 battles/scripts/enforce_retention.py
+
+      - name: Build verifier
+        run: bazel build --config=ci //src/physics:verify_battles
+
+      - name: Golden corpus (must still pass)
+        run: bazel-bin/src/physics/verify_battles --dir battles/test_session_battles
+
+      - name: Leaderboard corpus (full post-cutoff set; report only)
+        run: |
+          set +e
+          bazel-bin/src/physics/verify_battles --dir battles/leaderboard_battles
+          code=$?
+          echo "leaderboard_verify_exit=$code"
+          # Nightly does not fail the workflow on leaderboard edge cases yet;
+          # tighten this to exit $code once the corpus is fully locked.
+          exit 0

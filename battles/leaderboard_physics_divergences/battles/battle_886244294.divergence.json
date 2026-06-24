@@ -1,0 +1,24 @@
+{
+  "battle_file": "battle_886244294.json",
+  "first_fail_turn": 112,
+  "total_turns_in_replay": 148,
+  "progress_pct": 75.68,
+  "error_summary": "pod2 next_cp sim=12(mod=0) gt=3; timeouts sim=(56, 100) gt=(56, 96)",
+  "error_types": [
+    "checkpoint",
+    "timeout"
+  ],
+  "verifier_formula": {
+    "description": "Turn-by-turn replay: inject frame-0 state + exact stdout actions into src/physics/physics.h; compare every keyframe.",
+    "tolerances": {
+      "position": "abs(sim - gt) <= 5.0 units per axis",
+      "velocity": "abs(sim - gt) <= 3 units per axis (int after trunc friction)",
+      "angle": "shortest angular distance <= 1.0 degrees",
+      "next_cp": "sim.next % n_checkpoints == gt.next_cp (exact integer)",
+      "timeouts": "abs(sim - gt) <= 1 per player"
+    },
+    "fail_rule": "First turn where any field exceeds tolerance stops the battle (later turns not counted).",
+    "physics_path": "src/physics/physics.h",
+    "verifier_path": "sim/verify_battles.py"
+  }
+}

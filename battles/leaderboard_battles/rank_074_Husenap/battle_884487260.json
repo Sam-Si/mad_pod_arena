@@ -1,0 +1,4866 @@
+{
+  "gameId": 884487260,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 7232,
+          "y": 6631
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 5399,
+          "y": 2833
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 10347,
+          "y": 3375
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 11173,
+          "y": 5400
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 6782.0,
+          "y": 6848.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 7682.0,
+          "y": 6414.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 5881.0,
+          "y": 7283.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 8583.0,
+          "y": 5979.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 6782.0,
+          "y": 6848.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 7682.0,
+          "y": 6414.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 5881.0,
+          "y": 7283.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 8583.0,
+          "y": 5979.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 464,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 466,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 468,
+      "log": "$0 rank: 1\n$1 rank: 2\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "6083 -3128 BOOST github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 2,
+        "command": "-1411 -92451 BOOST"
+      },
+      {
+        "turn": 3,
+        "command": "2991 -3072 185 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 4,
+        "command": "30026 -90395 200"
+      },
+      {
+        "turn": 5,
+        "command": "5932 -4499 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 6,
+        "command": "46516 -85465 200"
+      },
+      {
+        "turn": 7,
+        "command": "9026 -5089 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 8,
+        "command": "44921 -86927 195"
+      },
+      {
+        "turn": 9,
+        "command": "5967 -6142 8 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 10,
+        "command": "71457 -71131 28"
+      },
+      {
+        "turn": 11,
+        "command": "2968 -6101 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 12,
+        "command": "91588 -47850 0"
+      },
+      {
+        "turn": 13,
+        "command": "327 -5052 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 14,
+        "command": "91605 -48433 200"
+      },
+      {
+        "turn": 15,
+        "command": "-751 -4434 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 16,
+        "command": "95946 -41361 0"
+      },
+      {
+        "turn": 17,
+        "command": "-2217 -2265 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 18,
+        "command": "102163 -25816 161"
+      },
+      {
+        "turn": 19,
+        "command": "-2811 358 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 20,
+        "command": "106102 4521 200"
+      },
+      {
+        "turn": 21,
+        "command": "-2455 3130 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 22,
+        "command": "100438 34631 181"
+      },
+      {
+        "turn": 23,
+        "command": "-1152 5748 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 24,
+        "command": "85685 61531 200"
+      },
+      {
+        "turn": 25,
+        "command": "1057 7999 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 26,
+        "command": "71586 76205 200"
+      },
+      {
+        "turn": 27,
+        "command": "3879 9533 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 28,
+        "command": "45256 92163 200"
+      },
+      {
+        "turn": 29,
+        "command": "7056 10185 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 30,
+        "command": "15260 99254 200"
+      },
+      {
+        "turn": 31,
+        "command": "10211 10043 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 32,
+        "command": "14033 99440 200"
+      },
+      {
+        "turn": 33,
+        "command": "13180 9138 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 34,
+        "command": "5760 99776 200"
+      },
+      {
+        "turn": 35,
+        "command": "14484 8734 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 36,
+        "command": "4392 100120 200"
+      },
+      {
+        "turn": 37,
+        "command": "16840 6901 175 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 38,
+        "command": "11680 100798 200"
+      },
+      {
+        "turn": 39,
+        "command": "15115 9739 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 40,
+        "command": "-253 100937 200"
+      },
+      {
+        "turn": 41,
+        "command": "16575 9379 110 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 42,
+        "command": "-25433 95613 200"
+      },
+      {
+        "turn": 43,
+        "command": "14554 11882 161 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 44,
+        "command": "-1674 102350 79"
+      },
+      {
+        "turn": 45,
+        "command": "17172 10605 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 46,
+        "command": "-31362 94500 200"
+      },
+      {
+        "turn": 47,
+        "command": "16383 12225 189 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 48,
+        "command": "-57056 77843 200"
+      },
+      {
+        "turn": 49,
+        "command": "15018 14166 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 50,
+        "command": "-70695 62927 200"
+      },
+      {
+        "turn": 51,
+        "command": "12172 15864 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 52,
+        "command": "-84220 35780 200"
+      },
+      {
+        "turn": 53,
+        "command": "11939 16716 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 54,
+        "command": "-86754 26524 200"
+      },
+      {
+        "turn": 55,
+        "command": "8853 17396 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 56,
+        "command": "-87736 22256 200"
+      },
+      {
+        "turn": 57,
+        "command": "5831 17096 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 58,
+        "command": "-87410 -8144 200"
+      },
+      {
+        "turn": 59,
+        "command": "3191 15970 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 60,
+        "command": "-85431 -17600 200"
+      },
+      {
+        "turn": 61,
+        "command": "1264 14363 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 62,
+        "command": "-86808 -13509 65"
+      },
+      {
+        "turn": 63,
+        "command": "-163 12035 92 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 64,
+        "command": "-75047 -41699 45"
+      },
+      {
+        "turn": 65,
+        "command": "-651 9353 53 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 66,
+        "command": "-79769 -33494 200"
+      },
+      {
+        "turn": 67,
+        "command": "-228 6904 42 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 68,
+        "command": "-61919 -58377 200"
+      },
+      {
+        "turn": 69,
+        "command": "340 5567 188 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 70,
+        "command": "-63742 -56909 200"
+      },
+      {
+        "turn": 71,
+        "command": "1247 4177 100 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 72,
+        "command": "-39409 -75688 0"
+      },
+      {
+        "turn": 73,
+        "command": "1566 3575 32 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 74,
+        "command": "-10382 -85832 200"
+      },
+      {
+        "turn": 75,
+        "command": "3931 2214 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 76,
+        "command": "20394 -86540 200"
+      },
+      {
+        "turn": 77,
+        "command": "6683 1430 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 78,
+        "command": "49823 -77558 200"
+      },
+      {
+        "turn": 79,
+        "command": "8637 1225 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 80,
+        "command": "63013 -69911 200"
+      },
+      {
+        "turn": 81,
+        "command": "10715 1481 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 82,
+        "command": "84290 -49995 200"
+      },
+      {
+        "turn": 83,
+        "command": "13140 2661 195 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 84,
+        "command": "80977 -54525 101"
+      },
+      {
+        "turn": 85,
+        "command": "15013 4493 42 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 86,
+        "command": "91313 -40905 0"
+      },
+      {
+        "turn": 87,
+        "command": "16032 6846 53 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 88,
+        "command": "100224 -22367 0"
+      },
+      {
+        "turn": 89,
+        "command": "16117 9424 28 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 90,
+        "command": "85555 -50281 200"
+      },
+      {
+        "turn": 91,
+        "command": "15245 11921 6 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 92,
+        "command": "67122 -68865 200"
+      },
+      {
+        "turn": 93,
+        "command": "13492 14030 55 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 94,
+        "command": "77499 -59659 200"
+      },
+      {
+        "turn": 95,
+        "command": "11076 15535 15 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 96,
+        "command": "67282 -69242 200"
+      },
+      {
+        "turn": 97,
+        "command": "8388 16191 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 98,
+        "command": "40207 -84633 200"
+      },
+      {
+        "turn": 99,
+        "command": "10873 15520 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 100,
+        "command": "37229 -86113 0"
+      },
+      {
+        "turn": 101,
+        "command": "8383 16424 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 102,
+        "command": "11835 -91161 11"
+      },
+      {
+        "turn": 103,
+        "command": "5448 16670 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 104,
+        "command": "-19048 -88149 200"
+      },
+      {
+        "turn": 105,
+        "command": "2781 16033 117 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 106,
+        "command": "-8663 -90735 61"
+      },
+      {
+        "turn": 107,
+        "command": "712 14460 1 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 108,
+        "command": "-10322 -90636 200"
+      },
+      {
+        "turn": 109,
+        "command": "-598 12105 45 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 110,
+        "command": "20877 -91478 200"
+      },
+      {
+        "turn": 111,
+        "command": "-1128 9319 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 112,
+        "command": "-10447 -91381 148"
+      },
+      {
+        "turn": 113,
+        "command": "-936 6403 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 114,
+        "command": "-39791 -81645 200"
+      },
+      {
+        "turn": 115,
+        "command": "8 3604 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 116,
+        "command": "-64446 -63318 200"
+      },
+      {
+        "turn": 117,
+        "command": "1652 1160 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 118,
+        "command": "-82253 -38254 200"
+      },
+      {
+        "turn": 119,
+        "command": "3871 -717 192 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 120,
+        "command": "-88067 -24222 200"
+      },
+      {
+        "turn": 121,
+        "command": "6478 -1862 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 122,
+        "command": "-92666 6220 124"
+      },
+      {
+        "turn": 123,
+        "command": "4243 -1887 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 124,
+        "command": "-87564 36575 SHIELD"
+      },
+      {
+        "turn": 125,
+        "command": "4958 -2601 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 126,
+        "command": "-73157 63812 0"
+      },
+      {
+        "turn": 127,
+        "command": "7666 -2745 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 128,
+        "command": "-50889 85216 0"
+      },
+      {
+        "turn": 129,
+        "command": "11108 -2203 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 130,
+        "command": "-58012 79626 168"
+      },
+      {
+        "turn": 131,
+        "command": "12304 -2133 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 132,
+        "command": "-31365 95503 12"
+      },
+      {
+        "turn": 133,
+        "command": "12884 -2471 91 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 134,
+        "command": "-1029 102351 0"
+      },
+      {
+        "turn": 135,
+        "command": "11501 -3608 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 136,
+        "command": "30012 99464 200"
+      },
+      {
+        "turn": 137,
+        "command": "8792 -4549 20 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 138,
+        "command": "58753 87297 200"
+      },
+      {
+        "turn": 139,
+        "command": "6056 -4448 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 140,
+        "command": "82422 66990 153"
+      },
+      {
+        "turn": 141,
+        "command": "3604 -3352 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 142,
+        "command": "98701 40455 200"
+      },
+      {
+        "turn": 143,
+        "command": "1713 -1421 188 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 144,
+        "command": "103412 27472 38"
+      },
+      {
+        "turn": 145,
+        "command": "595 1112 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 146,
+        "command": "106554 -3460 200"
+      },
+      {
+        "turn": 147,
+        "command": "388 3960 34 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 148,
+        "command": "104788 -18793 200"
+      },
+      {
+        "turn": 149,
+        "command": "1132 6813 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 150,
+        "command": "93732 -47689 SHIELD"
+      },
+      {
+        "turn": 151,
+        "command": "2585 9433 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 152,
+        "command": "91483 -52008 186"
+      },
+      {
+        "turn": 153,
+        "command": "4661 11590 199 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 154,
+        "command": "70624 -74809 0"
+      },
+      {
+        "turn": 155,
+        "command": "4112 11546 34 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 156,
+        "command": "43640 -89880 113"
+      },
+      {
+        "turn": 157,
+        "command": "6960 12804 39 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 158,
+        "command": "12946 -95444 120"
+      },
+      {
+        "turn": 159,
+        "command": "10089 13192 9 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 160,
+        "command": "-18089 -91406 173"
+      },
+      {
+        "turn": 161,
+        "command": "10645 13102 136 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 162,
+        "command": "-35956 -84356 200"
+      },
+      {
+        "turn": 163,
+        "command": "13741 12524 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 164,
+        "command": "-14866 -92443 0"
+      },
+      {
+        "turn": 165,
+        "command": "16479 11020 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 166,
+        "command": "16203 -95303 0"
+      },
+      {
+        "turn": 167,
+        "command": "13794 12636 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 168,
+        "command": "46604 -88378 0"
+      },
+      {
+        "turn": 169,
+        "command": "10753 13329 123 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 170,
+        "command": "73351 -72360 50"
+      },
+      {
+        "turn": 171,
+        "command": "8683 13256 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 172,
+        "command": "93849 -48867 189"
+      },
+      {
+        "turn": 173,
+        "command": "5721 12319 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 174,
+        "command": "106211 -20268 2"
+      },
+      {
+        "turn": 175,
+        "command": "3201 10505 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 176,
+        "command": "109055 10730 200"
+      },
+      {
+        "turn": 177,
+        "command": "1469 8145 23 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 178,
+        "command": "106458 -20521 172"
+      },
+      {
+        "turn": 179,
+        "command": "1781 8604 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 180,
+        "command": "109129 10627 90"
+      },
+      {
+        "turn": 181,
+        "command": "655 5707 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 182,
+        "command": "106854 -18854 0"
+      },
+      {
+        "turn": 183,
+        "command": "452 2936 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 184,
+        "command": "108906 -6820 200"
+      },
+      {
+        "turn": 185,
+        "command": "801 5998 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 186,
+        "command": "100850 -37028 200"
+      },
+      {
+        "turn": 187,
+        "command": "457 3037 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 188,
+        "command": "109000 -6843 140"
+      },
+      {
+        "turn": 189,
+        "command": "872 6048 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 190,
+        "command": "100848 -37041 200"
+      },
+      {
+        "turn": 191,
+        "command": "2138 8829 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 192,
+        "command": "92428 -52318 200"
+      },
+      {
+        "turn": 193,
+        "command": "861 5960 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 194,
+        "command": "105582 -24003 197"
+      },
+      {
+        "turn": 195,
+        "command": "1979 8478 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 196,
+        "command": "92354 -52394 200"
+      },
+      {
+        "turn": 197,
+        "command": "1063 6818 76 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 198,
+        "command": "102208 -34048 200"
+      },
+      {
+        "turn": 199,
+        "command": "677 5162 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 200,
+        "command": "107308 -17494 196"
+      },
+      {
+        "turn": 201,
+        "command": "549 2101 180 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 202,
+        "command": "109040 13601 198"
+      },
+      {
+        "turn": 203,
+        "command": "1304 -697 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 204,
+        "command": "109325 11742 84"
+      },
+      {
+        "turn": 205,
+        "command": "2747 -2823 158 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 206,
+        "command": "101651 41865 76"
+      },
+      {
+        "turn": 207,
+        "command": "5023 -4928 2 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 208,
+        "command": "85045 68226 200"
+      },
+      {
+        "turn": 209,
+        "command": "2656 -2845 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 210,
+        "command": "85174 68211 79"
+      },
+      {
+        "turn": 211,
+        "command": "2512 -2718 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 212,
+        "command": "86476 66924 SHIELD"
+      },
+      {
+        "turn": 213,
+        "command": "4771 -4858 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 214,
+        "command": "63007 87483 16"
+      },
+      {
+        "turn": 215,
+        "command": "2498 -2632 22 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 216,
+        "command": "61601 88325 37"
+      },
+      {
+        "turn": 217,
+        "command": "4816 -4642 166 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 218,
+        "command": "32643 99941 200"
+      },
+      {
+        "turn": 219,
+        "command": "7677 -5861 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 220,
+        "command": "4957 102279 200"
+      },
+      {
+        "turn": 221,
+        "command": "5761 -5375 192 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 222,
+        "command": "8472 102527 200"
+      },
+      {
+        "turn": 223,
+        "command": "3634 -3460 122 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 224,
+        "command": "-22602 96915 1"
+      },
+      {
+        "turn": 225,
+        "command": "2132 -875 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 226,
+        "command": "-21217 97234 200"
+      },
+      {
+        "turn": 227,
+        "command": "2088 -808 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 228,
+        "command": "9385 102092 183"
+      },
+      {
+        "turn": 229,
+        "command": "1727 -483 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 230,
+        "command": "-3179 101119 200"
+      },
+      {
+        "turn": 231,
+        "command": "755 2372 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 232,
+        "command": "-30409 93920 200"
+      },
+      {
+        "turn": 233,
+        "command": "884 5352 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 234,
+        "command": "-38653 90353 200"
+      },
+      {
+        "turn": 235,
+        "command": "1908 7691 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 236,
+        "command": "-9479 100875 0"
+      },
+      {
+        "turn": 237,
+        "command": "3898 10060 76 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 238,
+        "command": "21457 101706 0"
+      },
+      {
+        "turn": 239,
+        "command": "6329 11696 92 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 240,
+        "command": "51083 92800 0"
+      },
+      {
+        "turn": 241,
+        "command": "9269 12644 11 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 242,
+        "command": "76463 75060 38"
+      },
+      {
+        "turn": 243,
+        "command": "12339 12619 49 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 244,
+        "command": "95107 50274 198"
+      },
+      {
+        "turn": 245,
+        "command": "15240 11668 8 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 246,
+        "command": "103424 29473 200"
+      },
+      {
+        "turn": 247,
+        "command": "17678 9850 8 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 248,
+        "command": "106902 -1367 101"
+      },
+      {
+        "turn": 249,
+        "command": "19410 7352 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 250,
+        "command": "100674 -31741 200"
+      },
+      {
+        "turn": 251,
+        "command": "20258 4426 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 252,
+        "command": "86539 -57348 SHIELD"
+      },
+      {
+        "turn": 253,
+        "command": "20138 1367 18 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 254,
+        "command": "64033 -78503 200"
+      },
+      {
+        "turn": 255,
+        "command": "19059 -1516 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 256,
+        "command": "81568 -63644 200"
+      },
+      {
+        "turn": 257,
+        "command": "17126 -3934 182 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 258,
+        "command": "79415 -66024 198"
+      },
+      {
+        "turn": 259,
+        "command": "14527 -5643 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 260,
+        "command": "58934 -81805 181"
+      },
+      {
+        "turn": 261,
+        "command": "17117 -3860 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 262,
+        "command": "38456 -90895 200"
+      },
+      {
+        "turn": 263,
+        "command": "14520 -5581 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 264,
+        "command": "28291 -93647 200"
+      },
+      {
+        "turn": 265,
+        "command": "11511 -6420 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 266,
+        "command": "-2610 -94848 48"
+      },
+      {
+        "turn": 267,
+        "command": "8383 -6292 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 268,
+        "command": "-32379 -86364 200"
+      },
+      {
+        "turn": 269,
+        "command": "5470 -5256 113 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 270,
+        "command": "-58415 -68668 186"
+      },
+      {
+        "turn": 271,
+        "command": "3030 -3365 103 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 272,
+        "command": "-32723 -86066 0"
+      },
+      {
+        "turn": 273,
+        "command": "1303 -800 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 274,
+        "command": "-2724 -94671 0"
+      },
+      {
+        "turn": 275,
+        "command": "459 2183 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 276,
+        "command": "28580 -93612 0"
+      },
+      {
+        "turn": 277,
+        "command": "583 5290 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 278,
+        "command": "58010 -82939 0"
+      },
+      {
+        "turn": 279,
+        "command": "1665 8213 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 280,
+        "command": "82732 -63786 200"
+      },
+      {
+        "turn": 281,
+        "command": "3601 10665 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 282,
+        "command": "100482 -38177 SHIELD"
+      },
+      {
+        "turn": 283,
+        "command": "3365 10121 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 284,
+        "command": "101293 -36702 180"
+      },
+      {
+        "turn": 285,
+        "command": "5005 11129 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 286,
+        "command": "109199 -8224 70"
+      },
+      {
+        "turn": 287,
+        "command": "7972 12299 89 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 288,
+        "command": "100580 -38306 200"
+      },
+      {
+        "turn": 289,
+        "command": "11202 12564 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 290,
+        "command": "106983 -20241 200"
+      },
+      {
+        "turn": 291,
+        "command": "14397 12077 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 292,
+        "command": "110135 5644 92"
+      },
+      {
+        "turn": 293,
+        "command": "15687 11846 161 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 294,
+        "command": "106039 33094 197"
+      },
+      {
+        "turn": 295,
+        "command": "14931 12600 2 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 296,
+        "command": "92732 61237 21"
+      },
+      {
+        "turn": 297,
+        "command": "12146 13392 72 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 298,
+        "command": "71253 83872 0"
+      },
+      {
+        "turn": 299,
+        "command": "9393 13153 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 300,
+        "command": "43738 98765 0"
+      },
+      {
+        "turn": 301,
+        "command": "6800 12142 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 302,
+        "command": "13019 104372 200"
+      },
+      {
+        "turn": 303,
+        "command": "4607 10438 28 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 304,
+        "command": "18332 104490 175"
+      },
+      {
+        "turn": 305,
+        "command": "3148 8082 128 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 306,
+        "command": "-12754 102233 39"
+      },
+      {
+        "turn": 307,
+        "command": "2480 5379 183 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 308,
+        "command": "-41419 90395 200"
+      },
+      {
+        "turn": 309,
+        "command": "2638 2569 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 310,
+        "command": "-64855 70268 192"
+      },
+      {
+        "turn": 311,
+        "command": "2241 3134 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 312,
+        "command": "-81082 44048 200"
+      },
+      {
+        "turn": 313,
+        "command": "1602 6261 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 314,
+        "command": "-88401 14146 200"
+      },
+      {
+        "turn": 315,
+        "command": "1803 9317 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 316,
+        "command": "-86114 -16513 177"
+      },
+      {
+        "turn": 317,
+        "command": "2805 12067 170 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 318,
+        "command": "-74433 -44924 0"
+      },
+      {
+        "turn": 319,
+        "command": "4517 14271 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 320,
+        "command": "-54369 -68206 0"
+      },
+      {
+        "turn": 321,
+        "command": "6830 15758 143 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 322,
+        "command": "-27943 -84040 118"
+      },
+      {
+        "turn": 323,
+        "command": "9487 16370 7 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 324,
+        "command": "2165 -90949 200"
+      },
+      {
+        "turn": 325,
+        "command": "12128 15955 63 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 326,
+        "command": "14041 -91147 200"
+      },
+      {
+        "turn": 327,
+        "command": "14472 14645 71 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 328,
+        "command": "-17348 -88153 SHIELD"
+      },
+      {
+        "turn": 329,
+        "command": "15785 13325 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 330,
+        "command": "13537 -91657 SHIELD"
+      },
+      {
+        "turn": 331,
+        "command": "16889 10716 27 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 332,
+        "command": "-17641 -88468 200"
+      },
+      {
+        "turn": 333,
+        "command": "17009 7689 71 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 334,
+        "command": "-37111 -80957 125"
+      },
+      {
+        "turn": 335,
+        "command": "16207 4652 13 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 336,
+        "command": "-14168 -89277 200"
+      },
+      {
+        "turn": 337,
+        "command": "14520 1909 148 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 338,
+        "command": "-32314 -83182 200"
+      },
+      {
+        "turn": 339,
+        "command": "12202 -352 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 340,
+        "command": "-38640 -80294 200"
+      },
+      {
+        "turn": 341,
+        "command": "9442 -1976 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 342,
+        "command": "-43336 -78038 200"
+      },
+      {
+        "turn": 343,
+        "command": "6437 -2827 199 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 344,
+        "command": "-21290 -88395 200"
+      },
+      {
+        "turn": 345,
+        "command": "9599 -2844 157 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 346,
+        "command": "-49656 -75248 131"
+      },
+      {
+        "turn": 347,
+        "command": "12211 -2202 146 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 348,
+        "command": "-72445 -54105 SHIELD"
+      },
+      {
+        "turn": 349,
+        "command": "13917 -672 36 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 350,
+        "command": "-74660 -51783 200"
+      },
+      {
+        "turn": 351,
+        "command": "14143 -199 45 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 352,
+        "command": "-53066 -74715 200"
+      },
+      {
+        "turn": 353,
+        "command": "14959 2224 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 354,
+        "command": "-58608 -70684 0"
+      },
+      {
+        "turn": 355,
+        "command": "15070 4896 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 356,
+        "command": "-78819 -47024 SHIELD"
+      },
+      {
+        "turn": 357,
+        "command": "14421 7566 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 358,
+        "command": "-89780 -21662 116"
+      },
+      {
+        "turn": 359,
+        "command": "13039 9989 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 360,
+        "command": "-93015 -2977 195"
+      },
+      {
+        "turn": 361,
+        "command": "12824 10556 166 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 362,
+        "command": "-90350 28004 200"
+      },
+      {
+        "turn": 363,
+        "command": "10652 12047 90 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 364,
+        "command": "-92947 373 200"
+      },
+      {
+        "turn": 365,
+        "command": "10519 12034 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 366,
+        "command": "-89885 28142 197"
+      },
+      {
+        "turn": 367,
+        "command": "7652 13100 142 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 368,
+        "command": "-86274 39908 41"
+      },
+      {
+        "turn": 369,
+        "command": "6027 13445 137 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 370,
+        "command": "-92868 9422 SHIELD"
+      },
+      {
+        "turn": 371,
+        "command": "3041 13229 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 372,
+        "command": "-89673 -21595 200"
+      },
+      {
+        "turn": 373,
+        "command": "327 12011 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 374,
+        "command": "-92688 9865 200"
+      },
+      {
+        "turn": 375,
+        "command": "1385 12897 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 376,
+        "command": "-89631 29122 200"
+      },
+      {
+        "turn": 377,
+        "command": "-9 12077 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 378,
+        "command": "-92167 -1792 200"
+      },
+      {
+        "turn": 379,
+        "command": "2701 13842 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 380,
+        "command": "-91705 -6802 194"
+      },
+      {
+        "turn": 381,
+        "command": "1775 13529 83 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 382,
+        "command": "-91702 19448 87"
+      },
+      {
+        "turn": 383,
+        "command": "4753 14658 182 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 384,
+        "command": "-91432 -11698 0"
+      },
+      {
+        "turn": 385,
+        "command": "1810 13732 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 386,
+        "command": "-87737 -26775 162"
+      },
+      {
+        "turn": 387,
+        "command": "-675 11929 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 388,
+        "command": "-73400 -54356 200"
+      },
+      {
+        "turn": 389,
+        "command": "-2459 9433 48 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 390,
+        "command": "-51352 -76172 0"
+      },
+      {
+        "turn": 391,
+        "command": "-3365 6497 28 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 392,
+        "command": "-23620 -89957 0"
+      },
+      {
+        "turn": 393,
+        "command": "-3303 3416 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 394,
+        "command": "7032 -94371 200"
+      },
+      {
+        "turn": 395,
+        "command": "-2279 496 95 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 396,
+        "command": "37567 -89188 200"
+      },
+      {
+        "turn": 397,
+        "command": "-393 -1969 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 398,
+        "command": "65022 -74901 200"
+      },
+      {
+        "turn": 399,
+        "command": "2173 -3736 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 400,
+        "command": "86731 -52895 200"
+      },
+      {
+        "turn": 401,
+        "command": "5167 -4628 10 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 402,
+        "command": "100590 -25313 200"
+      },
+      {
+        "turn": 403,
+        "command": "8295 -4564 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 404,
+        "command": "105258 5154 200"
+      },
+      {
+        "turn": 405,
+        "command": "11289 -3735 140 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 406,
+        "command": "100291 35531 132"
+      },
+      {
+        "turn": 407,
+        "command": "13882 -2138 169 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 408,
+        "command": "103290 26840 186"
+      },
+      {
+        "turn": 409,
+        "command": "15879 67 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 410,
+        "command": "98932 41489 184"
+      },
+      {
+        "turn": 411,
+        "command": "17145 2667 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 412,
+        "command": "104610 26483 176"
+      },
+      {
+        "turn": 413,
+        "command": "17663 4918 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 414,
+        "command": "104937 28110 200"
+      },
+      {
+        "turn": 415,
+        "command": "17331 7294 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 416,
+        "command": "109125 -1263 SHIELD"
+      },
+      {
+        "turn": 417,
+        "command": "18116 4638 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 418,
+        "command": "109657 9202 199"
+      },
+      {
+        "turn": 419,
+        "command": "18323 3156 118 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 420,
+        "command": "107945 -20269 SHIELD"
+      },
+      {
+        "turn": 421,
+        "command": "17802 6001 10 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 422,
+        "command": "96757 -49350 SHIELD"
+      },
+      {
+        "turn": 423,
+        "command": "16349 8546 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 424,
+        "command": "77100 -73389 SHIELD"
+      },
+      {
+        "turn": 425,
+        "command": "16228 8910 161 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 426,
+        "command": "81345 -69913 SHIELD"
+      },
+      {
+        "turn": 427,
+        "command": "16642 8850 25 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 428,
+        "command": "56014 -87953 0"
+      },
+      {
+        "turn": 429,
+        "command": "14555 10979 42 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 430,
+        "command": "26345 -97184 SHIELD"
+      },
+      {
+        "turn": 431,
+        "command": "11930 12303 88 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 432,
+        "command": "-4724 -96708 0"
+      },
+      {
+        "turn": 433,
+        "command": "9225 12756 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 434,
+        "command": "-34125 -86581 0"
+      },
+      {
+        "turn": 435,
+        "command": "6365 12250 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 436,
+        "command": "-58959 -67802 58"
+      },
+      {
+        "turn": 437,
+        "command": "3826 10807 174 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 438,
+        "command": "-76774 -42215 200"
+      },
+      {
+        "turn": 439,
+        "command": "1876 8585 35 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 440,
+        "command": "-85992 -12418 200"
+      },
+      {
+        "turn": 441,
+        "command": "1556 7921 30 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 442,
+        "command": "-85991 17010 200"
+      },
+      {
+        "turn": 443,
+        "command": "1216 7045 65 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 444,
+        "command": "-76739 46685 200"
+      },
+      {
+        "turn": 445,
+        "command": "539 4083 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 446,
+        "command": "-58880 72020 168"
+      },
+      {
+        "turn": 447,
+        "command": "758 942 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 448,
+        "command": "-34138 90548 0"
+      },
+      {
+        "turn": 449,
+        "command": "1587 -1354 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 450,
+        "command": "-4866 100333 0"
+      },
+      {
+        "turn": 451,
+        "command": "3431 -3869 103 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 452,
+        "command": "26009 100432 4"
+      },
+      {
+        "turn": 453,
+        "command": "4053 -4461 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 454,
+        "command": "42575 96303 118"
+      },
+      {
+        "turn": 455,
+        "command": "5967 -5919 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 456,
+        "command": "33952 98967 167"
+      },
+      {
+        "turn": 457,
+        "command": "8817 -7007 32 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 458,
+        "command": "62519 86967 200"
+      },
+      {
+        "turn": 459,
+        "command": "12004 -6785 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 460,
+        "command": "46699 94904 200"
+      },
+      {
+        "turn": 461,
+        "command": "8928 -6798 192 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 462,
+        "command": "73347 78995 146"
+      },
+      {
+        "turn": 463,
+        "command": "5964 -5855 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 464,
+        "command": "93823 55669 73"
+      },
+      {
+        "turn": 465,
+        "command": "3406 -4038 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 466,
+        "command": "106068 27150 0"
+      },
+      {
+        "turn": 467,
+        "command": "5716 -5577 108 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 468,
+        "command": "109039 1451 44"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "5514 -3348 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 2,
+        "command": "-78318 -43500 200"
+      },
+      {
+        "turn": 3,
+        "command": "7988 -3775 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 4,
+        "command": "-58504 -68434 200"
+      },
+      {
+        "turn": 5,
+        "command": "7038 -4043 96 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 6,
+        "command": "-67121 -60055 200"
+      },
+      {
+        "turn": 7,
+        "command": "6266 -4320 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 8,
+        "command": "-66132 -61786 SHIELD"
+      },
+      {
+        "turn": 9,
+        "command": "3003 -4024 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 10,
+        "command": "-83315 -35907 0"
+      },
+      {
+        "turn": 11,
+        "command": "5766 -5357 91 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 12,
+        "command": "-91532 -5992 0"
+      },
+      {
+        "turn": 13,
+        "command": "4663 -5823 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 14,
+        "command": "-83537 -36473 200"
+      },
+      {
+        "turn": 15,
+        "command": "7553 -6567 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 16,
+        "command": "-66582 -62933 0"
+      },
+      {
+        "turn": 17,
+        "command": "10395 -6134 2 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 18,
+        "command": "-42341 -82810 200"
+      },
+      {
+        "turn": 19,
+        "command": "12836 -4696 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 20,
+        "command": "-13294 -94353 200"
+      },
+      {
+        "turn": 21,
+        "command": "14615 -2501 53 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 22,
+        "command": "-42682 -83618 200"
+      },
+      {
+        "turn": 23,
+        "command": "15594 176 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 24,
+        "command": "-67247 -64506 195"
+      },
+      {
+        "turn": 25,
+        "command": "15615 3065 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 26,
+        "command": "-84646 -38888 200"
+      },
+      {
+        "turn": 27,
+        "command": "14781 5073 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 28,
+        "command": "-92990 -9295 SHIELD"
+      },
+      {
+        "turn": 29,
+        "command": "14384 5485 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 30,
+        "command": "-91406 21403 0"
+      },
+      {
+        "turn": 31,
+        "command": "14602 5023 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 32,
+        "command": "-80239 50148 25"
+      },
+      {
+        "turn": 33,
+        "command": "14803 5113 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 34,
+        "command": "-60587 74068 0"
+      },
+      {
+        "turn": 35,
+        "command": "15221 5097 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 36,
+        "command": "-34380 90775 200"
+      },
+      {
+        "turn": 37,
+        "command": "15651 5454 199 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 38,
+        "command": "-4267 98772 200"
+      },
+      {
+        "turn": 39,
+        "command": "15747 6800 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 40,
+        "command": "26864 97249 200"
+      },
+      {
+        "turn": 41,
+        "command": "14554 9592 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 42,
+        "command": "40222 93695 200"
+      },
+      {
+        "turn": 43,
+        "command": "16102 9085 161 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 44,
+        "command": "67609 78962 200"
+      },
+      {
+        "turn": 45,
+        "command": "14517 11613 105 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 46,
+        "command": "40387 94657 200"
+      },
+      {
+        "turn": 47,
+        "command": "12242 13224 3 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 48,
+        "command": "35610 96953 200"
+      },
+      {
+        "turn": 49,
+        "command": "9550 13753 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 50,
+        "command": "22234 100822 200"
+      },
+      {
+        "turn": 51,
+        "command": "6834 13471 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 52,
+        "command": "30999 99901 200"
+      },
+      {
+        "turn": 53,
+        "command": "4345 12405 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 54,
+        "command": "27829 101574 SHIELD"
+      },
+      {
+        "turn": 55,
+        "command": "2312 10658 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 56,
+        "command": "57234 91116 34"
+      },
+      {
+        "turn": 57,
+        "command": "1836 10660 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 58,
+        "command": "81714 72066 24"
+      },
+      {
+        "turn": 59,
+        "command": "492 8326 155 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 60,
+        "command": "98896 46371 116"
+      },
+      {
+        "turn": 61,
+        "command": "1178 11811 186 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 62,
+        "command": "81974 73072 200"
+      },
+      {
+        "turn": 63,
+        "command": "-381 9423 1 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 64,
+        "command": "57910 93288 200"
+      },
+      {
+        "turn": 65,
+        "command": "-906 6765 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 66,
+        "command": "82536 74217 SHIELD"
+      },
+      {
+        "turn": 67,
+        "command": "-567 5163 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 68,
+        "command": "99678 48303 SHIELD"
+      },
+      {
+        "turn": 69,
+        "command": "914 3086 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 70,
+        "command": "82599 74666 SHIELD"
+      },
+      {
+        "turn": 71,
+        "command": "3172 1514 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 72,
+        "command": "58253 94461 SHIELD"
+      },
+      {
+        "turn": 73,
+        "command": "5983 667 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 74,
+        "command": "29017 105762 79"
+      },
+      {
+        "turn": 75,
+        "command": "3071 2202 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 76,
+        "command": "13438 107885 151"
+      },
+      {
+        "turn": 77,
+        "command": "1796 3074 194 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 78,
+        "command": "-17696 104678 SHIELD"
+      },
+      {
+        "turn": 79,
+        "command": "548 3944 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 80,
+        "command": "1195 107894 SHIELD"
+      },
+      {
+        "turn": 81,
+        "command": "-1386 6223 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 82,
+        "command": "-29302 100901 0"
+      },
+      {
+        "turn": 83,
+        "command": "-1082 4401 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 84,
+        "command": "-56130 84825 0"
+      },
+      {
+        "turn": 85,
+        "command": "576 1836 43 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 86,
+        "command": "-76664 61245 0"
+      },
+      {
+        "turn": 87,
+        "command": "2915 67 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 88,
+        "command": "-88895 32472 200"
+      },
+      {
+        "turn": 89,
+        "command": "2770 -173 156 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 90,
+        "command": "-91820 1374 0"
+      },
+      {
+        "turn": 91,
+        "command": "2052 -173 16 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 92,
+        "command": "-91852 -307 200"
+      },
+      {
+        "turn": 93,
+        "command": "4891 -1093 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 94,
+        "command": "-89168 -17440 200"
+      },
+      {
+        "turn": 95,
+        "command": "7847 -1013 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 96,
+        "command": "-76925 -46047 200"
+      },
+      {
+        "turn": 97,
+        "command": "10568 -103 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 98,
+        "command": "-85686 -30786 151"
+      },
+      {
+        "turn": 99,
+        "command": "12515 1404 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 100,
+        "command": "-79423 -43494 13"
+      },
+      {
+        "turn": 101,
+        "command": "13184 2285 45 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 102,
+        "command": "-79246 -43784 0"
+      },
+      {
+        "turn": 103,
+        "command": "14378 4925 94 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 104,
+        "command": "-90816 -15021 0"
+      },
+      {
+        "turn": 105,
+        "command": "13800 3636 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 106,
+        "command": "-93340 3838 SHIELD"
+      },
+      {
+        "turn": 107,
+        "command": "14380 4910 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 108,
+        "command": "-89717 34665 115"
+      },
+      {
+        "turn": 109,
+        "command": "14955 7621 108 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 110,
+        "command": "-81214 55390 200"
+      },
+      {
+        "turn": 111,
+        "command": "15150 8649 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 112,
+        "command": "-92051 25827 SHIELD"
+      },
+      {
+        "turn": 113,
+        "command": "15286 6332 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 114,
+        "command": "-81267 54977 50"
+      },
+      {
+        "turn": 115,
+        "command": "15224 7893 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 116,
+        "command": "-61877 79377 36"
+      },
+      {
+        "turn": 117,
+        "command": "14427 10921 137 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 118,
+        "command": "-35831 96658 200"
+      },
+      {
+        "turn": 119,
+        "command": "14932 9259 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 120,
+        "command": "-17670 102875 200"
+      },
+      {
+        "turn": 121,
+        "command": "15317 6178 138 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 122,
+        "command": "1317 105748 200"
+      },
+      {
+        "turn": 123,
+        "command": "15196 4148 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 124,
+        "command": "13541 105875 200"
+      },
+      {
+        "turn": 125,
+        "command": "14237 1313 139 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 126,
+        "command": "43992 99098 SHIELD"
+      },
+      {
+        "turn": 127,
+        "command": "12368 -857 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 128,
+        "command": "70540 82392 SHIELD"
+      },
+      {
+        "turn": 129,
+        "command": "12467 -988 196 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 130,
+        "command": "90837 58277 200"
+      },
+      {
+        "turn": 131,
+        "command": "9906 -2725 74 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 132,
+        "command": "72751 79172 SHIELD"
+      },
+      {
+        "turn": 133,
+        "command": "7542 -3543 174 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 134,
+        "command": "92277 54496 200"
+      },
+      {
+        "turn": 135,
+        "command": "10766 -3265 187 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 136,
+        "command": "103350 24980 200"
+      },
+      {
+        "turn": 137,
+        "command": "7937 -4503 6 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 138,
+        "command": "104869 14382 200"
+      },
+      {
+        "turn": 139,
+        "command": "5006 -4690 193 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 140,
+        "command": "103132 -17083 86"
+      },
+      {
+        "turn": 141,
+        "command": "4446 -5075 181 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 142,
+        "command": "93611 -43444 143"
+      },
+      {
+        "turn": 143,
+        "command": "1696 -4316 107 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 144,
+        "command": "102805 -19204 169"
+      },
+      {
+        "turn": 145,
+        "command": "-547 -2753 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 146,
+        "command": "91254 -48415 SHIELD"
+      },
+      {
+        "turn": 147,
+        "command": "-1994 -516 8 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 148,
+        "command": "71286 -72553 31"
+      },
+      {
+        "turn": 149,
+        "command": "-2513 2104 16 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 150,
+        "command": "44874 -89277 166"
+      },
+      {
+        "turn": 151,
+        "command": "-2065 -1385 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 152,
+        "command": "14619 -96969 22"
+      },
+      {
+        "turn": 153,
+        "command": "-2776 1305 18 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 154,
+        "command": "-13092 -95617 200"
+      },
+      {
+        "turn": 155,
+        "command": "-2493 4055 3 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 156,
+        "command": "-11341 -96219 200"
+      },
+      {
+        "turn": 157,
+        "command": "-1250 6555 185 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 158,
+        "command": "19935 -97203 45"
+      },
+      {
+        "turn": 159,
+        "command": "-1447 6560 123 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 160,
+        "command": "25101 -96756 180"
+      },
+      {
+        "turn": 161,
+        "command": "-2526 4684 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 162,
+        "command": "35094 -94396 70"
+      },
+      {
+        "turn": 163,
+        "command": "-910 6813 12 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 164,
+        "command": "3908 -98811 200"
+      },
+      {
+        "turn": 165,
+        "command": "1424 8319 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 166,
+        "command": "-1499 -98832 200"
+      },
+      {
+        "turn": 167,
+        "command": "4233 9004 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 168,
+        "command": "29505 -96518 200"
+      },
+      {
+        "turn": 169,
+        "command": "7189 8963 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 170,
+        "command": "58214 -84836 200"
+      },
+      {
+        "turn": 171,
+        "command": "4744 8662 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 172,
+        "command": "29164 -97160 SHIELD"
+      },
+      {
+        "turn": 173,
+        "command": "3724 8220 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 174,
+        "command": "27189 -97524 SHIELD"
+      },
+      {
+        "turn": 175,
+        "command": "4350 8315 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 176,
+        "command": "55962 -85768 SHIELD"
+      },
+      {
+        "turn": 177,
+        "command": "4067 8438 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 178,
+        "command": "79729 -65627 200"
+      },
+      {
+        "turn": 179,
+        "command": "3736 8717 192 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 180,
+        "command": "96138 -39069 200"
+      },
+      {
+        "turn": 181,
+        "command": "3027 9014 184 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 182,
+        "command": "103563 -8691 200"
+      },
+      {
+        "turn": 183,
+        "command": "6028 10093 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 184,
+        "command": "101259 22537 200"
+      },
+      {
+        "turn": 185,
+        "command": "6651 10770 31 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 186,
+        "command": "89631 51605 200"
+      },
+      {
+        "turn": 187,
+        "command": "9638 10692 5 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 188,
+        "command": "94042 44091 200"
+      },
+      {
+        "turn": 189,
+        "command": "12271 9617 198 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 190,
+        "command": "83356 62038 200"
+      },
+      {
+        "turn": 191,
+        "command": "14409 7864 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 192,
+        "command": "97763 38241 200"
+      },
+      {
+        "turn": 193,
+        "command": "15875 5606 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 194,
+        "command": "83361 64048 200"
+      },
+      {
+        "turn": 195,
+        "command": "16548 3065 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 196,
+        "command": "60776 85394 200"
+      },
+      {
+        "turn": 197,
+        "command": "16384 492 137 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 198,
+        "command": "78921 71510 200"
+      },
+      {
+        "turn": 199,
+        "command": "15357 -1838 4 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 200,
+        "command": "54651 90917 200"
+      },
+      {
+        "turn": 201,
+        "command": "13496 -3595 2 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 202,
+        "command": "25772 101771 200"
+      },
+      {
+        "turn": 203,
+        "command": "11042 -4569 83 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 204,
+        "command": "-4878 103081 0"
+      },
+      {
+        "turn": 205,
+        "command": "9703 -4712 114 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 206,
+        "command": "26940 103184 0"
+      },
+      {
+        "turn": 207,
+        "command": "9297 -4526 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 208,
+        "command": "-3672 104069 SHIELD"
+      },
+      {
+        "turn": 209,
+        "command": "12481 -4007 159 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 210,
+        "command": "-33023 95209 0"
+      },
+      {
+        "turn": 211,
+        "command": "14059 -3551 79 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 212,
+        "command": "-58169 77508 0"
+      },
+      {
+        "turn": 213,
+        "command": "11937 -4639 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 214,
+        "command": "-76588 52728 0"
+      },
+      {
+        "turn": 215,
+        "command": "14947 -3597 70 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 216,
+        "command": "-86426 23321 195"
+      },
+      {
+        "turn": 217,
+        "command": "12383 -4988 99 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 218,
+        "command": "-86869 -7779 200"
+      },
+      {
+        "turn": 219,
+        "command": "9423 -5591 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 220,
+        "command": "-77832 -37573 200"
+      },
+      {
+        "turn": 221,
+        "command": "11932 -5543 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 222,
+        "command": "-60161 -63183 200"
+      },
+      {
+        "turn": 223,
+        "command": "8768 -6032 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 224,
+        "command": "-35550 -82135 SHIELD"
+      },
+      {
+        "turn": 225,
+        "command": "6668 -6072 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 226,
+        "command": "-6287 -92425 0"
+      },
+      {
+        "turn": 227,
+        "command": "5913 -6398 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 228,
+        "command": "24724 -93059 17"
+      },
+      {
+        "turn": 229,
+        "command": "3269 -4885 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 230,
+        "command": "43134 -88658 0"
+      },
+      {
+        "turn": 231,
+        "command": "1249 -2608 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 232,
+        "command": "64846 -78035 200"
+      },
+      {
+        "turn": 233,
+        "command": "-222 148 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 234,
+        "command": "88041 -57320 SHIELD"
+      },
+      {
+        "turn": 235,
+        "command": "-899 3122 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 236,
+        "command": "73211 -72289 SHIELD"
+      },
+      {
+        "turn": 237,
+        "command": "-538 6049 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 238,
+        "command": "94107 -49196 SHIELD"
+      },
+      {
+        "turn": 239,
+        "command": "783 8629 4 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 240,
+        "command": "106800 -20748 SHIELD"
+      },
+      {
+        "turn": 241,
+        "command": "2897 10595 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 242,
+        "command": "110042 10255 149"
+      },
+      {
+        "turn": 243,
+        "command": "5568 11745 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 244,
+        "command": "103514 40762 10"
+      },
+      {
+        "turn": 245,
+        "command": "8460 12147 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 246,
+        "command": "102187 43917 0"
+      },
+      {
+        "turn": 247,
+        "command": "11332 11752 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 248,
+        "command": "85592 70382 SHIELD"
+      },
+      {
+        "turn": 249,
+        "command": "13940 10587 171 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 250,
+        "command": "61612 90436 52"
+      },
+      {
+        "turn": 251,
+        "command": "11306 12710 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 252,
+        "command": "32592 102108 SHIELD"
+      },
+      {
+        "turn": 253,
+        "command": "13921 10921 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 254,
+        "command": "42645 99183 200"
+      },
+      {
+        "turn": 255,
+        "command": "16046 8563 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 256,
+        "command": "11826 104582 149"
+      },
+      {
+        "turn": 257,
+        "command": "14225 11032 46 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 258,
+        "command": "-19161 100199 193"
+      },
+      {
+        "turn": 259,
+        "command": "11769 12770 189 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 260,
+        "command": "11817 104531 200"
+      },
+      {
+        "turn": 261,
+        "command": "10704 13483 81 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 262,
+        "command": "40974 99833 SHIELD"
+      },
+      {
+        "turn": 263,
+        "command": "13741 12520 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 264,
+        "command": "68890 85785 SHIELD"
+      },
+      {
+        "turn": 265,
+        "command": "15929 10579 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 266,
+        "command": "91054 63795 0"
+      },
+      {
+        "turn": 267,
+        "command": "17547 8120 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 268,
+        "command": "68965 86031 SHIELD"
+      },
+      {
+        "turn": 269,
+        "command": "18441 5336 21 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 270,
+        "command": "58695 92687 SHIELD"
+      },
+      {
+        "turn": 271,
+        "command": "18391 2613 1 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 272,
+        "command": "29318 103469 36"
+      },
+      {
+        "turn": 273,
+        "command": "17416 270 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 274,
+        "command": "10256 105374 SHIELD"
+      },
+      {
+        "turn": 275,
+        "command": "15583 -2028 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 276,
+        "command": "-15610 102024 SHIELD"
+      },
+      {
+        "turn": 277,
+        "command": "17723 434 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 278,
+        "command": "15519 105342 0"
+      },
+      {
+        "turn": 279,
+        "command": "19035 3018 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 280,
+        "command": "-15586 102112 SHIELD"
+      },
+      {
+        "turn": 281,
+        "command": "19402 6099 120 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 282,
+        "command": "15565 105424 SHIELD"
+      },
+      {
+        "turn": 283,
+        "command": "18616 8838 36 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 284,
+        "command": "46232 98966 0"
+      },
+      {
+        "turn": 285,
+        "command": "19272 5689 14 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 286,
+        "command": "15683 105510 SHIELD"
+      },
+      {
+        "turn": 287,
+        "command": "18542 8653 162 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 288,
+        "command": "46331 99038 0"
+      },
+      {
+        "turn": 289,
+        "command": "17058 11325 7 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 290,
+        "command": "24449 104735 48"
+      },
+      {
+        "turn": 291,
+        "command": "18646 8960 21 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 292,
+        "command": "-1623 104986 SHIELD"
+      },
+      {
+        "turn": 293,
+        "command": "17057 11591 179 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 294,
+        "command": "-28482 97800 SHIELD"
+      },
+      {
+        "turn": 295,
+        "command": "14856 13685 37 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 296,
+        "command": "1897 105385 SHIELD"
+      },
+      {
+        "turn": 297,
+        "command": "17501 11854 122 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 298,
+        "command": "26274 104548 SHIELD"
+      },
+      {
+        "turn": 299,
+        "command": "19140 9052 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 300,
+        "command": "48141 98546 163"
+      },
+      {
+        "turn": 301,
+        "command": "17530 11568 101 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 302,
+        "command": "73656 83588 SHIELD"
+      },
+      {
+        "turn": 303,
+        "command": "15253 13514 1 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 304,
+        "command": "94628 60375 SHIELD"
+      },
+      {
+        "turn": 305,
+        "command": "12463 14617 180 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 306,
+        "command": "73724 83658 SHIELD"
+      },
+      {
+        "turn": 307,
+        "command": "9486 14942 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 308,
+        "command": "88525 68907 SHIELD"
+      },
+      {
+        "turn": 309,
+        "command": "6523 14297 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 310,
+        "command": "104170 41868 SHIELD"
+      },
+      {
+        "turn": 311,
+        "command": "3783 12593 196 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 312,
+        "command": "110684 11344 SHIELD"
+      },
+      {
+        "turn": 313,
+        "command": "1585 10308 196 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 314,
+        "command": "107421 -19705 0"
+      },
+      {
+        "turn": 315,
+        "command": "178 7948 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 316,
+        "command": "110696 11467 SHIELD"
+      },
+      {
+        "turn": 317,
+        "command": "-598 5066 100 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 318,
+        "command": "110289 16733 0"
+      },
+      {
+        "turn": 319,
+        "command": "-421 2211 180 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 320,
+        "command": "106470 35556 0"
+      },
+      {
+        "turn": 321,
+        "command": "479 -355 171 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 322,
+        "command": "92757 63710 0"
+      },
+      {
+        "turn": 323,
+        "command": "2039 -2406 157 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 324,
+        "command": "80309 78314 SHIELD"
+      },
+      {
+        "turn": 325,
+        "command": "4156 -3762 72 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 326,
+        "command": "99138 53350 SHIELD"
+      },
+      {
+        "turn": 327,
+        "command": "6608 -4218 190 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 328,
+        "command": "109324 23787 0"
+      },
+      {
+        "turn": 329,
+        "command": "9104 -3859 199 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 330,
+        "command": "109870 -7479 0"
+      },
+      {
+        "turn": 331,
+        "command": "11393 -2724 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 332,
+        "command": "100722 -37386 0"
+      },
+      {
+        "turn": 333,
+        "command": "13240 -921 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 334,
+        "command": "82777 -63004 0"
+      },
+      {
+        "turn": 335,
+        "command": "14459 1379 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 336,
+        "command": "57790 -81824 200"
+      },
+      {
+        "turn": 337,
+        "command": "14923 3956 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 338,
+        "command": "28302 -92180 159"
+      },
+      {
+        "turn": 339,
+        "command": "14581 6559 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 340,
+        "command": "-2873 -93027 200"
+      },
+      {
+        "turn": 341,
+        "command": "14789 6894 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 342,
+        "command": "-32731 -84332 91"
+      },
+      {
+        "turn": 343,
+        "command": "16180 4420 2 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 344,
+        "command": "-58348 -66854 185"
+      },
+      {
+        "turn": 345,
+        "command": "16472 5122 72 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 346,
+        "command": "-77296 -42396 200"
+      },
+      {
+        "turn": 347,
+        "command": "17409 1923 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 348,
+        "command": "-86308 -20184 200"
+      },
+      {
+        "turn": 349,
+        "command": "17600 4935 185 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 350,
+        "command": "-74512 -49493 200"
+      },
+      {
+        "turn": 351,
+        "command": "16938 7727 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 352,
+        "command": "-54520 -73643 SHIELD"
+      },
+      {
+        "turn": 353,
+        "command": "15199 9649 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 354,
+        "command": "-27988 -89902 0"
+      },
+      {
+        "turn": 355,
+        "command": "12591 10440 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 356,
+        "command": "2469 -96664 119"
+      },
+      {
+        "turn": 357,
+        "command": "9640 10407 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 358,
+        "command": "26787 -95155 200"
+      },
+      {
+        "turn": 359,
+        "command": "11139 9797 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 360,
+        "command": "45240 -89834 193"
+      },
+      {
+        "turn": 361,
+        "command": "14239 8613 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 362,
+        "command": "14690 -96351 200"
+      },
+      {
+        "turn": 363,
+        "command": "11459 9574 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 364,
+        "command": "37075 -92824 200"
+      },
+      {
+        "turn": 365,
+        "command": "14632 8801 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 366,
+        "command": "59613 -83671 200"
+      },
+      {
+        "turn": 367,
+        "command": "11912 10108 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 368,
+        "command": "84113 -64468 200"
+      },
+      {
+        "turn": 369,
+        "command": "9032 10594 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 370,
+        "command": "66025 -81007 SHIELD"
+      },
+      {
+        "turn": 371,
+        "command": "6439 9795 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 372,
+        "command": "88995 -59890 41"
+      },
+      {
+        "turn": 373,
+        "command": "6983 9628 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 374,
+        "command": "104020 -32404 200"
+      },
+      {
+        "turn": 375,
+        "command": "9566 10280 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 376,
+        "command": "90832 -56878 200"
+      },
+      {
+        "turn": 377,
+        "command": "8793 9794 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 378,
+        "command": "104934 -28914 200"
+      },
+      {
+        "turn": 379,
+        "command": "12115 10530 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 380,
+        "command": "109932 1999 200"
+      },
+      {
+        "turn": 381,
+        "command": "13895 10761 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 382,
+        "command": "109839 -6708 200"
+      },
+      {
+        "turn": 383,
+        "command": "10971 11026 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 384,
+        "command": "108100 24493 0"
+      },
+      {
+        "turn": 385,
+        "command": "8993 10672 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 386,
+        "command": "96756 53494 200"
+      },
+      {
+        "turn": 387,
+        "command": "10689 11758 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 388,
+        "command": "77135 77558 200"
+      },
+      {
+        "turn": 389,
+        "command": "7828 11095 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 390,
+        "command": "51149 94370 0"
+      },
+      {
+        "turn": 391,
+        "command": "5392 9686 0 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 392,
+        "command": "21257 102137 0"
+      },
+      {
+        "turn": 393,
+        "command": "3733 7559 3 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 394,
+        "command": "-9559 100123 0"
+      },
+      {
+        "turn": 395,
+        "command": "3001 4993 133 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 396,
+        "command": "-38233 88545 200"
+      },
+      {
+        "turn": 397,
+        "command": "3126 2309 199 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 398,
+        "command": "-62019 68725 200"
+      },
+      {
+        "turn": 399,
+        "command": "4035 -238 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 400,
+        "command": "-78596 42570 200"
+      },
+      {
+        "turn": 401,
+        "command": "5653 -2409 169 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 402,
+        "command": "-86348 12612 200"
+      },
+      {
+        "turn": 403,
+        "command": "7852 -3975 16 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 404,
+        "command": "-84520 -18243 200"
+      },
+      {
+        "turn": 405,
+        "command": "9433 -4532 197 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 406,
+        "command": "-73296 -46995 165"
+      },
+      {
+        "turn": 407,
+        "command": "6054 -3773 108 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 408,
+        "command": "-65856 -58290 200"
+      },
+      {
+        "turn": 409,
+        "command": "8124 -4916 153 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 410,
+        "command": "-43238 -79238 200"
+      },
+      {
+        "turn": 411,
+        "command": "10477 -5486 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 412,
+        "command": "-43825 -79421 200"
+      },
+      {
+        "turn": 413,
+        "command": "8185 -5955 36 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 414,
+        "command": "-67480 -58828 200"
+      },
+      {
+        "turn": 415,
+        "command": "10336 -6323 134 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 416,
+        "command": "-83479 -32128 0"
+      },
+      {
+        "turn": 417,
+        "command": "13193 -5933 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 418,
+        "command": "-76610 -44924 200"
+      },
+      {
+        "turn": 419,
+        "command": "12557 -6664 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 420,
+        "command": "-85933 -19164 200"
+      },
+      {
+        "turn": 421,
+        "command": "15927 -5240 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 422,
+        "command": "-86300 -15987 0"
+      },
+      {
+        "turn": 423,
+        "command": "13905 -5951 149 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 424,
+        "command": "-81801 -31309 82"
+      },
+      {
+        "turn": 425,
+        "command": "14885 -5455 111 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 426,
+        "command": "-87589 -795 200"
+      },
+      {
+        "turn": 427,
+        "command": "12082 -5814 150 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 428,
+        "command": "-85886 20321 SHIELD"
+      },
+      {
+        "turn": 429,
+        "command": "9204 -5231 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 430,
+        "command": "-81147 37407 200"
+      },
+      {
+        "turn": 431,
+        "command": "6505 -3929 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 432,
+        "command": "-84423 25911 200"
+      },
+      {
+        "turn": 433,
+        "command": "4333 -1814 8 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 434,
+        "command": "-72540 55099 0"
+      },
+      {
+        "turn": 435,
+        "command": "2914 908 195 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 436,
+        "command": "-52291 79218 200"
+      },
+      {
+        "turn": 437,
+        "command": "2400 3967 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 438,
+        "command": "-72416 55531 143"
+      },
+      {
+        "turn": 439,
+        "command": "2960 901 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 440,
+        "command": "-84163 26818 200"
+      },
+      {
+        "turn": 441,
+        "command": "2318 1854 175 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 442,
+        "command": "-86447 -4113 200"
+      },
+      {
+        "turn": 443,
+        "command": "3086 -1109 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 444,
+        "command": "-86140 -9094 0"
+      },
+      {
+        "turn": 445,
+        "command": "3463 -2547 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 446,
+        "command": "-85836 22374 0"
+      },
+      {
+        "turn": 447,
+        "command": "1942 793 189 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 448,
+        "command": "-87545 3422 0"
+      },
+      {
+        "turn": 449,
+        "command": "1186 3817 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 450,
+        "command": "-87186 15754 200"
+      },
+      {
+        "turn": 451,
+        "command": "848 5264 118 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 452,
+        "command": "-88019 1945 200"
+      },
+      {
+        "turn": 453,
+        "command": "812 3533 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 454,
+        "command": "-83680 -25361 200"
+      },
+      {
+        "turn": 455,
+        "command": "1564 893 160 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 456,
+        "command": "-88939 -1407 200"
+      },
+      {
+        "turn": 457,
+        "command": "3080 -1350 43 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 458,
+        "command": "-86930 29770 0"
+      },
+      {
+        "turn": 459,
+        "command": "833 641 SHIELD github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 460,
+        "command": "-75314 58577 146"
+      },
+      {
+        "turn": 461,
+        "command": "2597 -1552 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 462,
+        "command": "-55429 82271 199"
+      },
+      {
+        "turn": 463,
+        "command": "4936 -2725 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 464,
+        "command": "-29208 98360 65"
+      },
+      {
+        "turn": 465,
+        "command": "7657 -3015 169 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 466,
+        "command": "747 105435 SHIELD"
+      },
+      {
+        "turn": 467,
+        "command": "10450 -2365 200 github.com/inoryy/csb-ai-starter"
+      },
+      {
+        "turn": 468,
+        "command": "31465 102740 181"
+      }
+    ]
+  }
+}

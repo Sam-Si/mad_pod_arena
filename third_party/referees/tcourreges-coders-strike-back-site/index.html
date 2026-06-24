@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  
+<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Coders Strike Back - Tanguy Courreges
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
+
+</head>
+
+  
+  <body>
+    <div class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <h1>Tanguy Courreges</h1>
+      <p class="lead">Personal website & portfolio
+</p>
+    </div>
+
+    <nav class="sidebar-nav">
+        <a class="sidebar-nav-item" href="/projects">Projects</a>
+        <a class="sidebar-nav-item" href="/about">About</a>
+    </nav>
+  </div>
+</div>
+
+
+    <div class="content container">
+      <div class="post">
+  <h1 class="post-title">Coders Strike Back</h1>
+  <h2 id="introduction">Introduction</h2>
+
+<p><a href="https://www.codingame.com/"><img src="/images/codersstrikeback/codingamelogo.png" width="50%" style="float: right; padding-left: 2em;" /></a>
+If you’re not already familiar with the website <a href="https://www.codingame.com/">CodinGame</a>, I highly recommend you check it out. Its concept is pretty simple, and could be summed up as two ideas:</p>
+<ul>
+  <li><a href="https://en.wikipedia.org/wiki/Competitive_programming">Competitive Programming</a>: you have to write programs in order to solve problems (the input is a general test case, the output is your solution)</li>
+  <li><a href="https://en.wikipedia.org/wiki/Gamification">Gamification</a>: those problems are presented in a fun and interactive way, like a game (sometimes quite literally, as you’re writing the code of a game)</li>
+</ul>
+
+<p>The purpose of this document is to give a step by step walkthrough of how I reached Legend League in the problem <a href="https://www.codingame.com/multiplayer/bot-programming/coders-strike-back">Coders Strike Back</a>.
+<br />My source code (C++) is available as well, in my <a href="https://github.com/tcourreges/Coders-Strike-Back">GitHub repository</a>. Feel free to check out how I actually implemented things, should my explanations not be enough. However, I would advice against submitting my code as your own – it would spoil the fun of actually understanding/solving the problem.</p>
+
+<hr />
+<h2 id="problem-overview">Problem overview</h2>
+
+<p><a href="https://www.codingame.com/multiplayer/bot-programming/coders-strike-back">Coders Strike Back</a> is about a <a href="https://en.wikipedia.org/wiki/List_of_Star_Wars_air,_aquatic,_and_ground_vehicles#Podracer">pod race</a>, similar to the one in <a href="https://en.wikipedia.org/wiki/Star_Wars:_Episode_I_%E2%80%93_The_Phantom_Menace">Star Wars: Episode I</a>.</p>
+
+<p><img src="/images/codersstrikeback/csb.jpg" alt="screenshot" /></p>
+
+<ul>
+  <li>Every frame:
+    <ul>
+      <li>we receive a description of the current state of the simulation</li>
+      <li>we must output how we want our pod to move</li>
+    </ul>
+  </li>
+  <li>Our pod must reach the last checkpoint before the opponent.</li>
+  <li>Additional input parameters/rules are added as we progress through leagues.</li>
+  <li>To break out of a league, we must beat its boss (AI). The AI becomes stronger every league.</li>
+</ul>
+
+<hr />
+<h2 id="up-to-bronze">Up to Bronze</h2>
+
+<p>Each of those steps is relatively simple, and aims at making us familiar with the problem.</p>
+
+<h3 id="first-question">First question</h3>
+
+<ul>
+  <li>We are given basic input/output code.</li>
+  <li>However it doesn’t work, and we need to correct it (it outputs <code class="highlighter-rouge">y y</code> instead of <code class="highlighter-rouge">x y</code> for the checkpoint coordinates).</li>
+</ul>
+
+<h3 id="first-boss">First boss</h3>
+
+<ul>
+  <li>The boss goes faster than us, we have to manage the <code class="highlighter-rouge">thrust</code> value somehow.</li>
+  <li>Always setting it to the maximum possible value does the trick.</li>
+</ul>
+
+<h3 id="wood-2">Wood 2</h3>
+
+<ul>
+  <li>We now have access to the <strong>distance</strong> and <strong>angle</strong> of our pod, relative to the checkpoint.</li>
+  <li>There’s a hint in pseudo-code: <code class="highlighter-rouge">if (angle&lt;-90 or angle&gt;90) thrust=0 else thrust=100</code>, ie don’t accelerate while we are backwards. This implementation is enough to progress.</li>
+</ul>
+
+<h3 id="wood-1">Wood 1</h3>
+
+<ul>
+  <li>We can now replace our <code class="highlighter-rouge">thrust</code> with <code class="highlighter-rouge">BOOST</code> to gain a speed boost, once per race.</li>
+  <li>Using it randomly isn’t enough to get promoted – the following implementation is:
+    <ul>
+      <li>is the boost available?</li>
+      <li>are we in the right direction (aligned with the target)?</li>
+      <li>is the checkpoint (arbitrarily) far enough, so we don’t waste the boost?</li>
+    </ul>
+  </li>
+</ul>
+
+<hr />
+<h2 id="bronze-to-gold">Bronze to Gold</h2>
+
+<p>This solution consists of several features, which individually weren’t enough to break out of Bronze League. Their combination, however, got directly promoted to Gold.</p>
+
+<h3 id="checkpointmanager-when-best-to-use-boost">CheckpointManager (when best to use <code class="highlighter-rouge">BOOST</code>)</h3>
+
+<p>The idea:</p>
+<ul>
+  <li>I wasn’t satisfied with the boost implementation submitted in Wood 1.</li>
+  <li>It is not explicitly said in the description, but the UI mentions “laps”: even if we only discover one checkpoint at a time, they are repeated every lap.</li>
+  <li>This means we can <strong>remember every checkpoint</strong>, then have full knowledge of the track after the first lap.</li>
+  <li>I used it to <code class="highlighter-rouge">BOOST</code> during the longest step between two checkpoints. I thought I might later use it to predict trajectories, but didn’t end up doing that.</li>
+</ul>
+
+<p>Implementation:</p>
+<ul>
+  <li>To avoid bloating the main function, I implemented that logic in a separate <code class="highlighter-rouge">CheckpointManager</code> class.</li>
+  <li>I simply feed the <code class="highlighter-rouge">CheckpointManager</code> the current checkpoint, every turn.</li>
+  <li>It uses it to compute the current checkpoint index, the lap, and stores the checkpoint if it is new (during the first lap).</li>
+  <li>At the end of the first lap, we know every checkpoint, so we can compute the best one to <code class="highlighter-rouge">BOOST</code> for.</li>
+</ul>
+
+<h3 id="thrust-managementangle">Thrust management/angle</h3>
+
+<p>The pseudo-code from earlier makes sense for a small angle (&lt; ε), and one above 90°.</p>
+
+<p>However, the transition from ε to 90° feels primitive, so I tried to improve it:</p>
+<ul>
+  <li>If angle &lt; ε, use <code class="highlighter-rouge">maxThrust</code> and even try to <code class="highlighter-rouge">BOOST</code>.</li>
+  <li>Otherwise, return <code class="highlighter-rouge">maxThrust</code> multiplied by:
+    <ul>
+      <li><code class="highlighter-rouge">(1 - angle/90)</code> clamped in [0,1]: the more misaligned we are, the more we slow down.
+<br />(Note: it preserves the old behavior above 90°)</li>
+      <li><code class="highlighter-rouge">(distanceToCheckpoint / (k*checkPointRadius))</code> clamped in [0,1]: we slow down as we get closer to the checkpoint.
+<br />I empirically selected the factor <code class="highlighter-rouge">k=2</code>.
+<br />(Note: we don’t need actual distances (sqrt), squared distance are enough and better for performance)</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="rotation">Rotation</h3>
+
+<p>There is no information on how the pod turns at this point (is there a turnrate or something?).</p>
+
+<p>It is rather frustrating, as we would often like the pod to <strong>steer more effectively</strong> (turn faster, in advance) to avoid drifting.</p>
+
+<p>I tried to achieve that by adding an <strong>offset</strong> to the target of the pod: <code class="highlighter-rouge">-h*podSpeed</code></p>
+<ul>
+  <li><code class="highlighter-rouge">podSpeed = (position of the pod this turn) - (position the turn before)</code></li>
+  <li>I came up with it by drawing a simple sketch:
+    <ul>
+      <li>the direction adapts to how misaligned the pod is, and compensates that</li>
+      <li>the norm adapts to how much the ship is drifting away already</li>
+    </ul>
+  </li>
+  <li>I didn’t know the exact norm to use, so I empirically selected <code class="highlighter-rouge">h=3</code>.</li>
+  <li>I am unsure whether there is a physical explanation to it, it just happened to work well.</li>
+</ul>
+
+<hr />
+<h2 id="gold-heuristic-approach">Gold (Heuristic approach)</h2>
+
+<ul>
+  <li>In Gold league, we control a second pod as well.</li>
+  <li>The output remains the same, but must be performed once for each pod during a turn.</li>
+  <li>The input, however, has changed a lot, and requires consequent rewriting.</li>
+  <li>We also have access to “Expert rules” which explain in more details how the simulation works.</li>
+  <li>There are also 2 features introduced respectively in Bronze and Silver, that I ignored until now (the first one because I didn’t know how to use it, the second one because I got promoted from Silver to Gold directly): collisions, and shield.</li>
+</ul>
+
+<h3 id="input-changes">Input changes</h3>
+
+<ul>
+  <li><code class="highlighter-rouge">CheckpointManager</code> became obsolete:
+    <ul>
+      <li>we already receive every checkpoint at the start</li>
+      <li>each pod knows its current checkpoint id</li>
+      <li>we can still compute the best checkpoint in a free function</li>
+    </ul>
+  </li>
+  <li>There is no need to manually keep track of the pods’ previous positions to compute their speed, as we receive their speed directly.</li>
+  <li>The <code class="highlighter-rouge">angle</code> changed:
+    <ul>
+      <li>before, it was the checkpoint angle relative to the pod orientation</li>
+      <li>now it is the rotation of the pod (absolute)</li>
+      <li>we can compute the angle of the checkpoint direction, thanks to <code class="highlighter-rouge">acos</code>, then substract the new <code class="highlighter-rouge">angle</code> to get the old angle value.</li>
+    </ul>
+  </li>
+  <li>For the sake of readability, some refactoring seemed mandatory at this point, which led me to:
+    <ul>
+      <li>create a <code class="highlighter-rouge">pod</code> class to:
+        <ul>
+          <li>hold all the values of a pod</li>
+          <li>manage the state of the boost (we only <code class="highlighter-rouge">RequestBoost</code> from the outside)</li>
+          <li>be updated from the input, each turn</li>
+          <li>provide a consistent output, at the end of a turn</li>
+        </ul>
+      </li>
+      <li>move the thrust computation to a separate function <code class="highlighter-rouge">ComputeThrust</code></li>
+    </ul>
+  </li>
+  <li>I also adapted the existing algorithms to account for all the changes.</li>
+</ul>
+
+<h3 id="more-features">More features</h3>
+
+<h4 id="collisionsshield">Collisions/Shield</h4>
+
+<ul>
+  <li>Since Silver, we can output <code class="highlighter-rouge">SHIELD</code> instead of the thrust. This makes us gain more weight during a collision, therefore get pushed/deviated less). However it prevents us from accelerating for the next 3 turns.</li>
+  <li>It is easy to manage:
+    <ul>
+      <li>make the client call <code class="highlighter-rouge">pod.RequestShield()</code> (so we output <code class="highlighter-rouge">SHIELD</code> at the end of the turn)</li>
+      <li>prevent the pod from using its boost/outputting a thrust for the next 3 turns</li>
+    </ul>
+  </li>
+  <li>When to use it?
+    <ul>
+      <li>There is no point for pod A to use it, unless it is about to collide with a pod B.
+<br /> This happens when <code class="highlighter-rouge">|A(t+1) - B(t+1)| &lt; 2*podRadius</code> (where <code class="highlighter-rouge">P(t)</code> is the position of pod P at turn t)</li>
+      <li>Even then, we only really care if the collision hurts our trajectory a lot (if A is pushed from behind, it’s probably beneficial).
+<br />We can check that with: <code class="highlighter-rouge">AB.AT &gt; k</code> (dot product of the vectors, T is A’s current target)</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="racerinterceptor-behaviour">Racer/Interceptor behaviour</h4>
+
+<ul>
+  <li>Since we control a second pod, it might be worth it to come up with a strategy to make use of it.</li>
+  <li>The idea is to split the pods between a <strong>racer</strong> (the pod ahead) and an <strong>interceptor</strong> (the one behind):
+    <ul>
+      <li>the <strong>racer</strong> just tries to win the race, as usual</li>
+      <li>the <strong>interceptor</strong> tries to intercept the best pod (ahead) from the opponent</li>
+    </ul>
+  </li>
+  <li>To know if a pod is <strong>ahead</strong> of another, we compare their laps / their current checkpoint / their distance to that checkpoint (in that order).</li>
+  <li>The <strong>interceptor</strong> simply heads towards its target (enemy pod) when it can. When it is not possible, it heads for the target’s next checkpoint to block it later.</li>
+</ul>
+
+<p>Adding this behaviour allowed me to go from rank 1258 to 482 (out of 4386 in Gold league at the time), but wasn’t enough to beat the boss.</p>
+
+<hr />
+<h2 id="gold-to-legend-simulation-approach">Gold to Legend (Simulation approach)</h2>
+
+<p>At this point, I was unsure how much I could still improve my solution, with the same heuristic approach.</p>
+
+<p>However, the “Expert rules” we are given describe precisely how the pods move:</p>
+
+<blockquote>
+  <p>On each turn the pods movements are computed this way:</p>
+
+  <ul>
+    <li>Rotation: the pod rotates to face the target point, with a maximum of 18 degrees (except for the 1rst round).</li>
+    <li>Acceleration: the pod’s facing vector is multiplied by the given thrust value. The result is added to the current speed vector.</li>
+    <li>Movement: The speed vector is added to the position of the pod. If a collision would occur at this point, the pods rebound off each other.</li>
+    <li>Friction: the current speed vector of each pod is multiplied by 0.85</li>
+    <li>The speed’s values are truncated and the position’s values are rounded to the nearest integer.</li>
+  </ul>
+
+  <p>Collisions are elastic. The minimum impulse of a collision is 120.</p>
+
+  <p>A boost is in fact an acceleration of 650. The number of boost available is common between pods. If no boost is available, the maximum thrust is used.</p>
+
+  <p>A shield multiplies the Pod mass by 10.
+  The provided angle is absolute. 0° means facing EAST while 90° means facing SOUTH.</p>
+</blockquote>
+
+<p>What we get from that is twofold:</p>
+<ul>
+  <li>A “move” (the action of one pod during a given turn, ie one line of the output) can be described in a much simpler (finite) way:
+    <ul>
+      <li>a rotation in [<code class="highlighter-rouge">-maxRotation</code>, <code class="highlighter-rouge">maxRotation</code>] (<code class="highlighter-rouge">maxRotation=18</code>)</li>
+      <li>a thrust in [<code class="highlighter-rouge">0</code>, <code class="highlighter-rouge">maxThrust</code>] (<code class="highlighter-rouge">maxThrust=100</code>)</li>
+      <li>either <code class="highlighter-rouge">BOOST</code>, or don’t</li>
+      <li>either <code class="highlighter-rouge">SHIELD</code>, or don’t</li>
+    </ul>
+  </li>
+  <li>Given the initial state of a turn, and the moves performed, we should be able to accurately predict the outcome, ie the initial state of the next turn.</li>
+</ul>
+
+<h3 id="building-the-simulation">Building the simulation</h3>
+
+<p>Outside of the collisions, implementing those rules in order to update the values of the pods, by simulating a turn, isn’t particularly hard, although it requires some debug/fine-tuning, and my implemention seemed to be perfectly accurate.</p>
+
+<p><strong>Collisions</strong>, however, are the tricky part, as they are described in a rather obscure way:</p>
+<blockquote>
+  <p>the pods rebound off each other.</p>
+</blockquote>
+
+<blockquote>
+  <p>Collisions are elastic. The minimum impulse of a collision is 120.</p>
+</blockquote>
+
+<ul>
+  <li>
+    <p>I implemented the rebound between pods A and B thanks this <a href="https://en.wikipedia.org/wiki/Elastic_collision#Two-dimensional_collision_with_two_moving_objects">wikipedia article</a>, describing the force applied to them.</p>
+
+    <p>We can write:</p>
+    <ul>
+      <li><code class="highlighter-rouge">u = (b.position - a.position).normalized</code>: that’s always the direction of the force</li>
+      <li><code class="highlighter-rouge">m = (mA*mB) / (mA+mB)</code> where <code class="highlighter-rouge">mA</code>, <code class="highlighter-rouge">mB</code> are the masses of A, B (10 times more than their default value while shielding)</li>
+      <li><code class="highlighter-rouge">k = (b.speed - a.speed) . u</code> (dot product)</li>
+      <li><code class="highlighter-rouge">impulse = -2*m*k</code></li>
+    </ul>
+
+    <p>This turns the speed variation into:</p>
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  a.speed += (-1/mA) * impulse * u
+  b.speed +=  (1/mB) * impulse * u
+</code></pre></div>    </div>
+    <p>I assumed what the rules call “minimum impulse” (<code class="highlighter-rouge">minImpulse=120</code>) is the minimum value of what I call <code class="highlighter-rouge">impulse</code>. I therefore clamp it in [<code class="highlighter-rouge">-minImpulse</code>, <code class="highlighter-rouge">minImpulse</code>].</p>
+  </li>
+  <li>To apply the rebound, we have to detect collisions. Not only that, we actually have to move the pods until the date <code class="highlighter-rouge">t</code> during which the collision happens (otherwise the previous computation won’t work).
+<br />This is done by computing <code class="highlighter-rouge">t</code> for a pair of pods p1,p2:
+    <ul>
+      <li>during this turn, the trajectory of a pod p is described by: <code class="highlighter-rouge">p(t) = p.position + t * p.speed</code></li>
+      <li>a collision between p1 and p2 happens when <code class="highlighter-rouge">|p2(t) - p1(t)| &lt; 2*podRadius</code></li>
+      <li>we can replace <code class="highlighter-rouge">p1(t)</code> and <code class="highlighter-rouge">p2(t)</code> by their definition, then square each member.</li>
+      <li>this gives us a <a href="https://en.wikipedia.org/wiki/Quadratic_equation">quadratic equation</a>: <code class="highlighter-rouge">a*t^2 + b*t + c = 0</code> which we know how to solve.
+<br />Note: we want <code class="highlighter-rouge">a&gt;0</code> (the distance between pods becomes shorter, ie collision), <code class="highlighter-rouge">t&gt;0</code> (for obvious reasons) and we only care about the first root.</li>
+    </ul>
+  </li>
+  <li>We can then simulate a turn:
+    <ul>
+      <li>find the smallest duration <code class="highlighter-rouge">dt</code> until a pair of pods p1, p2 collide (or the turn ends)</li>
+      <li>move all the pods during <code class="highlighter-rouge">dt</code> (<code class="highlighter-rouge">p.position = p.position + dt * p.speed</code>), and apply the rebound between p1 and p2</li>
+      <li>repeat until the end of the turn (sum of the dt = 1)</li>
+    </ul>
+  </li>
+</ul>
+
+<p>I’m still not sure how accurate that prediction is (compared to how the collisions are actually computed) but it looked good enough.</p>
+
+<h3 id="comparing-solutions">Comparing solutions</h3>
+
+<p>Now that we can simulate a solution (a sequence of moves for both pods), how can we tell how good it actually is?</p>
+
+<p>We can build a <a href="https://en.wikipedia.org/wiki/Fitness_function">fitness function</a> to quantify that, following a similar reasoning to what we did in the heuristic approach. We just need to rate the state of the pods, once we are done simulating a solution.</p>
+<ul>
+  <li>First, we can rate individual pods, in a way that always promotes a pod which is ahead:
+    <ul>
+      <li><code class="highlighter-rouge">score(pod) = C * checkpointsPassed - distanceToNextCheckpoint</code></li>
+      <li>Passing the current checkpoint should always be better than getting closer to it. Therefore we need at least <code class="highlighter-rouge">C &gt; maxCheckpointDistance</code>. I selected a value about 1.5 times as long as the map diagonal.</li>
+    </ul>
+
+    <p>Note: Thanks to this score, we can easily tell which pod should be the racer, and which one should be the interceptor (see racer/interceptor section from earlier).</p>
+  </li>
+  <li>We want to be ahead of our opponent, the more, the better:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>aheadScore = score(myRacer) - score(opponentRacer)
+</code></pre></div>    </div>
+  </li>
+  <li>We want our interceptor to be in the path of our opponent, by blocking its next checkpoint, just like we did earlier. We can quantify that with:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>interceptorScore = -distance(myInterceptor, opponentRacer.nextCheckpoint)
+</code></pre></div>    </div>
+  </li>
+  <li>The final score is therefore:
+    <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>solutionRating = aheadScore * K + interceptorScore
+</code></pre></div>    </div>
+    <p>I selected <code class="highlighter-rouge">K=2</code>, to give more bias to being ahead.</p>
+  </li>
+</ul>
+
+<h3 id="building-a-solution">Building a solution</h3>
+
+<p>We do have <strong>75ms</strong> to execute costly computations every turn, but that still won’t be enough to build a good solution through brute force. We need a smarter way to explore the solution space.
+<br />A way to proceed, which was teased in the tags of the problem description, is <a href="https://en.wikipedia.org/wiki/Genetic_algorithm">genetic algorithms</a>. That’s the approach I chose.</p>
+
+<h4 id="genetic-evolution">Genetic evolution</h4>
+<ul>
+  <li>We start with a population of <code class="highlighter-rouge">N</code> solutions, built randomly. Each one describes the moves for <code class="highlighter-rouge">T</code> turns.</li>
+  <li>Every turn:
+    <ul>
+      <li>We assume our population of <code class="highlighter-rouge">N</code> solutions was relatively “good” for the next <code class="highlighter-rouge">T-1</code> turns already: we use it as a start (by shifting every solution by 1 turn).</li>
+      <li>Until the end of the timer, we compute as many steps of the evolution as possible:
+        <ul>
+          <li>duplicate, mutate, simulate and rate the <code class="highlighter-rouge">N</code> solutions</li>
+          <li>sort the <code class="highlighter-rouge">2*N</code> solutions we now have, by score</li>
+          <li>only keep the best <code class="highlighter-rouge">N</code></li>
+          <li>repeat</li>
+        </ul>
+      </li>
+      <li>When the timer is over, we just return the best solution we found.</li>
+    </ul>
+  </li>
+</ul>
+
+<h4 id="mutations">Mutations</h4>
+<p>When a mutation occurs, we simply select one move to modify, somewhere in the solution (ie we select a turn and a pod).
+<br />We modify exactly one of the following values in that move:</p>
+<ul>
+  <li><strong>rotation</strong>: the new value is picked at random, by adding much more weight to <code class="highlighter-rouge">-maxRotation</code>, <code class="highlighter-rouge">0</code>, and <code class="highlighter-rouge">maxRotation</code>, as they intuitively seem more important</li>
+  <li><strong>thrust</strong>: the new value is picked at random, by adding more weight to <code class="highlighter-rouge">0</code>, and even more to <code class="highlighter-rouge">maxThrust</code></li>
+  <li><strong>shield</strong>: opposite value</li>
+  <li><strong>boost</strong>: opposite value</li>
+</ul>
+
+<p>Which of the values to modify is also selected at random, the rotation and thrust having more weight.</p>
+
+<p>I realized managing the boost was a waste of resource, as it can only happen once during the entire race. I fixed that by setting it on/off arbitrarily the first turn, and never worrying about it again. We could instead try to manage it in a clever way, but I didn’t.</p>
+
+<h3 id="result">Result</h3>
+
+<blockquote>
+  <p>You have been promoted to Legend League!</p>
+</blockquote>
+
+<p>This implementation got promoted to Legend league, where it got the rank of #495 (out of 725).</p>
+
+<hr />
+<h2 id="how-to-go-further">How to go further</h2>
+
+<p>My goal being to simply reach Legend league, I stopped there. However, my solution is far from perfect, and there are a couple ways to improve it further.</p>
+
+<h3 id="simulation">Simulation</h3>
+
+<p>From my testing, the simulation is 100% accurate when it comes to anything that isn’t collision/rebound.</p>
+
+<p>Since the description of that last part is relatively obscure, and my predictions looked good enough, I didn’t bother looking into it further, but maybe there’s something to fix here.</p>
+
+<h3 id="performance-optimization">Performance optimization</h3>
+
+<p>Simply making the code more efficient allows to test more solutions every turn. This can in turn lead to a better solution, without changing anything else.</p>
+
+<p>I already replaced <code class="highlighter-rouge">std::rand</code> with <a href="https://software.intel.com/en-us/articles/fast-random-number-generator-on-the-intel-pentiumr-4-processor">this method described by Intel</a>, in order to compute random numbers much faster, but profiling the code and optimizing intensive parts will probably lead to better results.</p>
+
+<h3 id="fitness-function">Fitness function</h3>
+
+<p>It seems pretty good already, but it might be possible to consider additional things I didn’t think of.</p>
+
+<h3 id="genetic-evolution-1">Genetic evolution</h3>
+
+<p>This implementation is pretty basic:</p>
+<ul>
+  <li>It starts with completely <strong>random solutions</strong>.</li>
+  <li>It doesn’t apply the concept of <a href="https://en.wikipedia.org/wiki/Crossover_(genetic_algorithm)">crossover mutations</a> (which might be a good thing, moves being dependent on the previous ones).</li>
+  <li>Mutations are <strong>biased</strong>, but maybe not in the best way.</li>
+  <li>When a mutation occurs, it completely ignores the previous value of what it modifies. We may want the mutations to have a <strong>wide range at the beginning of the evolution</strong> (to explore as much as possible), then <strong>gradually reduce that range</strong>, to perfect the solutions already found.</li>
+</ul>
+
+<p>Focusing on these points could improve our results.</p>
+
+<h3 id="not-ignoring-the-opponents-input">Not ignoring the opponent’s input</h3>
+
+<p>I completely ignored the moves of the opponent. The simulation just assumes his pods will never rotate/thrust/shield/boost during the following turns.</p>
+
+<p>Adapting the <code class="highlighter-rouge">Simulation</code> class, to manage the moves from the opponent as well, shouldn’t be too much trouble.
+<br />We could then <strong>make our population evolve against a solution attributed to the opponent</strong>.
+<br />That solution could just be generated via an <em>if-else</em> heuristic like what we did at first. We could also perform a genetic evolution, from the opponent’s point of view, during a smaller fraction of the turn.</p>
+
+<h3 id="magic-numbers">Magic numbers</h3>
+
+<p>There are a lot of magic numbers everywhere (how many turns do we simulate, how big is our population of solutions, bias for many values…). Finding and testing a better configuration might lead to better results.</p>
+
+<hr />
+<h2 id="closing-thoughts">Closing thoughts</h2>
+
+<ul>
+  <li>While the first leagues help getting familiar with the problem, the <strong>transition from Silver to Gold</strong> feels rather frustrating:
+    <ul>
+      <li>It breaks our previous solutions by modifying the protocol.</li>
+      <li>We suddenly have access to more values and don’t have to resort to “clever” strategies to get them (see <code class="highlighter-rouge">CheckpointManager</code>), which makes a lot of code obsolete.</li>
+      <li>Even worse, since we get the “Expert rules” at this point, we can just discard everything we’ve done so far, and restart from scratch, by abusing the fact we can simulate turns.</li>
+    </ul>
+  </li>
+  <li>The problem <strong>incentivizes a genetic algorithm</strong> (or similar) approach, because we can just execute whatever we want for a given duration, and a purely logical, heuristic approach, will probably always lose. I have mixed feelings about this:
+    <ul>
+      <li>On one hand, <strong>building the simulation</strong> is pretty satisfying (as long as you make the correct guess regarding the rather obscure collision part).</li>
+      <li>On the other hand, genetic algorithms <strong>don’t actually tell you <em>how</em> to solve the problem</strong>, they just use all the resource you give them to come up with a <em>good</em> solution, and trivialize the thinking process (although you still need to come up with the fitness function).</li>
+    </ul>
+  </li>
+  <li>
+    <p>As usual with <strong>competitive programming</strong>, being limited to a single file to write our code in, and only having access to <a href="https://en.wikipedia.org/wiki/Debugging#Techniques"><em>print debugging</em></a> is not a fun coding experience. It also gives bad habits regarding error handling, because without a debugger, it just becomes a waste of time and effort.</p>
+  </li>
+  <li>
+    <p>The <strong>simulation UI</strong> is extremely well made, and makes solving the problem very interactive/stimulating. It would be nice if we had the option to display custom messages there, instead of <code class="highlighter-rouge">cerr</code>.</p>
+  </li>
+  <li>Overall, I had a lot of fun solving that problem, props to CodinGame for making it!</li>
+</ul>
+
+</div>
+
+    </div>
+  </body>
+</html>

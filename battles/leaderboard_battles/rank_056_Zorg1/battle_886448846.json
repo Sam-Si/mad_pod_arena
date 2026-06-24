@@ -1,0 +1,4806 @@
+{
+  "gameId": 886448846,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 13470,
+          "y": 2335
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 12919,
+          "y": 7216
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 5645,
+          "y": 2600
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 4123,
+          "y": 7436
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 13967.0,
+          "y": 2391.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 12973.0,
+          "y": 2279.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 14961.0,
+          "y": 2503.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 11979.0,
+          "y": 2167.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 13967.0,
+          "y": 2391.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 12973.0,
+          "y": 2279.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 14961.0,
+          "y": 2503.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 11979.0,
+          "y": 2167.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 1\n$1 rank: 2\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "17251 5279 BOOST"
+      },
+      {
+        "turn": 2,
+        "command": "9453 10849 200 FIX TA CSB"
+      },
+      {
+        "turn": 3,
+        "command": "14050 6434 110"
+      },
+      {
+        "turn": 4,
+        "command": "7600 9111 78 FIX TA CSB"
+      },
+      {
+        "turn": 5,
+        "command": "13586 7888 132"
+      },
+      {
+        "turn": 6,
+        "command": "7961 9320 200 FIX TA CSB"
+      },
+      {
+        "turn": 7,
+        "command": "11128 9920 200"
+      },
+      {
+        "turn": 8,
+        "command": "6570 7106 176 FIX TA CSB"
+      },
+      {
+        "turn": 9,
+        "command": "11167 6513 0"
+      },
+      {
+        "turn": 10,
+        "command": "5782 4398 200 FIX TA CSB"
+      },
+      {
+        "turn": 11,
+        "command": "13747 4598 0"
+      },
+      {
+        "turn": 12,
+        "command": "5701 1914 200 FIX TA CSB"
+      },
+      {
+        "turn": 13,
+        "command": "4983 3727 200"
+      },
+      {
+        "turn": 14,
+        "command": "5204 5253 200 FIX TA CSB"
+      },
+      {
+        "turn": 15,
+        "command": "9755 5353 114"
+      },
+      {
+        "turn": 16,
+        "command": "4752 2503 200 FIX TA CSB"
+      },
+      {
+        "turn": 17,
+        "command": "12071 1433 148"
+      },
+      {
+        "turn": 18,
+        "command": "4391 1454 200 FIX TA CSB"
+      },
+      {
+        "turn": 19,
+        "command": "7264 -334 200"
+      },
+      {
+        "turn": 20,
+        "command": "4468 -412 200 FIX TA CSB"
+      },
+      {
+        "turn": 21,
+        "command": "4529 4357 200"
+      },
+      {
+        "turn": 22,
+        "command": "2812 1620 200 FIX TA CSB"
+      },
+      {
+        "turn": 23,
+        "command": "4566 2384 200"
+      },
+      {
+        "turn": 24,
+        "command": "2087 1395 200 FIX TA CSB"
+      },
+      {
+        "turn": 25,
+        "command": "4168 6238 200"
+      },
+      {
+        "turn": 26,
+        "command": "1328 982 200 FIX TA CSB"
+      },
+      {
+        "turn": 27,
+        "command": "5935 2378 200"
+      },
+      {
+        "turn": 28,
+        "command": "401 882 197 FIX TA CSB"
+      },
+      {
+        "turn": 29,
+        "command": "5993 3438 200"
+      },
+      {
+        "turn": 30,
+        "command": "-915 3705 SHIELD"
+      },
+      {
+        "turn": 31,
+        "command": "7341 2619 200"
+      },
+      {
+        "turn": 32,
+        "command": "-1113 6538 0 FIX TA CSB"
+      },
+      {
+        "turn": 33,
+        "command": "7067 4049 200"
+      },
+      {
+        "turn": 34,
+        "command": "-272 9071 200 FIX TA CSB"
+      },
+      {
+        "turn": 35,
+        "command": "3920 2053 200"
+      },
+      {
+        "turn": 36,
+        "command": "1444 11033 12 FIX TA CSB"
+      },
+      {
+        "turn": 37,
+        "command": "6881 3507 200"
+      },
+      {
+        "turn": 38,
+        "command": "3792 12209 0 FIX TA CSB"
+      },
+      {
+        "turn": 39,
+        "command": "2755 -3186 43"
+      },
+      {
+        "turn": 40,
+        "command": "6483 12466 12 FIX TA CSB"
+      },
+      {
+        "turn": 41,
+        "command": "6649 4534 200"
+      },
+      {
+        "turn": 42,
+        "command": "9204 11776 97 FIX TA CSB"
+      },
+      {
+        "turn": 43,
+        "command": "8326 -79 SHIELD"
+      },
+      {
+        "turn": 44,
+        "command": "11676 10272 200 FIX TA CSB"
+      },
+      {
+        "turn": 45,
+        "command": "8278 3912 SHIELD"
+      },
+      {
+        "turn": 46,
+        "command": "13709 8151 200 FIX TA CSB"
+      },
+      {
+        "turn": 47,
+        "command": "6160 2756 200"
+      },
+      {
+        "turn": 48,
+        "command": "15112 5570 86 FIX TA CSB"
+      },
+      {
+        "turn": 49,
+        "command": "6165 2843 200"
+      },
+      {
+        "turn": 50,
+        "command": "15644 2705 200 FIX TA CSB"
+      },
+      {
+        "turn": 51,
+        "command": "2003 11590 SHIELD"
+      },
+      {
+        "turn": 52,
+        "command": "15375 -172 SHIELD"
+      },
+      {
+        "turn": 53,
+        "command": "6072 3193 200"
+      },
+      {
+        "turn": 54,
+        "command": "13985 -2610 70 FIX TA CSB"
+      },
+      {
+        "turn": 55,
+        "command": "5460 3668 100"
+      },
+      {
+        "turn": 56,
+        "command": "11726 -4425 31 FIX TA CSB"
+      },
+      {
+        "turn": 57,
+        "command": "10551 2953 200"
+      },
+      {
+        "turn": 58,
+        "command": "8916 -5476 198 FIX TA CSB"
+      },
+      {
+        "turn": 59,
+        "command": "18411 -3200 0"
+      },
+      {
+        "turn": 60,
+        "command": "5833 -5627 157 FIX TA CSB"
+      },
+      {
+        "turn": 61,
+        "command": "15427 -4347 200"
+      },
+      {
+        "turn": 62,
+        "command": "4114 -5377 163 FIX TA CSB"
+      },
+      {
+        "turn": 63,
+        "command": "14164 -846 0"
+      },
+      {
+        "turn": 64,
+        "command": "1629 -4633 160 FIX TA CSB"
+      },
+      {
+        "turn": 65,
+        "command": "7134 3080 200"
+      },
+      {
+        "turn": 66,
+        "command": "4510 -5850 200 FIX TA CSB"
+      },
+      {
+        "turn": 67,
+        "command": "4261 2212 187"
+      },
+      {
+        "turn": 68,
+        "command": "6138 -6382 103 FIX TA CSB"
+      },
+      {
+        "turn": 69,
+        "command": "5476 5341 200"
+      },
+      {
+        "turn": 70,
+        "command": "9128 -6290 0 FIX TA CSB"
+      },
+      {
+        "turn": 71,
+        "command": "3028 930 200"
+      },
+      {
+        "turn": 72,
+        "command": "11814 -5204 200 FIX TA CSB"
+      },
+      {
+        "turn": 73,
+        "command": "2104 9861 200"
+      },
+      {
+        "turn": 74,
+        "command": "9106 -7158 18 FIX TA CSB"
+      },
+      {
+        "turn": 75,
+        "command": "6394 2918 0"
+      },
+      {
+        "turn": 76,
+        "command": "6078 -8130 SHIELD"
+      },
+      {
+        "turn": 77,
+        "command": "13312 7219 200"
+      },
+      {
+        "turn": 78,
+        "command": "3025 -8059 141 FIX TA CSB"
+      },
+      {
+        "turn": 79,
+        "command": "-4403 -4263 200"
+      },
+      {
+        "turn": 80,
+        "command": "202 -7062 200 FIX TA CSB"
+      },
+      {
+        "turn": 81,
+        "command": "3400 5418 175"
+      },
+      {
+        "turn": 82,
+        "command": "-2127 -5303 51 FIX TA CSB"
+      },
+      {
+        "turn": 83,
+        "command": "6744 4553 0"
+      },
+      {
+        "turn": 84,
+        "command": "-3662 -2891 0 FIX TA CSB"
+      },
+      {
+        "turn": 85,
+        "command": "-262 3880 200"
+      },
+      {
+        "turn": 86,
+        "command": "-4261 -108 24 FIX TA CSB"
+      },
+      {
+        "turn": 87,
+        "command": "7998 4162 0"
+      },
+      {
+        "turn": 88,
+        "command": "-4150 1721 0 FIX TA CSB"
+      },
+      {
+        "turn": 89,
+        "command": "4808 5701 0"
+      },
+      {
+        "turn": 90,
+        "command": "-3304 4137 8 FIX TA CSB"
+      },
+      {
+        "turn": 91,
+        "command": "5753 7410 0"
+      },
+      {
+        "turn": 92,
+        "command": "-1523 6491 14 FIX TA CSB"
+      },
+      {
+        "turn": 93,
+        "command": "5213 6458 200"
+      },
+      {
+        "turn": 94,
+        "command": "950 8189 20 FIX TA CSB"
+      },
+      {
+        "turn": 95,
+        "command": "10088 854 200"
+      },
+      {
+        "turn": 96,
+        "command": "3866 9054 136 FIX TA CSB"
+      },
+      {
+        "turn": 97,
+        "command": "16346 4040 200"
+      },
+      {
+        "turn": 98,
+        "command": "6923 9102 200 FIX TA CSB"
+      },
+      {
+        "turn": 99,
+        "command": "10277 -565 200"
+      },
+      {
+        "turn": 100,
+        "command": "9869 8375 200 FIX TA CSB"
+      },
+      {
+        "turn": 101,
+        "command": "12594 1394 200"
+      },
+      {
+        "turn": 102,
+        "command": "12468 6916 200 FIX TA CSB"
+      },
+      {
+        "turn": 103,
+        "command": "10466 2409 200"
+      },
+      {
+        "turn": 104,
+        "command": "14504 4848 200 FIX TA CSB"
+      },
+      {
+        "turn": 105,
+        "command": "3014 2718 200"
+      },
+      {
+        "turn": 106,
+        "command": "15815 2358 200 FIX TA CSB"
+      },
+      {
+        "turn": 107,
+        "command": "8741 6430 200"
+      },
+      {
+        "turn": 108,
+        "command": "15340 5776 200 FIX TA CSB"
+      },
+      {
+        "turn": 109,
+        "command": "11125 2037 200"
+      },
+      {
+        "turn": 110,
+        "command": "16087 5930 200 FIX TA CSB"
+      },
+      {
+        "turn": 111,
+        "command": "9443 -756 0"
+      },
+      {
+        "turn": 112,
+        "command": "16096 7631 200 FIX TA CSB"
+      },
+      {
+        "turn": 113,
+        "command": "-450 10422 200"
+      },
+      {
+        "turn": 114,
+        "command": "14754 10473 200 FIX TA CSB"
+      },
+      {
+        "turn": 115,
+        "command": "8968 6150 0"
+      },
+      {
+        "turn": 116,
+        "command": "12808 12631 198 FIX TA CSB"
+      },
+      {
+        "turn": 117,
+        "command": "12809 4491 0"
+      },
+      {
+        "turn": 118,
+        "command": "10468 13972 200 FIX TA CSB"
+      },
+      {
+        "turn": 119,
+        "command": "12883 19380 0"
+      },
+      {
+        "turn": 120,
+        "command": "11437 14733 SHIELD"
+      },
+      {
+        "turn": 121,
+        "command": "14145 2138 200"
+      },
+      {
+        "turn": 122,
+        "command": "15054 14608 30 FIX TA CSB"
+      },
+      {
+        "turn": 123,
+        "command": "6684 15577 200"
+      },
+      {
+        "turn": 124,
+        "command": "18201 13485 196 FIX TA CSB"
+      },
+      {
+        "turn": 125,
+        "command": "13049 4032 200"
+      },
+      {
+        "turn": 126,
+        "command": "20631 11542 0 FIX TA CSB"
+      },
+      {
+        "turn": 127,
+        "command": "13342 1924 200"
+      },
+      {
+        "turn": 128,
+        "command": "22159 9026 0 FIX TA CSB"
+      },
+      {
+        "turn": 129,
+        "command": "15139 -646 200"
+      },
+      {
+        "turn": 130,
+        "command": "22679 6233 0 FIX TA CSB"
+      },
+      {
+        "turn": 131,
+        "command": "15233 4174 61"
+      },
+      {
+        "turn": 132,
+        "command": "22179 3474 0 FIX TA CSB"
+      },
+      {
+        "turn": 133,
+        "command": "5931 13552 0"
+      },
+      {
+        "turn": 134,
+        "command": "20738 1056 0 FIX TA CSB"
+      },
+      {
+        "turn": 135,
+        "command": "13304 5126 0"
+      },
+      {
+        "turn": 136,
+        "command": "18525 -756 0 FIX TA CSB"
+      },
+      {
+        "turn": 137,
+        "command": "17285 8130 38"
+      },
+      {
+        "turn": 138,
+        "command": "15780 -1759 0 FIX TA CSB"
+      },
+      {
+        "turn": 139,
+        "command": "9213 4818 196"
+      },
+      {
+        "turn": 140,
+        "command": "12792 -1834 0 FIX TA CSB"
+      },
+      {
+        "turn": 141,
+        "command": "11341 2331 200"
+      },
+      {
+        "turn": 142,
+        "command": "14298 -1738 200 FIX TA CSB"
+      },
+      {
+        "turn": 143,
+        "command": "8396 9227 67"
+      },
+      {
+        "turn": 144,
+        "command": "11292 -1509 200 FIX TA CSB"
+      },
+      {
+        "turn": 145,
+        "command": "20359 9425 200"
+      },
+      {
+        "turn": 146,
+        "command": "12181 -1974 200 FIX TA CSB"
+      },
+      {
+        "turn": 147,
+        "command": "12112 6405 200"
+      },
+      {
+        "turn": 148,
+        "command": "15131 -2482 139 FIX TA CSB"
+      },
+      {
+        "turn": 149,
+        "command": "18802 6080 142"
+      },
+      {
+        "turn": 150,
+        "command": "18153 -2124 200 FIX TA CSB"
+      },
+      {
+        "turn": 151,
+        "command": "14204 -3540 124"
+      },
+      {
+        "turn": 152,
+        "command": "20842 -983 200 FIX TA CSB"
+      },
+      {
+        "turn": 153,
+        "command": "10856 5979 0"
+      },
+      {
+        "turn": 154,
+        "command": "22986 819 SHIELD"
+      },
+      {
+        "turn": 155,
+        "command": "14569 6634 0"
+      },
+      {
+        "turn": 156,
+        "command": "24240 3196 26 FIX TA CSB"
+      },
+      {
+        "turn": 157,
+        "command": "2244 3246 0"
+      },
+      {
+        "turn": 158,
+        "command": "24505 5844 134 FIX TA CSB"
+      },
+      {
+        "turn": 159,
+        "command": "10975 6570 8"
+      },
+      {
+        "turn": 160,
+        "command": "23775 8446 52 FIX TA CSB"
+      },
+      {
+        "turn": 161,
+        "command": "13983 5489 143"
+      },
+      {
+        "turn": 162,
+        "command": "22137 10694 2 FIX TA CSB"
+      },
+      {
+        "turn": 163,
+        "command": "13185 8116 200"
+      },
+      {
+        "turn": 164,
+        "command": "19768 12329 196 FIX TA CSB"
+      },
+      {
+        "turn": 165,
+        "command": "13324 7271 200"
+      },
+      {
+        "turn": 166,
+        "command": "17004 13323 0 FIX TA CSB"
+      },
+      {
+        "turn": 167,
+        "command": "13757 4118 200"
+      },
+      {
+        "turn": 168,
+        "command": "14027 13368 37 FIX TA CSB"
+      },
+      {
+        "turn": 169,
+        "command": "14890 4493 200"
+      },
+      {
+        "turn": 170,
+        "command": "11140 12489 136 FIX TA CSB"
+      },
+      {
+        "turn": 171,
+        "command": "13626 5947 200"
+      },
+      {
+        "turn": 172,
+        "command": "8593 10848 200 FIX TA CSB"
+      },
+      {
+        "turn": 173,
+        "command": "7299 5075 200"
+      },
+      {
+        "turn": 174,
+        "command": "6568 8621 200 FIX TA CSB"
+      },
+      {
+        "turn": 175,
+        "command": "15169 7209 200"
+      },
+      {
+        "turn": 176,
+        "command": "5240 5980 200 FIX TA CSB"
+      },
+      {
+        "turn": 177,
+        "command": "7331 1003 200"
+      },
+      {
+        "turn": 178,
+        "command": "4716 3146 200 FIX TA CSB"
+      },
+      {
+        "turn": 179,
+        "command": "3881 807 200"
+      },
+      {
+        "turn": 180,
+        "command": "5026 362 200 FIX TA CSB"
+      },
+      {
+        "turn": 181,
+        "command": "5651 676 200"
+      },
+      {
+        "turn": 182,
+        "command": "3515 3475 200 FIX TA CSB"
+      },
+      {
+        "turn": 183,
+        "command": "9354 762 195"
+      },
+      {
+        "turn": 184,
+        "command": "2874 6666 200 FIX TA CSB"
+      },
+      {
+        "turn": 185,
+        "command": "6026 1406 200"
+      },
+      {
+        "turn": 186,
+        "command": "3111 9698 200 FIX TA CSB"
+      },
+      {
+        "turn": 187,
+        "command": "1297 14521 0"
+      },
+      {
+        "turn": 188,
+        "command": "1578 8445 200 FIX TA CSB"
+      },
+      {
+        "turn": 189,
+        "command": "6022 4239 0"
+      },
+      {
+        "turn": 190,
+        "command": "2156 11397 200 FIX TA CSB"
+      },
+      {
+        "turn": 191,
+        "command": "6916 5263 0"
+      },
+      {
+        "turn": 192,
+        "command": "601 10846 200 FIX TA CSB"
+      },
+      {
+        "turn": 193,
+        "command": "5987 5381 200"
+      },
+      {
+        "turn": 194,
+        "command": "787 12732 200 FIX TA CSB"
+      },
+      {
+        "turn": 195,
+        "command": "7265 3538 200"
+      },
+      {
+        "turn": 196,
+        "command": "-1625 11208 SHIELD"
+      },
+      {
+        "turn": 197,
+        "command": "6849 3954 200"
+      },
+      {
+        "turn": 198,
+        "command": "-3527 8648 SHIELD"
+      },
+      {
+        "turn": 199,
+        "command": "8354 4330 200"
+      },
+      {
+        "turn": 200,
+        "command": "-4343 5845 SHIELD"
+      },
+      {
+        "turn": 201,
+        "command": "8013 12641 200"
+      },
+      {
+        "turn": 202,
+        "command": "-4081 3111 SHIELD"
+      },
+      {
+        "turn": 203,
+        "command": "7703 3280 200"
+      },
+      {
+        "turn": 204,
+        "command": "-2819 769 68 FIX TA CSB"
+      },
+      {
+        "turn": 205,
+        "command": "8237 -5571 SHIELD"
+      },
+      {
+        "turn": 206,
+        "command": "-694 -883 82 FIX TA CSB"
+      },
+      {
+        "turn": 207,
+        "command": "6865 9477 200"
+      },
+      {
+        "turn": 208,
+        "command": "1277 -1563 0 FIX TA CSB"
+      },
+      {
+        "turn": 209,
+        "command": "4962 8230 0"
+      },
+      {
+        "turn": 210,
+        "command": "4143 -1692 200 FIX TA CSB"
+      },
+      {
+        "turn": 211,
+        "command": "4880 8568 200"
+      },
+      {
+        "turn": 212,
+        "command": "1053 -1366 200 FIX TA CSB"
+      },
+      {
+        "turn": 213,
+        "command": "4847 7750 200"
+      },
+      {
+        "turn": 214,
+        "command": "1949 -1622 200 FIX TA CSB"
+      },
+      {
+        "turn": 215,
+        "command": "4815 8355 200"
+      },
+      {
+        "turn": 216,
+        "command": "1392 -1714 SHIELD"
+      },
+      {
+        "turn": 217,
+        "command": "4248 7421 200"
+      },
+      {
+        "turn": 218,
+        "command": "-1194 -545 62 FIX TA CSB"
+      },
+      {
+        "turn": 219,
+        "command": "4060 7036 200"
+      },
+      {
+        "turn": 220,
+        "command": "-3261 1482 174 FIX TA CSB"
+      },
+      {
+        "turn": 221,
+        "command": "3913 7296 200"
+      },
+      {
+        "turn": 222,
+        "command": "-4574 4121 141 FIX TA CSB"
+      },
+      {
+        "turn": 223,
+        "command": "3019 10306 200"
+      },
+      {
+        "turn": 224,
+        "command": "-4258 3525 199 FIX TA CSB"
+      },
+      {
+        "turn": 225,
+        "command": "5870 -5355 46"
+      },
+      {
+        "turn": 226,
+        "command": "-4623 4184 200 FIX TA CSB"
+      },
+      {
+        "turn": 227,
+        "command": "8844 3713 200"
+      },
+      {
+        "turn": 228,
+        "command": "-3503 1175 200 FIX TA CSB"
+      },
+      {
+        "turn": 229,
+        "command": "13428 7455 77"
+      },
+      {
+        "turn": 230,
+        "command": "-3676 610 200 FIX TA CSB"
+      },
+      {
+        "turn": 231,
+        "command": "6685 9081 200"
+      },
+      {
+        "turn": 232,
+        "command": "-4414 715 193 FIX TA CSB"
+      },
+      {
+        "turn": 233,
+        "command": "2719 8228 198"
+      },
+      {
+        "turn": 234,
+        "command": "-5114 2606 169 FIX TA CSB"
+      },
+      {
+        "turn": 235,
+        "command": "5482 5201 200"
+      },
+      {
+        "turn": 236,
+        "command": "-5844 5752 200 FIX TA CSB"
+      },
+      {
+        "turn": 237,
+        "command": "4245 6833 200"
+      },
+      {
+        "turn": 238,
+        "command": "-5985 7917 200 FIX TA CSB"
+      },
+      {
+        "turn": 239,
+        "command": "4668 6396 200"
+      },
+      {
+        "turn": 240,
+        "command": "-5919 9877 SHIELD"
+      },
+      {
+        "turn": 241,
+        "command": "-5622 12836 200"
+      },
+      {
+        "turn": 242,
+        "command": "-6624 6878 200 FIX TA CSB"
+      },
+      {
+        "turn": 243,
+        "command": "3303 9078 200"
+      },
+      {
+        "turn": 244,
+        "command": "-6723 5915 14 FIX TA CSB"
+      },
+      {
+        "turn": 245,
+        "command": "417 -3090 26"
+      },
+      {
+        "turn": 246,
+        "command": "-6689 9108 40 FIX TA CSB"
+      },
+      {
+        "turn": 247,
+        "command": "1736 11631 200"
+      },
+      {
+        "turn": 248,
+        "command": "-6799 9166 200 FIX TA CSB"
+      },
+      {
+        "turn": 249,
+        "command": "7942 11494 200"
+      },
+      {
+        "turn": 250,
+        "command": "-5967 12177 200 FIX TA CSB"
+      },
+      {
+        "turn": 251,
+        "command": "3457 7078 0"
+      },
+      {
+        "turn": 252,
+        "command": "-4416 14785 200 FIX TA CSB"
+      },
+      {
+        "turn": 253,
+        "command": "4008 2796 93"
+      },
+      {
+        "turn": 254,
+        "command": "-2281 16787 200 FIX TA CSB"
+      },
+      {
+        "turn": 255,
+        "command": "2989 3865 200"
+      },
+      {
+        "turn": 256,
+        "command": "408 17709 0 FIX TA CSB"
+      },
+      {
+        "turn": 257,
+        "command": "4617 6450 200"
+      },
+      {
+        "turn": 258,
+        "command": "3288 17563 0 FIX TA CSB"
+      },
+      {
+        "turn": 259,
+        "command": "-10930 12414 200"
+      },
+      {
+        "turn": 260,
+        "command": "6002 16457 17 FIX TA CSB"
+      },
+      {
+        "turn": 261,
+        "command": "1344 7482 200"
+      },
+      {
+        "turn": 262,
+        "command": "8266 14515 200 FIX TA CSB"
+      },
+      {
+        "turn": 263,
+        "command": "9195 17018 200"
+      },
+      {
+        "turn": 264,
+        "command": "9978 12047 200 FIX TA CSB"
+      },
+      {
+        "turn": 265,
+        "command": "9030 8614 200"
+      },
+      {
+        "turn": 266,
+        "command": "10977 9238 167 FIX TA CSB"
+      },
+      {
+        "turn": 267,
+        "command": "3516 3471 200"
+      },
+      {
+        "turn": 268,
+        "command": "11139 6312 200 FIX TA CSB"
+      },
+      {
+        "turn": 269,
+        "command": "5552 14170 200"
+      },
+      {
+        "turn": 270,
+        "command": "10491 3517 200 FIX TA CSB"
+      },
+      {
+        "turn": 271,
+        "command": "14226 2838 200"
+      },
+      {
+        "turn": 272,
+        "command": "10176 2231 200 FIX TA CSB"
+      },
+      {
+        "turn": 273,
+        "command": "13090 2941 200"
+      },
+      {
+        "turn": 274,
+        "command": "11619 3253 200 FIX TA CSB"
+      },
+      {
+        "turn": 275,
+        "command": "15647 3709 200"
+      },
+      {
+        "turn": 276,
+        "command": "12245 2899 200 FIX TA CSB"
+      },
+      {
+        "turn": 277,
+        "command": "10403 -353 200"
+      },
+      {
+        "turn": 278,
+        "command": "12735 2183 200 FIX TA CSB"
+      },
+      {
+        "turn": 279,
+        "command": "10879 2493 200"
+      },
+      {
+        "turn": 280,
+        "command": "14932 4643 179 FIX TA CSB"
+      },
+      {
+        "turn": 281,
+        "command": "13891 4680 200"
+      },
+      {
+        "turn": 282,
+        "command": "16239 7390 200 FIX TA CSB"
+      },
+      {
+        "turn": 283,
+        "command": "18253 8651 200"
+      },
+      {
+        "turn": 284,
+        "command": "16745 3999 193 FIX TA CSB"
+      },
+      {
+        "turn": 285,
+        "command": "19980 9461 0"
+      },
+      {
+        "turn": 286,
+        "command": "16357 882 200 FIX TA CSB"
+      },
+      {
+        "turn": 287,
+        "command": "5712 11996 200"
+      },
+      {
+        "turn": 288,
+        "command": "16237 -828 200 FIX TA CSB"
+      },
+      {
+        "turn": 289,
+        "command": "2325 3701 0"
+      },
+      {
+        "turn": 290,
+        "command": "19066 1246 173 FIX TA CSB"
+      },
+      {
+        "turn": 291,
+        "command": "7296 10070 200"
+      },
+      {
+        "turn": 292,
+        "command": "18222 -1754 190 FIX TA CSB"
+      },
+      {
+        "turn": 293,
+        "command": "4927 -4456 0"
+      },
+      {
+        "turn": 294,
+        "command": "21040 247 80 FIX TA CSB"
+      },
+      {
+        "turn": 295,
+        "command": "5308 -2548 200"
+      },
+      {
+        "turn": 296,
+        "command": "20104 -2772 72 FIX TA CSB"
+      },
+      {
+        "turn": 297,
+        "command": "11000 8916 SHIELD"
+      },
+      {
+        "turn": 298,
+        "command": "18390 -5076 SHIELD"
+      },
+      {
+        "turn": 299,
+        "command": "12694 10155 0"
+      },
+      {
+        "turn": 300,
+        "command": "18699 -5213 199 FIX TA CSB"
+      },
+      {
+        "turn": 301,
+        "command": "11981 6187 0"
+      },
+      {
+        "turn": 302,
+        "command": "21556 -3324 70 FIX TA CSB"
+      },
+      {
+        "turn": 303,
+        "command": "11074 4479 200"
+      },
+      {
+        "turn": 304,
+        "command": "21678 -3364 200 FIX TA CSB"
+      },
+      {
+        "turn": 305,
+        "command": "11576 -3004 200"
+      },
+      {
+        "turn": 306,
+        "command": "22383 -2802 200 FIX TA CSB"
+      },
+      {
+        "turn": 307,
+        "command": "9936 -12573 200"
+      },
+      {
+        "turn": 308,
+        "command": "20243 -4808 140 FIX TA CSB"
+      },
+      {
+        "turn": 309,
+        "command": "18230 4238 200"
+      },
+      {
+        "turn": 310,
+        "command": "17647 -6067 SHIELD"
+      },
+      {
+        "turn": 311,
+        "command": "11520 4638 200"
+      },
+      {
+        "turn": 312,
+        "command": "14813 -6337 0 FIX TA CSB"
+      },
+      {
+        "turn": 313,
+        "command": "14485 7170 200"
+      },
+      {
+        "turn": 314,
+        "command": "12053 -5611 158 FIX TA CSB"
+      },
+      {
+        "turn": 315,
+        "command": "14438 6777 200"
+      },
+      {
+        "turn": 316,
+        "command": "9670 -3976 64 FIX TA CSB"
+      },
+      {
+        "turn": 317,
+        "command": "18282 8373 200"
+      },
+      {
+        "turn": 318,
+        "command": "7921 -1608 0 FIX TA CSB"
+      },
+      {
+        "turn": 319,
+        "command": "11488 10288 200"
+      },
+      {
+        "turn": 320,
+        "command": "7002 1250 200 FIX TA CSB"
+      },
+      {
+        "turn": 321,
+        "command": "16612 9520 200"
+      },
+      {
+        "turn": 322,
+        "command": "6764 3574 199 FIX TA CSB"
+      },
+      {
+        "turn": 323,
+        "command": "12825 6821 189"
+      },
+      {
+        "turn": 324,
+        "command": "6548 1925 200 FIX TA CSB"
+      },
+      {
+        "turn": 325,
+        "command": "12647 2593 0"
+      },
+      {
+        "turn": 326,
+        "command": "6078 3055 200 FIX TA CSB"
+      },
+      {
+        "turn": 327,
+        "command": "19751 -3245 104"
+      },
+      {
+        "turn": 328,
+        "command": "5536 3332 200 FIX TA CSB"
+      },
+      {
+        "turn": 329,
+        "command": "13638 5092 200"
+      },
+      {
+        "turn": 330,
+        "command": "4891 3630 200 FIX TA CSB"
+      },
+      {
+        "turn": 331,
+        "command": "8058 47 200"
+      },
+      {
+        "turn": 332,
+        "command": "4109 2037 200 FIX TA CSB"
+      },
+      {
+        "turn": 333,
+        "command": "5418 -1038 200"
+      },
+      {
+        "turn": 334,
+        "command": "3233 2874 200 FIX TA CSB"
+      },
+      {
+        "turn": 335,
+        "command": "9066 120 200"
+      },
+      {
+        "turn": 336,
+        "command": "2459 4411 200 FIX TA CSB"
+      },
+      {
+        "turn": 337,
+        "command": "7831 584 200"
+      },
+      {
+        "turn": 338,
+        "command": "2496 7384 200 FIX TA CSB"
+      },
+      {
+        "turn": 339,
+        "command": "10596 4728 200"
+      },
+      {
+        "turn": 340,
+        "command": "3368 9989 200 FIX TA CSB"
+      },
+      {
+        "turn": 341,
+        "command": "6615 -2085 200"
+      },
+      {
+        "turn": 342,
+        "command": "4933 12017 200 FIX TA CSB"
+      },
+      {
+        "turn": 343,
+        "command": "14923 4120 200"
+      },
+      {
+        "turn": 344,
+        "command": "6989 13310 200 FIX TA CSB"
+      },
+      {
+        "turn": 345,
+        "command": "17556 10792 69"
+      },
+      {
+        "turn": 346,
+        "command": "9293 13775 200 FIX TA CSB"
+      },
+      {
+        "turn": 347,
+        "command": "-1831 2168 0"
+      },
+      {
+        "turn": 348,
+        "command": "11587 13394 200 FIX TA CSB"
+      },
+      {
+        "turn": 349,
+        "command": "18160 7955 103"
+      },
+      {
+        "turn": 350,
+        "command": "13203 12309 27 FIX TA CSB"
+      },
+      {
+        "turn": 351,
+        "command": "5191 2108 177"
+      },
+      {
+        "turn": 352,
+        "command": "14261 9991 49 FIX TA CSB"
+      },
+      {
+        "turn": 353,
+        "command": "5115 3141 134"
+      },
+      {
+        "turn": 354,
+        "command": "14622 7210 35 FIX TA CSB"
+      },
+      {
+        "turn": 355,
+        "command": "1597 3151 119"
+      },
+      {
+        "turn": 356,
+        "command": "14151 4239 200 FIX TA CSB"
+      },
+      {
+        "turn": 357,
+        "command": "5424 6909 41"
+      },
+      {
+        "turn": 358,
+        "command": "12989 1351 200 FIX TA CSB"
+      },
+      {
+        "turn": 359,
+        "command": "-4263 3181 200"
+      },
+      {
+        "turn": 360,
+        "command": "12453 435 193 FIX TA CSB"
+      },
+      {
+        "turn": 361,
+        "command": "-1441 4802 90"
+      },
+      {
+        "turn": 362,
+        "command": "13815 3213 200 FIX TA CSB"
+      },
+      {
+        "turn": 363,
+        "command": "17852 8214 SHIELD"
+      },
+      {
+        "turn": 364,
+        "command": "14400 6195 188 FIX TA CSB"
+      },
+      {
+        "turn": 365,
+        "command": "-4718 -795 0"
+      },
+      {
+        "turn": 366,
+        "command": "14694 3489 200 FIX TA CSB"
+      },
+      {
+        "turn": 367,
+        "command": "5615 3921 200"
+      },
+      {
+        "turn": 368,
+        "command": "15383 6492 0 FIX TA CSB"
+      },
+      {
+        "turn": 369,
+        "command": "14609 7704 0"
+      },
+      {
+        "turn": 370,
+        "command": "15347 8590 0 FIX TA CSB"
+      },
+      {
+        "turn": 371,
+        "command": "7562 3246 200"
+      },
+      {
+        "turn": 372,
+        "command": "13173 11190 200 FIX TA CSB"
+      },
+      {
+        "turn": 373,
+        "command": "2980 -148 200"
+      },
+      {
+        "turn": 374,
+        "command": "11784 11975 200 FIX TA CSB"
+      },
+      {
+        "turn": 375,
+        "command": "7125 11298 200"
+      },
+      {
+        "turn": 376,
+        "command": "8832 13993 82 FIX TA CSB"
+      },
+      {
+        "turn": 377,
+        "command": "251 8443 200"
+      },
+      {
+        "turn": 378,
+        "command": "10984 12296 91 FIX TA CSB"
+      },
+      {
+        "turn": 379,
+        "command": "3758 6652 200"
+      },
+      {
+        "turn": 380,
+        "command": "12549 9954 0 FIX TA CSB"
+      },
+      {
+        "turn": 381,
+        "command": "4583 5608 200"
+      },
+      {
+        "turn": 382,
+        "command": "13270 7150 79 FIX TA CSB"
+      },
+      {
+        "turn": 383,
+        "command": "-8154 -1473 0"
+      },
+      {
+        "turn": 384,
+        "command": "13130 4193 200 FIX TA CSB"
+      },
+      {
+        "turn": 385,
+        "command": "4442 7537 0"
+      },
+      {
+        "turn": 386,
+        "command": "12236 1344 95 FIX TA CSB"
+      },
+      {
+        "turn": 387,
+        "command": "3783 7269 200"
+      },
+      {
+        "turn": 388,
+        "command": "10543 -1108 0 FIX TA CSB"
+      },
+      {
+        "turn": 389,
+        "command": "6142 6902 200"
+      },
+      {
+        "turn": 390,
+        "command": "8141 -2862 0 FIX TA CSB"
+      },
+      {
+        "turn": 391,
+        "command": "5354 5948 0"
+      },
+      {
+        "turn": 392,
+        "command": "5285 -3743 25 FIX TA CSB"
+      },
+      {
+        "turn": 393,
+        "command": "13805 3215 0"
+      },
+      {
+        "turn": 394,
+        "command": "2276 -3686 200 FIX TA CSB"
+      },
+      {
+        "turn": 395,
+        "command": "13534 10613 169"
+      },
+      {
+        "turn": 396,
+        "command": "-617 -2862 178 FIX TA CSB"
+      },
+      {
+        "turn": 397,
+        "command": "16657 672 145"
+      },
+      {
+        "turn": 398,
+        "command": "-3145 -1301 200 FIX TA CSB"
+      },
+      {
+        "turn": 399,
+        "command": "6178 6489 200"
+      },
+      {
+        "turn": 400,
+        "command": "-5107 850 0 FIX TA CSB"
+      },
+      {
+        "turn": 401,
+        "command": "4347 6526 109"
+      },
+      {
+        "turn": 402,
+        "command": "-6164 3492 SHIELD"
+      },
+      {
+        "turn": 403,
+        "command": "4445 -3465 115"
+      },
+      {
+        "turn": 404,
+        "command": "-6230 6322 164 FIX TA CSB"
+      },
+      {
+        "turn": 405,
+        "command": "1096 -3012 200"
+      },
+      {
+        "turn": 406,
+        "command": "-5313 9028 SHIELD"
+      },
+      {
+        "turn": 407,
+        "command": "13951 -8455 SHIELD"
+      },
+      {
+        "turn": 408,
+        "command": "-3516 11313 184 FIX TA CSB"
+      },
+      {
+        "turn": 409,
+        "command": "11509 6087 0"
+      },
+      {
+        "turn": 410,
+        "command": "-1026 12926 0 FIX TA CSB"
+      },
+      {
+        "turn": 411,
+        "command": "15599 3038 200"
+      },
+      {
+        "turn": 412,
+        "command": "1904 13688 0 FIX TA CSB"
+      },
+      {
+        "turn": 413,
+        "command": "17566 367 147"
+      },
+      {
+        "turn": 414,
+        "command": "4979 13504 16 FIX TA CSB"
+      },
+      {
+        "turn": 415,
+        "command": "12433 2952 200"
+      },
+      {
+        "turn": 416,
+        "command": "7896 12391 200 FIX TA CSB"
+      },
+      {
+        "turn": 417,
+        "command": "16533 3217 200"
+      },
+      {
+        "turn": 418,
+        "command": "10454 10605 200 FIX TA CSB"
+      },
+      {
+        "turn": 419,
+        "command": "13027 3106 200"
+      },
+      {
+        "turn": 420,
+        "command": "12442 8263 200 FIX TA CSB"
+      },
+      {
+        "turn": 421,
+        "command": "10196 2628 200"
+      },
+      {
+        "turn": 422,
+        "command": "11990 9890 200 FIX TA CSB"
+      },
+      {
+        "turn": 423,
+        "command": "10861 5030 200"
+      },
+      {
+        "turn": 424,
+        "command": "12446 10238 200 FIX TA CSB"
+      },
+      {
+        "turn": 425,
+        "command": "13282 3908 200"
+      },
+      {
+        "turn": 426,
+        "command": "13793 9296 200 FIX TA CSB"
+      },
+      {
+        "turn": 427,
+        "command": "16213 1848 200"
+      },
+      {
+        "turn": 428,
+        "command": "12647 12295 200 FIX TA CSB"
+      },
+      {
+        "turn": 429,
+        "command": "3465 -3345 200"
+      },
+      {
+        "turn": 430,
+        "command": "14988 9588 200 FIX TA CSB"
+      },
+      {
+        "turn": 431,
+        "command": "10973 -66 200"
+      },
+      {
+        "turn": 432,
+        "command": "15265 10182 200 FIX TA CSB"
+      },
+      {
+        "turn": 433,
+        "command": "13288 1773 200"
+      },
+      {
+        "turn": 434,
+        "command": "16302 9696 200 FIX TA CSB"
+      },
+      {
+        "turn": 435,
+        "command": "14405 5132 200"
+      },
+      {
+        "turn": 436,
+        "command": "15205 12229 200 FIX TA CSB"
+      },
+      {
+        "turn": 437,
+        "command": "12353 3134 200"
+      },
+      {
+        "turn": 438,
+        "command": "17973 9967 184 FIX TA CSB"
+      },
+      {
+        "turn": 439,
+        "command": "12580 3909 185"
+      },
+      {
+        "turn": 440,
+        "command": "19919 7288 78 FIX TA CSB"
+      },
+      {
+        "turn": 441,
+        "command": "12632 1073 0"
+      },
+      {
+        "turn": 442,
+        "command": "20849 4399 SHIELD"
+      },
+      {
+        "turn": 443,
+        "command": "9815 5824 200"
+      },
+      {
+        "turn": 444,
+        "command": "20650 1568 0 FIX TA CSB"
+      },
+      {
+        "turn": 445,
+        "command": "8631 4085 200"
+      },
+      {
+        "turn": 446,
+        "command": "19459 -878 37 FIX TA CSB"
+      },
+      {
+        "turn": 447,
+        "command": "11498 2003 200"
+      },
+      {
+        "turn": 448,
+        "command": "17469 -2681 0 FIX TA CSB"
+      },
+      {
+        "turn": 449,
+        "command": "13672 5759 200"
+      },
+      {
+        "turn": 450,
+        "command": "14932 -3646 200 FIX TA CSB"
+      },
+      {
+        "turn": 451,
+        "command": "8568 11437 200"
+      },
+      {
+        "turn": 452,
+        "command": "17787 -2924 200 FIX TA CSB"
+      },
+      {
+        "turn": 453,
+        "command": "8328 10026 200"
+      },
+      {
+        "turn": 454,
+        "command": "20761 -1401 182 FIX TA CSB"
+      },
+      {
+        "turn": 455,
+        "command": "13271 3717 200"
+      },
+      {
+        "turn": 456,
+        "command": "22861 281 200 FIX TA CSB"
+      },
+      {
+        "turn": 457,
+        "command": "26726 1777 159"
+      },
+      {
+        "turn": 458,
+        "command": "22851 -996 200 FIX TA CSB"
+      },
+      {
+        "turn": 459,
+        "command": "15965 2831 200"
+      },
+      {
+        "turn": 460,
+        "command": "23994 -744 200 FIX TA CSB"
+      },
+      {
+        "turn": 461,
+        "command": "15965 3557 200"
+      },
+      {
+        "turn": 462,
+        "command": "25745 962 200 FIX TA CSB"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "7060 3008 200"
+      },
+      {
+        "turn": 2,
+        "command": "10682 12082 200 FIX TA CSB"
+      },
+      {
+        "turn": 3,
+        "command": "12918 2979 193"
+      },
+      {
+        "turn": 4,
+        "command": "13689 12213 200 FIX TA CSB"
+      },
+      {
+        "turn": 5,
+        "command": "14321 8649 0"
+      },
+      {
+        "turn": 6,
+        "command": "16358 11590 200 FIX TA CSB"
+      },
+      {
+        "turn": 7,
+        "command": "16995 8646 106"
+      },
+      {
+        "turn": 8,
+        "command": "17084 11566 199 FIX TA CSB"
+      },
+      {
+        "turn": 9,
+        "command": "13722 7239 189"
+      },
+      {
+        "turn": 10,
+        "command": "14215 13490 200 FIX TA CSB"
+      },
+      {
+        "turn": 11,
+        "command": "12606 6943 39"
+      },
+      {
+        "turn": 12,
+        "command": "17077 12871 0 FIX TA CSB"
+      },
+      {
+        "turn": 13,
+        "command": "9832 8783 200"
+      },
+      {
+        "turn": 14,
+        "command": "19389 11334 166 FIX TA CSB"
+      },
+      {
+        "turn": 15,
+        "command": "7368 943 169"
+      },
+      {
+        "turn": 16,
+        "command": "21055 9207 200 FIX TA CSB"
+      },
+      {
+        "turn": 17,
+        "command": "4198 4396 0"
+      },
+      {
+        "turn": 18,
+        "command": "21967 6720 38 FIX TA CSB"
+      },
+      {
+        "turn": 19,
+        "command": "13094 914 0"
+      },
+      {
+        "turn": 20,
+        "command": "21891 4114 SHIELD"
+      },
+      {
+        "turn": 21,
+        "command": "12819 6936 0"
+      },
+      {
+        "turn": 22,
+        "command": "20721 1735 124 FIX TA CSB"
+      },
+      {
+        "turn": 23,
+        "command": "13107 6633 0"
+      },
+      {
+        "turn": 24,
+        "command": "18708 -164 76 FIX TA CSB"
+      },
+      {
+        "turn": 25,
+        "command": "15743 4866 0"
+      },
+      {
+        "turn": 26,
+        "command": "16074 -1349 179 FIX TA CSB"
+      },
+      {
+        "turn": 27,
+        "command": "13171 6379 0"
+      },
+      {
+        "turn": 28,
+        "command": "13088 -1665 200 FIX TA CSB"
+      },
+      {
+        "turn": 29,
+        "command": "13874 7930 SHIELD"
+      },
+      {
+        "turn": 30,
+        "command": "10064 -1246 200 FIX TA CSB"
+      },
+      {
+        "turn": 31,
+        "command": "13397 8496 200"
+      },
+      {
+        "turn": 32,
+        "command": "7241 -84 200 FIX TA CSB"
+      },
+      {
+        "turn": 33,
+        "command": "848 5226 200"
+      },
+      {
+        "turn": 34,
+        "command": "4850 1748 200 FIX TA CSB"
+      },
+      {
+        "turn": 35,
+        "command": "9918 2514 0"
+      },
+      {
+        "turn": 36,
+        "command": "3423 3299 200 FIX TA CSB"
+      },
+      {
+        "turn": 37,
+        "command": "13719 -1105 0"
+      },
+      {
+        "turn": 38,
+        "command": "3035 2892 200 FIX TA CSB"
+      },
+      {
+        "turn": 39,
+        "command": "10988 9020 0"
+      },
+      {
+        "turn": 40,
+        "command": "2600 2305 200 FIX TA CSB"
+      },
+      {
+        "turn": 41,
+        "command": "15073 7206 SHIELD"
+      },
+      {
+        "turn": 42,
+        "command": "3780 -711 200 FIX TA CSB"
+      },
+      {
+        "turn": 43,
+        "command": "12765 7075 200"
+      },
+      {
+        "turn": 44,
+        "command": "3748 -1835 142 FIX TA CSB"
+      },
+      {
+        "turn": 45,
+        "command": "12898 6609 200"
+      },
+      {
+        "turn": 46,
+        "command": "1990 -1266 200 FIX TA CSB"
+      },
+      {
+        "turn": 47,
+        "command": "11960 6755 200"
+      },
+      {
+        "turn": 48,
+        "command": "-333 818 200 FIX TA CSB"
+      },
+      {
+        "turn": 49,
+        "command": "7688 2914 0"
+      },
+      {
+        "turn": 50,
+        "command": "-1362 892 SHIELD"
+      },
+      {
+        "turn": 51,
+        "command": "11115 5324 0"
+      },
+      {
+        "turn": 52,
+        "command": "-2523 3488 SHIELD"
+      },
+      {
+        "turn": 53,
+        "command": "5608 10145 200"
+      },
+      {
+        "turn": 54,
+        "command": "-2402 6355 175 FIX TA CSB"
+      },
+      {
+        "turn": 55,
+        "command": "4999 7207 200"
+      },
+      {
+        "turn": 56,
+        "command": "-3161 3119 174 FIX TA CSB"
+      },
+      {
+        "turn": 57,
+        "command": "4227 1404 200"
+      },
+      {
+        "turn": 58,
+        "command": "-2899 -95 200 FIX TA CSB"
+      },
+      {
+        "turn": 59,
+        "command": "45 6844 200"
+      },
+      {
+        "turn": 60,
+        "command": "-1672 -2987 76 FIX TA CSB"
+      },
+      {
+        "turn": 61,
+        "command": "13583 10981 200"
+      },
+      {
+        "turn": 62,
+        "command": "316 -5334 5 FIX TA CSB"
+      },
+      {
+        "turn": 63,
+        "command": "7903 4430 200"
+      },
+      {
+        "turn": 64,
+        "command": "2909 -6871 200 FIX TA CSB"
+      },
+      {
+        "turn": 65,
+        "command": "16281 7421 200"
+      },
+      {
+        "turn": 66,
+        "command": "2850 -7213 58 FIX TA CSB"
+      },
+      {
+        "turn": 67,
+        "command": "107 -490 118"
+      },
+      {
+        "turn": 68,
+        "command": "-170 -6141 61 FIX TA CSB"
+      },
+      {
+        "turn": 69,
+        "command": "10855 9107 0"
+      },
+      {
+        "turn": 70,
+        "command": "-2607 -4106 115 FIX TA CSB"
+      },
+      {
+        "turn": 71,
+        "command": "13219 9741 0"
+      },
+      {
+        "turn": 72,
+        "command": "-4271 -1157 0 FIX TA CSB"
+      },
+      {
+        "turn": 73,
+        "command": "13822 7442 115"
+      },
+      {
+        "turn": 74,
+        "command": "-4979 2081 0 FIX TA CSB"
+      },
+      {
+        "turn": 75,
+        "command": "14421 -6069 30"
+      },
+      {
+        "turn": 76,
+        "command": "-4684 5311 0 FIX TA CSB"
+      },
+      {
+        "turn": 77,
+        "command": "10036 7137 200"
+      },
+      {
+        "turn": 78,
+        "command": "-3431 8236 198 FIX TA CSB"
+      },
+      {
+        "turn": 79,
+        "command": "1160 6561 200"
+      },
+      {
+        "turn": 80,
+        "command": "-1521 10697 200 FIX TA CSB"
+      },
+      {
+        "turn": 81,
+        "command": "12704 6541 200"
+      },
+      {
+        "turn": 82,
+        "command": "899 12504 200 FIX TA CSB"
+      },
+      {
+        "turn": 83,
+        "command": "14032 819 200"
+      },
+      {
+        "turn": 84,
+        "command": "3624 13523 0 FIX TA CSB"
+      },
+      {
+        "turn": 85,
+        "command": "-4974 7608 200"
+      },
+      {
+        "turn": 86,
+        "command": "6419 13492 0 FIX TA CSB"
+      },
+      {
+        "turn": 87,
+        "command": "12825 10227 200"
+      },
+      {
+        "turn": 88,
+        "command": "8975 12463 128 FIX TA CSB"
+      },
+      {
+        "turn": 89,
+        "command": "14303 7491 93"
+      },
+      {
+        "turn": 90,
+        "command": "10976 10824 28 FIX TA CSB"
+      },
+      {
+        "turn": 91,
+        "command": "-1406 8116 26"
+      },
+      {
+        "turn": 92,
+        "command": "12392 8441 21 FIX TA CSB"
+      },
+      {
+        "turn": 93,
+        "command": "-229 4236 0"
+      },
+      {
+        "turn": 94,
+        "command": "12877 6373 0 FIX TA CSB"
+      },
+      {
+        "turn": 95,
+        "command": "405 7584 0"
+      },
+      {
+        "turn": 96,
+        "command": "12013 9656 200 FIX TA CSB"
+      },
+      {
+        "turn": 97,
+        "command": "8495 -1500 200"
+      },
+      {
+        "turn": 98,
+        "command": "11309 11246 200 FIX TA CSB"
+      },
+      {
+        "turn": 99,
+        "command": "13012 2224 200"
+      },
+      {
+        "turn": 100,
+        "command": "12555 8807 SHIELD"
+      },
+      {
+        "turn": 101,
+        "command": "572 9461 76"
+      },
+      {
+        "turn": 102,
+        "command": "12371 9858 SHIELD"
+      },
+      {
+        "turn": 103,
+        "command": "1846 8141 0"
+      },
+      {
+        "turn": 104,
+        "command": "12847 7275 48 FIX TA CSB"
+      },
+      {
+        "turn": 105,
+        "command": "-604 4833 181"
+      },
+      {
+        "turn": 106,
+        "command": "12402 4461 68 FIX TA CSB"
+      },
+      {
+        "turn": 107,
+        "command": "3527 8254 200"
+      },
+      {
+        "turn": 108,
+        "command": "11966 3557 124 FIX TA CSB"
+      },
+      {
+        "turn": 109,
+        "command": "1383 9257 138"
+      },
+      {
+        "turn": 110,
+        "command": "10190 1189 200 FIX TA CSB"
+      },
+      {
+        "turn": 111,
+        "command": "4075 1943 200"
+      },
+      {
+        "turn": 112,
+        "command": "7696 -577 200 FIX TA CSB"
+      },
+      {
+        "turn": 113,
+        "command": "14635 3582 181"
+      },
+      {
+        "turn": 114,
+        "command": "9217 832 200 FIX TA CSB"
+      },
+      {
+        "turn": 115,
+        "command": "6079 1349 200"
+      },
+      {
+        "turn": 116,
+        "command": "6553 -842 124 FIX TA CSB"
+      },
+      {
+        "turn": 117,
+        "command": "3249 -1190 200"
+      },
+      {
+        "turn": 118,
+        "command": "4401 -1272 198 FIX TA CSB"
+      },
+      {
+        "turn": 119,
+        "command": "4540 8208 200"
+      },
+      {
+        "turn": 120,
+        "command": "6445 -476 200 FIX TA CSB"
+      },
+      {
+        "turn": 121,
+        "command": "1407 6067 200"
+      },
+      {
+        "turn": 122,
+        "command": "8859 1154 186 FIX TA CSB"
+      },
+      {
+        "turn": 123,
+        "command": "-2267 7824 200"
+      },
+      {
+        "turn": 124,
+        "command": "7999 503 200 FIX TA CSB"
+      },
+      {
+        "turn": 125,
+        "command": "-836 5566 200"
+      },
+      {
+        "turn": 126,
+        "command": "5964 -940 200 FIX TA CSB"
+      },
+      {
+        "turn": 127,
+        "command": "12383 7482 200"
+      },
+      {
+        "turn": 128,
+        "command": "8252 605 200 FIX TA CSB"
+      },
+      {
+        "turn": 129,
+        "command": "2305 3801 200"
+      },
+      {
+        "turn": 130,
+        "command": "9998 2738 4 FIX TA CSB"
+      },
+      {
+        "turn": 131,
+        "command": "9970 4403 157"
+      },
+      {
+        "turn": 132,
+        "command": "9988 2710 200 FIX TA CSB"
+      },
+      {
+        "turn": 133,
+        "command": "6315 326 200"
+      },
+      {
+        "turn": 134,
+        "command": "10062 2636 200 FIX TA CSB"
+      },
+      {
+        "turn": 135,
+        "command": "10923 4348 200"
+      },
+      {
+        "turn": 136,
+        "command": "10315 2590 200 FIX TA CSB"
+      },
+      {
+        "turn": 137,
+        "command": "12791 5532 200"
+      },
+      {
+        "turn": 138,
+        "command": "10969 5176 193 FIX TA CSB"
+      },
+      {
+        "turn": 139,
+        "command": "12932 4824 200"
+      },
+      {
+        "turn": 140,
+        "command": "10790 7726 198 FIX TA CSB"
+      },
+      {
+        "turn": 141,
+        "command": "16400 12606 177"
+      },
+      {
+        "turn": 142,
+        "command": "9806 9958 199 FIX TA CSB"
+      },
+      {
+        "turn": 143,
+        "command": "13449 7582 200"
+      },
+      {
+        "turn": 144,
+        "command": "10415 9653 200 FIX TA CSB"
+      },
+      {
+        "turn": 145,
+        "command": "11160 9792 200"
+      },
+      {
+        "turn": 146,
+        "command": "8801 11651 181 FIX TA CSB"
+      },
+      {
+        "turn": 147,
+        "command": "16738 11736 200"
+      },
+      {
+        "turn": 148,
+        "command": "6640 13008 200 FIX TA CSB"
+      },
+      {
+        "turn": 149,
+        "command": "-5675 7610 200"
+      },
+      {
+        "turn": 150,
+        "command": "4331 13570 200 FIX TA CSB"
+      },
+      {
+        "turn": 151,
+        "command": "-4305 8941 200"
+      },
+      {
+        "turn": 152,
+        "command": "1949 13321 200 FIX TA CSB"
+      },
+      {
+        "turn": 153,
+        "command": "1033 11290 200"
+      },
+      {
+        "turn": 154,
+        "command": "1348 13318 200 FIX TA CSB"
+      },
+      {
+        "turn": 155,
+        "command": "4473 10549 200"
+      },
+      {
+        "turn": 156,
+        "command": "-836 12067 181 FIX TA CSB"
+      },
+      {
+        "turn": 157,
+        "command": "5247 18360 200"
+      },
+      {
+        "turn": 158,
+        "command": "-2508 10162 200 FIX TA CSB"
+      },
+      {
+        "turn": 159,
+        "command": "-7593 2605 200"
+      },
+      {
+        "turn": 160,
+        "command": "-3511 7810 199 FIX TA CSB"
+      },
+      {
+        "turn": 161,
+        "command": "6617 3811 200"
+      },
+      {
+        "turn": 162,
+        "command": "-3580 5556 200 FIX TA CSB"
+      },
+      {
+        "turn": 163,
+        "command": "9082 -1674 182"
+      },
+      {
+        "turn": 164,
+        "command": "-2863 3308 28 FIX TA CSB"
+      },
+      {
+        "turn": 165,
+        "command": "13720 7942 200"
+      },
+      {
+        "turn": 166,
+        "command": "-1260 1380 96 FIX TA CSB"
+      },
+      {
+        "turn": 167,
+        "command": "14558 10865 38"
+      },
+      {
+        "turn": 168,
+        "command": "1004 -14 167 FIX TA CSB"
+      },
+      {
+        "turn": 169,
+        "command": "7718 6193 200"
+      },
+      {
+        "turn": 170,
+        "command": "-1831 2054 3 FIX TA CSB"
+      },
+      {
+        "turn": 171,
+        "command": "10583 7453 0"
+      },
+      {
+        "turn": 172,
+        "command": "-3887 5128 200 FIX TA CSB"
+      },
+      {
+        "turn": 173,
+        "command": "3874 10048 200"
+      },
+      {
+        "turn": 174,
+        "command": "-3806 4847 200 FIX TA CSB"
+      },
+      {
+        "turn": 175,
+        "command": "-4425 14677 200"
+      },
+      {
+        "turn": 176,
+        "command": "-2985 3501 200 FIX TA CSB"
+      },
+      {
+        "turn": 177,
+        "command": "2022 11931 200"
+      },
+      {
+        "turn": 178,
+        "command": "-3402 3492 200 FIX TA CSB"
+      },
+      {
+        "turn": 179,
+        "command": "998 9003 200"
+      },
+      {
+        "turn": 180,
+        "command": "-2807 2430 200 FIX TA CSB"
+      },
+      {
+        "turn": 181,
+        "command": "-3589 2695 0"
+      },
+      {
+        "turn": 182,
+        "command": "-647 812 35 FIX TA CSB"
+      },
+      {
+        "turn": 183,
+        "command": "11273 5617 0"
+      },
+      {
+        "turn": 184,
+        "command": "1900 121 83 FIX TA CSB"
+      },
+      {
+        "turn": 185,
+        "command": "4596 247 31"
+      },
+      {
+        "turn": 186,
+        "command": "4529 357 127 FIX TA CSB"
+      },
+      {
+        "turn": 187,
+        "command": "13849 7140 110"
+      },
+      {
+        "turn": 188,
+        "command": "6964 1441 200 FIX TA CSB"
+      },
+      {
+        "turn": 189,
+        "command": "5268 1921 200"
+      },
+      {
+        "turn": 190,
+        "command": "8997 3207 200 FIX TA CSB"
+      },
+      {
+        "turn": 191,
+        "command": "15230 3917 200"
+      },
+      {
+        "turn": 192,
+        "command": "10426 5497 200 FIX TA CSB"
+      },
+      {
+        "turn": 193,
+        "command": "1675 6752 200"
+      },
+      {
+        "turn": 194,
+        "command": "11113 8103 200 FIX TA CSB"
+      },
+      {
+        "turn": 195,
+        "command": "12880 7233 200"
+      },
+      {
+        "turn": 196,
+        "command": "10990 10782 200 FIX TA CSB"
+      },
+      {
+        "turn": 197,
+        "command": "10196 7618 200"
+      },
+      {
+        "turn": 198,
+        "command": "11491 10495 200 FIX TA CSB"
+      },
+      {
+        "turn": 199,
+        "command": "12389 7459 200"
+      },
+      {
+        "turn": 200,
+        "command": "12413 9131 200 FIX TA CSB"
+      },
+      {
+        "turn": 201,
+        "command": "12292 8564 132"
+      },
+      {
+        "turn": 202,
+        "command": "13241 5889 200 FIX TA CSB"
+      },
+      {
+        "turn": 203,
+        "command": "11955 12512 200"
+      },
+      {
+        "turn": 204,
+        "command": "13108 2892 200 FIX TA CSB"
+      },
+      {
+        "turn": 205,
+        "command": "15743 10910 200"
+      },
+      {
+        "turn": 206,
+        "command": "12905 1613 SHIELD"
+      },
+      {
+        "turn": 207,
+        "command": "12390 5516 25"
+      },
+      {
+        "turn": 208,
+        "command": "13758 3984 110 FIX TA CSB"
+      },
+      {
+        "turn": 209,
+        "command": "3768 6335 200"
+      },
+      {
+        "turn": 210,
+        "command": "13943 7445 89 FIX TA CSB"
+      },
+      {
+        "turn": 211,
+        "command": "5503 8487 200"
+      },
+      {
+        "turn": 212,
+        "command": "13715 9260 200 FIX TA CSB"
+      },
+      {
+        "turn": 213,
+        "command": "7461 -2222 200"
+      },
+      {
+        "turn": 214,
+        "command": "12726 11876 200 FIX TA CSB"
+      },
+      {
+        "turn": 215,
+        "command": "5128 7676 200"
+      },
+      {
+        "turn": 216,
+        "command": "13950 10142 200 FIX TA CSB"
+      },
+      {
+        "turn": 217,
+        "command": "6797 5140 200"
+      },
+      {
+        "turn": 218,
+        "command": "15076 6784 200 FIX TA CSB"
+      },
+      {
+        "turn": 219,
+        "command": "7822 4884 200"
+      },
+      {
+        "turn": 220,
+        "command": "15414 3200 200 FIX TA CSB"
+      },
+      {
+        "turn": 221,
+        "command": "8755 3468 200"
+      },
+      {
+        "turn": 222,
+        "command": "15904 1745 200 FIX TA CSB"
+      },
+      {
+        "turn": 223,
+        "command": "11993 7170 200"
+      },
+      {
+        "turn": 224,
+        "command": "16809 1267 200 FIX TA CSB"
+      },
+      {
+        "turn": 225,
+        "command": "12926 1099 200"
+      },
+      {
+        "turn": 226,
+        "command": "18216 2102 131 FIX TA CSB"
+      },
+      {
+        "turn": 227,
+        "command": "9990 7608 200"
+      },
+      {
+        "turn": 228,
+        "command": "19480 4768 0 FIX TA CSB"
+      },
+      {
+        "turn": 229,
+        "command": "10396 11214 0"
+      },
+      {
+        "turn": 230,
+        "command": "19902 6623 SHIELD"
+      },
+      {
+        "turn": 231,
+        "command": "10609 11036 200"
+      },
+      {
+        "turn": 232,
+        "command": "19256 9137 SHIELD"
+      },
+      {
+        "turn": 233,
+        "command": "13921 3838 0"
+      },
+      {
+        "turn": 234,
+        "command": "17696 11154 SHIELD"
+      },
+      {
+        "turn": 235,
+        "command": "18038 -3627 200"
+      },
+      {
+        "turn": 236,
+        "command": "18183 10923 SHIELD"
+      },
+      {
+        "turn": 237,
+        "command": "12919 7216 200"
+      },
+      {
+        "turn": 238,
+        "command": "15860 12243 SHIELD"
+      },
+      {
+        "turn": 239,
+        "command": "13442 7331 200"
+      },
+      {
+        "turn": 240,
+        "command": "13139 12674 SHIELD"
+      },
+      {
+        "turn": 241,
+        "command": "12525 6853 200"
+      },
+      {
+        "turn": 242,
+        "command": "14043 12483 103 FIX TA CSB"
+      },
+      {
+        "turn": 243,
+        "command": "11088 2018 200"
+      },
+      {
+        "turn": 244,
+        "command": "11266 12126 56 FIX TA CSB"
+      },
+      {
+        "turn": 245,
+        "command": "19354 12636 0"
+      },
+      {
+        "turn": 246,
+        "command": "8656 10836 90 FIX TA CSB"
+      },
+      {
+        "turn": 247,
+        "command": "19425 -156 0"
+      },
+      {
+        "turn": 248,
+        "command": "8176 10255 200 FIX TA CSB"
+      },
+      {
+        "turn": 249,
+        "command": "13828 7157 0"
+      },
+      {
+        "turn": 250,
+        "command": "7584 9789 200 FIX TA CSB"
+      },
+      {
+        "turn": 251,
+        "command": "14503 8206 SHIELD"
+      },
+      {
+        "turn": 252,
+        "command": "6430 8885 200 FIX TA CSB"
+      },
+      {
+        "turn": 253,
+        "command": "11334 5687 95"
+      },
+      {
+        "turn": 254,
+        "command": "6231 9197 200 FIX TA CSB"
+      },
+      {
+        "turn": 255,
+        "command": "10034 4314 200"
+      },
+      {
+        "turn": 256,
+        "command": "6878 10594 200 FIX TA CSB"
+      },
+      {
+        "turn": 257,
+        "command": "12241 4709 200"
+      },
+      {
+        "turn": 258,
+        "command": "9095 12780 0 FIX TA CSB"
+      },
+      {
+        "turn": 259,
+        "command": "10405 5957 0"
+      },
+      {
+        "turn": 260,
+        "command": "11772 13999 200 FIX TA CSB"
+      },
+      {
+        "turn": 261,
+        "command": "11373 3810 0"
+      },
+      {
+        "turn": 262,
+        "command": "14505 14208 200 FIX TA CSB"
+      },
+      {
+        "turn": 263,
+        "command": "11359 3972 200"
+      },
+      {
+        "turn": 264,
+        "command": "17110 13540 200 FIX TA CSB"
+      },
+      {
+        "turn": 265,
+        "command": "12497 9333 200"
+      },
+      {
+        "turn": 266,
+        "command": "19373 12128 188 FIX TA CSB"
+      },
+      {
+        "turn": 267,
+        "command": "5302 4497 200"
+      },
+      {
+        "turn": 268,
+        "command": "21075 10103 SHIELD"
+      },
+      {
+        "turn": 269,
+        "command": "11543 7145 200"
+      },
+      {
+        "turn": 270,
+        "command": "21859 7592 SHIELD"
+      },
+      {
+        "turn": 271,
+        "command": "6198 2760 94"
+      },
+      {
+        "turn": 272,
+        "command": "21672 5076 SHIELD"
+      },
+      {
+        "turn": 273,
+        "command": "13679 8050 200"
+      },
+      {
+        "turn": 274,
+        "command": "21732 8573 SHIELD"
+      },
+      {
+        "turn": 275,
+        "command": "3631 1503 169"
+      },
+      {
+        "turn": 276,
+        "command": "21582 5762 SHIELD"
+      },
+      {
+        "turn": 277,
+        "command": "13056 12064 200"
+      },
+      {
+        "turn": 278,
+        "command": "20458 3099 SHIELD"
+      },
+      {
+        "turn": 279,
+        "command": "7229 18166 200"
+      },
+      {
+        "turn": 280,
+        "command": "19190 1634 21 FIX TA CSB"
+      },
+      {
+        "turn": 281,
+        "command": "7952 1619 150"
+      },
+      {
+        "turn": 282,
+        "command": "16735 -168 173 FIX TA CSB"
+      },
+      {
+        "turn": 283,
+        "command": "5287 5191 192"
+      },
+      {
+        "turn": 284,
+        "command": "13588 -1032 99 FIX TA CSB"
+      },
+      {
+        "turn": 285,
+        "command": "2590 14407 149"
+      },
+      {
+        "turn": 286,
+        "command": "10234 -972 200 FIX TA CSB"
+      },
+      {
+        "turn": 287,
+        "command": "10393 8842 200"
+      },
+      {
+        "turn": 288,
+        "command": "13139 -717 SHIELD"
+      },
+      {
+        "turn": 289,
+        "command": "13791 16278 43"
+      },
+      {
+        "turn": 290,
+        "command": "15818 514 167 FIX TA CSB"
+      },
+      {
+        "turn": 291,
+        "command": "10337 9690 53"
+      },
+      {
+        "turn": 292,
+        "command": "12717 -600 130 FIX TA CSB"
+      },
+      {
+        "turn": 293,
+        "command": "5107 1341 200"
+      },
+      {
+        "turn": 294,
+        "command": "9775 -794 132 FIX TA CSB"
+      },
+      {
+        "turn": 295,
+        "command": "9844 8990 190"
+      },
+      {
+        "turn": 296,
+        "command": "12742 -426 0 FIX TA CSB"
+      },
+      {
+        "turn": 297,
+        "command": "11023 11887 0"
+      },
+      {
+        "turn": 298,
+        "command": "14099 132 SHIELD"
+      },
+      {
+        "turn": 299,
+        "command": "10409 13535 200"
+      },
+      {
+        "turn": 300,
+        "command": "10974 -650 SHIELD"
+      },
+      {
+        "turn": 301,
+        "command": "6094 2467 200"
+      },
+      {
+        "turn": 302,
+        "command": "13890 200 0 FIX TA CSB"
+      },
+      {
+        "turn": 303,
+        "command": "17935 17567 166"
+      },
+      {
+        "turn": 304,
+        "command": "16400 1960 138 FIX TA CSB"
+      },
+      {
+        "turn": 305,
+        "command": "4660 10307 200"
+      },
+      {
+        "turn": 306,
+        "command": "14461 692 140 FIX TA CSB"
+      },
+      {
+        "turn": 307,
+        "command": "8848 3439 200"
+      },
+      {
+        "turn": 308,
+        "command": "13205 263 200 FIX TA CSB"
+      },
+      {
+        "turn": 309,
+        "command": "10324 1544 200"
+      },
+      {
+        "turn": 310,
+        "command": "9935 -425 200 FIX TA CSB"
+      },
+      {
+        "turn": 311,
+        "command": "9767 6623 200"
+      },
+      {
+        "turn": 312,
+        "command": "12720 149 200 FIX TA CSB"
+      },
+      {
+        "turn": 313,
+        "command": "6494 8530 0"
+      },
+      {
+        "turn": 314,
+        "command": "11766 -225 200 FIX TA CSB"
+      },
+      {
+        "turn": 315,
+        "command": "6606 -912 200"
+      },
+      {
+        "turn": 316,
+        "command": "14051 793 200 FIX TA CSB"
+      },
+      {
+        "turn": 317,
+        "command": "9733 6614 149"
+      },
+      {
+        "turn": 318,
+        "command": "16096 2549 164 FIX TA CSB"
+      },
+      {
+        "turn": 319,
+        "command": "12496 8314 0"
+      },
+      {
+        "turn": 320,
+        "command": "16286 2351 190 FIX TA CSB"
+      },
+      {
+        "turn": 321,
+        "command": "14124 -1570 0"
+      },
+      {
+        "turn": 322,
+        "command": "17758 4669 200 FIX TA CSB"
+      },
+      {
+        "turn": 323,
+        "command": "18114 10339 0"
+      },
+      {
+        "turn": 324,
+        "command": "18458 7279 200 FIX TA CSB"
+      },
+      {
+        "turn": 325,
+        "command": "13715 1724 200"
+      },
+      {
+        "turn": 326,
+        "command": "18332 9938 200 FIX TA CSB"
+      },
+      {
+        "turn": 327,
+        "command": "19199 2394 200"
+      },
+      {
+        "turn": 328,
+        "command": "17404 12391 200 FIX TA CSB"
+      },
+      {
+        "turn": 329,
+        "command": "14776 4303 200"
+      },
+      {
+        "turn": 330,
+        "command": "15772 14408 0 FIX TA CSB"
+      },
+      {
+        "turn": 331,
+        "command": "12608 8443 200"
+      },
+      {
+        "turn": 332,
+        "command": "13495 15631 200 FIX TA CSB"
+      },
+      {
+        "turn": 333,
+        "command": "18173 14471 200"
+      },
+      {
+        "turn": 334,
+        "command": "10920 16120 1 FIX TA CSB"
+      },
+      {
+        "turn": 335,
+        "command": "7920 7582 3"
+      },
+      {
+        "turn": 336,
+        "command": "8297 15616 195 FIX TA CSB"
+      },
+      {
+        "turn": 337,
+        "command": "12148 11508 200"
+      },
+      {
+        "turn": 338,
+        "command": "5875 14362 0 FIX TA CSB"
+      },
+      {
+        "turn": 339,
+        "command": "6588 5971 0"
+      },
+      {
+        "turn": 340,
+        "command": "4008 12295 151 FIX TA CSB"
+      },
+      {
+        "turn": 341,
+        "command": "5545 574 0"
+      },
+      {
+        "turn": 342,
+        "command": "2787 9732 200 FIX TA CSB"
+      },
+      {
+        "turn": 343,
+        "command": "4066 4609 30"
+      },
+      {
+        "turn": 344,
+        "command": "2299 6914 200 FIX TA CSB"
+      },
+      {
+        "turn": 345,
+        "command": "5440 3027 200"
+      },
+      {
+        "turn": 346,
+        "command": "2605 4078 200 FIX TA CSB"
+      },
+      {
+        "turn": 347,
+        "command": "1830 -2077 200"
+      },
+      {
+        "turn": 348,
+        "command": "3686 1474 200 FIX TA CSB"
+      },
+      {
+        "turn": 349,
+        "command": "5572 2478 200"
+      },
+      {
+        "turn": 350,
+        "command": "2129 3079 200 FIX TA CSB"
+      },
+      {
+        "turn": 351,
+        "command": "11415 5670 200"
+      },
+      {
+        "turn": 352,
+        "command": "2028 2071 200 FIX TA CSB"
+      },
+      {
+        "turn": 353,
+        "command": "5414 3800 200"
+      },
+      {
+        "turn": 354,
+        "command": "3422 -448 200 FIX TA CSB"
+      },
+      {
+        "turn": 355,
+        "command": "4666 2893 200"
+      },
+      {
+        "turn": 356,
+        "command": "5413 -2331 200 FIX TA CSB"
+      },
+      {
+        "turn": 357,
+        "command": "7800 2582 200"
+      },
+      {
+        "turn": 358,
+        "command": "7790 -3440 200 FIX TA CSB"
+      },
+      {
+        "turn": 359,
+        "command": "6389 1506 200"
+      },
+      {
+        "turn": 360,
+        "command": "9459 -3891 200 FIX TA CSB"
+      },
+      {
+        "turn": 361,
+        "command": "6724 2370 200"
+      },
+      {
+        "turn": 362,
+        "command": "11951 -3569 200 FIX TA CSB"
+      },
+      {
+        "turn": 363,
+        "command": "6804 3417 0"
+      },
+      {
+        "turn": 364,
+        "command": "9034 -5290 13 FIX TA CSB"
+      },
+      {
+        "turn": 365,
+        "command": "9190 6270 200"
+      },
+      {
+        "turn": 366,
+        "command": "5398 -5536 200 FIX TA CSB"
+      },
+      {
+        "turn": 367,
+        "command": "8393 5424 9"
+      },
+      {
+        "turn": 368,
+        "command": "8066 -5640 138 FIX TA CSB"
+      },
+      {
+        "turn": 369,
+        "command": "6024 6520 SHIELD"
+      },
+      {
+        "turn": 370,
+        "command": "10628 -4881 0 FIX TA CSB"
+      },
+      {
+        "turn": 371,
+        "command": "13499 1549 152"
+      },
+      {
+        "turn": 372,
+        "command": "12756 -3219 72 FIX TA CSB"
+      },
+      {
+        "turn": 373,
+        "command": "14671 3730 195"
+      },
+      {
+        "turn": 374,
+        "command": "14256 -903 200 FIX TA CSB"
+      },
+      {
+        "turn": 375,
+        "command": "1284 3991 200"
+      },
+      {
+        "turn": 376,
+        "command": "15076 1777 200 FIX TA CSB"
+      },
+      {
+        "turn": 377,
+        "command": "1548 6678 0"
+      },
+      {
+        "turn": 378,
+        "command": "14775 4515 0 FIX TA CSB"
+      },
+      {
+        "turn": 379,
+        "command": "5384 7722 200"
+      },
+      {
+        "turn": 380,
+        "command": "13404 7079 0 FIX TA CSB"
+      },
+      {
+        "turn": 381,
+        "command": "-1439 -5175 0"
+      },
+      {
+        "turn": 382,
+        "command": "11223 9207 200 FIX TA CSB"
+      },
+      {
+        "turn": 383,
+        "command": "-4965 -1425 198"
+      },
+      {
+        "turn": 384,
+        "command": "12366 7824 200 FIX TA CSB"
+      },
+      {
+        "turn": 385,
+        "command": "3566 -19 200"
+      },
+      {
+        "turn": 386,
+        "command": "10196 9989 200 FIX TA CSB"
+      },
+      {
+        "turn": 387,
+        "command": "6157 3213 200"
+      },
+      {
+        "turn": 388,
+        "command": "12697 8047 200 FIX TA CSB"
+      },
+      {
+        "turn": 389,
+        "command": "9103 4883 200"
+      },
+      {
+        "turn": 390,
+        "command": "11974 9490 196 FIX TA CSB"
+      },
+      {
+        "turn": 391,
+        "command": "15016 9772 0"
+      },
+      {
+        "turn": 392,
+        "command": "9801 11626 0 FIX TA CSB"
+      },
+      {
+        "turn": 393,
+        "command": "10339 8001 SHIELD"
+      },
+      {
+        "turn": 394,
+        "command": "7149 12816 200 FIX TA CSB"
+      },
+      {
+        "turn": 395,
+        "command": "6103 4738 137"
+      },
+      {
+        "turn": 396,
+        "command": "4349 13184 200 FIX TA CSB"
+      },
+      {
+        "turn": 397,
+        "command": "8676 4589 200"
+      },
+      {
+        "turn": 398,
+        "command": "1648 12715 189 FIX TA CSB"
+      },
+      {
+        "turn": 399,
+        "command": "5932 3173 0"
+      },
+      {
+        "turn": 400,
+        "command": "-706 11464 150 FIX TA CSB"
+      },
+      {
+        "turn": 401,
+        "command": "4943 10892 166"
+      },
+      {
+        "turn": 402,
+        "command": "-2472 9547 200 FIX TA CSB"
+      },
+      {
+        "turn": 403,
+        "command": "7227 4497 200"
+      },
+      {
+        "turn": 404,
+        "command": "-3528 7198 200 FIX TA CSB"
+      },
+      {
+        "turn": 405,
+        "command": "-3725 1932 200"
+      },
+      {
+        "turn": 406,
+        "command": "-3783 4655 200 FIX TA CSB"
+      },
+      {
+        "turn": 407,
+        "command": "7297 8860 200"
+      },
+      {
+        "turn": 408,
+        "command": "-4034 4097 SHIELD"
+      },
+      {
+        "turn": 409,
+        "command": "2927 730 200"
+      },
+      {
+        "turn": 410,
+        "command": "-4077 7610 194 FIX TA CSB"
+      },
+      {
+        "turn": 411,
+        "command": "4113 3331 200"
+      },
+      {
+        "turn": 412,
+        "command": "-3601 6226 27 FIX TA CSB"
+      },
+      {
+        "turn": 413,
+        "command": "4501 4849 200"
+      },
+      {
+        "turn": 414,
+        "command": "-3301 9654 152 FIX TA CSB"
+      },
+      {
+        "turn": 415,
+        "command": "5500 5390 200"
+      },
+      {
+        "turn": 416,
+        "command": "-3046 6781 33 FIX TA CSB"
+      },
+      {
+        "turn": 417,
+        "command": "3987 15173 0"
+      },
+      {
+        "turn": 418,
+        "command": "-1897 4017 50 FIX TA CSB"
+      },
+      {
+        "turn": 419,
+        "command": "8105 6467 200"
+      },
+      {
+        "turn": 420,
+        "command": "52 1641 63 FIX TA CSB"
+      },
+      {
+        "turn": 421,
+        "command": "11879 1781 0"
+      },
+      {
+        "turn": 422,
+        "command": "2632 -111 200 FIX TA CSB"
+      },
+      {
+        "turn": 423,
+        "command": "7756 9248 200"
+      },
+      {
+        "turn": 424,
+        "command": "5557 -1181 7 FIX TA CSB"
+      },
+      {
+        "turn": 425,
+        "command": "7689 7216 200"
+      },
+      {
+        "turn": 426,
+        "command": "2539 -310 0 FIX TA CSB"
+      },
+      {
+        "turn": 427,
+        "command": "7388 8596 0"
+      },
+      {
+        "turn": 428,
+        "command": "100 1489 200 FIX TA CSB"
+      },
+      {
+        "turn": 429,
+        "command": "4893 7141 0"
+      },
+      {
+        "turn": 430,
+        "command": "-1604 3906 200 FIX TA CSB"
+      },
+      {
+        "turn": 431,
+        "command": "3850 6818 0"
+      },
+      {
+        "turn": 432,
+        "command": "-2574 6348 189 FIX TA CSB"
+      },
+      {
+        "turn": 433,
+        "command": "9684 2844 0"
+      },
+      {
+        "turn": 434,
+        "command": "-2923 9278 200 FIX TA CSB"
+      },
+      {
+        "turn": 435,
+        "command": "2777 5225 0"
+      },
+      {
+        "turn": 436,
+        "command": "-2605 11825 SHIELD"
+      },
+      {
+        "turn": 437,
+        "command": "1233 6713 200"
+      },
+      {
+        "turn": 438,
+        "command": "-3686 8843 0 FIX TA CSB"
+      },
+      {
+        "turn": 439,
+        "command": "3548 7093 200"
+      },
+      {
+        "turn": 440,
+        "command": "-4005 6999 28 FIX TA CSB"
+      },
+      {
+        "turn": 441,
+        "command": "3873 7139 146"
+      },
+      {
+        "turn": 442,
+        "command": "-3546 3864 100 FIX TA CSB"
+      },
+      {
+        "turn": 443,
+        "command": "4167 3726 154"
+      },
+      {
+        "turn": 444,
+        "command": "-2869 2091 119 FIX TA CSB"
+      },
+      {
+        "turn": 445,
+        "command": "2557 6482 0"
+      },
+      {
+        "turn": 446,
+        "command": "-1052 -361 0 FIX TA CSB"
+      },
+      {
+        "turn": 447,
+        "command": "5017 6255 200"
+      },
+      {
+        "turn": 448,
+        "command": "1424 -2032 0 FIX TA CSB"
+      },
+      {
+        "turn": 449,
+        "command": "16754 -162 200"
+      },
+      {
+        "turn": 450,
+        "command": "4286 -2773 3 FIX TA CSB"
+      },
+      {
+        "turn": 451,
+        "command": "5542 7286 200"
+      },
+      {
+        "turn": 452,
+        "command": "7229 -2525 56 FIX TA CSB"
+      },
+      {
+        "turn": 453,
+        "command": "9508 8868 SHIELD"
+      },
+      {
+        "turn": 454,
+        "command": "6592 -2768 200 FIX TA CSB"
+      },
+      {
+        "turn": 455,
+        "command": "7280 1539 200"
+      },
+      {
+        "turn": 456,
+        "command": "5492 -3230 200 FIX TA CSB"
+      },
+      {
+        "turn": 457,
+        "command": "1996 7120 200"
+      },
+      {
+        "turn": 458,
+        "command": "4935 -3722 200 FIX TA CSB"
+      },
+      {
+        "turn": 459,
+        "command": "5617 7763 200"
+      },
+      {
+        "turn": 460,
+        "command": "7976 -3654 40 FIX TA CSB"
+      },
+      {
+        "turn": 461,
+        "command": "6382 6319 200"
+      },
+      {
+        "turn": 462,
+        "command": "10685 -2622 200 FIX TA CSB"
+      }
+    ]
+  }
+}

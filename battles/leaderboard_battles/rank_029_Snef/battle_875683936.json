@@ -1,0 +1,5426 @@
+{
+  "gameId": 875683936,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 3431,
+          "y": 7223
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 9390,
+          "y": 7231
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 5992,
+          "y": 4214
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 14635,
+          "y": 1416
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 3432.0,
+          "y": 6723.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 3430.0,
+          "y": 7723.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 3433.0,
+          "y": 5723.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 3429.0,
+          "y": 8723.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 3432.0,
+          "y": 6723.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 3430.0,
+          "y": 7723.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 3433.0,
+          "y": 5723.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 3429.0,
+          "y": 8723.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 464,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 466,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 468,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 470,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 472,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 474,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 476,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 478,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 480,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 482,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 484,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 486,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 488,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 490,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 492,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 494,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 496,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 498,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 500,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 502,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 504,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 506,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 508,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 510,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 512,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 514,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 516,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 518,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 520,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 522,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 524,
+      "log": "$0 rank: 1\n$1 rank: 2\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "13244 4793 BOOST snef"
+      },
+      {
+        "turn": 2,
+        "command": "13127 8177 BOOST CHOPK_01"
+      },
+      {
+        "turn": 3,
+        "command": "12816 1834 180 snef"
+      },
+      {
+        "turn": 4,
+        "command": "13399 9382 200 CHOPK_01"
+      },
+      {
+        "turn": 5,
+        "command": "14586 4822 132 snef"
+      },
+      {
+        "turn": 6,
+        "command": "13613 10459 200 CHOPK_01"
+      },
+      {
+        "turn": 7,
+        "command": "15343 5009 200 snef"
+      },
+      {
+        "turn": 8,
+        "command": "12644 12900 160 CHOPK_01"
+      },
+      {
+        "turn": 9,
+        "command": "15130 2109 142 snef"
+      },
+      {
+        "turn": 10,
+        "command": "11057 14744 160 CHOPK_01"
+      },
+      {
+        "turn": 11,
+        "command": "15392 1308 200 snef"
+      },
+      {
+        "turn": 12,
+        "command": "11342 15079 0 CHOPK_01"
+      },
+      {
+        "turn": 13,
+        "command": "14110 -990 143 snef"
+      },
+      {
+        "turn": 14,
+        "command": "9145 15984 160 CHOPK_01"
+      },
+      {
+        "turn": 15,
+        "command": "12207 -2517 146 snef"
+      },
+      {
+        "turn": 16,
+        "command": "6728 16060 40 CHOPK_01"
+      },
+      {
+        "turn": 17,
+        "command": "9894 -3259 57 snef"
+      },
+      {
+        "turn": 18,
+        "command": "4360 15298 0 CHOPK_01"
+      },
+      {
+        "turn": 19,
+        "command": "7435 -3058 200 snef"
+      },
+      {
+        "turn": 20,
+        "command": "2834 14188 200 CHOPK_01"
+      },
+      {
+        "turn": 21,
+        "command": "5093 -2079 200 snef"
+      },
+      {
+        "turn": 22,
+        "command": "1084 12234 200 CHOPK_01"
+      },
+      {
+        "turn": 23,
+        "command": "3112 -404 200 snef"
+      },
+      {
+        "turn": 24,
+        "command": "215 9713 200 CHOPK_01"
+      },
+      {
+        "turn": 25,
+        "command": "1698 1821 200 snef"
+      },
+      {
+        "turn": 26,
+        "command": "-70 6971 200 CHOPK_01"
+      },
+      {
+        "turn": 27,
+        "command": "1000 4389 200 snef"
+      },
+      {
+        "turn": 28,
+        "command": "295 4202 200 CHOPK_01"
+      },
+      {
+        "turn": 29,
+        "command": "1312 884 184 snef"
+      },
+      {
+        "turn": 30,
+        "command": "1316 1607 200 CHOPK_01"
+      },
+      {
+        "turn": 31,
+        "command": "300 3524 101 snef"
+      },
+      {
+        "turn": 32,
+        "command": "2406 -166 200 CHOPK_01"
+      },
+      {
+        "turn": 33,
+        "command": "444 83 199 snef"
+      },
+      {
+        "turn": 34,
+        "command": "2340 -701 40 CHOPK_01"
+      },
+      {
+        "turn": 35,
+        "command": "-724 2772 195 snef"
+      },
+      {
+        "turn": 36,
+        "command": "2907 -1619 80 CHOPK_01"
+      },
+      {
+        "turn": 37,
+        "command": "-1023 5546 1 snef"
+      },
+      {
+        "turn": 38,
+        "command": "3573 -2449 160 CHOPK_01"
+      },
+      {
+        "turn": 39,
+        "command": "-216 7948 200 snef"
+      },
+      {
+        "turn": 40,
+        "command": "604 -992 0 CHOPK_01"
+      },
+      {
+        "turn": 41,
+        "command": "1540 9417 29 snef"
+      },
+      {
+        "turn": 42,
+        "command": "-1274 615 160 CHOPK_01"
+      },
+      {
+        "turn": 43,
+        "command": "-931 6456 200 snef"
+      },
+      {
+        "turn": 44,
+        "command": "216 -1961 0 CHOPK_01"
+      },
+      {
+        "turn": 45,
+        "command": "-754 6832 200 snef"
+      },
+      {
+        "turn": 46,
+        "command": "2346 -3827 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 47,
+        "command": "-702 7213 200 snef"
+      },
+      {
+        "turn": 48,
+        "command": "3064 -4260 200 CHOPK_01"
+      },
+      {
+        "turn": 49,
+        "command": "1077 8889 200 snef"
+      },
+      {
+        "turn": 50,
+        "command": "5602 -4653 200 CHOPK_01"
+      },
+      {
+        "turn": 51,
+        "command": "3435 10016 33 snef"
+      },
+      {
+        "turn": 52,
+        "command": "8198 -4179 200 CHOPK_01"
+      },
+      {
+        "turn": 53,
+        "command": "5993 10138 146 snef"
+      },
+      {
+        "turn": 54,
+        "command": "10588 -2875 200 CHOPK_01"
+      },
+      {
+        "turn": 55,
+        "command": "8346 9244 118 snef"
+      },
+      {
+        "turn": 56,
+        "command": "11433 -2272 200 CHOPK_01"
+      },
+      {
+        "turn": 57,
+        "command": "7698 9442 11 snef"
+      },
+      {
+        "turn": 58,
+        "command": "11459 -2541 200 CHOPK_01"
+      },
+      {
+        "turn": 59,
+        "command": "9881 7807 148 snef"
+      },
+      {
+        "turn": 60,
+        "command": "13531 -672 200 CHOPK_01"
+      },
+      {
+        "turn": 61,
+        "command": "10554 6967 155 snef"
+      },
+      {
+        "turn": 62,
+        "command": "13831 -1100 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 63,
+        "command": "11801 4346 200 snef"
+      },
+      {
+        "turn": 64,
+        "command": "14995 1034 200 CHOPK_01"
+      },
+      {
+        "turn": 65,
+        "command": "10978 5852 182 snef"
+      },
+      {
+        "turn": 66,
+        "command": "15311 3476 200 CHOPK_01"
+      },
+      {
+        "turn": 67,
+        "command": "11867 2974 200 snef"
+      },
+      {
+        "turn": 68,
+        "command": "14756 5963 200 CHOPK_01"
+      },
+      {
+        "turn": 69,
+        "command": "11920 2722 200 snef"
+      },
+      {
+        "turn": 70,
+        "command": "14276 6734 200 CHOPK_01"
+      },
+      {
+        "turn": 71,
+        "command": "11008 5617 200 snef"
+      },
+      {
+        "turn": 72,
+        "command": "12771 8955 160 CHOPK_01"
+      },
+      {
+        "turn": 73,
+        "command": "10469 6988 200 snef"
+      },
+      {
+        "turn": 74,
+        "command": "10717 10721 160 CHOPK_01"
+      },
+      {
+        "turn": 75,
+        "command": "8596 9274 200 snef"
+      },
+      {
+        "turn": 76,
+        "command": "8268 11882 160 CHOPK_01"
+      },
+      {
+        "turn": 77,
+        "command": "8338 10047 200 snef"
+      },
+      {
+        "turn": 78,
+        "command": "11459 10931 0 CHOPK_01"
+      },
+      {
+        "turn": 79,
+        "command": "11348 8623 200 snef"
+      },
+      {
+        "turn": 80,
+        "command": "14103 9107 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 81,
+        "command": "10326 10493 200 snef"
+      },
+      {
+        "turn": 82,
+        "command": "12102 11095 200 CHOPK_01"
+      },
+      {
+        "turn": 83,
+        "command": "13218 8973 200 snef"
+      },
+      {
+        "turn": 84,
+        "command": "9612 12307 200 CHOPK_01"
+      },
+      {
+        "turn": 85,
+        "command": "15406 6879 200 snef"
+      },
+      {
+        "turn": 86,
+        "command": "6862 12670 200 CHOPK_01"
+      },
+      {
+        "turn": 87,
+        "command": "16761 4422 200 snef"
+      },
+      {
+        "turn": 88,
+        "command": "4113 12154 200 CHOPK_01"
+      },
+      {
+        "turn": 89,
+        "command": "17224 1846 200 snef"
+      },
+      {
+        "turn": 90,
+        "command": "2139 11387 0 CHOPK_01"
+      },
+      {
+        "turn": 91,
+        "command": "16810 -596 200 snef"
+      },
+      {
+        "turn": 92,
+        "command": "-51 9644 200 CHOPK_01"
+      },
+      {
+        "turn": 93,
+        "command": "15615 -2662 200 snef"
+      },
+      {
+        "turn": 94,
+        "command": "-1741 7430 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 95,
+        "command": "13798 -4149 169 snef"
+      },
+      {
+        "turn": 96,
+        "command": "-2552 4780 160 CHOPK_01"
+      },
+      {
+        "turn": 97,
+        "command": "17096 -2976 200 snef"
+      },
+      {
+        "turn": 98,
+        "command": "-2178 1799 200 CHOPK_01"
+      },
+      {
+        "turn": 99,
+        "command": "16433 -4149 SHIELD snef"
+      },
+      {
+        "turn": 100,
+        "command": "-1822 1263 200 CHOPK_01"
+      },
+      {
+        "turn": 101,
+        "command": "14146 -5297 135 snef"
+      },
+      {
+        "turn": 102,
+        "command": "-1826 2623 200 CHOPK_01"
+      },
+      {
+        "turn": 103,
+        "command": "15432 -5373 124 snef"
+      },
+      {
+        "turn": 104,
+        "command": "-1730 1727 0 CHOPK_01"
+      },
+      {
+        "turn": 105,
+        "command": "12817 -5705 7 snef"
+      },
+      {
+        "turn": 106,
+        "command": "-1800 4828 200 CHOPK_01"
+      },
+      {
+        "turn": 107,
+        "command": "10227 -5037 120 snef"
+      },
+      {
+        "turn": 108,
+        "command": "-1095 7826 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 109,
+        "command": "9763 -4869 200 snef"
+      },
+      {
+        "turn": 110,
+        "command": "288 9772 200 CHOPK_01"
+      },
+      {
+        "turn": 111,
+        "command": "12299 -5723 200 snef"
+      },
+      {
+        "turn": 112,
+        "command": "537 9601 200 CHOPK_01"
+      },
+      {
+        "turn": 113,
+        "command": "15109 -6121 200 snef"
+      },
+      {
+        "turn": 114,
+        "command": "1215 9975 200 CHOPK_01"
+      },
+      {
+        "turn": 115,
+        "command": "12046 -6031 200 snef"
+      },
+      {
+        "turn": 116,
+        "command": "3288 11385 200 CHOPK_01"
+      },
+      {
+        "turn": 117,
+        "command": "10398 -5845 195 snef"
+      },
+      {
+        "turn": 118,
+        "command": "1086 9532 200 CHOPK_01"
+      },
+      {
+        "turn": 119,
+        "command": "7733 -4598 200 snef"
+      },
+      {
+        "turn": 120,
+        "command": "-614 7224 200 CHOPK_01"
+      },
+      {
+        "turn": 121,
+        "command": "5625 -2710 200 snef"
+      },
+      {
+        "turn": 122,
+        "command": "812 10087 160 CHOPK_01"
+      },
+      {
+        "turn": 123,
+        "command": "4237 -363 200 snef"
+      },
+      {
+        "turn": 124,
+        "command": "-578 7794 200 CHOPK_01"
+      },
+      {
+        "turn": 125,
+        "command": "3672 2210 200 snef"
+      },
+      {
+        "turn": 126,
+        "command": "1245 9975 160 CHOPK_01"
+      },
+      {
+        "turn": 127,
+        "command": "3956 4759 200 snef"
+      },
+      {
+        "turn": 128,
+        "command": "863 9178 200 CHOPK_01"
+      },
+      {
+        "turn": 129,
+        "command": "5035 7034 200 snef"
+      },
+      {
+        "turn": 130,
+        "command": "1160 9744 200 CHOPK_01"
+      },
+      {
+        "turn": 131,
+        "command": "6781 8810 200 snef"
+      },
+      {
+        "turn": 132,
+        "command": "-188 7420 160 CHOPK_01"
+      },
+      {
+        "turn": 133,
+        "command": "3796 7261 200 snef"
+      },
+      {
+        "turn": 134,
+        "command": "-841 4835 200 CHOPK_01"
+      },
+      {
+        "turn": 135,
+        "command": "3162 7599 191 snef"
+      },
+      {
+        "turn": 136,
+        "command": "-987 2020 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 137,
+        "command": "4666 9519 200 snef"
+      },
+      {
+        "turn": 138,
+        "command": "-300 -398 0 CHOPK_01"
+      },
+      {
+        "turn": 139,
+        "command": "1385 8133 200 snef"
+      },
+      {
+        "turn": 140,
+        "command": "1217 -2311 200 CHOPK_01"
+      },
+      {
+        "turn": 141,
+        "command": "247 8279 199 snef"
+      },
+      {
+        "turn": 142,
+        "command": "3356 -3586 200 CHOPK_01"
+      },
+      {
+        "turn": 143,
+        "command": "1869 10828 8 snef"
+      },
+      {
+        "turn": 144,
+        "command": "5908 -4284 200 CHOPK_01"
+      },
+      {
+        "turn": 145,
+        "command": "4099 12449 200 snef"
+      },
+      {
+        "turn": 146,
+        "command": "8569 -4309 200 CHOPK_01"
+      },
+      {
+        "turn": 147,
+        "command": "6594 13233 94 snef"
+      },
+      {
+        "turn": 148,
+        "command": "11134 -3645 200 CHOPK_01"
+      },
+      {
+        "turn": 149,
+        "command": "8771 13179 200 snef"
+      },
+      {
+        "turn": 150,
+        "command": "13403 -2336 200 CHOPK_01"
+      },
+      {
+        "turn": 151,
+        "command": "10812 12498 200 snef"
+      },
+      {
+        "turn": 152,
+        "command": "15200 -484 200 CHOPK_01"
+      },
+      {
+        "turn": 153,
+        "command": "12754 10972 SHIELD snef"
+      },
+      {
+        "turn": 154,
+        "command": "16383 1758 200 CHOPK_01"
+      },
+      {
+        "turn": 155,
+        "command": "13915 8783 SHIELD snef"
+      },
+      {
+        "turn": 156,
+        "command": "16926 2459 200 CHOPK_01"
+      },
+      {
+        "turn": 157,
+        "command": "14185 6220 200 snef"
+      },
+      {
+        "turn": 158,
+        "command": "17484 2538 200 CHOPK_01"
+      },
+      {
+        "turn": 159,
+        "command": "13526 3600 123 snef"
+      },
+      {
+        "turn": 160,
+        "command": "18071 3380 200 CHOPK_01"
+      },
+      {
+        "turn": 161,
+        "command": "11957 1246 134 snef"
+      },
+      {
+        "turn": 162,
+        "command": "18755 3601 200 CHOPK_01"
+      },
+      {
+        "turn": 163,
+        "command": "9625 -562 86 snef"
+      },
+      {
+        "turn": 164,
+        "command": "19313 4573 160 CHOPK_01"
+      },
+      {
+        "turn": 165,
+        "command": "6800 -1680 29 snef"
+      },
+      {
+        "turn": 166,
+        "command": "18909 7105 80 CHOPK_01"
+      },
+      {
+        "turn": 167,
+        "command": "3712 -1916 31 snef"
+      },
+      {
+        "turn": 168,
+        "command": "17716 9214 0 CHOPK_01"
+      },
+      {
+        "turn": 169,
+        "command": "654 -1227 SHIELD snef"
+      },
+      {
+        "turn": 170,
+        "command": "15852 10656 0 CHOPK_01"
+      },
+      {
+        "turn": 171,
+        "command": "-2034 425 168 snef"
+      },
+      {
+        "turn": 172,
+        "command": "13558 11296 160 CHOPK_01"
+      },
+      {
+        "turn": 173,
+        "command": "-3815 2411 200 snef"
+      },
+      {
+        "turn": 174,
+        "command": "11114 11232 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 175,
+        "command": "-1525 342 200 snef"
+      },
+      {
+        "turn": 176,
+        "command": "14381 11560 80 CHOPK_01"
+      },
+      {
+        "turn": 177,
+        "command": "1321 -940 19 snef"
+      },
+      {
+        "turn": 178,
+        "command": "17343 10930 200 CHOPK_01"
+      },
+      {
+        "turn": 179,
+        "command": "4442 -1318 200 snef"
+      },
+      {
+        "turn": 180,
+        "command": "19916 9379 80 CHOPK_01"
+      },
+      {
+        "turn": 181,
+        "command": "1471 -885 200 snef"
+      },
+      {
+        "turn": 182,
+        "command": "21842 7078 0 CHOPK_01"
+      },
+      {
+        "turn": 183,
+        "command": "2865 -1145 200 snef"
+      },
+      {
+        "turn": 184,
+        "command": "22927 4267 0 CHOPK_01"
+      },
+      {
+        "turn": 185,
+        "command": "1355 -849 200 snef"
+      },
+      {
+        "turn": 186,
+        "command": "23061 1236 0 CHOPK_01"
+      },
+      {
+        "turn": 187,
+        "command": "-1148 442 198 snef"
+      },
+      {
+        "turn": 188,
+        "command": "23077 1837 0 CHOPK_01"
+      },
+      {
+        "turn": 189,
+        "command": "-2948 2398 145 snef"
+      },
+      {
+        "turn": 190,
+        "command": "22406 -1157 80 CHOPK_01"
+      },
+      {
+        "turn": 191,
+        "command": "-4088 4873 193 snef"
+      },
+      {
+        "turn": 192,
+        "command": "20899 -3839 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 193,
+        "command": "-4482 6572 159 snef"
+      },
+      {
+        "turn": 194,
+        "command": "19092 -5449 40 CHOPK_01"
+      },
+      {
+        "turn": 195,
+        "command": "-4393 9373 60 snef"
+      },
+      {
+        "turn": 196,
+        "command": "19673 -4410 200 CHOPK_01"
+      },
+      {
+        "turn": 197,
+        "command": "-3395 11842 27 snef"
+      },
+      {
+        "turn": 198,
+        "command": "16815 -5996 200 CHOPK_01"
+      },
+      {
+        "turn": 199,
+        "command": "-1559 13837 198 snef"
+      },
+      {
+        "turn": 200,
+        "command": "16248 -5966 200 CHOPK_01"
+      },
+      {
+        "turn": 201,
+        "command": "813 15291 195 snef"
+      },
+      {
+        "turn": 202,
+        "command": "13095 -6809 200 CHOPK_01"
+      },
+      {
+        "turn": 203,
+        "command": "3525 16042 200 snef"
+      },
+      {
+        "turn": 204,
+        "command": "15867 -6295 200 CHOPK_01"
+      },
+      {
+        "turn": 205,
+        "command": "6343 16008 34 snef"
+      },
+      {
+        "turn": 206,
+        "command": "18390 -5126 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 207,
+        "command": "8977 15020 200 snef"
+      },
+      {
+        "turn": 208,
+        "command": "19765 -3783 200 CHOPK_01"
+      },
+      {
+        "turn": 209,
+        "command": "11236 13337 200 snef"
+      },
+      {
+        "turn": 210,
+        "command": "20060 -2994 200 CHOPK_01"
+      },
+      {
+        "turn": 211,
+        "command": "12915 11097 200 snef"
+      },
+      {
+        "turn": 212,
+        "command": "20822 -438 200 CHOPK_01"
+      },
+      {
+        "turn": 213,
+        "command": "13861 8499 200 snef"
+      },
+      {
+        "turn": 214,
+        "command": "20781 2346 200 CHOPK_01"
+      },
+      {
+        "turn": 215,
+        "command": "13994 5778 200 snef"
+      },
+      {
+        "turn": 216,
+        "command": "20749 2221 200 CHOPK_01"
+      },
+      {
+        "turn": 217,
+        "command": "13309 3186 200 snef"
+      },
+      {
+        "turn": 218,
+        "command": "20922 2129 160 CHOPK_01"
+      },
+      {
+        "turn": 219,
+        "command": "11884 963 200 snef"
+      },
+      {
+        "turn": 220,
+        "command": "21177 2583 80 CHOPK_01"
+      },
+      {
+        "turn": 221,
+        "command": "9863 -685 200 snef"
+      },
+      {
+        "turn": 222,
+        "command": "20987 4738 200 CHOPK_01"
+      },
+      {
+        "turn": 223,
+        "command": "13181 712 200 snef"
+      },
+      {
+        "turn": 224,
+        "command": "20975 5887 160 CHOPK_01"
+      },
+      {
+        "turn": 225,
+        "command": "11168 -1236 200 snef"
+      },
+      {
+        "turn": 226,
+        "command": "19804 8391 0 CHOPK_01"
+      },
+      {
+        "turn": 227,
+        "command": "8763 -2410 43 snef"
+      },
+      {
+        "turn": 228,
+        "command": "18520 9913 0 CHOPK_01"
+      },
+      {
+        "turn": 229,
+        "command": "6195 -2579 31 snef"
+      },
+      {
+        "turn": 230,
+        "command": "16887 10992 0 CHOPK_01"
+      },
+      {
+        "turn": 231,
+        "command": "3774 -1761 200 snef"
+      },
+      {
+        "turn": 232,
+        "command": "14324 11639 0 CHOPK_01"
+      },
+      {
+        "turn": 233,
+        "command": "1696 -223 200 snef"
+      },
+      {
+        "turn": 234,
+        "command": "13386 11678 200 CHOPK_01"
+      },
+      {
+        "turn": 235,
+        "command": "171 1894 200 snef"
+      },
+      {
+        "turn": 236,
+        "command": "10726 11279 200 CHOPK_01"
+      },
+      {
+        "turn": 237,
+        "command": "-614 4041 200 snef"
+      },
+      {
+        "turn": 238,
+        "command": "8273 10214 200 CHOPK_01"
+      },
+      {
+        "turn": 239,
+        "command": "-744 6674 199 snef"
+      },
+      {
+        "turn": 240,
+        "command": "6217 8560 200 CHOPK_01"
+      },
+      {
+        "turn": 241,
+        "command": "-67 9219 189 snef"
+      },
+      {
+        "turn": 242,
+        "command": "4717 6445 200 CHOPK_01"
+      },
+      {
+        "turn": 243,
+        "command": "1361 11425 177 snef"
+      },
+      {
+        "turn": 244,
+        "command": "4226 6456 200 CHOPK_01"
+      },
+      {
+        "turn": 245,
+        "command": "3408 13071 15 snef"
+      },
+      {
+        "turn": 246,
+        "command": "3407 4704 200 CHOPK_01"
+      },
+      {
+        "turn": 247,
+        "command": "4055 13464 SHIELD snef"
+      },
+      {
+        "turn": 248,
+        "command": "2804 4252 200 CHOPK_01"
+      },
+      {
+        "turn": 249,
+        "command": "6733 13869 200 snef"
+      },
+      {
+        "turn": 250,
+        "command": "2073 4946 200 CHOPK_01"
+      },
+      {
+        "turn": 251,
+        "command": "9457 13301 200 snef"
+      },
+      {
+        "turn": 252,
+        "command": "1263 5235 200 CHOPK_01"
+      },
+      {
+        "turn": 253,
+        "command": "11916 11811 200 snef"
+      },
+      {
+        "turn": 254,
+        "command": "375 5827 200 CHOPK_01"
+      },
+      {
+        "turn": 255,
+        "command": "13833 9544 200 snef"
+      },
+      {
+        "turn": 256,
+        "command": "-362 3783 40 CHOPK_01"
+      },
+      {
+        "turn": 257,
+        "command": "15150 6833 200 snef"
+      },
+      {
+        "turn": 258,
+        "command": "-213 1044 40 CHOPK_01"
+      },
+      {
+        "turn": 259,
+        "command": "15730 3877 200 snef"
+      },
+      {
+        "turn": 260,
+        "command": "-1922 3277 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 261,
+        "command": "15566 1080 200 snef"
+      },
+      {
+        "turn": 262,
+        "command": "-2765 5568 200 CHOPK_01"
+      },
+      {
+        "turn": 263,
+        "command": "16513 3858 200 snef"
+      },
+      {
+        "turn": 264,
+        "command": "-2076 8170 200 CHOPK_01"
+      },
+      {
+        "turn": 265,
+        "command": "16929 6139 200 snef"
+      },
+      {
+        "turn": 266,
+        "command": "-1753 8080 200 CHOPK_01"
+      },
+      {
+        "turn": 267,
+        "command": "17352 3146 200 snef"
+      },
+      {
+        "turn": 268,
+        "command": "-1291 7667 200 CHOPK_01"
+      },
+      {
+        "turn": 269,
+        "command": "17480 5899 200 snef"
+      },
+      {
+        "turn": 270,
+        "command": "-935 7817 200 CHOPK_01"
+      },
+      {
+        "turn": 271,
+        "command": "18287 3917 200 snef"
+      },
+      {
+        "turn": 272,
+        "command": "128 10243 200 CHOPK_01"
+      },
+      {
+        "turn": 273,
+        "command": "18667 593 148 snef"
+      },
+      {
+        "turn": 274,
+        "command": "2017 12928 0 CHOPK_01"
+      },
+      {
+        "turn": 275,
+        "command": "19478 893 187 snef"
+      },
+      {
+        "turn": 276,
+        "command": "68 10862 200 CHOPK_01"
+      },
+      {
+        "turn": 277,
+        "command": "19426 -1798 165 snef"
+      },
+      {
+        "turn": 278,
+        "command": "-1291 8416 200 CHOPK_01"
+      },
+      {
+        "turn": 279,
+        "command": "20989 82 28 snef"
+      },
+      {
+        "turn": 280,
+        "command": "-1962 5764 200 CHOPK_01"
+      },
+      {
+        "turn": 281,
+        "command": "21958 2110 200 snef"
+      },
+      {
+        "turn": 282,
+        "command": "-1964 8371 200 CHOPK_01"
+      },
+      {
+        "turn": 283,
+        "command": "22275 -1168 SHIELD snef"
+      },
+      {
+        "turn": 284,
+        "command": "-1105 10632 200 CHOPK_01"
+      },
+      {
+        "turn": 285,
+        "command": "21497 -4088 200 snef"
+      },
+      {
+        "turn": 286,
+        "command": "470 12559 200 CHOPK_01"
+      },
+      {
+        "turn": 287,
+        "command": "19727 -6343 SHIELD snef"
+      },
+      {
+        "turn": 288,
+        "command": "2613 13941 200 CHOPK_01"
+      },
+      {
+        "turn": 289,
+        "command": "17314 -7800 SHIELD snef"
+      },
+      {
+        "turn": 290,
+        "command": "2721 14200 160 CHOPK_01"
+      },
+      {
+        "turn": 291,
+        "command": "14542 -8319 200 snef"
+      },
+      {
+        "turn": 292,
+        "command": "5305 14814 200 CHOPK_01"
+      },
+      {
+        "turn": 293,
+        "command": "11722 -7855 200 snef"
+      },
+      {
+        "turn": 294,
+        "command": "4871 15166 0 CHOPK_01"
+      },
+      {
+        "turn": 295,
+        "command": "9163 -6455 200 snef"
+      },
+      {
+        "turn": 296,
+        "command": "7584 14922 200 CHOPK_01"
+      },
+      {
+        "turn": 297,
+        "command": "7145 -4260 200 snef"
+      },
+      {
+        "turn": 298,
+        "command": "10099 13896 200 CHOPK_01"
+      },
+      {
+        "turn": 299,
+        "command": "5726 -1604 200 snef"
+      },
+      {
+        "turn": 300,
+        "command": "10285 14217 80 CHOPK_01"
+      },
+      {
+        "turn": 301,
+        "command": "5048 1313 200 snef"
+      },
+      {
+        "turn": 302,
+        "command": "12354 12409 200 CHOPK_01"
+      },
+      {
+        "turn": 303,
+        "command": "5177 4257 200 snef"
+      },
+      {
+        "turn": 304,
+        "command": "13774 10099 200 CHOPK_01"
+      },
+      {
+        "turn": 305,
+        "command": "6103 6983 69 snef"
+      },
+      {
+        "turn": 306,
+        "command": "14419 7505 200 CHOPK_01"
+      },
+      {
+        "turn": 307,
+        "command": "4692 5494 200 snef"
+      },
+      {
+        "turn": 308,
+        "command": "14239 4873 200 CHOPK_01"
+      },
+      {
+        "turn": 309,
+        "command": "5755 8200 200 snef"
+      },
+      {
+        "turn": 310,
+        "command": "13260 2456 160 CHOPK_01"
+      },
+      {
+        "turn": 311,
+        "command": "3796 6959 200 snef"
+      },
+      {
+        "turn": 312,
+        "command": "12128 910 200 CHOPK_01"
+      },
+      {
+        "turn": 313,
+        "command": "4937 9502 200 snef"
+      },
+      {
+        "turn": 314,
+        "command": "10665 -344 200 CHOPK_01"
+      },
+      {
+        "turn": 315,
+        "command": "2251 7866 200 snef"
+      },
+      {
+        "turn": 316,
+        "command": "10643 -807 160 CHOPK_01"
+      },
+      {
+        "turn": 317,
+        "command": "2855 10067 200 snef"
+      },
+      {
+        "turn": 318,
+        "command": "8148 -1682 200 CHOPK_01"
+      },
+      {
+        "turn": 319,
+        "command": "2113 10737 200 snef"
+      },
+      {
+        "turn": 320,
+        "command": "5551 -1729 200 CHOPK_01"
+      },
+      {
+        "turn": 321,
+        "command": "3863 13060 200 snef"
+      },
+      {
+        "turn": 322,
+        "command": "6764 -2547 80 CHOPK_01"
+      },
+      {
+        "turn": 323,
+        "command": "679 12293 200 snef"
+      },
+      {
+        "turn": 324,
+        "command": "9313 -3352 0 CHOPK_01"
+      },
+      {
+        "turn": 325,
+        "command": "-2201 10686 200 snef"
+      },
+      {
+        "turn": 326,
+        "command": "6465 -3417 0 CHOPK_01"
+      },
+      {
+        "turn": 327,
+        "command": "-1022 13794 4 snef"
+      },
+      {
+        "turn": 328,
+        "command": "3866 -2471 200 CHOPK_01"
+      },
+      {
+        "turn": 329,
+        "command": "916 16043 7 snef"
+      },
+      {
+        "turn": 330,
+        "command": "1682 -822 200 CHOPK_01"
+      },
+      {
+        "turn": 331,
+        "command": "3329 17294 4 snef"
+      },
+      {
+        "turn": 332,
+        "command": "109 1374 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 333,
+        "command": "5907 17490 3 snef"
+      },
+      {
+        "turn": 334,
+        "command": "517 1083 200 CHOPK_01"
+      },
+      {
+        "turn": 335,
+        "command": "8330 16668 34 snef"
+      },
+      {
+        "turn": 336,
+        "command": "645 3331 200 CHOPK_01"
+      },
+      {
+        "turn": 337,
+        "command": "10321 14985 200 snef"
+      },
+      {
+        "turn": 338,
+        "command": "1160 4611 200 CHOPK_01"
+      },
+      {
+        "turn": 339,
+        "command": "11772 12745 200 snef"
+      },
+      {
+        "turn": 340,
+        "command": "1618 4514 200 CHOPK_01"
+      },
+      {
+        "turn": 341,
+        "command": "12525 10147 200 snef"
+      },
+      {
+        "turn": 342,
+        "command": "2090 1500 200 CHOPK_01"
+      },
+      {
+        "turn": 343,
+        "command": "12494 7426 200 snef"
+      },
+      {
+        "turn": 344,
+        "command": "1911 2075 200 CHOPK_01"
+      },
+      {
+        "turn": 345,
+        "command": "11670 4834 200 snef"
+      },
+      {
+        "turn": 346,
+        "command": "2624 -856 200 CHOPK_01"
+      },
+      {
+        "turn": 347,
+        "command": "12086 4825 200 snef"
+      },
+      {
+        "turn": 348,
+        "command": "3505 -2942 200 CHOPK_01"
+      },
+      {
+        "turn": 349,
+        "command": "11246 3086 173 snef"
+      },
+      {
+        "turn": 350,
+        "command": "1711 -1195 200 CHOPK_01"
+      },
+      {
+        "turn": 351,
+        "command": "13757 5466 200 snef"
+      },
+      {
+        "turn": 352,
+        "command": "220 1457 0 CHOPK_01"
+      },
+      {
+        "turn": 353,
+        "command": "14911 6221 189 snef"
+      },
+      {
+        "turn": 354,
+        "command": "-214 4297 160 CHOPK_01"
+      },
+      {
+        "turn": 355,
+        "command": "14077 3304 76 snef"
+      },
+      {
+        "turn": 356,
+        "command": "232 7040 80 CHOPK_01"
+      },
+      {
+        "turn": 357,
+        "command": "12435 1004 SHIELD snef"
+      },
+      {
+        "turn": 358,
+        "command": "1557 9393 80 CHOPK_01"
+      },
+      {
+        "turn": 359,
+        "command": "14940 2327 15 snef"
+      },
+      {
+        "turn": 360,
+        "command": "3591 11123 160 CHOPK_01"
+      },
+      {
+        "turn": 361,
+        "command": "14423 1216 84 snef"
+      },
+      {
+        "turn": 362,
+        "command": "6064 12127 160 CHOPK_01"
+      },
+      {
+        "turn": 363,
+        "command": "12127 -452 200 snef"
+      },
+      {
+        "turn": 364,
+        "command": "8729 12305 0 CHOPK_01"
+      },
+      {
+        "turn": 365,
+        "command": "9430 -1177 75 snef"
+      },
+      {
+        "turn": 366,
+        "command": "11295 11484 200 CHOPK_01"
+      },
+      {
+        "turn": 367,
+        "command": "6645 -979 200 snef"
+      },
+      {
+        "turn": 368,
+        "command": "13553 9947 200 CHOPK_01"
+      },
+      {
+        "turn": 369,
+        "command": "4025 -3 200 snef"
+      },
+      {
+        "turn": 370,
+        "command": "15288 7815 200 CHOPK_01"
+      },
+      {
+        "turn": 371,
+        "command": "2257 1135 200 snef"
+      },
+      {
+        "turn": 372,
+        "command": "16332 5277 200 CHOPK_01"
+      },
+      {
+        "turn": 373,
+        "command": "4599 -1359 200 snef"
+      },
+      {
+        "turn": 374,
+        "command": "16584 2562 200 CHOPK_01"
+      },
+      {
+        "turn": 375,
+        "command": "4729 -2147 200 snef"
+      },
+      {
+        "turn": 376,
+        "command": "16022 -82 200 CHOPK_01"
+      },
+      {
+        "turn": 377,
+        "command": "4032 -2593 SHIELD snef"
+      },
+      {
+        "turn": 378,
+        "command": "15189 -1905 200 CHOPK_01"
+      },
+      {
+        "turn": 379,
+        "command": "1430 -1179 SHIELD snef"
+      },
+      {
+        "turn": 380,
+        "command": "17449 573 200 CHOPK_01"
+      },
+      {
+        "turn": 381,
+        "command": "-217 925 179 snef"
+      },
+      {
+        "turn": 382,
+        "command": "17850 2166 200 CHOPK_01"
+      },
+      {
+        "turn": 383,
+        "command": "-1073 3619 200 snef"
+      },
+      {
+        "turn": 384,
+        "command": "17616 4007 200 CHOPK_01"
+      },
+      {
+        "turn": 385,
+        "command": "-948 6465 200 snef"
+      },
+      {
+        "turn": 386,
+        "command": "16749 5911 200 CHOPK_01"
+      },
+      {
+        "turn": 387,
+        "command": "-903 6569 200 snef"
+      },
+      {
+        "turn": 388,
+        "command": "17094 4904 200 CHOPK_01"
+      },
+      {
+        "turn": 389,
+        "command": "-1125 6417 200 snef"
+      },
+      {
+        "turn": 390,
+        "command": "17445 4399 200 CHOPK_01"
+      },
+      {
+        "turn": 391,
+        "command": "-284 9217 200 snef"
+      },
+      {
+        "turn": 392,
+        "command": "17926 4052 200 CHOPK_01"
+      },
+      {
+        "turn": 393,
+        "command": "-2001 6376 95 snef"
+      },
+      {
+        "turn": 394,
+        "command": "18779 3192 200 CHOPK_01"
+      },
+      {
+        "turn": 395,
+        "command": "-2795 3490 SHIELD snef"
+      },
+      {
+        "turn": 396,
+        "command": "19583 2750 200 CHOPK_01"
+      },
+      {
+        "turn": 397,
+        "command": "-2579 476 SHIELD snef"
+      },
+      {
+        "turn": 398,
+        "command": "20824 326 160 CHOPK_01"
+      },
+      {
+        "turn": 399,
+        "command": "-1382 -2194 200 snef"
+      },
+      {
+        "turn": 400,
+        "command": "21003 3196 0 CHOPK_01"
+      },
+      {
+        "turn": 401,
+        "command": "631 -4255 121 snef"
+      },
+      {
+        "turn": 402,
+        "command": "22287 818 40 CHOPK_01"
+      },
+      {
+        "turn": 403,
+        "command": "3224 -5499 200 snef"
+      },
+      {
+        "turn": 404,
+        "command": "22127 3660 40 CHOPK_01"
+      },
+      {
+        "turn": 405,
+        "command": "6110 -5803 166 snef"
+      },
+      {
+        "turn": 406,
+        "command": "21111 6165 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 407,
+        "command": "8989 -5300 200 snef"
+      },
+      {
+        "turn": 408,
+        "command": "19329 8014 200 CHOPK_01"
+      },
+      {
+        "turn": 409,
+        "command": "11616 -4046 200 snef"
+      },
+      {
+        "turn": 410,
+        "command": "19712 7907 200 CHOPK_01"
+      },
+      {
+        "turn": 411,
+        "command": "13767 -2140 200 snef"
+      },
+      {
+        "turn": 412,
+        "command": "17326 8996 200 CHOPK_01"
+      },
+      {
+        "turn": 413,
+        "command": "15255 253 200 snef"
+      },
+      {
+        "turn": 414,
+        "command": "14846 9037 200 CHOPK_01"
+      },
+      {
+        "turn": 415,
+        "command": "15958 2917 200 snef"
+      },
+      {
+        "turn": 416,
+        "command": "12355 8407 200 CHOPK_01"
+      },
+      {
+        "turn": 417,
+        "command": "16150 -563 200 snef"
+      },
+      {
+        "turn": 418,
+        "command": "11515 8052 200 CHOPK_01"
+      },
+      {
+        "turn": 419,
+        "command": "17122 1485 200 snef"
+      },
+      {
+        "turn": 420,
+        "command": "10609 7726 200 CHOPK_01"
+      },
+      {
+        "turn": 421,
+        "command": "17824 2218 200 snef"
+      },
+      {
+        "turn": 422,
+        "command": "8418 6168 200 CHOPK_01"
+      },
+      {
+        "turn": 423,
+        "command": "18432 -1153 200 snef"
+      },
+      {
+        "turn": 424,
+        "command": "7752 5945 200 CHOPK_01"
+      },
+      {
+        "turn": 425,
+        "command": "19433 -895 94 snef"
+      },
+      {
+        "turn": 426,
+        "command": "6394 4468 200 CHOPK_01"
+      },
+      {
+        "turn": 427,
+        "command": "20385 -437 186 snef"
+      },
+      {
+        "turn": 428,
+        "command": "6110 5299 200 CHOPK_01"
+      },
+      {
+        "turn": 429,
+        "command": "21054 -2028 77 snef"
+      },
+      {
+        "turn": 430,
+        "command": "5569 5813 200 CHOPK_01"
+      },
+      {
+        "turn": 431,
+        "command": "22176 886 SHIELD snef"
+      },
+      {
+        "turn": 432,
+        "command": "4927 6331 200 CHOPK_01"
+      },
+      {
+        "turn": 433,
+        "command": "21719 3476 73 snef"
+      },
+      {
+        "turn": 434,
+        "command": "3998 6369 200 CHOPK_01"
+      },
+      {
+        "turn": 435,
+        "command": "19955 5551 200 snef"
+      },
+      {
+        "turn": 436,
+        "command": "3193 6884 200 CHOPK_01"
+      },
+      {
+        "turn": 437,
+        "command": "18184 6594 200 snef"
+      },
+      {
+        "turn": 438,
+        "command": "2322 7393 200 CHOPK_01"
+      },
+      {
+        "turn": 439,
+        "command": "20249 3907 200 snef"
+      },
+      {
+        "turn": 440,
+        "command": "1220 7403 200 CHOPK_01"
+      },
+      {
+        "turn": 441,
+        "command": "19200 4986 200 snef"
+      },
+      {
+        "turn": 442,
+        "command": "243 7893 200 CHOPK_01"
+      },
+      {
+        "turn": 443,
+        "command": "18759 5499 200 snef"
+      },
+      {
+        "turn": 444,
+        "command": "-925 7869 80 CHOPK_01"
+      },
+      {
+        "turn": 445,
+        "command": "21112 3227 200 snef"
+      },
+      {
+        "turn": 446,
+        "command": "-597 11154 160 CHOPK_01"
+      },
+      {
+        "turn": 447,
+        "command": "21717 3109 200 snef"
+      },
+      {
+        "turn": 448,
+        "command": "-2134 10541 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 449,
+        "command": "20281 5793 54 snef"
+      },
+      {
+        "turn": 450,
+        "command": "-3146 10445 160 CHOPK_01"
+      },
+      {
+        "turn": 451,
+        "command": "18146 7752 200 snef"
+      },
+      {
+        "turn": 452,
+        "command": "-4561 7906 0 CHOPK_01"
+      },
+      {
+        "turn": 453,
+        "command": "15620 8961 200 snef"
+      },
+      {
+        "turn": 454,
+        "command": "-4892 9554 0 CHOPK_01"
+      },
+      {
+        "turn": 455,
+        "command": "12938 9334 200 snef"
+      },
+      {
+        "turn": 456,
+        "command": "-4948 11113 0 CHOPK_01"
+      },
+      {
+        "turn": 457,
+        "command": "10475 8708 185 snef"
+      },
+      {
+        "turn": 458,
+        "command": "-4749 12564 0 CHOPK_01"
+      },
+      {
+        "turn": 459,
+        "command": "8844 7240 200 snef"
+      },
+      {
+        "turn": 460,
+        "command": "-3131 15162 0 CHOPK_01"
+      },
+      {
+        "turn": 461,
+        "command": "7382 5024 200 snef"
+      },
+      {
+        "turn": 462,
+        "command": "-4052 14692 SHIELD CHOPK_01"
+      },
+      {
+        "turn": 463,
+        "command": "6570 2414 28 snef"
+      },
+      {
+        "turn": 464,
+        "command": "-1839 16737 40 CHOPK_01"
+      },
+      {
+        "turn": 465,
+        "command": "7544 5734 200 snef"
+      },
+      {
+        "turn": 466,
+        "command": "886 17908 80 CHOPK_01"
+      },
+      {
+        "turn": 467,
+        "command": "6499 3108 200 snef"
+      },
+      {
+        "turn": 468,
+        "command": "3831 18102 0 CHOPK_01"
+      },
+      {
+        "turn": 469,
+        "command": "6246 318 200 snef"
+      },
+      {
+        "turn": 470,
+        "command": "6684 17312 80 CHOPK_01"
+      },
+      {
+        "turn": 471,
+        "command": "6664 -1634 200 snef"
+      },
+      {
+        "turn": 472,
+        "command": "9182 15697 200 CHOPK_01"
+      },
+      {
+        "turn": 473,
+        "command": "7646 -2915 126 snef"
+      },
+      {
+        "turn": 474,
+        "command": "11163 13490 200 CHOPK_01"
+      },
+      {
+        "turn": 475,
+        "command": "9703 -4751 200 snef"
+      },
+      {
+        "turn": 476,
+        "command": "12455 10867 200 CHOPK_01"
+      },
+      {
+        "turn": 477,
+        "command": "7901 -3195 162 snef"
+      },
+      {
+        "turn": 478,
+        "command": "12948 8047 200 CHOPK_01"
+      },
+      {
+        "turn": 479,
+        "command": "10001 -5139 185 snef"
+      },
+      {
+        "turn": 480,
+        "command": "12611 5277 200 CHOPK_01"
+      },
+      {
+        "turn": 481,
+        "command": "12548 -6400 200 snef"
+      },
+      {
+        "turn": 482,
+        "command": "12561 4173 200 CHOPK_01"
+      },
+      {
+        "turn": 483,
+        "command": "15313 -6879 200 snef"
+      },
+      {
+        "turn": 484,
+        "command": "11167 1838 200 CHOPK_01"
+      },
+      {
+        "turn": 485,
+        "command": "11999 -7212 SHIELD snef"
+      },
+      {
+        "turn": 486,
+        "command": "11330 1254 160 CHOPK_01"
+      },
+      {
+        "turn": 487,
+        "command": "9275 -6425 200 snef"
+      },
+      {
+        "turn": 488,
+        "command": "10837 267 200 CHOPK_01"
+      },
+      {
+        "turn": 489,
+        "command": "6799 -4430 2 snef"
+      },
+      {
+        "turn": 490,
+        "command": "11985 111 0 CHOPK_01"
+      },
+      {
+        "turn": 491,
+        "command": "5130 -1924 200 snef"
+      },
+      {
+        "turn": 492,
+        "command": "11315 -846 0 CHOPK_01"
+      },
+      {
+        "turn": 493,
+        "command": "4404 895 200 snef"
+      },
+      {
+        "turn": 494,
+        "command": "8763 -1843 200 CHOPK_01"
+      },
+      {
+        "turn": 495,
+        "command": "4440 3826 200 snef"
+      },
+      {
+        "turn": 496,
+        "command": "6081 -2019 200 CHOPK_01"
+      },
+      {
+        "turn": 497,
+        "command": "5257 6626 200 snef"
+      },
+      {
+        "turn": 498,
+        "command": "3522 -1371 200 CHOPK_01"
+      },
+      {
+        "turn": 499,
+        "command": "4826 6623 200 snef"
+      },
+      {
+        "turn": 500,
+        "command": "1327 23 200 CHOPK_01"
+      },
+      {
+        "turn": 501,
+        "command": "5067 7878 200 snef"
+      },
+      {
+        "turn": 502,
+        "command": "-297 2018 80 CHOPK_01"
+      },
+      {
+        "turn": 503,
+        "command": "4345 7945 200 snef"
+      },
+      {
+        "turn": 504,
+        "command": "-1085 4453 200 CHOPK_01"
+      },
+      {
+        "turn": 505,
+        "command": "2819 6917 200 snef"
+      },
+      {
+        "turn": 506,
+        "command": "-1083 7035 80 CHOPK_01"
+      },
+      {
+        "turn": 507,
+        "command": "2801 8445 200 snef"
+      },
+      {
+        "turn": 508,
+        "command": "-167 9480 200 CHOPK_01"
+      },
+      {
+        "turn": 509,
+        "command": "2539 9539 200 snef"
+      },
+      {
+        "turn": 510,
+        "command": "1455 11578 160 CHOPK_01"
+      },
+      {
+        "turn": 511,
+        "command": "1820 10148 200 snef"
+      },
+      {
+        "turn": 512,
+        "command": "3669 13090 0 CHOPK_01"
+      },
+      {
+        "turn": 513,
+        "command": "3243 12570 200 snef"
+      },
+      {
+        "turn": 514,
+        "command": "6320 13709 0 CHOPK_01"
+      },
+      {
+        "turn": 515,
+        "command": "15 11189 200 snef"
+      },
+      {
+        "turn": 516,
+        "command": "9100 13364 0 CHOPK_01"
+      },
+      {
+        "turn": 517,
+        "command": "-2500 9201 198 snef"
+      },
+      {
+        "turn": 518,
+        "command": "11694 12080 200 CHOPK_01"
+      },
+      {
+        "turn": 519,
+        "command": "-4167 6809 183 snef"
+      },
+      {
+        "turn": 520,
+        "command": "13918 10147 200 CHOPK_01"
+      },
+      {
+        "turn": 521,
+        "command": "-5146 7022 SHIELD snef"
+      },
+      {
+        "turn": 522,
+        "command": "15567 7694 200 CHOPK_01"
+      },
+      {
+        "turn": 523,
+        "command": "-5948 6278 200 snef"
+      },
+      {
+        "turn": 524,
+        "command": "14703 9953 200 CHOPK_01"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "12783 4185 200 snef"
+      },
+      {
+        "turn": 2,
+        "command": "13209 6635 200 CHOPK_02"
+      },
+      {
+        "turn": 3,
+        "command": "11388 1359 200 snef"
+      },
+      {
+        "turn": 4,
+        "command": "13328 6262 200 CHOPK_02"
+      },
+      {
+        "turn": 5,
+        "command": "9378 -920 200 snef"
+      },
+      {
+        "turn": 6,
+        "command": "13598 5842 160 CHOPK_02"
+      },
+      {
+        "turn": 7,
+        "command": "10045 -1049 133 snef"
+      },
+      {
+        "turn": 8,
+        "command": "13105 3484 200 CHOPK_02"
+      },
+      {
+        "turn": 9,
+        "command": "7629 -2804 34 snef"
+      },
+      {
+        "turn": 10,
+        "command": "14752 6038 200 CHOPK_02"
+      },
+      {
+        "turn": 11,
+        "command": "10787 -1792 SHIELD snef"
+      },
+      {
+        "turn": 12,
+        "command": "15017 4493 0 CHOPK_02"
+      },
+      {
+        "turn": 13,
+        "command": "10791 -2291 200 snef"
+      },
+      {
+        "turn": 14,
+        "command": "14023 1605 160 CHOPK_02"
+      },
+      {
+        "turn": 15,
+        "command": "8182 -3821 126 snef"
+      },
+      {
+        "turn": 16,
+        "command": "15151 2053 40 CHOPK_02"
+      },
+      {
+        "turn": 17,
+        "command": "5282 -4367 200 snef"
+      },
+      {
+        "turn": 18,
+        "command": "16974 4485 200 CHOPK_02"
+      },
+      {
+        "turn": 19,
+        "command": "2400 -3903 154 snef"
+      },
+      {
+        "turn": 20,
+        "command": "16261 1415 0 CHOPK_02"
+      },
+      {
+        "turn": 21,
+        "command": "5558 -4855 SHIELD snef"
+      },
+      {
+        "turn": 22,
+        "command": "14598 -1033 0 CHOPK_02"
+      },
+      {
+        "turn": 23,
+        "command": "8413 -4869 SHIELD snef"
+      },
+      {
+        "turn": 24,
+        "command": "11909 -2515 0 CHOPK_02"
+      },
+      {
+        "turn": 25,
+        "command": "11382 -3914 SHIELD snef"
+      },
+      {
+        "turn": 26,
+        "command": "8890 -3069 200 CHOPK_02"
+      },
+      {
+        "turn": 27,
+        "command": "13721 -2217 SHIELD snef"
+      },
+      {
+        "turn": 28,
+        "command": "5847 -2843 200 CHOPK_02"
+      },
+      {
+        "turn": 29,
+        "command": "15474 251 29 snef"
+      },
+      {
+        "turn": 30,
+        "command": "5176 -2984 200 CHOPK_02"
+      },
+      {
+        "turn": 31,
+        "command": "16325 3141 SHIELD snef"
+      },
+      {
+        "turn": 32,
+        "command": "2386 -1919 200 CHOPK_02"
+      },
+      {
+        "turn": 33,
+        "command": "16195 6153 14 snef"
+      },
+      {
+        "turn": 34,
+        "command": "4101 -3715 200 CHOPK_02"
+      },
+      {
+        "turn": 35,
+        "command": "15102 8979 173 snef"
+      },
+      {
+        "turn": 36,
+        "command": "6669 -5276 200 CHOPK_02"
+      },
+      {
+        "turn": 37,
+        "command": "13156 11330 200 snef"
+      },
+      {
+        "turn": 38,
+        "command": "3449 -5077 SHIELD CHOPK_02"
+      },
+      {
+        "turn": 39,
+        "command": "10551 12966 200 snef"
+      },
+      {
+        "turn": 40,
+        "command": "705 -3875 200 CHOPK_02"
+      },
+      {
+        "turn": 41,
+        "command": "7626 13902 75 snef"
+      },
+      {
+        "turn": 42,
+        "command": "-1337 -1828 200 CHOPK_02"
+      },
+      {
+        "turn": 43,
+        "command": "4592 13919 200 snef"
+      },
+      {
+        "turn": 44,
+        "command": "-889 -3291 40 CHOPK_02"
+      },
+      {
+        "turn": 45,
+        "command": "1705 13147 SHIELD snef"
+      },
+      {
+        "turn": 46,
+        "command": "-2358 -804 200 CHOPK_02"
+      },
+      {
+        "turn": 47,
+        "command": "4771 14333 178 snef"
+      },
+      {
+        "turn": 48,
+        "command": "-3055 1252 200 CHOPK_02"
+      },
+      {
+        "turn": 49,
+        "command": "2150 13304 122 snef"
+      },
+      {
+        "turn": 50,
+        "command": "-3454 77 200 CHOPK_02"
+      },
+      {
+        "turn": 51,
+        "command": "-191 11383 193 snef"
+      },
+      {
+        "turn": 52,
+        "command": "-4050 2232 200 CHOPK_02"
+      },
+      {
+        "turn": 53,
+        "command": "-1834 8793 164 snef"
+      },
+      {
+        "turn": 54,
+        "command": "-3838 5080 160 CHOPK_02"
+      },
+      {
+        "turn": 55,
+        "command": "-2755 5858 200 snef"
+      },
+      {
+        "turn": 56,
+        "command": "-4808 4058 0 CHOPK_02"
+      },
+      {
+        "turn": 57,
+        "command": "-2894 2816 200 snef"
+      },
+      {
+        "turn": 58,
+        "command": "-5738 1239 0 CHOPK_02"
+      },
+      {
+        "turn": 59,
+        "command": "-2230 -90 200 snef"
+      },
+      {
+        "turn": 60,
+        "command": "-5729 -1611 160 CHOPK_02"
+      },
+      {
+        "turn": 61,
+        "command": "-824 -2625 SHIELD snef"
+      },
+      {
+        "turn": 62,
+        "command": "-6172 -1563 160 CHOPK_02"
+      },
+      {
+        "turn": 63,
+        "command": "1598 -4218 88 snef"
+      },
+      {
+        "turn": 64,
+        "command": "-5273 -4094 80 CHOPK_02"
+      },
+      {
+        "turn": 65,
+        "command": "4466 -4943 172 snef"
+      },
+      {
+        "turn": 66,
+        "command": "-3595 -6162 200 CHOPK_02"
+      },
+      {
+        "turn": 67,
+        "command": "7475 -4718 200 snef"
+      },
+      {
+        "turn": 68,
+        "command": "-1212 -7441 0 CHOPK_02"
+      },
+      {
+        "turn": 69,
+        "command": "10315 -3550 200 snef"
+      },
+      {
+        "turn": 70,
+        "command": "1546 -7938 0 CHOPK_02"
+      },
+      {
+        "turn": 71,
+        "command": "10778 -3376 200 snef"
+      },
+      {
+        "turn": 72,
+        "command": "4411 -7603 0 CHOPK_02"
+      },
+      {
+        "turn": 73,
+        "command": "8851 -4599 200 snef"
+      },
+      {
+        "turn": 74,
+        "command": "7124 -6441 0 CHOPK_02"
+      },
+      {
+        "turn": 75,
+        "command": "10758 -4203 200 snef"
+      },
+      {
+        "turn": 76,
+        "command": "9438 -4535 40 CHOPK_02"
+      },
+      {
+        "turn": 77,
+        "command": "11874 -4145 49 snef"
+      },
+      {
+        "turn": 78,
+        "command": "11172 -2062 200 CHOPK_02"
+      },
+      {
+        "turn": 79,
+        "command": "9317 -6041 200 snef"
+      },
+      {
+        "turn": 80,
+        "command": "12316 713 200 CHOPK_02"
+      },
+      {
+        "turn": 81,
+        "command": "6103 -6238 200 snef"
+      },
+      {
+        "turn": 82,
+        "command": "12645 665 200 CHOPK_02"
+      },
+      {
+        "turn": 83,
+        "command": "8979 -5447 25 snef"
+      },
+      {
+        "turn": 84,
+        "command": "13249 1450 200 CHOPK_02"
+      },
+      {
+        "turn": 85,
+        "command": "11594 -3794 200 snef"
+      },
+      {
+        "turn": 86,
+        "command": "13893 1885 200 CHOPK_02"
+      },
+      {
+        "turn": 87,
+        "command": "13777 -1547 123 snef"
+      },
+      {
+        "turn": 88,
+        "command": "14605 1802 200 CHOPK_02"
+      },
+      {
+        "turn": 89,
+        "command": "15159 868 200 snef"
+      },
+      {
+        "turn": 90,
+        "command": "15348 1026 200 CHOPK_02"
+      },
+      {
+        "turn": 91,
+        "command": "15861 2448 153 snef"
+      },
+      {
+        "turn": 92,
+        "command": "16281 1455 200 CHOPK_02"
+      },
+      {
+        "turn": 93,
+        "command": "15206 -626 SHIELD snef"
+      },
+      {
+        "turn": 94,
+        "command": "17230 1363 200 CHOPK_02"
+      },
+      {
+        "turn": 95,
+        "command": "15193 -1138 200 snef"
+      },
+      {
+        "turn": 96,
+        "command": "18258 2144 200 CHOPK_02"
+      },
+      {
+        "turn": 97,
+        "command": "13075 -3389 200 snef"
+      },
+      {
+        "turn": 98,
+        "command": "19017 4314 200 CHOPK_02"
+      },
+      {
+        "turn": 99,
+        "command": "14084 -2146 200 snef"
+      },
+      {
+        "turn": 100,
+        "command": "18975 7030 200 CHOPK_02"
+      },
+      {
+        "turn": 101,
+        "command": "11647 -4093 200 snef"
+      },
+      {
+        "turn": 102,
+        "command": "18190 9402 0 CHOPK_02"
+      },
+      {
+        "turn": 103,
+        "command": "14050 -2122 200 snef"
+      },
+      {
+        "turn": 104,
+        "command": "16656 11111 200 CHOPK_02"
+      },
+      {
+        "turn": 105,
+        "command": "15850 363 200 snef"
+      },
+      {
+        "turn": 106,
+        "command": "14698 12197 200 CHOPK_02"
+      },
+      {
+        "turn": 107,
+        "command": "14582 -2561 SHIELD snef"
+      },
+      {
+        "turn": 108,
+        "command": "12514 12578 40 CHOPK_02"
+      },
+      {
+        "turn": 109,
+        "command": "12573 -4526 200 snef"
+      },
+      {
+        "turn": 110,
+        "command": "10345 12065 200 CHOPK_02"
+      },
+      {
+        "turn": 111,
+        "command": "14709 -2393 200 snef"
+      },
+      {
+        "turn": 112,
+        "command": "8439 10425 200 CHOPK_02"
+      },
+      {
+        "turn": 113,
+        "command": "15529 -931 200 snef"
+      },
+      {
+        "turn": 114,
+        "command": "6913 8285 200 CHOPK_02"
+      },
+      {
+        "turn": 115,
+        "command": "16439 2028 200 snef"
+      },
+      {
+        "turn": 116,
+        "command": "5922 5783 200 CHOPK_02"
+      },
+      {
+        "turn": 117,
+        "command": "16599 5121 52 snef"
+      },
+      {
+        "turn": 118,
+        "command": "5890 6376 200 CHOPK_02"
+      },
+      {
+        "turn": 119,
+        "command": "16684 5443 200 snef"
+      },
+      {
+        "turn": 120,
+        "command": "5476 6135 200 CHOPK_02"
+      },
+      {
+        "turn": 121,
+        "command": "17138 3201 SHIELD snef"
+      },
+      {
+        "turn": 122,
+        "command": "5032 6404 200 CHOPK_02"
+      },
+      {
+        "turn": 123,
+        "command": "17019 6340 158 snef"
+      },
+      {
+        "turn": 124,
+        "command": "4278 5467 200 CHOPK_02"
+      },
+      {
+        "turn": 125,
+        "command": "16822 7371 5 snef"
+      },
+      {
+        "turn": 126,
+        "command": "3652 3449 200 CHOPK_02"
+      },
+      {
+        "turn": 127,
+        "command": "17104 6906 48 snef"
+      },
+      {
+        "turn": 128,
+        "command": "2799 4324 160 CHOPK_02"
+      },
+      {
+        "turn": 129,
+        "command": "15773 9718 149 snef"
+      },
+      {
+        "turn": 130,
+        "command": "1976 5862 200 CHOPK_02"
+      },
+      {
+        "turn": 131,
+        "command": "13898 11934 4 snef"
+      },
+      {
+        "turn": 132,
+        "command": "1272 7377 200 CHOPK_02"
+      },
+      {
+        "turn": 133,
+        "command": "11305 13497 33 snef"
+      },
+      {
+        "turn": 134,
+        "command": "96 5278 200 CHOPK_02"
+      },
+      {
+        "turn": 135,
+        "command": "13051 12899 SHIELD snef"
+      },
+      {
+        "turn": 136,
+        "command": "-423 3340 200 CHOPK_02"
+      },
+      {
+        "turn": 137,
+        "command": "15542 10735 1 snef"
+      },
+      {
+        "turn": 138,
+        "command": "19 995 200 CHOPK_02"
+      },
+      {
+        "turn": 139,
+        "command": "16424 9395 200 snef"
+      },
+      {
+        "turn": 140,
+        "command": "-1370 2462 200 CHOPK_02"
+      },
+      {
+        "turn": 141,
+        "command": "17798 6366 200 snef"
+      },
+      {
+        "turn": 142,
+        "command": "-651 53 200 CHOPK_02"
+      },
+      {
+        "turn": 143,
+        "command": "17896 5846 200 snef"
+      },
+      {
+        "turn": 144,
+        "command": "684 -1740 0 CHOPK_02"
+      },
+      {
+        "turn": 145,
+        "command": "18417 2631 200 snef"
+      },
+      {
+        "turn": 146,
+        "command": "2627 -2825 0 CHOPK_02"
+      },
+      {
+        "turn": 147,
+        "command": "18721 1837 175 snef"
+      },
+      {
+        "turn": 148,
+        "command": "4924 -3091 0 CHOPK_02"
+      },
+      {
+        "turn": 149,
+        "command": "18939 364 200 snef"
+      },
+      {
+        "turn": 150,
+        "command": "7301 -2503 40 CHOPK_02"
+      },
+      {
+        "turn": 151,
+        "command": "19870 3335 179 snef"
+      },
+      {
+        "turn": 152,
+        "command": "9502 -1137 200 CHOPK_02"
+      },
+      {
+        "turn": 153,
+        "command": "20235 115 100 snef"
+      },
+      {
+        "turn": 154,
+        "command": "11384 773 200 CHOPK_02"
+      },
+      {
+        "turn": 155,
+        "command": "19647 -2861 96 snef"
+      },
+      {
+        "turn": 156,
+        "command": "12776 3117 80 CHOPK_02"
+      },
+      {
+        "turn": 157,
+        "command": "18215 -5338 57 snef"
+      },
+      {
+        "turn": 158,
+        "command": "13175 5855 160 CHOPK_02"
+      },
+      {
+        "turn": 159,
+        "command": "16104 -7076 SHIELD snef"
+      },
+      {
+        "turn": 160,
+        "command": "12581 8758 200 CHOPK_02"
+      },
+      {
+        "turn": 161,
+        "command": "13551 -7873 55 snef"
+      },
+      {
+        "turn": 162,
+        "command": "11384 11515 200 CHOPK_02"
+      },
+      {
+        "turn": 163,
+        "command": "10871 -7670 112 snef"
+      },
+      {
+        "turn": 164,
+        "command": "10787 12638 160 CHOPK_02"
+      },
+      {
+        "turn": 165,
+        "command": "8379 -6503 106 snef"
+      },
+      {
+        "turn": 166,
+        "command": "9422 14465 200 CHOPK_02"
+      },
+      {
+        "turn": 167,
+        "command": "6365 -4498 29 snef"
+      },
+      {
+        "turn": 168,
+        "command": "7826 16025 80 CHOPK_02"
+      },
+      {
+        "turn": 169,
+        "command": "5314 -2524 200 snef"
+      },
+      {
+        "turn": 170,
+        "command": "8109 16359 160 CHOPK_02"
+      },
+      {
+        "turn": 171,
+        "command": "4476 319 200 snef"
+      },
+      {
+        "turn": 172,
+        "command": "7239 16580 200 CHOPK_02"
+      },
+      {
+        "turn": 173,
+        "command": "4406 3284 SHIELD snef"
+      },
+      {
+        "turn": 174,
+        "command": "9312 15361 80 CHOPK_02"
+      },
+      {
+        "turn": 175,
+        "command": "5612 6021 56 snef"
+      },
+      {
+        "turn": 176,
+        "command": "9309 15395 200 CHOPK_02"
+      },
+      {
+        "turn": 177,
+        "command": "7585 8031 200 snef"
+      },
+      {
+        "turn": 178,
+        "command": "8697 16067 80 CHOPK_02"
+      },
+      {
+        "turn": 179,
+        "command": "10369 9689 200 snef"
+      },
+      {
+        "turn": 180,
+        "command": "9422 15917 160 CHOPK_02"
+      },
+      {
+        "turn": 181,
+        "command": "11057 9761 200 snef"
+      },
+      {
+        "turn": 182,
+        "command": "10083 15673 200 CHOPK_02"
+      },
+      {
+        "turn": 183,
+        "command": "9207 8665 200 snef"
+      },
+      {
+        "turn": 184,
+        "command": "12237 13435 200 CHOPK_02"
+      },
+      {
+        "turn": 185,
+        "command": "6998 6619 200 snef"
+      },
+      {
+        "turn": 186,
+        "command": "13692 10739 160 CHOPK_02"
+      },
+      {
+        "turn": 187,
+        "command": "5433 4095 200 snef"
+      },
+      {
+        "turn": 188,
+        "command": "14175 7713 200 CHOPK_02"
+      },
+      {
+        "turn": 189,
+        "command": "6069 6623 200 snef"
+      },
+      {
+        "turn": 190,
+        "command": "13600 4697 200 CHOPK_02"
+      },
+      {
+        "turn": 191,
+        "command": "6509 8261 SHIELD snef"
+      },
+      {
+        "turn": 192,
+        "command": "12265 1952 200 CHOPK_02"
+      },
+      {
+        "turn": 193,
+        "command": "5581 7670 200 snef"
+      },
+      {
+        "turn": 194,
+        "command": "10290 -298 200 CHOPK_02"
+      },
+      {
+        "turn": 195,
+        "command": "4307 4866 200 snef"
+      },
+      {
+        "turn": 196,
+        "command": "7838 -1870 200 CHOPK_02"
+      },
+      {
+        "turn": 197,
+        "command": "4084 3701 62 snef"
+      },
+      {
+        "turn": 198,
+        "command": "10957 -981 0 CHOPK_02"
+      },
+      {
+        "turn": 199,
+        "command": "4118 595 200 snef"
+      },
+      {
+        "turn": 200,
+        "command": "13554 724 0 CHOPK_02"
+      },
+      {
+        "turn": 201,
+        "command": "3948 3710 199 snef"
+      },
+      {
+        "turn": 202,
+        "command": "15438 3037 0 CHOPK_02"
+      },
+      {
+        "turn": 203,
+        "command": "3740 4416 200 snef"
+      },
+      {
+        "turn": 204,
+        "command": "16479 5732 200 CHOPK_02"
+      },
+      {
+        "turn": 205,
+        "command": "4254 7076 SHIELD snef"
+      },
+      {
+        "turn": 206,
+        "command": "16814 8533 0 CHOPK_02"
+      },
+      {
+        "turn": 207,
+        "command": "2957 4168 200 snef"
+      },
+      {
+        "turn": 208,
+        "command": "16225 11206 0 CHOPK_02"
+      },
+      {
+        "turn": 209,
+        "command": "4057 7110 200 snef"
+      },
+      {
+        "turn": 210,
+        "command": "15901 12147 160 CHOPK_02"
+      },
+      {
+        "turn": 211,
+        "command": "5168 8691 200 snef"
+      },
+      {
+        "turn": 212,
+        "command": "14288 14321 40 CHOPK_02"
+      },
+      {
+        "turn": 213,
+        "command": "5418 8954 200 snef"
+      },
+      {
+        "turn": 214,
+        "command": "12092 15850 80 CHOPK_02"
+      },
+      {
+        "turn": 215,
+        "command": "5646 9468 200 snef"
+      },
+      {
+        "turn": 216,
+        "command": "9546 16637 0 CHOPK_02"
+      },
+      {
+        "turn": 217,
+        "command": "4918 9212 200 snef"
+      },
+      {
+        "turn": 218,
+        "command": "6873 16538 0 CHOPK_02"
+      },
+      {
+        "turn": 219,
+        "command": "3620 8297 200 snef"
+      },
+      {
+        "turn": 220,
+        "command": "4340 15572 200 CHOPK_02"
+      },
+      {
+        "turn": 221,
+        "command": "2007 6155 200 snef"
+      },
+      {
+        "turn": 222,
+        "command": "2098 14006 200 CHOPK_02"
+      },
+      {
+        "turn": 223,
+        "command": "1027 3445 200 snef"
+      },
+      {
+        "turn": 224,
+        "command": "324 11935 0 CHOPK_02"
+      },
+      {
+        "turn": 225,
+        "command": "609 6541 200 snef"
+      },
+      {
+        "turn": 226,
+        "command": "-517 10099 160 CHOPK_02"
+      },
+      {
+        "turn": 227,
+        "command": "381 8515 177 snef"
+      },
+      {
+        "turn": 228,
+        "command": "-995 7438 200 CHOPK_02"
+      },
+      {
+        "turn": 229,
+        "command": "388 10389 200 snef"
+      },
+      {
+        "turn": 230,
+        "command": "-771 4769 200 CHOPK_02"
+      },
+      {
+        "turn": 231,
+        "command": "1643 13085 SHIELD snef"
+      },
+      {
+        "turn": 232,
+        "command": "142 2296 200 CHOPK_02"
+      },
+      {
+        "turn": 233,
+        "command": "3634 14948 147 snef"
+      },
+      {
+        "turn": 234,
+        "command": "1667 209 200 CHOPK_02"
+      },
+      {
+        "turn": 235,
+        "command": "4684 15693 175 snef"
+      },
+      {
+        "turn": 236,
+        "command": "3676 -1331 200 CHOPK_02"
+      },
+      {
+        "turn": 237,
+        "command": "7274 15997 181 snef"
+      },
+      {
+        "turn": 238,
+        "command": "5998 -2207 200 CHOPK_02"
+      },
+      {
+        "turn": 239,
+        "command": "9809 15293 SHIELD snef"
+      },
+      {
+        "turn": 240,
+        "command": "8431 -2358 200 CHOPK_02"
+      },
+      {
+        "turn": 241,
+        "command": "11946 13616 200 snef"
+      },
+      {
+        "turn": 242,
+        "command": "11143 -1177 200 CHOPK_02"
+      },
+      {
+        "turn": 243,
+        "command": "13445 11183 200 snef"
+      },
+      {
+        "turn": 244,
+        "command": "13715 922 80 CHOPK_02"
+      },
+      {
+        "turn": 245,
+        "command": "13496 10450 200 snef"
+      },
+      {
+        "turn": 246,
+        "command": "14383 1427 160 CHOPK_02"
+      },
+      {
+        "turn": 247,
+        "command": "13412 10009 191 snef"
+      },
+      {
+        "turn": 248,
+        "command": "14574 1142 200 CHOPK_02"
+      },
+      {
+        "turn": 249,
+        "command": "13954 7042 200 snef"
+      },
+      {
+        "turn": 250,
+        "command": "16326 2890 160 CHOPK_02"
+      },
+      {
+        "turn": 251,
+        "command": "14017 5396 200 snef"
+      },
+      {
+        "turn": 252,
+        "command": "17257 3493 200 CHOPK_02"
+      },
+      {
+        "turn": 253,
+        "command": "14005 3916 200 snef"
+      },
+      {
+        "turn": 254,
+        "command": "16743 1124 80 CHOPK_02"
+      },
+      {
+        "turn": 255,
+        "command": "13103 1090 200 snef"
+      },
+      {
+        "turn": 256,
+        "command": "15714 -906 200 CHOPK_02"
+      },
+      {
+        "turn": 257,
+        "command": "11491 -1287 200 snef"
+      },
+      {
+        "turn": 258,
+        "command": "15866 -1559 200 CHOPK_02"
+      },
+      {
+        "turn": 259,
+        "command": "14262 696 SHIELD snef"
+      },
+      {
+        "turn": 260,
+        "command": "15406 -2615 200 CHOPK_02"
+      },
+      {
+        "turn": 261,
+        "command": "13225 -1009 200 snef"
+      },
+      {
+        "turn": 262,
+        "command": "15486 -3367 200 CHOPK_02"
+      },
+      {
+        "turn": 263,
+        "command": "14753 1743 200 snef"
+      },
+      {
+        "turn": 264,
+        "command": "15521 -4190 80 CHOPK_02"
+      },
+      {
+        "turn": 265,
+        "command": "12489 -480 200 snef"
+      },
+      {
+        "turn": 266,
+        "command": "13056 -5338 160 CHOPK_02"
+      },
+      {
+        "turn": 267,
+        "command": "14128 2192 200 snef"
+      },
+      {
+        "turn": 268,
+        "command": "10472 -5585 160 CHOPK_02"
+      },
+      {
+        "turn": 269,
+        "command": "15130 5210 200 snef"
+      },
+      {
+        "turn": 270,
+        "command": "8034 -4949 SHIELD CHOPK_02"
+      },
+      {
+        "turn": 271,
+        "command": "15378 8365 200 snef"
+      },
+      {
+        "turn": 272,
+        "command": "6084 -3399 160 CHOPK_02"
+      },
+      {
+        "turn": 273,
+        "command": "15586 5285 200 snef"
+      },
+      {
+        "turn": 274,
+        "command": "4854 -1157 80 CHOPK_02"
+      },
+      {
+        "turn": 275,
+        "command": "16235 7195 200 snef"
+      },
+      {
+        "turn": 276,
+        "command": "4500 1494 200 CHOPK_02"
+      },
+      {
+        "turn": 277,
+        "command": "16341 4106 200 snef"
+      },
+      {
+        "turn": 278,
+        "command": "5087 4242 200 CHOPK_02"
+      },
+      {
+        "turn": 279,
+        "command": "15615 1256 SHIELD snef"
+      },
+      {
+        "turn": 280,
+        "command": "6393 6830 200 CHOPK_02"
+      },
+      {
+        "turn": 281,
+        "command": "13973 -934 200 snef"
+      },
+      {
+        "turn": 282,
+        "command": "7812 8571 200 CHOPK_02"
+      },
+      {
+        "turn": 283,
+        "command": "11663 -2315 76 snef"
+      },
+      {
+        "turn": 284,
+        "command": "8060 9086 200 CHOPK_02"
+      },
+      {
+        "turn": 285,
+        "command": "8979 -2770 85 snef"
+      },
+      {
+        "turn": 286,
+        "command": "6077 6881 200 CHOPK_02"
+      },
+      {
+        "turn": 287,
+        "command": "6234 -2253 18 snef"
+      },
+      {
+        "turn": 288,
+        "command": "7001 6260 200 CHOPK_02"
+      },
+      {
+        "turn": 289,
+        "command": "3733 -826 3 snef"
+      },
+      {
+        "turn": 290,
+        "command": "7334 5410 200 CHOPK_02"
+      },
+      {
+        "turn": 291,
+        "command": "1763 1388 184 snef"
+      },
+      {
+        "turn": 292,
+        "command": "7881 5458 200 CHOPK_02"
+      },
+      {
+        "turn": 293,
+        "command": "1522 1713 200 snef"
+      },
+      {
+        "turn": 294,
+        "command": "7562 4618 200 CHOPK_02"
+      },
+      {
+        "turn": 295,
+        "command": "725 2733 115 snef"
+      },
+      {
+        "turn": 296,
+        "command": "7503 4634 200 CHOPK_02"
+      },
+      {
+        "turn": 297,
+        "command": "-266 5005 200 snef"
+      },
+      {
+        "turn": 298,
+        "command": "9204 7210 0 CHOPK_02"
+      },
+      {
+        "turn": 299,
+        "command": "381 1827 192 snef"
+      },
+      {
+        "turn": 300,
+        "command": "9013 7303 40 CHOPK_02"
+      },
+      {
+        "turn": 301,
+        "command": "1064 -181 196 snef"
+      },
+      {
+        "turn": 302,
+        "command": "7984 6525 160 CHOPK_02"
+      },
+      {
+        "turn": 303,
+        "command": "2570 -2402 175 snef"
+      },
+      {
+        "turn": 304,
+        "command": "6451 4832 200 CHOPK_02"
+      },
+      {
+        "turn": 305,
+        "command": "4831 -4175 SHIELD snef"
+      },
+      {
+        "turn": 306,
+        "command": "6033 5088 160 CHOPK_02"
+      },
+      {
+        "turn": 307,
+        "command": "7448 -4938 SHIELD snef"
+      },
+      {
+        "turn": 308,
+        "command": "6291 6557 200 CHOPK_02"
+      },
+      {
+        "turn": 309,
+        "command": "10105 -4665 200 snef"
+      },
+      {
+        "turn": 310,
+        "command": "5216 5812 200 CHOPK_02"
+      },
+      {
+        "turn": 311,
+        "command": "12491 -3423 200 snef"
+      },
+      {
+        "turn": 312,
+        "command": "5016 6761 200 CHOPK_02"
+      },
+      {
+        "turn": 313,
+        "command": "14326 -1368 166 snef"
+      },
+      {
+        "turn": 314,
+        "command": "4380 7160 200 CHOPK_02"
+      },
+      {
+        "turn": 315,
+        "command": "15396 1270 15 snef"
+      },
+      {
+        "turn": 316,
+        "command": "4490 8734 200 CHOPK_02"
+      },
+      {
+        "turn": 317,
+        "command": "15580 3679 200 snef"
+      },
+      {
+        "turn": 318,
+        "command": "2189 6720 200 CHOPK_02"
+      },
+      {
+        "turn": 319,
+        "command": "15557 4749 200 snef"
+      },
+      {
+        "turn": 320,
+        "command": "3021 9882 160 CHOPK_02"
+      },
+      {
+        "turn": 321,
+        "command": "15291 6854 199 snef"
+      },
+      {
+        "turn": 322,
+        "command": "4595 12429 0 CHOPK_02"
+      },
+      {
+        "turn": 323,
+        "command": "14504 9165 110 snef"
+      },
+      {
+        "turn": 324,
+        "command": "6796 14056 0 CHOPK_02"
+      },
+      {
+        "turn": 325,
+        "command": "15455 8309 200 snef"
+      },
+      {
+        "turn": 326,
+        "command": "9324 14660 0 CHOPK_02"
+      },
+      {
+        "turn": 327,
+        "command": "17001 5478 200 snef"
+      },
+      {
+        "turn": 328,
+        "command": "11855 14231 160 CHOPK_02"
+      },
+      {
+        "turn": 329,
+        "command": "17069 7631 200 snef"
+      },
+      {
+        "turn": 330,
+        "command": "14144 12998 160 CHOPK_02"
+      },
+      {
+        "turn": 331,
+        "command": "18505 4779 SHIELD snef"
+      },
+      {
+        "turn": 332,
+        "command": "15950 11083 160 CHOPK_02"
+      },
+      {
+        "turn": 333,
+        "command": "18600 5102 47 snef"
+      },
+      {
+        "turn": 334,
+        "command": "17085 8674 160 CHOPK_02"
+      },
+      {
+        "turn": 335,
+        "command": "17609 7993 200 snef"
+      },
+      {
+        "turn": 336,
+        "command": "17428 6005 40 CHOPK_02"
+      },
+      {
+        "turn": 337,
+        "command": "18266 4860 3 snef"
+      },
+      {
+        "turn": 338,
+        "command": "17067 4003 200 CHOPK_02"
+      },
+      {
+        "turn": 339,
+        "command": "17396 7628 200 snef"
+      },
+      {
+        "turn": 340,
+        "command": "15910 1500 80 CHOPK_02"
+      },
+      {
+        "turn": 341,
+        "command": "17175 8260 200 snef"
+      },
+      {
+        "turn": 342,
+        "command": "13989 -502 40 CHOPK_02"
+      },
+      {
+        "turn": 343,
+        "command": "18382 5375 4 snef"
+      },
+      {
+        "turn": 344,
+        "command": "11479 -1760 160 CHOPK_02"
+      },
+      {
+        "turn": 345,
+        "command": "18590 2325 200 snef"
+      },
+      {
+        "turn": 346,
+        "command": "8683 -2252 0 CHOPK_02"
+      },
+      {
+        "turn": 347,
+        "command": "17997 -617 200 snef"
+      },
+      {
+        "turn": 348,
+        "command": "5859 -1757 0 CHOPK_02"
+      },
+      {
+        "turn": 349,
+        "command": "16653 -3211 200 snef"
+      },
+      {
+        "turn": 350,
+        "command": "3315 -328 0 CHOPK_02"
+      },
+      {
+        "turn": 351,
+        "command": "19053 -874 200 snef"
+      },
+      {
+        "turn": 352,
+        "command": "1326 1888 160 CHOPK_02"
+      },
+      {
+        "turn": 353,
+        "command": "20614 1502 131 snef"
+      },
+      {
+        "turn": 354,
+        "command": "-19 4580 0 CHOPK_02"
+      },
+      {
+        "turn": 355,
+        "command": "20229 -1680 163 snef"
+      },
+      {
+        "turn": 356,
+        "command": "-432 7578 40 CHOPK_02"
+      },
+      {
+        "turn": 357,
+        "command": "19027 -4430 125 snef"
+      },
+      {
+        "turn": 358,
+        "command": "89 10575 80 CHOPK_02"
+      },
+      {
+        "turn": 359,
+        "command": "21653 -2296 SHIELD snef"
+      },
+      {
+        "turn": 360,
+        "command": "1464 13292 0 CHOPK_02"
+      },
+      {
+        "turn": 361,
+        "command": "22565 -1956 SHIELD snef"
+      },
+      {
+        "turn": 362,
+        "command": "3635 15428 200 CHOPK_02"
+      },
+      {
+        "turn": 363,
+        "command": "21887 -4126 200 snef"
+      },
+      {
+        "turn": 364,
+        "command": "6265 16931 80 CHOPK_02"
+      },
+      {
+        "turn": 365,
+        "command": "23641 -2079 SHIELD snef"
+      },
+      {
+        "turn": 366,
+        "command": "9187 17555 40 CHOPK_02"
+      },
+      {
+        "turn": 367,
+        "command": "24762 784 SHIELD snef"
+      },
+      {
+        "turn": 368,
+        "command": "12119 17212 0 CHOPK_02"
+      },
+      {
+        "turn": 369,
+        "command": "24853 3760 63 snef"
+      },
+      {
+        "turn": 370,
+        "command": "14755 15912 0 CHOPK_02"
+      },
+      {
+        "turn": 371,
+        "command": "23943 6536 194 snef"
+      },
+      {
+        "turn": 372,
+        "command": "16822 13805 0 CHOPK_02"
+      },
+      {
+        "turn": 373,
+        "command": "22154 8828 81 snef"
+      },
+      {
+        "turn": 374,
+        "command": "18103 11114 0 CHOPK_02"
+      },
+      {
+        "turn": 375,
+        "command": "19688 10397 9 snef"
+      },
+      {
+        "turn": 376,
+        "command": "18462 8117 0 CHOPK_02"
+      },
+      {
+        "turn": 377,
+        "command": "16816 11087 4 snef"
+      },
+      {
+        "turn": 378,
+        "command": "17855 5122 0 CHOPK_02"
+      },
+      {
+        "turn": 379,
+        "command": "13832 10817 2 snef"
+      },
+      {
+        "turn": 380,
+        "command": "16332 2433 0 CHOPK_02"
+      },
+      {
+        "turn": 381,
+        "command": "11049 9603 141 snef"
+      },
+      {
+        "turn": 382,
+        "command": "16072 2220 200 CHOPK_02"
+      },
+      {
+        "turn": 383,
+        "command": "8678 7678 190 snef"
+      },
+      {
+        "turn": 384,
+        "command": "13864 52 200 CHOPK_02"
+      },
+      {
+        "turn": 385,
+        "command": "6899 5221 56 snef"
+      },
+      {
+        "turn": 386,
+        "command": "14783 329 200 CHOPK_02"
+      },
+      {
+        "turn": 387,
+        "command": "5987 2375 SHIELD snef"
+      },
+      {
+        "turn": 388,
+        "command": "15996 785 200 CHOPK_02"
+      },
+      {
+        "turn": 389,
+        "command": "6074 -587 200 snef"
+      },
+      {
+        "turn": 390,
+        "command": "15881 -131 200 CHOPK_02"
+      },
+      {
+        "turn": 391,
+        "command": "5707 1799 200 snef"
+      },
+      {
+        "turn": 392,
+        "command": "16734 -302 200 CHOPK_02"
+      },
+      {
+        "turn": 393,
+        "command": "6102 -1176 16 snef"
+      },
+      {
+        "turn": 394,
+        "command": "17014 -1130 200 CHOPK_02"
+      },
+      {
+        "turn": 395,
+        "command": "7444 -3867 200 snef"
+      },
+      {
+        "turn": 396,
+        "command": "17603 -1780 200 CHOPK_02"
+      },
+      {
+        "turn": 397,
+        "command": "9427 -6115 200 snef"
+      },
+      {
+        "turn": 398,
+        "command": "18237 -2481 200 CHOPK_02"
+      },
+      {
+        "turn": 399,
+        "command": "11573 -7614 200 snef"
+      },
+      {
+        "turn": 400,
+        "command": "16913 -4623 0 CHOPK_02"
+      },
+      {
+        "turn": 401,
+        "command": "14312 -8562 32 snef"
+      },
+      {
+        "turn": 402,
+        "command": "14525 -6274 0 CHOPK_02"
+      },
+      {
+        "turn": 403,
+        "command": "10958 -8295 200 snef"
+      },
+      {
+        "turn": 404,
+        "command": "11882 -6866 160 CHOPK_02"
+      },
+      {
+        "turn": 405,
+        "command": "13721 -9360 200 snef"
+      },
+      {
+        "turn": 406,
+        "command": "9918 -6849 80 CHOPK_02"
+      },
+      {
+        "turn": 407,
+        "command": "16751 -8786 200 snef"
+      },
+      {
+        "turn": 408,
+        "command": "11377 -7832 0 CHOPK_02"
+      },
+      {
+        "turn": 409,
+        "command": "19696 -7769 63 snef"
+      },
+      {
+        "turn": 410,
+        "command": "12484 -7768 80 CHOPK_02"
+      },
+      {
+        "turn": 411,
+        "command": "21424 -6908 200 snef"
+      },
+      {
+        "turn": 412,
+        "command": "13900 -7601 200 CHOPK_02"
+      },
+      {
+        "turn": 413,
+        "command": "23290 -4675 192 snef"
+      },
+      {
+        "turn": 414,
+        "command": "12677 -7372 40 CHOPK_02"
+      },
+      {
+        "turn": 415,
+        "command": "24403 -2005 200 snef"
+      },
+      {
+        "turn": 416,
+        "command": "12806 -7361 40 CHOPK_02"
+      },
+      {
+        "turn": 417,
+        "command": "24827 -42 200 snef"
+      },
+      {
+        "turn": 418,
+        "command": "9967 -6321 160 CHOPK_02"
+      },
+      {
+        "turn": 419,
+        "command": "24579 2755 1 snef"
+      },
+      {
+        "turn": 420,
+        "command": "10439 -6728 160 CHOPK_02"
+      },
+      {
+        "turn": 421,
+        "command": "23354 5208 10 snef"
+      },
+      {
+        "turn": 422,
+        "command": "7813 -5217 0 CHOPK_02"
+      },
+      {
+        "turn": 423,
+        "command": "21332 7056 2 snef"
+      },
+      {
+        "turn": 424,
+        "command": "5878 -2960 40 CHOPK_02"
+      },
+      {
+        "turn": 425,
+        "command": "18751 8092 200 snef"
+      },
+      {
+        "turn": 426,
+        "command": "5492 -2555 200 CHOPK_02"
+      },
+      {
+        "turn": 427,
+        "command": "15945 8390 200 snef"
+      },
+      {
+        "turn": 428,
+        "command": "4763 -1514 200 CHOPK_02"
+      },
+      {
+        "turn": 429,
+        "command": "13161 7899 200 snef"
+      },
+      {
+        "turn": 430,
+        "command": "4635 -2626 200 CHOPK_02"
+      },
+      {
+        "turn": 431,
+        "command": "10641 6651 200 snef"
+      },
+      {
+        "turn": 432,
+        "command": "4611 -4050 SHIELD CHOPK_02"
+      },
+      {
+        "turn": 433,
+        "command": "8612 4753 200 snef"
+      },
+      {
+        "turn": 434,
+        "command": "4475 -3718 200 CHOPK_02"
+      },
+      {
+        "turn": 435,
+        "command": "8518 5429 200 snef"
+      },
+      {
+        "turn": 436,
+        "command": "6531 -5918 200 CHOPK_02"
+      },
+      {
+        "turn": 437,
+        "command": "8098 5833 200 snef"
+      },
+      {
+        "turn": 438,
+        "command": "7222 -6091 200 CHOPK_02"
+      },
+      {
+        "turn": 439,
+        "command": "7086 5323 200 snef"
+      },
+      {
+        "turn": 440,
+        "command": "6564 -4885 80 CHOPK_02"
+      },
+      {
+        "turn": 441,
+        "command": "5912 4074 200 snef"
+      },
+      {
+        "turn": 442,
+        "command": "5954 -3633 0 CHOPK_02"
+      },
+      {
+        "turn": 443,
+        "command": "5019 1480 16 snef"
+      },
+      {
+        "turn": 444,
+        "command": "6098 -3553 160 CHOPK_02"
+      },
+      {
+        "turn": 445,
+        "command": "5187 -1108 74 snef"
+      },
+      {
+        "turn": 446,
+        "command": "7427 -5385 0 CHOPK_02"
+      },
+      {
+        "turn": 447,
+        "command": "3862 2277 154 snef"
+      },
+      {
+        "turn": 448,
+        "command": "9727 -7235 80 CHOPK_02"
+      },
+      {
+        "turn": 449,
+        "command": "3445 5683 139 snef"
+      },
+      {
+        "turn": 450,
+        "command": "12426 -8396 0 CHOPK_02"
+      },
+      {
+        "turn": 451,
+        "command": "2552 2833 SHIELD snef"
+      },
+      {
+        "turn": 452,
+        "command": "15331 -8693 40 CHOPK_02"
+      },
+      {
+        "turn": 453,
+        "command": "2735 29 200 snef"
+      },
+      {
+        "turn": 454,
+        "command": "18184 -8148 200 CHOPK_02"
+      },
+      {
+        "turn": 455,
+        "command": "3906 -2429 200 snef"
+      },
+      {
+        "turn": 456,
+        "command": "20801 -6959 200 CHOPK_02"
+      },
+      {
+        "turn": 457,
+        "command": "5890 -4274 200 snef"
+      },
+      {
+        "turn": 458,
+        "command": "22872 -5042 0 CHOPK_02"
+      },
+      {
+        "turn": 459,
+        "command": "3142 -2122 SHIELD snef"
+      },
+      {
+        "turn": 460,
+        "command": "23956 -2254 40 CHOPK_02"
+      },
+      {
+        "turn": 461,
+        "command": "5241 -4014 200 snef"
+      },
+      {
+        "turn": 462,
+        "command": "24282 769 0 CHOPK_02"
+      },
+      {
+        "turn": 463,
+        "command": "7888 -5085 200 snef"
+      },
+      {
+        "turn": 464,
+        "command": "24093 2080 200 CHOPK_02"
+      },
+      {
+        "turn": 465,
+        "command": "10795 -5218 9 snef"
+      },
+      {
+        "turn": 466,
+        "command": "23437 5040 160 CHOPK_02"
+      },
+      {
+        "turn": 467,
+        "command": "13648 -4389 200 snef"
+      },
+      {
+        "turn": 468,
+        "command": "23110 6279 200 CHOPK_02"
+      },
+      {
+        "turn": 469,
+        "command": "16226 -2854 200 snef"
+      },
+      {
+        "turn": 470,
+        "command": "21628 8816 200 CHOPK_02"
+      },
+      {
+        "turn": 471,
+        "command": "18304 -712 200 snef"
+      },
+      {
+        "turn": 472,
+        "command": "19470 10699 0 CHOPK_02"
+      },
+      {
+        "turn": 473,
+        "command": "19704 1869 200 snef"
+      },
+      {
+        "turn": 474,
+        "command": "20543 9890 0 CHOPK_02"
+      },
+      {
+        "turn": 475,
+        "command": "20311 4675 200 snef"
+      },
+      {
+        "turn": 476,
+        "command": "22717 7663 0 CHOPK_02"
+      },
+      {
+        "turn": 477,
+        "command": "20755 1988 39 snef"
+      },
+      {
+        "turn": 478,
+        "command": "21034 9198 40 CHOPK_02"
+      },
+      {
+        "turn": 479,
+        "command": "21328 2462 200 snef"
+      },
+      {
+        "turn": 480,
+        "command": "20563 9481 0 CHOPK_02"
+      },
+      {
+        "turn": 481,
+        "command": "21760 5211 200 snef"
+      },
+      {
+        "turn": 482,
+        "command": "22298 7789 40 CHOPK_02"
+      },
+      {
+        "turn": 483,
+        "command": "22573 4566 40 snef"
+      },
+      {
+        "turn": 484,
+        "command": "20076 9749 160 CHOPK_02"
+      },
+      {
+        "turn": 485,
+        "command": "23128 1365 200 snef"
+      },
+      {
+        "turn": 486,
+        "command": "17466 11109 SHIELD CHOPK_02"
+      },
+      {
+        "turn": 487,
+        "command": "22514 -1052 177 snef"
+      },
+      {
+        "turn": 488,
+        "command": "14786 11340 200 CHOPK_02"
+      },
+      {
+        "turn": 489,
+        "command": "22921 -731 200 snef"
+      },
+      {
+        "turn": 490,
+        "command": "12297 10412 200 CHOPK_02"
+      },
+      {
+        "turn": 491,
+        "command": "21650 -3348 1 snef"
+      },
+      {
+        "turn": 492,
+        "command": "10013 8719 200 CHOPK_02"
+      },
+      {
+        "turn": 493,
+        "command": "19525 -5243 75 snef"
+      },
+      {
+        "turn": 494,
+        "command": "8625 6901 200 CHOPK_02"
+      },
+      {
+        "turn": 495,
+        "command": "16885 -6397 198 snef"
+      },
+      {
+        "turn": 496,
+        "command": "7104 4301 200 CHOPK_02"
+      },
+      {
+        "turn": 497,
+        "command": "14019 -6804 30 snef"
+      },
+      {
+        "turn": 498,
+        "command": "8309 6339 200 CHOPK_02"
+      },
+      {
+        "turn": 499,
+        "command": "11182 -6244 34 snef"
+      },
+      {
+        "turn": 500,
+        "command": "7761 6025 200 CHOPK_02"
+      },
+      {
+        "turn": 501,
+        "command": "8666 -4786 177 snef"
+      },
+      {
+        "turn": 502,
+        "command": "6922 5500 200 CHOPK_02"
+      },
+      {
+        "turn": 503,
+        "command": "6641 -2691 130 snef"
+      },
+      {
+        "turn": 504,
+        "command": "6448 5775 200 CHOPK_02"
+      },
+      {
+        "turn": 505,
+        "command": "5698 -1270 SHIELD snef"
+      },
+      {
+        "turn": 506,
+        "command": "5458 5345 200 CHOPK_02"
+      },
+      {
+        "turn": 507,
+        "command": "4974 1542 200 snef"
+      },
+      {
+        "turn": 508,
+        "command": "4949 6029 200 CHOPK_02"
+      },
+      {
+        "turn": 509,
+        "command": "5239 4442 200 snef"
+      },
+      {
+        "turn": 510,
+        "command": "4374 6744 200 CHOPK_02"
+      },
+      {
+        "turn": 511,
+        "command": "6459 7121 197 snef"
+      },
+      {
+        "turn": 512,
+        "command": "3749 7491 200 CHOPK_02"
+      },
+      {
+        "turn": 513,
+        "command": "8509 9294 200 snef"
+      },
+      {
+        "turn": 514,
+        "command": "2895 7977 200 CHOPK_02"
+      },
+      {
+        "turn": 515,
+        "command": "6252 6995 200 snef"
+      },
+      {
+        "turn": 516,
+        "command": "1570 7737 200 CHOPK_02"
+      },
+      {
+        "turn": 517,
+        "command": "4822 4770 200 snef"
+      },
+      {
+        "turn": 518,
+        "command": "796 8577 200 CHOPK_02"
+      },
+      {
+        "turn": 519,
+        "command": "5794 7731 200 snef"
+      },
+      {
+        "turn": 520,
+        "command": "-418 8662 200 CHOPK_02"
+      },
+      {
+        "turn": 521,
+        "command": "4954 7563 200 snef"
+      },
+      {
+        "turn": 522,
+        "command": "-1265 9527 0 CHOPK_02"
+      },
+      {
+        "turn": 523,
+        "command": "6284 10110 200 snef"
+      },
+      {
+        "turn": 524,
+        "command": "-237 12495 80 CHOPK_02"
+      }
+    ]
+  }
+}

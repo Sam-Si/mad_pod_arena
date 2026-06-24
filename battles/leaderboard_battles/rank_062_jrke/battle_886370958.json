@@ -1,0 +1,5866 @@
+{
+  "gameId": 886370958,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 13572,
+          "y": 7592
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 12486,
+          "y": 1366
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 10555,
+          "y": 5981
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 3609,
+          "y": 5169
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 13079.0,
+          "y": 7678.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 14065.0,
+          "y": 7506.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 12094.0,
+          "y": 7850.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 15050.0,
+          "y": 7334.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 13079.0,
+          "y": 7678.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 14065.0,
+          "y": 7506.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 12094.0,
+          "y": 7850.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 15050.0,
+          "y": 7334.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 24,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 26,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 28,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 30,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 32,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 34,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 36,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 38,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 40,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 42,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 44,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 46,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 48,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 50,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 52,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 54,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 56,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 58,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 60,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 62,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 64,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 66,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 68,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 70,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 72,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 74,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 76,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 78,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 80,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 82,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 84,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 86,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 88,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 90,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 92,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 94,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 96,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 98,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 100,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 102,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 104,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 106,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 108,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 110,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 112,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 114,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 116,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 118,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 120,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 122,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 124,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 126,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 128,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 130,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 132,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 134,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 136,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 138,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 140,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 142,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 144,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 146,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 148,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 150,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 152,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 154,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 156,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 158,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 160,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 162,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 164,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 166,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 168,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 170,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 172,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 174,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 176,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 178,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 180,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 182,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 184,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 186,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 188,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 190,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 192,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 194,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 196,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 198,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 200,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 202,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 204,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 206,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 208,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 210,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 212,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 214,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 216,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 218,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 220,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 222,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 224,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 226,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 228,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 230,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 232,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 234,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 236,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 238,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 240,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 242,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 244,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 246,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 248,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 250,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 252,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 254,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 256,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 258,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 260,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 262,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 264,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 266,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 268,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 270,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 272,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 274,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 276,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 278,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 280,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 282,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 284,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 286,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 288,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 290,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 292,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 294,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 296,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 298,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 300,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 302,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 304,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 306,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 308,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 310,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 312,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 314,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 316,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 318,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 320,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 322,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 324,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 326,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 328,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 330,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 332,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 334,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 336,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 338,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 340,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 342,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 344,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 346,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 348,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 350,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 352,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 354,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 356,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 358,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 360,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 362,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 364,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 366,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 368,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 370,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 372,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 374,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 376,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 378,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 380,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 382,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 384,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 386,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 388,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 390,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 392,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 394,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 396,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 398,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 400,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 402,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 404,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 406,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 408,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 410,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 412,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 414,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 416,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 418,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 420,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 422,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 424,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 426,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 428,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 430,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 432,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 434,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 436,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 438,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 440,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 442,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 444,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 446,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 448,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 450,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 452,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 454,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 456,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 458,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 460,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 462,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 464,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 466,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 468,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 470,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 472,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 474,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 476,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 478,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 480,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 482,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 484,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 486,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 488,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 490,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 492,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 494,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 496,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 498,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 500,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 502,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 504,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 506,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 508,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 510,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 512,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 514,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 516,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 518,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 520,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 522,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 524,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 526,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 528,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 530,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 532,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 534,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 536,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 538,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 540,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 542,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 544,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 546,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 548,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 550,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 552,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 554,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 556,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 558,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 560,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 562,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 564,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 566,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 568,
+      "log": "$0 rank: 1\n$1 rank: 2\n¤RED¤End reached§RED§"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "10598 -2009 BOOST Jrke's Special"
+      },
+      {
+        "turn": 2,
+        "command": "13837 -1997 200"
+      },
+      {
+        "turn": 3,
+        "command": "13616 -2928 186 Jrke's Special"
+      },
+      {
+        "turn": 4,
+        "command": "10897 -2271 200"
+      },
+      {
+        "turn": 5,
+        "command": "10374 -3376 41 Jrke's Special"
+      },
+      {
+        "turn": 6,
+        "command": "10555 -2587 200"
+      },
+      {
+        "turn": 7,
+        "command": "7378 -2805 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 8,
+        "command": "13668 -3096 200"
+      },
+      {
+        "turn": 9,
+        "command": "10160 -4582 116 Jrke's Special"
+      },
+      {
+        "turn": 10,
+        "command": "13034 -3805 0"
+      },
+      {
+        "turn": 11,
+        "command": "13194 -5325 3 Jrke's Special"
+      },
+      {
+        "turn": 12,
+        "command": "15646 -3738 200"
+      },
+      {
+        "turn": 13,
+        "command": "16184 -5055 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 14,
+        "command": "13276 -4927 0"
+      },
+      {
+        "turn": 15,
+        "command": "18791 -3950 180 Jrke's Special"
+      },
+      {
+        "turn": 16,
+        "command": "11345 -5275 200"
+      },
+      {
+        "turn": 17,
+        "command": "20657 -1947 200 Jrke's Special"
+      },
+      {
+        "turn": 18,
+        "command": "11411 -5754 200"
+      },
+      {
+        "turn": 19,
+        "command": "20006 -3200 200 Jrke's Special"
+      },
+      {
+        "turn": 20,
+        "command": "11050 -6096 200"
+      },
+      {
+        "turn": 21,
+        "command": "21343 -948 200 Jrke's Special"
+      },
+      {
+        "turn": 22,
+        "command": "13200 -6543 200"
+      },
+      {
+        "turn": 23,
+        "command": "21963 1635 200 Jrke's Special"
+      },
+      {
+        "turn": 24,
+        "command": "16264 -6257 0"
+      },
+      {
+        "turn": 25,
+        "command": "21793 4307 95 Jrke's Special"
+      },
+      {
+        "turn": 26,
+        "command": "16144 -6802 200"
+      },
+      {
+        "turn": 27,
+        "command": "20738 6785 187 Jrke's Special"
+      },
+      {
+        "turn": 28,
+        "command": "18764 -5728 200"
+      },
+      {
+        "turn": 29,
+        "command": "18698 8620 200 Jrke's Special"
+      },
+      {
+        "turn": 30,
+        "command": "20609 -3843 200"
+      },
+      {
+        "turn": 31,
+        "command": "16003 9723 200 Jrke's Special"
+      },
+      {
+        "turn": 32,
+        "command": "21652 -1392 0"
+      },
+      {
+        "turn": 33,
+        "command": "13114 10101 200 Jrke's Special"
+      },
+      {
+        "turn": 34,
+        "command": "21680 1376 0"
+      },
+      {
+        "turn": 35,
+        "command": "10518 9822 200 Jrke's Special"
+      },
+      {
+        "turn": 36,
+        "command": "20755 4096 0"
+      },
+      {
+        "turn": 37,
+        "command": "8811 9394 200 Jrke's Special"
+      },
+      {
+        "turn": 38,
+        "command": "18954 6464 0"
+      },
+      {
+        "turn": 39,
+        "command": "8182 9452 71 Jrke's Special"
+      },
+      {
+        "turn": 40,
+        "command": "16441 8216 200"
+      },
+      {
+        "turn": 41,
+        "command": "7690 9567 19 Jrke's Special"
+      },
+      {
+        "turn": 42,
+        "command": "13551 9326 200"
+      },
+      {
+        "turn": 43,
+        "command": "9181 10731 13 Jrke's Special"
+      },
+      {
+        "turn": 44,
+        "command": "11090 9722 200"
+      },
+      {
+        "turn": 45,
+        "command": "8658 10820 200 Jrke's Special"
+      },
+      {
+        "turn": 46,
+        "command": "9228 9808 200"
+      },
+      {
+        "turn": 47,
+        "command": "11523 12175 10 Jrke's Special"
+      },
+      {
+        "turn": 48,
+        "command": "8466 10090 200"
+      },
+      {
+        "turn": 49,
+        "command": "8423 11643 64 Jrke's Special"
+      },
+      {
+        "turn": 50,
+        "command": "7197 10222 200"
+      },
+      {
+        "turn": 51,
+        "command": "6708 10780 177 Jrke's Special"
+      },
+      {
+        "turn": 52,
+        "command": "9977 11805 0"
+      },
+      {
+        "turn": 53,
+        "command": "7836 11883 200 Jrke's Special"
+      },
+      {
+        "turn": 54,
+        "command": "12983 12346 0"
+      },
+      {
+        "turn": 55,
+        "command": "5281 10361 200 Jrke's Special"
+      },
+      {
+        "turn": 56,
+        "command": "14711 12345 200"
+      },
+      {
+        "turn": 57,
+        "command": "3323 8251 2 Jrke's Special"
+      },
+      {
+        "turn": 58,
+        "command": "15457 12300 200"
+      },
+      {
+        "turn": 59,
+        "command": "2389 5687 52 Jrke's Special"
+      },
+      {
+        "turn": 60,
+        "command": "13479 13509 0"
+      },
+      {
+        "turn": 61,
+        "command": "2467 3687 0 Jrke's Special"
+      },
+      {
+        "turn": 62,
+        "command": "10719 14153 200"
+      },
+      {
+        "turn": 63,
+        "command": "3003 2030 103 Jrke's Special"
+      },
+      {
+        "turn": 64,
+        "command": "7568 14114 0"
+      },
+      {
+        "turn": 65,
+        "command": "4571 -368 96 Jrke's Special"
+      },
+      {
+        "turn": 66,
+        "command": "8094 14681 200"
+      },
+      {
+        "turn": 67,
+        "command": "6294 -1847 71 Jrke's Special"
+      },
+      {
+        "turn": 68,
+        "command": "5096 13983 SHIELD"
+      },
+      {
+        "turn": 69,
+        "command": "7277 -2380 124 Jrke's Special"
+      },
+      {
+        "turn": 70,
+        "command": "2611 12371 200"
+      },
+      {
+        "turn": 71,
+        "command": "7127 -2087 194 Jrke's Special"
+      },
+      {
+        "turn": 72,
+        "command": "953 10205 200"
+      },
+      {
+        "turn": 73,
+        "command": "5562 -829 113 Jrke's Special"
+      },
+      {
+        "turn": 74,
+        "command": "127 7630 0"
+      },
+      {
+        "turn": 75,
+        "command": "6042 -1224 181 Jrke's Special"
+      },
+      {
+        "turn": 76,
+        "command": "97 5531 0"
+      },
+      {
+        "turn": 77,
+        "command": "4240 977 5 Jrke's Special"
+      },
+      {
+        "turn": 78,
+        "command": "913 2826 200"
+      },
+      {
+        "turn": 79,
+        "command": "3271 3690 200 Jrke's Special"
+      },
+      {
+        "turn": 80,
+        "command": "812 2665 200"
+      },
+      {
+        "turn": 81,
+        "command": "3069 6554 200 Jrke's Special"
+      },
+      {
+        "turn": 82,
+        "command": "273 2996 200"
+      },
+      {
+        "turn": 83,
+        "command": "3747 9197 200 Jrke's Special"
+      },
+      {
+        "turn": 84,
+        "command": "-173 2797 200"
+      },
+      {
+        "turn": 85,
+        "command": "5160 11567 200 Jrke's Special"
+      },
+      {
+        "turn": 86,
+        "command": "-1679 5600 200"
+      },
+      {
+        "turn": 87,
+        "command": "7195 13439 200 Jrke's Special"
+      },
+      {
+        "turn": 88,
+        "command": "-2133 4190 200"
+      },
+      {
+        "turn": 89,
+        "command": "4266 11643 200 Jrke's Special"
+      },
+      {
+        "turn": 90,
+        "command": "-2658 3151 200"
+      },
+      {
+        "turn": 91,
+        "command": "3055 11087 200 Jrke's Special"
+      },
+      {
+        "turn": 92,
+        "command": "-3254 2266 200"
+      },
+      {
+        "turn": 93,
+        "command": "968 8654 200 Jrke's Special"
+      },
+      {
+        "turn": 94,
+        "command": "-2499 -564 SHIELD"
+      },
+      {
+        "turn": 95,
+        "command": "-289 5917 200 Jrke's Special"
+      },
+      {
+        "turn": 96,
+        "command": "-843 -2766 200"
+      },
+      {
+        "turn": 97,
+        "command": "-660 3114 200 Jrke's Special"
+      },
+      {
+        "turn": 98,
+        "command": "1375 -3661 0"
+      },
+      {
+        "turn": 99,
+        "command": "-165 495 133 Jrke's Special"
+      },
+      {
+        "turn": 100,
+        "command": "4344 -3906 200"
+      },
+      {
+        "turn": 101,
+        "command": "-1572 1470 200 Jrke's Special"
+      },
+      {
+        "turn": 102,
+        "command": "7275 -3184 200"
+      },
+      {
+        "turn": 103,
+        "command": "-797 -777 160 Jrke's Special"
+      },
+      {
+        "turn": 104,
+        "command": "9829 -1838 0"
+      },
+      {
+        "turn": 105,
+        "command": "702 -2668 200 Jrke's Special"
+      },
+      {
+        "turn": 106,
+        "command": "11910 328 200"
+      },
+      {
+        "turn": 107,
+        "command": "2822 -3977 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 108,
+        "command": "13270 2628 SHIELD"
+      },
+      {
+        "turn": 109,
+        "command": "6038 -4123 200 Jrke's Special"
+      },
+      {
+        "turn": 110,
+        "command": "13075 5392 SHIELD"
+      },
+      {
+        "turn": 111,
+        "command": "2995 -4143 4 Jrke's Special"
+      },
+      {
+        "turn": 112,
+        "command": "12531 5017 200"
+      },
+      {
+        "turn": 113,
+        "command": "2215 -4017 200 Jrke's Special"
+      },
+      {
+        "turn": 114,
+        "command": "12049 6980 0"
+      },
+      {
+        "turn": 115,
+        "command": "3394 -4135 194 Jrke's Special"
+      },
+      {
+        "turn": 116,
+        "command": "11209 9171 200"
+      },
+      {
+        "turn": 117,
+        "command": "167 -3137 22 Jrke's Special"
+      },
+      {
+        "turn": 118,
+        "command": "10976 9218 200"
+      },
+      {
+        "turn": 119,
+        "command": "-2846 -1472 200 Jrke's Special"
+      },
+      {
+        "turn": 120,
+        "command": "9567 11960 0"
+      },
+      {
+        "turn": 121,
+        "command": "-2323 -2179 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 122,
+        "command": "10672 10149 SHIELD"
+      },
+      {
+        "turn": 123,
+        "command": "-194 -3132 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 124,
+        "command": "11344 7155 200"
+      },
+      {
+        "turn": 125,
+        "command": "2877 -3219 82 Jrke's Special"
+      },
+      {
+        "turn": 126,
+        "command": "10887 5171 200"
+      },
+      {
+        "turn": 127,
+        "command": "5886 -2357 39 Jrke's Special"
+      },
+      {
+        "turn": 128,
+        "command": "10578 6207 0"
+      },
+      {
+        "turn": 129,
+        "command": "6802 -1780 24 Jrke's Special"
+      },
+      {
+        "turn": 130,
+        "command": "10244 6887 200"
+      },
+      {
+        "turn": 131,
+        "command": "8372 -609 0 Jrke's Special"
+      },
+      {
+        "turn": 132,
+        "command": "10176 6922 200"
+      },
+      {
+        "turn": 133,
+        "command": "7198 -757 200 Jrke's Special"
+      },
+      {
+        "turn": 134,
+        "command": "10086 8513 200"
+      },
+      {
+        "turn": 135,
+        "command": "8422 799 93 Jrke's Special"
+      },
+      {
+        "turn": 136,
+        "command": "10655 6636 0"
+      },
+      {
+        "turn": 137,
+        "command": "9291 2214 149 Jrke's Special"
+      },
+      {
+        "turn": 138,
+        "command": "10926 6602 200"
+      },
+      {
+        "turn": 139,
+        "command": "9160 2189 167 Jrke's Special"
+      },
+      {
+        "turn": 140,
+        "command": "11351 6757 200"
+      },
+      {
+        "turn": 141,
+        "command": "8938 1779 200 Jrke's Special"
+      },
+      {
+        "turn": 142,
+        "command": "11851 7640 200"
+      },
+      {
+        "turn": 143,
+        "command": "6692 250 200 Jrke's Special"
+      },
+      {
+        "turn": 144,
+        "command": "12274 9045 200"
+      },
+      {
+        "turn": 145,
+        "command": "3919 -812 192 Jrke's Special"
+      },
+      {
+        "turn": 146,
+        "command": "13364 6842 200"
+      },
+      {
+        "turn": 147,
+        "command": "3544 -974 200 Jrke's Special"
+      },
+      {
+        "turn": 148,
+        "command": "14217 6898 200"
+      },
+      {
+        "turn": 149,
+        "command": "2487 -1371 94 Jrke's Special"
+      },
+      {
+        "turn": 150,
+        "command": "15093 7805 200"
+      },
+      {
+        "turn": 151,
+        "command": "3490 -1567 108 Jrke's Special"
+      },
+      {
+        "turn": 152,
+        "command": "15266 10952 0"
+      },
+      {
+        "turn": 153,
+        "command": "6599 -957 200 Jrke's Special"
+      },
+      {
+        "turn": 154,
+        "command": "16911 8007 200"
+      },
+      {
+        "turn": 155,
+        "command": "8805 997 200 Jrke's Special"
+      },
+      {
+        "turn": 156,
+        "command": "17719 8808 0"
+      },
+      {
+        "turn": 157,
+        "command": "6295 -805 200 Jrke's Special"
+      },
+      {
+        "turn": 158,
+        "command": "18476 8966 0"
+      },
+      {
+        "turn": 159,
+        "command": "8774 863 200 Jrke's Special"
+      },
+      {
+        "turn": 160,
+        "command": "19269 8031 200"
+      },
+      {
+        "turn": 161,
+        "command": "6557 -1256 33 Jrke's Special"
+      },
+      {
+        "turn": 162,
+        "command": "20063 7241 200"
+      },
+      {
+        "turn": 163,
+        "command": "9147 370 101 Jrke's Special"
+      },
+      {
+        "turn": 164,
+        "command": "20682 5194 0"
+      },
+      {
+        "turn": 165,
+        "command": "11075 2641 89 Jrke's Special"
+      },
+      {
+        "turn": 166,
+        "command": "20282 2346 0"
+      },
+      {
+        "turn": 167,
+        "command": "9559 -265 199 Jrke's Special"
+      },
+      {
+        "turn": 168,
+        "command": "19796 847 0"
+      },
+      {
+        "turn": 169,
+        "command": "7436 -2591 148 Jrke's Special"
+      },
+      {
+        "turn": 170,
+        "command": "17896 -1152 200"
+      },
+      {
+        "turn": 171,
+        "command": "7177 -3376 200 Jrke's Special"
+      },
+      {
+        "turn": 172,
+        "command": "15537 -2467 200"
+      },
+      {
+        "turn": 173,
+        "command": "9637 -2663 191 Jrke's Special"
+      },
+      {
+        "turn": 174,
+        "command": "12921 -3001 200"
+      },
+      {
+        "turn": 175,
+        "command": "12184 -978 200 Jrke's Special"
+      },
+      {
+        "turn": 176,
+        "command": "10298 -2711 200"
+      },
+      {
+        "turn": 177,
+        "command": "14009 1227 200 Jrke's Special"
+      },
+      {
+        "turn": 178,
+        "command": "8168 -1845 200"
+      },
+      {
+        "turn": 179,
+        "command": "14998 3732 200 Jrke's Special"
+      },
+      {
+        "turn": 180,
+        "command": "6195 -182 200"
+      },
+      {
+        "turn": 181,
+        "command": "15110 6289 200 Jrke's Special"
+      },
+      {
+        "turn": 182,
+        "command": "4844 2016 200"
+      },
+      {
+        "turn": 183,
+        "command": "14379 8642 200 Jrke's Special"
+      },
+      {
+        "turn": 184,
+        "command": "5080 -11 0"
+      },
+      {
+        "turn": 185,
+        "command": "14902 8864 200 Jrke's Special"
+      },
+      {
+        "turn": 186,
+        "command": "4831 -463 200"
+      },
+      {
+        "turn": 187,
+        "command": "13353 10818 200 Jrke's Special"
+      },
+      {
+        "turn": 188,
+        "command": "4258 -473 200"
+      },
+      {
+        "turn": 189,
+        "command": "11281 12100 200 Jrke's Special"
+      },
+      {
+        "turn": 190,
+        "command": "3156 2094 0"
+      },
+      {
+        "turn": 191,
+        "command": "10837 12614 200 Jrke's Special"
+      },
+      {
+        "turn": 192,
+        "command": "3110 4766 SHIELD"
+      },
+      {
+        "turn": 193,
+        "command": "14537 12338 181 Jrke's Special"
+      },
+      {
+        "turn": 194,
+        "command": "4074 7157 200"
+      },
+      {
+        "turn": 195,
+        "command": "12830 13586 148 Jrke's Special"
+      },
+      {
+        "turn": 196,
+        "command": "5420 8652 0"
+      },
+      {
+        "turn": 197,
+        "command": "10265 14221 75 Jrke's Special"
+      },
+      {
+        "turn": 198,
+        "command": "7765 10002 0"
+      },
+      {
+        "turn": 199,
+        "command": "7755 13867 4 Jrke's Special"
+      },
+      {
+        "turn": 200,
+        "command": "10576 10535 200"
+      },
+      {
+        "turn": 201,
+        "command": "5618 12553 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 202,
+        "command": "11992 10538 200"
+      },
+      {
+        "turn": 203,
+        "command": "4114 10467 200 Jrke's Special"
+      },
+      {
+        "turn": 204,
+        "command": "11657 10716 200"
+      },
+      {
+        "turn": 205,
+        "command": "3431 7869 26 Jrke's Special"
+      },
+      {
+        "turn": 206,
+        "command": "11630 11056 200"
+      },
+      {
+        "turn": 207,
+        "command": "3672 5062 21 Jrke's Special"
+      },
+      {
+        "turn": 208,
+        "command": "12235 11489 200"
+      },
+      {
+        "turn": 209,
+        "command": "4843 2358 200 Jrke's Special"
+      },
+      {
+        "turn": 210,
+        "command": "10520 12165 200"
+      },
+      {
+        "turn": 211,
+        "command": "6677 -33 200 Jrke's Special"
+      },
+      {
+        "turn": 212,
+        "command": "7543 12309 200"
+      },
+      {
+        "turn": 213,
+        "command": "9063 -1894 200 Jrke's Special"
+      },
+      {
+        "turn": 214,
+        "command": "4655 11581 0"
+      },
+      {
+        "turn": 215,
+        "command": "6442 -374 200 Jrke's Special"
+      },
+      {
+        "turn": 216,
+        "command": "2424 9974 200"
+      },
+      {
+        "turn": 217,
+        "command": "8685 -2480 200 Jrke's Special"
+      },
+      {
+        "turn": 218,
+        "command": "853 7828 200"
+      },
+      {
+        "turn": 219,
+        "command": "5763 -1129 187 Jrke's Special"
+      },
+      {
+        "turn": 220,
+        "command": "69 5365 200"
+      },
+      {
+        "turn": 221,
+        "command": "7892 -3436 146 Jrke's Special"
+      },
+      {
+        "turn": 222,
+        "command": "-35 3308 200"
+      },
+      {
+        "turn": 223,
+        "command": "10452 -4916 25 Jrke's Special"
+      },
+      {
+        "turn": 224,
+        "command": "678 915 200"
+      },
+      {
+        "turn": 225,
+        "command": "13210 -5366 3 Jrke's Special"
+      },
+      {
+        "turn": 226,
+        "command": "1178 -292 200"
+      },
+      {
+        "turn": 227,
+        "command": "15856 -4779 76 Jrke's Special"
+      },
+      {
+        "turn": 228,
+        "command": "2110 -1563 200"
+      },
+      {
+        "turn": 229,
+        "command": "18124 -3331 124 Jrke's Special"
+      },
+      {
+        "turn": 230,
+        "command": "1777 -1937 200"
+      },
+      {
+        "turn": 231,
+        "command": "19813 -1222 148 Jrke's Special"
+      },
+      {
+        "turn": 232,
+        "command": "4027 -3314 0"
+      },
+      {
+        "turn": 233,
+        "command": "20772 1319 41 Jrke's Special"
+      },
+      {
+        "turn": 234,
+        "command": "6536 -3665 SHIELD"
+      },
+      {
+        "turn": 235,
+        "command": "20795 4058 47 Jrke's Special"
+      },
+      {
+        "turn": 236,
+        "command": "4190 -3553 0"
+      },
+      {
+        "turn": 237,
+        "command": "20935 3564 51 Jrke's Special"
+      },
+      {
+        "turn": 238,
+        "command": "1177 -2666 200"
+      },
+      {
+        "turn": 239,
+        "command": "20112 6275 17 Jrke's Special"
+      },
+      {
+        "turn": 240,
+        "command": "3039 -2959 200"
+      },
+      {
+        "turn": 241,
+        "command": "18410 8589 111 Jrke's Special"
+      },
+      {
+        "turn": 242,
+        "command": "2634 -2722 200"
+      },
+      {
+        "turn": 243,
+        "command": "18847 8232 200 Jrke's Special"
+      },
+      {
+        "turn": 244,
+        "command": "3346 -2855 200"
+      },
+      {
+        "turn": 245,
+        "command": "16692 10205 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 246,
+        "command": "6321 -2805 0"
+      },
+      {
+        "turn": 247,
+        "command": "14527 11202 200 Jrke's Special"
+      },
+      {
+        "turn": 248,
+        "command": "7693 -2480 0"
+      },
+      {
+        "turn": 249,
+        "command": "15752 10930 200 Jrke's Special"
+      },
+      {
+        "turn": 250,
+        "command": "6162 -3120 SHIELD"
+      },
+      {
+        "turn": 251,
+        "command": "12871 11555 200 Jrke's Special"
+      },
+      {
+        "turn": 252,
+        "command": "6273 -3016 200"
+      },
+      {
+        "turn": 253,
+        "command": "12334 11578 4 Jrke's Special"
+      },
+      {
+        "turn": 254,
+        "command": "3205 -3141 0"
+      },
+      {
+        "turn": 255,
+        "command": "15596 11142 114 Jrke's Special"
+      },
+      {
+        "turn": 256,
+        "command": "3662 -2940 200"
+      },
+      {
+        "turn": 257,
+        "command": "13372 11515 0 Jrke's Special"
+      },
+      {
+        "turn": 258,
+        "command": "2335 -2693 200"
+      },
+      {
+        "turn": 259,
+        "command": "10422 11127 38 Jrke's Special"
+      },
+      {
+        "turn": 260,
+        "command": "4097 -2800 200"
+      },
+      {
+        "turn": 261,
+        "command": "13500 11512 200 Jrke's Special"
+      },
+      {
+        "turn": 262,
+        "command": "5130 -2926 200"
+      },
+      {
+        "turn": 263,
+        "command": "16411 11105 193 Jrke's Special"
+      },
+      {
+        "turn": 264,
+        "command": "8027 -2234 200"
+      },
+      {
+        "turn": 265,
+        "command": "14026 11622 200 Jrke's Special"
+      },
+      {
+        "turn": 266,
+        "command": "4982 -3069 200"
+      },
+      {
+        "turn": 267,
+        "command": "11310 11436 200 Jrke's Special"
+      },
+      {
+        "turn": 268,
+        "command": "4999 -3149 200"
+      },
+      {
+        "turn": 269,
+        "command": "8893 10447 200 Jrke's Special"
+      },
+      {
+        "turn": 270,
+        "command": "7862 -2489 SHIELD"
+      },
+      {
+        "turn": 271,
+        "command": "6878 8764 200 Jrke's Special"
+      },
+      {
+        "turn": 272,
+        "command": "10113 -1097 0"
+      },
+      {
+        "turn": 273,
+        "command": "5462 6543 200 Jrke's Special"
+      },
+      {
+        "turn": 274,
+        "command": "12014 1147 0"
+      },
+      {
+        "turn": 275,
+        "command": "4910 5560 200 Jrke's Special"
+      },
+      {
+        "turn": 276,
+        "command": "13087 3767 200"
+      },
+      {
+        "turn": 277,
+        "command": "4528 3096 200 Jrke's Special"
+      },
+      {
+        "turn": 278,
+        "command": "13211 4326 200"
+      },
+      {
+        "turn": 279,
+        "command": "3986 3833 200 Jrke's Special"
+      },
+      {
+        "turn": 280,
+        "command": "13170 3148 0"
+      },
+      {
+        "turn": 281,
+        "command": "3563 2938 200 Jrke's Special"
+      },
+      {
+        "turn": 282,
+        "command": "13693 6078 200"
+      },
+      {
+        "turn": 283,
+        "command": "2606 4708 200 Jrke's Special"
+      },
+      {
+        "turn": 284,
+        "command": "13887 7385 200"
+      },
+      {
+        "turn": 285,
+        "command": "1918 3841 200 Jrke's Special"
+      },
+      {
+        "turn": 286,
+        "command": "14371 7365 200"
+      },
+      {
+        "turn": 287,
+        "command": "951 6906 200 Jrke's Special"
+      },
+      {
+        "turn": 288,
+        "command": "15037 7016 0"
+      },
+      {
+        "turn": 289,
+        "command": "105 3896 200 Jrke's Special"
+      },
+      {
+        "turn": 290,
+        "command": "15530 7186 200"
+      },
+      {
+        "turn": 291,
+        "command": "-291 1958 200 Jrke's Special"
+      },
+      {
+        "turn": 292,
+        "command": "16178 7153 200"
+      },
+      {
+        "turn": 293,
+        "command": "-2088 4966 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 294,
+        "command": "16609 8602 SHIELD"
+      },
+      {
+        "turn": 295,
+        "command": "-766 2067 20 Jrke's Special"
+      },
+      {
+        "turn": 296,
+        "command": "16103 7098 200"
+      },
+      {
+        "turn": 297,
+        "command": "-491 2838 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 298,
+        "command": "15120 8212 200"
+      },
+      {
+        "turn": 299,
+        "command": "1424 178 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 300,
+        "command": "14795 6410 200"
+      },
+      {
+        "turn": 301,
+        "command": "1499 690 200 Jrke's Special"
+      },
+      {
+        "turn": 302,
+        "command": "14155 7197 200"
+      },
+      {
+        "turn": 303,
+        "command": "498 3599 200 Jrke's Special"
+      },
+      {
+        "turn": 304,
+        "command": "13383 9092 200"
+      },
+      {
+        "turn": 305,
+        "command": "390 6766 36 Jrke's Special"
+      },
+      {
+        "turn": 306,
+        "command": "13932 6806 200"
+      },
+      {
+        "turn": 307,
+        "command": "835 4390 0 Jrke's Special"
+      },
+      {
+        "turn": 308,
+        "command": "14166 5254 200"
+      },
+      {
+        "turn": 309,
+        "command": "868 7558 200 Jrke's Special"
+      },
+      {
+        "turn": 310,
+        "command": "14473 6728 200"
+      },
+      {
+        "turn": 311,
+        "command": "1445 10155 200 Jrke's Special"
+      },
+      {
+        "turn": 312,
+        "command": "14327 9465 200"
+      },
+      {
+        "turn": 313,
+        "command": "1504 10918 200 Jrke's Special"
+      },
+      {
+        "turn": 314,
+        "command": "15218 8755 200"
+      },
+      {
+        "turn": 315,
+        "command": "642 9803 200 Jrke's Special"
+      },
+      {
+        "turn": 316,
+        "command": "16317 5823 200"
+      },
+      {
+        "turn": 317,
+        "command": "-291 6920 200 Jrke's Special"
+      },
+      {
+        "turn": 318,
+        "command": "16734 9018 0"
+      },
+      {
+        "turn": 319,
+        "command": "-427 4186 200 Jrke's Special"
+      },
+      {
+        "turn": 320,
+        "command": "16090 11969 200"
+      },
+      {
+        "turn": 321,
+        "command": "276 1521 200 Jrke's Special"
+      },
+      {
+        "turn": 322,
+        "command": "16573 12512 0"
+      },
+      {
+        "turn": 323,
+        "command": "1041 -6 170 Jrke's Special"
+      },
+      {
+        "turn": 324,
+        "command": "17086 12651 200"
+      },
+      {
+        "turn": 325,
+        "command": "2934 -1671 195 Jrke's Special"
+      },
+      {
+        "turn": 326,
+        "command": "19246 10087 200"
+      },
+      {
+        "turn": 327,
+        "command": "5247 -2613 9 Jrke's Special"
+      },
+      {
+        "turn": 328,
+        "command": "18884 12466 0"
+      },
+      {
+        "turn": 329,
+        "command": "4633 -2779 54 Jrke's Special"
+      },
+      {
+        "turn": 330,
+        "command": "20888 9734 SHIELD"
+      },
+      {
+        "turn": 331,
+        "command": "7229 -2756 6 Jrke's Special"
+      },
+      {
+        "turn": 332,
+        "command": "20575 9396 0"
+      },
+      {
+        "turn": 333,
+        "command": "7290 -2796 101 Jrke's Special"
+      },
+      {
+        "turn": 334,
+        "command": "18842 12200 0"
+      },
+      {
+        "turn": 335,
+        "command": "9777 -1715 200 Jrke's Special"
+      },
+      {
+        "turn": 336,
+        "command": "19022 11122 0"
+      },
+      {
+        "turn": 337,
+        "command": "11881 47 200 Jrke's Special"
+      },
+      {
+        "turn": 338,
+        "command": "19421 9124 200"
+      },
+      {
+        "turn": 339,
+        "command": "13400 2346 200 Jrke's Special"
+      },
+      {
+        "turn": 340,
+        "command": "19521 8280 200"
+      },
+      {
+        "turn": 341,
+        "command": "13895 2907 200 Jrke's Special"
+      },
+      {
+        "turn": 342,
+        "command": "19666 8208 200"
+      },
+      {
+        "turn": 343,
+        "command": "14522 5602 200 Jrke's Special"
+      },
+      {
+        "turn": 344,
+        "command": "19144 10903 200"
+      },
+      {
+        "turn": 345,
+        "command": "14749 2140 200 Jrke's Special"
+      },
+      {
+        "turn": 346,
+        "command": "19988 10051 200"
+      },
+      {
+        "turn": 347,
+        "command": "15277 1462 200 Jrke's Special"
+      },
+      {
+        "turn": 348,
+        "command": "20919 8883 0"
+      },
+      {
+        "turn": 349,
+        "command": "14671 -1719 200 Jrke's Special"
+      },
+      {
+        "turn": 350,
+        "command": "21388 9077 SHIELD"
+      },
+      {
+        "turn": 351,
+        "command": "16769 712 96 Jrke's Special"
+      },
+      {
+        "turn": 352,
+        "command": "21264 6274 0"
+      },
+      {
+        "turn": 353,
+        "command": "17900 3447 200 Jrke's Special"
+      },
+      {
+        "turn": 354,
+        "command": "20412 3995 200"
+      },
+      {
+        "turn": 355,
+        "command": "18140 6211 200 Jrke's Special"
+      },
+      {
+        "turn": 356,
+        "command": "20512 6836 200"
+      },
+      {
+        "turn": 357,
+        "command": "17522 8756 200 Jrke's Special"
+      },
+      {
+        "turn": 358,
+        "command": "19882 9451 0"
+      },
+      {
+        "turn": 359,
+        "command": "16156 10850 200 Jrke's Special"
+      },
+      {
+        "turn": 360,
+        "command": "19929 7543 200"
+      },
+      {
+        "turn": 361,
+        "command": "14215 12306 200 Jrke's Special"
+      },
+      {
+        "turn": 362,
+        "command": "19819 8375 200"
+      },
+      {
+        "turn": 363,
+        "command": "12099 12995 200 Jrke's Special"
+      },
+      {
+        "turn": 364,
+        "command": "19693 9765 0"
+      },
+      {
+        "turn": 365,
+        "command": "9706 12910 114 Jrke's Special"
+      },
+      {
+        "turn": 366,
+        "command": "18783 12156 200"
+      },
+      {
+        "turn": 367,
+        "command": "10254 13407 185 Jrke's Special"
+      },
+      {
+        "turn": 368,
+        "command": "19906 10609 200"
+      },
+      {
+        "turn": 369,
+        "command": "7897 12535 82 Jrke's Special"
+      },
+      {
+        "turn": 370,
+        "command": "20295 10917 SHIELD"
+      },
+      {
+        "turn": 371,
+        "command": "7519 12552 47 Jrke's Special"
+      },
+      {
+        "turn": 372,
+        "command": "20649 9679 0"
+      },
+      {
+        "turn": 373,
+        "command": "5769 10642 52 Jrke's Special"
+      },
+      {
+        "turn": 374,
+        "command": "19655 11354 200"
+      },
+      {
+        "turn": 375,
+        "command": "4788 8189 167 Jrke's Special"
+      },
+      {
+        "turn": 376,
+        "command": "19711 10280 200"
+      },
+      {
+        "turn": 377,
+        "command": "4579 5497 200 Jrke's Special"
+      },
+      {
+        "turn": 378,
+        "command": "19214 10844 200"
+      },
+      {
+        "turn": 379,
+        "command": "5152 2820 200 Jrke's Special"
+      },
+      {
+        "turn": 380,
+        "command": "19399 10176 200"
+      },
+      {
+        "turn": 381,
+        "command": "5813 1221 28 Jrke's Special"
+      },
+      {
+        "turn": 382,
+        "command": "19513 10365 200"
+      },
+      {
+        "turn": 383,
+        "command": "4531 3588 200 Jrke's Special"
+      },
+      {
+        "turn": 384,
+        "command": "20248 7984 200"
+      },
+      {
+        "turn": 385,
+        "command": "5680 666 200 Jrke's Special"
+      },
+      {
+        "turn": 386,
+        "command": "20395 5223 200"
+      },
+      {
+        "turn": 387,
+        "command": "4407 2206 175 Jrke's Special"
+      },
+      {
+        "turn": 388,
+        "command": "20988 5327 200"
+      },
+      {
+        "turn": 389,
+        "command": "5617 -963 1 Jrke's Special"
+      },
+      {
+        "turn": 390,
+        "command": "20576 2685 200"
+      },
+      {
+        "turn": 391,
+        "command": "7639 -3448 62 Jrke's Special"
+      },
+      {
+        "turn": 392,
+        "command": "19992 820 SHIELD"
+      },
+      {
+        "turn": 393,
+        "command": "10206 -5104 8 Jrke's Special"
+      },
+      {
+        "turn": 394,
+        "command": "21578 2720 0"
+      },
+      {
+        "turn": 395,
+        "command": "13068 -5765 105 Jrke's Special"
+      },
+      {
+        "turn": 396,
+        "command": "22377 4539 200"
+      },
+      {
+        "turn": 397,
+        "command": "15923 -5503 53 Jrke's Special"
+      },
+      {
+        "turn": 398,
+        "command": "22703 7371 0"
+      },
+      {
+        "turn": 399,
+        "command": "18477 -4316 56 Jrke's Special"
+      },
+      {
+        "turn": 400,
+        "command": "22273 9655 200"
+      },
+      {
+        "turn": 401,
+        "command": "20475 -2356 62 Jrke's Special"
+      },
+      {
+        "turn": 402,
+        "command": "21469 11795 200"
+      },
+      {
+        "turn": 403,
+        "command": "21718 159 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 404,
+        "command": "19755 14255 200"
+      },
+      {
+        "turn": 405,
+        "command": "22021 2979 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 406,
+        "command": "17506 16080 200"
+      },
+      {
+        "turn": 407,
+        "command": "21351 5793 200 Jrke's Special"
+      },
+      {
+        "turn": 408,
+        "command": "14895 17163 200"
+      },
+      {
+        "turn": 409,
+        "command": "19769 8293 69 Jrke's Special"
+      },
+      {
+        "turn": 410,
+        "command": "12149 17420 SHIELD"
+      },
+      {
+        "turn": 411,
+        "command": "17430 10210 200 Jrke's Special"
+      },
+      {
+        "turn": 412,
+        "command": "9569 16651 0"
+      },
+      {
+        "turn": 413,
+        "command": "14561 11332 39 Jrke's Special"
+      },
+      {
+        "turn": 414,
+        "command": "7444 14982 200"
+      },
+      {
+        "turn": 415,
+        "command": "11451 11570 1 Jrke's Special"
+      },
+      {
+        "turn": 416,
+        "command": "6017 12618 200"
+      },
+      {
+        "turn": 417,
+        "command": "13342 11288 200 Jrke's Special"
+      },
+      {
+        "turn": 418,
+        "command": "5456 9829 200"
+      },
+      {
+        "turn": 419,
+        "command": "15421 10128 200 Jrke's Special"
+      },
+      {
+        "turn": 420,
+        "command": "5641 6934 200"
+      },
+      {
+        "turn": 421,
+        "command": "13549 10323 200 Jrke's Special"
+      },
+      {
+        "turn": 422,
+        "command": "6590 4183 200"
+      },
+      {
+        "turn": 423,
+        "command": "16523 9232 200 Jrke's Special"
+      },
+      {
+        "turn": 424,
+        "command": "5075 7034 200"
+      },
+      {
+        "turn": 425,
+        "command": "13670 10367 200 Jrke's Special"
+      },
+      {
+        "turn": 426,
+        "command": "5728 4181 200"
+      },
+      {
+        "turn": 427,
+        "command": "10667 10717 200 Jrke's Special"
+      },
+      {
+        "turn": 428,
+        "command": "7143 1659 200"
+      },
+      {
+        "turn": 429,
+        "command": "7753 10250 200 Jrke's Special"
+      },
+      {
+        "turn": 430,
+        "command": "9160 -256 200"
+      },
+      {
+        "turn": 431,
+        "command": "6379 10014 200 Jrke's Special"
+      },
+      {
+        "turn": 432,
+        "command": "11576 -1415 200"
+      },
+      {
+        "turn": 433,
+        "command": "9058 12024 200 Jrke's Special"
+      },
+      {
+        "turn": 434,
+        "command": "14155 -1737 200"
+      },
+      {
+        "turn": 435,
+        "command": "8066 12467 200 Jrke's Special"
+      },
+      {
+        "turn": 436,
+        "command": "14656 -2132 200"
+      },
+      {
+        "turn": 437,
+        "command": "5165 11664 200 Jrke's Special"
+      },
+      {
+        "turn": 438,
+        "command": "17077 -1482 200"
+      },
+      {
+        "turn": 439,
+        "command": "5542 13037 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 440,
+        "command": "17708 -1666 SHIELD"
+      },
+      {
+        "turn": 441,
+        "command": "8364 13958 200 Jrke's Special"
+      },
+      {
+        "turn": 442,
+        "command": "17010 -1441 200"
+      },
+      {
+        "turn": 443,
+        "command": "11509 13854 200 Jrke's Special"
+      },
+      {
+        "turn": 444,
+        "command": "16132 -1259 200"
+      },
+      {
+        "turn": 445,
+        "command": "8449 12961 108 Jrke's Special"
+      },
+      {
+        "turn": 446,
+        "command": "16111 -557 0"
+      },
+      {
+        "turn": 447,
+        "command": "11581 13007 200 Jrke's Special"
+      },
+      {
+        "turn": 448,
+        "command": "15564 -355 200"
+      },
+      {
+        "turn": 449,
+        "command": "14693 12334 200 Jrke's Special"
+      },
+      {
+        "turn": 450,
+        "command": "12846 -1505 200"
+      },
+      {
+        "turn": 451,
+        "command": "11703 12956 200 Jrke's Special"
+      },
+      {
+        "turn": 452,
+        "command": "13328 -1347 200"
+      },
+      {
+        "turn": 453,
+        "command": "8624 12783 200 Jrke's Special"
+      },
+      {
+        "turn": 454,
+        "command": "14819 -844 200"
+      },
+      {
+        "turn": 455,
+        "command": "8656 13237 200 Jrke's Special"
+      },
+      {
+        "turn": 456,
+        "command": "14519 -1447 200"
+      },
+      {
+        "turn": 457,
+        "command": "7175 13294 149 Jrke's Special"
+      },
+      {
+        "turn": 458,
+        "command": "15885 -1206 200"
+      },
+      {
+        "turn": 459,
+        "command": "4346 12180 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 460,
+        "command": "13683 -3084 SHIELD"
+      },
+      {
+        "turn": 461,
+        "command": "3724 12076 118 Jrke's Special"
+      },
+      {
+        "turn": 462,
+        "command": "11152 -3999 200"
+      },
+      {
+        "turn": 463,
+        "command": "3944 11670 200 Jrke's Special"
+      },
+      {
+        "turn": 464,
+        "command": "13470 -3108 0"
+      },
+      {
+        "turn": 465,
+        "command": "6629 13207 200 Jrke's Special"
+      },
+      {
+        "turn": 466,
+        "command": "16146 -1322 200"
+      },
+      {
+        "turn": 467,
+        "command": "5464 12071 81 Jrke's Special"
+      },
+      {
+        "turn": 468,
+        "command": "18252 1196 200"
+      },
+      {
+        "turn": 469,
+        "command": "5975 12191 200 Jrke's Special"
+      },
+      {
+        "turn": 470,
+        "command": "17290 130 200"
+      },
+      {
+        "turn": 471,
+        "command": "8271 13366 200 Jrke's Special"
+      },
+      {
+        "turn": 472,
+        "command": "15082 -1661 200"
+      },
+      {
+        "turn": 473,
+        "command": "11254 14106 200 Jrke's Special"
+      },
+      {
+        "turn": 474,
+        "command": "12435 -2849 200"
+      },
+      {
+        "turn": 475,
+        "command": "11231 14202 200 Jrke's Special"
+      },
+      {
+        "turn": 476,
+        "command": "10252 -3338 0"
+      },
+      {
+        "turn": 477,
+        "command": "13588 13985 200 Jrke's Special"
+      },
+      {
+        "turn": 478,
+        "command": "8865 -3399 200"
+      },
+      {
+        "turn": 479,
+        "command": "10333 14610 200 Jrke's Special"
+      },
+      {
+        "turn": 480,
+        "command": "7178 -3040 200"
+      },
+      {
+        "turn": 481,
+        "command": "7304 14474 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 482,
+        "command": "8912 -3827 SHIELD"
+      },
+      {
+        "turn": 483,
+        "command": "4440 12926 200 Jrke's Special"
+      },
+      {
+        "turn": 484,
+        "command": "11729 -3667 200"
+      },
+      {
+        "turn": 485,
+        "command": "7066 14314 200 Jrke's Special"
+      },
+      {
+        "turn": 486,
+        "command": "11525 -3339 0"
+      },
+      {
+        "turn": 487,
+        "command": "10043 14802 200 Jrke's Special"
+      },
+      {
+        "turn": 488,
+        "command": "11417 -3054 0"
+      },
+      {
+        "turn": 489,
+        "command": "10662 14710 200 Jrke's Special"
+      },
+      {
+        "turn": 490,
+        "command": "14206 -1993 200"
+      },
+      {
+        "turn": 491,
+        "command": "9904 14832 200 Jrke's Special"
+      },
+      {
+        "turn": 492,
+        "command": "11075 -2817 200"
+      },
+      {
+        "turn": 493,
+        "command": "7945 14885 200 Jrke's Special"
+      },
+      {
+        "turn": 494,
+        "command": "14092 -2190 200"
+      },
+      {
+        "turn": 495,
+        "command": "4951 14165 200 Jrke's Special"
+      },
+      {
+        "turn": 496,
+        "command": "16696 -911 SHIELD"
+      },
+      {
+        "turn": 497,
+        "command": "2283 11606 77 Jrke's Special"
+      },
+      {
+        "turn": 498,
+        "command": "17205 -683 0"
+      },
+      {
+        "turn": 499,
+        "command": "4366 12878 33 Jrke's Special"
+      },
+      {
+        "turn": 500,
+        "command": "18434 580 0"
+      },
+      {
+        "turn": 501,
+        "command": "3076 11586 0 Jrke's Special"
+      },
+      {
+        "turn": 502,
+        "command": "18367 310 0"
+      },
+      {
+        "turn": 503,
+        "command": "1121 10654 193 Jrke's Special"
+      },
+      {
+        "turn": 504,
+        "command": "19292 1668 200"
+      },
+      {
+        "turn": 505,
+        "command": "2696 12673 1 Jrke's Special"
+      },
+      {
+        "turn": 506,
+        "command": "18863 397 200"
+      },
+      {
+        "turn": 507,
+        "command": "4871 13809 194 Jrke's Special"
+      },
+      {
+        "turn": 508,
+        "command": "19346 351 200"
+      },
+      {
+        "turn": 509,
+        "command": "3828 14032 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 510,
+        "command": "18527 -1586 200"
+      },
+      {
+        "turn": 511,
+        "command": "6185 14459 200 Jrke's Special"
+      },
+      {
+        "turn": 512,
+        "command": "19176 -1881 200"
+      },
+      {
+        "turn": 513,
+        "command": "8716 13911 140 Jrke's Special"
+      },
+      {
+        "turn": 514,
+        "command": "17489 -4166 0"
+      },
+      {
+        "turn": 515,
+        "command": "10942 12430 31 Jrke's Special"
+      },
+      {
+        "turn": 516,
+        "command": "16725 -5192 200"
+      },
+      {
+        "turn": 517,
+        "command": "9317 13513 200 Jrke's Special"
+      },
+      {
+        "turn": 518,
+        "command": "14243 -6409 200"
+      },
+      {
+        "turn": 519,
+        "command": "9694 13420 200 Jrke's Special"
+      },
+      {
+        "turn": 520,
+        "command": "11608 -6801 SHIELD"
+      },
+      {
+        "turn": 521,
+        "command": "11749 11762 59 Jrke's Special"
+      },
+      {
+        "turn": 522,
+        "command": "11704 -7247 200"
+      },
+      {
+        "turn": 523,
+        "command": "9501 14323 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 524,
+        "command": "9659 -6636 0"
+      },
+      {
+        "turn": 525,
+        "command": "11646 12616 200 Jrke's Special"
+      },
+      {
+        "turn": 526,
+        "command": "8057 -5500 0"
+      },
+      {
+        "turn": 527,
+        "command": "11569 12875 200 Jrke's Special"
+      },
+      {
+        "turn": 528,
+        "command": "6506 -3292 200"
+      },
+      {
+        "turn": 529,
+        "command": "12566 10248 200 Jrke's Special"
+      },
+      {
+        "turn": 530,
+        "command": "5690 -1170 200"
+      },
+      {
+        "turn": 531,
+        "command": "12721 7270 200 Jrke's Special"
+      },
+      {
+        "turn": 532,
+        "command": "5345 -2 200"
+      },
+      {
+        "turn": 533,
+        "command": "12368 5099 200 Jrke's Special"
+      },
+      {
+        "turn": 534,
+        "command": "5154 -1472 200"
+      },
+      {
+        "turn": 535,
+        "command": "12586 6519 200 Jrke's Special"
+      },
+      {
+        "turn": 536,
+        "command": "4536 43 200"
+      },
+      {
+        "turn": 537,
+        "command": "12827 6538 200 Jrke's Special"
+      },
+      {
+        "turn": 538,
+        "command": "4077 1368 SHIELD"
+      },
+      {
+        "turn": 539,
+        "command": "12581 3482 200 Jrke's Special"
+      },
+      {
+        "turn": 540,
+        "command": "4064 2831 200"
+      },
+      {
+        "turn": 541,
+        "command": "13751 6299 200 Jrke's Special"
+      },
+      {
+        "turn": 542,
+        "command": "3929 3178 0"
+      },
+      {
+        "turn": 543,
+        "command": "14128 9344 200 Jrke's Special"
+      },
+      {
+        "turn": 544,
+        "command": "4343 4315 0"
+      },
+      {
+        "turn": 545,
+        "command": "14081 11452 200 Jrke's Special"
+      },
+      {
+        "turn": 546,
+        "command": "6175 6464 200"
+      },
+      {
+        "turn": 547,
+        "command": "15860 8557 200 Jrke's Special"
+      },
+      {
+        "turn": 548,
+        "command": "8310 7930 200"
+      },
+      {
+        "turn": 549,
+        "command": "16748 5528 198 Jrke's Special"
+      },
+      {
+        "turn": 550,
+        "command": "8366 8271 200"
+      },
+      {
+        "turn": 551,
+        "command": "17698 8709 33 Jrke's Special"
+      },
+      {
+        "turn": 552,
+        "command": "10825 9173 0"
+      },
+      {
+        "turn": 553,
+        "command": "17571 11735 50 Jrke's Special"
+      },
+      {
+        "turn": 554,
+        "command": "12843 9299 200"
+      },
+      {
+        "turn": 555,
+        "command": "18407 11644 180 Jrke's Special"
+      },
+      {
+        "turn": 556,
+        "command": "15600 8656 200"
+      },
+      {
+        "turn": 557,
+        "command": "20127 8785 8 Jrke's Special"
+      },
+      {
+        "turn": 558,
+        "command": "17953 7278 200"
+      },
+      {
+        "turn": 559,
+        "command": "20793 5942 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 560,
+        "command": "18472 7338 0"
+      },
+      {
+        "turn": 561,
+        "command": "20414 3062 47 Jrke's Special"
+      },
+      {
+        "turn": 562,
+        "command": "20065 5155 200"
+      },
+      {
+        "turn": 563,
+        "command": "19074 612 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 564,
+        "command": "20936 2600 0"
+      },
+      {
+        "turn": 565,
+        "command": "18019 -539 200 Jrke's Special"
+      },
+      {
+        "turn": 566,
+        "command": "20796 -82 200"
+      },
+      {
+        "turn": 567,
+        "command": "15543 -1805 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 568,
+        "command": "20614 -1271 200"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "15037 -2447 200 Jrke's Special"
+      },
+      {
+        "turn": 2,
+        "command": "10714 -1677 BOOST"
+      },
+      {
+        "turn": 3,
+        "command": "14782 -2669 200 Jrke's Special"
+      },
+      {
+        "turn": 4,
+        "command": "11436 -2681 200"
+      },
+      {
+        "turn": 5,
+        "command": "14463 -3056 200 Jrke's Special"
+      },
+      {
+        "turn": 6,
+        "command": "8444 -1924 200"
+      },
+      {
+        "turn": 7,
+        "command": "14146 -3575 200 Jrke's Special"
+      },
+      {
+        "turn": 8,
+        "command": "6405 -1086 0"
+      },
+      {
+        "turn": 9,
+        "command": "11754 -3913 41 Jrke's Special"
+      },
+      {
+        "turn": 10,
+        "command": "4543 814 SHIELD"
+      },
+      {
+        "turn": 11,
+        "command": "14883 -4765 200 Jrke's Special"
+      },
+      {
+        "turn": 12,
+        "command": "3526 3283 200"
+      },
+      {
+        "turn": 13,
+        "command": "12817 -5383 62 Jrke's Special"
+      },
+      {
+        "turn": 14,
+        "command": "4051 -206 SHIELD"
+      },
+      {
+        "turn": 15,
+        "command": "9836 -5115 37 Jrke's Special"
+      },
+      {
+        "turn": 16,
+        "command": "3758 -175 200"
+      },
+      {
+        "turn": 17,
+        "command": "7266 -3903 41 Jrke's Special"
+      },
+      {
+        "turn": 18,
+        "command": "3224 1859 0"
+      },
+      {
+        "turn": 19,
+        "command": "8161 -5220 34 Jrke's Special"
+      },
+      {
+        "turn": 20,
+        "command": "3304 3858 0"
+      },
+      {
+        "turn": 21,
+        "command": "5938 -3442 28 Jrke's Special"
+      },
+      {
+        "turn": 22,
+        "command": "4236 6506 0"
+      },
+      {
+        "turn": 23,
+        "command": "4502 -1047 25 Jrke's Special"
+      },
+      {
+        "turn": 24,
+        "command": "6048 8797 200"
+      },
+      {
+        "turn": 25,
+        "command": "3988 1691 200 Jrke's Special"
+      },
+      {
+        "turn": 26,
+        "command": "6319 9098 200"
+      },
+      {
+        "turn": 27,
+        "command": "4264 4468 80 Jrke's Special"
+      },
+      {
+        "turn": 28,
+        "command": "7868 10481 200"
+      },
+      {
+        "turn": 29,
+        "command": "5826 7100 200 Jrke's Special"
+      },
+      {
+        "turn": 30,
+        "command": "5350 8770 0"
+      },
+      {
+        "turn": 31,
+        "command": "7887 9053 200 Jrke's Special"
+      },
+      {
+        "turn": 32,
+        "command": "3561 6359 0"
+      },
+      {
+        "turn": 33,
+        "command": "7171 8601 200 Jrke's Special"
+      },
+      {
+        "turn": 34,
+        "command": "2679 3518 0"
+      },
+      {
+        "turn": 35,
+        "command": "7094 8944 200 Jrke's Special"
+      },
+      {
+        "turn": 36,
+        "command": "2782 547 0"
+      },
+      {
+        "turn": 37,
+        "command": "5645 7922 87 Jrke's Special"
+      },
+      {
+        "turn": 38,
+        "command": "3852 -2244 0"
+      },
+      {
+        "turn": 39,
+        "command": "4030 5529 198 Jrke's Special"
+      },
+      {
+        "turn": 40,
+        "command": "2763 459 SHIELD"
+      },
+      {
+        "turn": 41,
+        "command": "3988 6767 200 Jrke's Special"
+      },
+      {
+        "turn": 42,
+        "command": "2451 3657 0"
+      },
+      {
+        "turn": 43,
+        "command": "3766 6556 200 Jrke's Special"
+      },
+      {
+        "turn": 44,
+        "command": "2951 6469 200"
+      },
+      {
+        "turn": 45,
+        "command": "3704 7326 200 Jrke's Special"
+      },
+      {
+        "turn": 46,
+        "command": "3192 7291 200"
+      },
+      {
+        "turn": 47,
+        "command": "3854 8887 20 Jrke's Special"
+      },
+      {
+        "turn": 48,
+        "command": "3841 8626 SHIELD"
+      },
+      {
+        "turn": 49,
+        "command": "2583 6295 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 50,
+        "command": "5868 10973 200"
+      },
+      {
+        "turn": 51,
+        "command": "2325 3493 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 52,
+        "command": "8313 12698 200"
+      },
+      {
+        "turn": 53,
+        "command": "2106 6898 150 Jrke's Special"
+      },
+      {
+        "turn": 54,
+        "command": "8333 12961 200"
+      },
+      {
+        "turn": 55,
+        "command": "2138 8157 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 56,
+        "command": "11188 13695 0"
+      },
+      {
+        "turn": 57,
+        "command": "1936 8187 200 Jrke's Special"
+      },
+      {
+        "turn": 58,
+        "command": "11725 14085 SHIELD"
+      },
+      {
+        "turn": 59,
+        "command": "1507 5762 200 Jrke's Special"
+      },
+      {
+        "turn": 60,
+        "command": "13780 14152 0"
+      },
+      {
+        "turn": 61,
+        "command": "1515 7644 200 Jrke's Special"
+      },
+      {
+        "turn": 62,
+        "command": "14778 14250 200"
+      },
+      {
+        "turn": 63,
+        "command": "2386 10741 200 Jrke's Special"
+      },
+      {
+        "turn": 64,
+        "command": "15507 14328 200"
+      },
+      {
+        "turn": 65,
+        "command": "1160 7958 200 Jrke's Special"
+      },
+      {
+        "turn": 66,
+        "command": "18147 12868 200"
+      },
+      {
+        "turn": 67,
+        "command": "916 9007 200 Jrke's Special"
+      },
+      {
+        "turn": 68,
+        "command": "20203 10792 0"
+      },
+      {
+        "turn": 69,
+        "command": "95 7499 200 Jrke's Special"
+      },
+      {
+        "turn": 70,
+        "command": "21393 8157 200"
+      },
+      {
+        "turn": 71,
+        "command": "-297 4577 200 Jrke's Special"
+      },
+      {
+        "turn": 72,
+        "command": "21565 7227 200"
+      },
+      {
+        "turn": 73,
+        "command": "168 1814 200 Jrke's Special"
+      },
+      {
+        "turn": 74,
+        "command": "21662 4804 200"
+      },
+      {
+        "turn": 75,
+        "command": "174 678 160 Jrke's Special"
+      },
+      {
+        "turn": 76,
+        "command": "20815 2020 200"
+      },
+      {
+        "turn": 77,
+        "command": "200 -316 16 Jrke's Special"
+      },
+      {
+        "turn": 78,
+        "command": "19197 -510 200"
+      },
+      {
+        "turn": 79,
+        "command": "1019 -1585 52 Jrke's Special"
+      },
+      {
+        "turn": 80,
+        "command": "16993 -2503 200"
+      },
+      {
+        "turn": 81,
+        "command": "3275 -2939 160 Jrke's Special"
+      },
+      {
+        "turn": 82,
+        "command": "14359 -3761 0"
+      },
+      {
+        "turn": 83,
+        "command": "5823 -3478 0 Jrke's Special"
+      },
+      {
+        "turn": 84,
+        "command": "11412 -3854 0"
+      },
+      {
+        "turn": 85,
+        "command": "8388 -3000 0 Jrke's Special"
+      },
+      {
+        "turn": 86,
+        "command": "8573 -2971 0"
+      },
+      {
+        "turn": 87,
+        "command": "10525 -1691 1 Jrke's Special"
+      },
+      {
+        "turn": 88,
+        "command": "6140 -1203 200"
+      },
+      {
+        "turn": 89,
+        "command": "12272 470 0 Jrke's Special"
+      },
+      {
+        "turn": 90,
+        "command": "4229 1129 200"
+      },
+      {
+        "turn": 91,
+        "command": "13249 3189 198 Jrke's Special"
+      },
+      {
+        "turn": 92,
+        "command": "3009 3854 200"
+      },
+      {
+        "turn": 93,
+        "command": "13517 6131 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 94,
+        "command": "2736 3154 200"
+      },
+      {
+        "turn": 95,
+        "command": "12814 9046 42 Jrke's Special"
+      },
+      {
+        "turn": 96,
+        "command": "2481 2001 200"
+      },
+      {
+        "turn": 97,
+        "command": "10728 11331 200 Jrke's Special"
+      },
+      {
+        "turn": 98,
+        "command": "1364 4850 200"
+      },
+      {
+        "turn": 99,
+        "command": "11851 8262 200 Jrke's Special"
+      },
+      {
+        "turn": 100,
+        "command": "764 6214 200"
+      },
+      {
+        "turn": 101,
+        "command": "9911 10665 200 Jrke's Special"
+      },
+      {
+        "turn": 102,
+        "command": "467 7993 0"
+      },
+      {
+        "turn": 103,
+        "command": "11112 8305 200 Jrke's Special"
+      },
+      {
+        "turn": 104,
+        "command": "1360 10620 200"
+      },
+      {
+        "turn": 105,
+        "command": "9682 10633 200 Jrke's Special"
+      },
+      {
+        "turn": 106,
+        "command": "2895 12694 200"
+      },
+      {
+        "turn": 107,
+        "command": "7512 12787 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 108,
+        "command": "3212 13476 0"
+      },
+      {
+        "turn": 109,
+        "command": "8803 12053 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 110,
+        "command": "68 11853 0"
+      },
+      {
+        "turn": 111,
+        "command": "10120 10715 200 Jrke's Special"
+      },
+      {
+        "turn": 112,
+        "command": "-2349 9480 200"
+      },
+      {
+        "turn": 113,
+        "command": "11584 7975 200 Jrke's Special"
+      },
+      {
+        "turn": 114,
+        "command": "-3917 7138 SHIELD"
+      },
+      {
+        "turn": 115,
+        "command": "12053 6342 200 Jrke's Special"
+      },
+      {
+        "turn": 116,
+        "command": "-4073 8513 200"
+      },
+      {
+        "turn": 117,
+        "command": "11638 7220 200 Jrke's Special"
+      },
+      {
+        "turn": 118,
+        "command": "-4632 8052 200"
+      },
+      {
+        "turn": 119,
+        "command": "11675 7385 200 Jrke's Special"
+      },
+      {
+        "turn": 120,
+        "command": "-5042 7812 200"
+      },
+      {
+        "turn": 121,
+        "command": "12456 6204 200 Jrke's Special"
+      },
+      {
+        "turn": 122,
+        "command": "-4065 10738 200"
+      },
+      {
+        "turn": 123,
+        "command": "12553 7205 200 Jrke's Special"
+      },
+      {
+        "turn": 124,
+        "command": "-2333 13282 0"
+      },
+      {
+        "turn": 125,
+        "command": "12663 8239 200 Jrke's Special"
+      },
+      {
+        "turn": 126,
+        "command": "-2423 13613 0"
+      },
+      {
+        "turn": 127,
+        "command": "13661 7809 200 Jrke's Special"
+      },
+      {
+        "turn": 128,
+        "command": "-491 14999 200"
+      },
+      {
+        "turn": 129,
+        "command": "14627 7578 200 Jrke's Special"
+      },
+      {
+        "turn": 130,
+        "command": "-597 15366 200"
+      },
+      {
+        "turn": 131,
+        "command": "14988 8805 200 Jrke's Special"
+      },
+      {
+        "turn": 132,
+        "command": "-2354 15113 SHIELD"
+      },
+      {
+        "turn": 133,
+        "command": "16249 8364 200 Jrke's Special"
+      },
+      {
+        "turn": 134,
+        "command": "-2300 15613 200"
+      },
+      {
+        "turn": 135,
+        "command": "17310 8412 121 Jrke's Special"
+      },
+      {
+        "turn": 136,
+        "command": "-1183 16462 0"
+      },
+      {
+        "turn": 137,
+        "command": "17845 9564 87 Jrke's Special"
+      },
+      {
+        "turn": 138,
+        "command": "-2601 16143 200"
+      },
+      {
+        "turn": 139,
+        "command": "18347 10517 41 Jrke's Special"
+      },
+      {
+        "turn": 140,
+        "command": "-1017 17034 0"
+      },
+      {
+        "turn": 141,
+        "command": "20267 7929 12 Jrke's Special"
+      },
+      {
+        "turn": 142,
+        "command": "1306 17605 200"
+      },
+      {
+        "turn": 143,
+        "command": "19742 11097 1 Jrke's Special"
+      },
+      {
+        "turn": 144,
+        "command": "4577 17044 0"
+      },
+      {
+        "turn": 145,
+        "command": "18281 13722 10 Jrke's Special"
+      },
+      {
+        "turn": 146,
+        "command": "7548 15551 200"
+      },
+      {
+        "turn": 147,
+        "command": "16101 15581 0 Jrke's Special"
+      },
+      {
+        "turn": 148,
+        "command": "10036 13448 0"
+      },
+      {
+        "turn": 149,
+        "command": "13468 16508 4 Jrke's Special"
+      },
+      {
+        "turn": 150,
+        "command": "11722 10736 0"
+      },
+      {
+        "turn": 151,
+        "command": "10687 16438 41 Jrke's Special"
+      },
+      {
+        "turn": 152,
+        "command": "12462 7686 SHIELD"
+      },
+      {
+        "turn": 153,
+        "command": "8068 15431 74 Jrke's Special"
+      },
+      {
+        "turn": 154,
+        "command": "12288 4918 SHIELD"
+      },
+      {
+        "turn": 155,
+        "command": "5871 13623 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 156,
+        "command": "11365 2241 200"
+      },
+      {
+        "turn": 157,
+        "command": "4677 11774 193 Jrke's Special"
+      },
+      {
+        "turn": 158,
+        "command": "9636 -98 0"
+      },
+      {
+        "turn": 159,
+        "command": "3853 8944 140 Jrke's Special"
+      },
+      {
+        "turn": 160,
+        "command": "9061 -705 0"
+      },
+      {
+        "turn": 161,
+        "command": "3974 5940 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 162,
+        "command": "8068 -1456 200"
+      },
+      {
+        "turn": 163,
+        "command": "4340 4853 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 164,
+        "command": "6026 -2593 0"
+      },
+      {
+        "turn": 165,
+        "command": "5749 2106 92 Jrke's Special"
+      },
+      {
+        "turn": 166,
+        "command": "4453 -3095 0"
+      },
+      {
+        "turn": 167,
+        "command": "7955 -107 7 Jrke's Special"
+      },
+      {
+        "turn": 168,
+        "command": "1459 -3072 0"
+      },
+      {
+        "turn": 169,
+        "command": "10428 -1436 200 Jrke's Special"
+      },
+      {
+        "turn": 170,
+        "command": "-607 -2460 200"
+      },
+      {
+        "turn": 171,
+        "command": "12834 -2014 136 Jrke's Special"
+      },
+      {
+        "turn": 172,
+        "command": "2433 -3617 200"
+      },
+      {
+        "turn": 173,
+        "command": "10344 -1406 200 Jrke's Special"
+      },
+      {
+        "turn": 174,
+        "command": "5540 -3945 200"
+      },
+      {
+        "turn": 175,
+        "command": "12458 -2309 200 Jrke's Special"
+      },
+      {
+        "turn": 176,
+        "command": "8502 -3442 200"
+      },
+      {
+        "turn": 177,
+        "command": "10204 -2084 200 Jrke's Special"
+      },
+      {
+        "turn": 178,
+        "command": "11082 -2173 200"
+      },
+      {
+        "turn": 179,
+        "command": "10056 -2623 60 Jrke's Special"
+      },
+      {
+        "turn": 180,
+        "command": "13074 -274 200"
+      },
+      {
+        "turn": 181,
+        "command": "7254 -1478 1 Jrke's Special"
+      },
+      {
+        "turn": 182,
+        "command": "14323 2056 200"
+      },
+      {
+        "turn": 183,
+        "command": "9781 -3573 200 Jrke's Special"
+      },
+      {
+        "turn": 184,
+        "command": "14740 4587 200"
+      },
+      {
+        "turn": 185,
+        "command": "9119 -3911 200 Jrke's Special"
+      },
+      {
+        "turn": 186,
+        "command": "14313 7057 200"
+      },
+      {
+        "turn": 187,
+        "command": "7959 -4054 200 Jrke's Special"
+      },
+      {
+        "turn": 188,
+        "command": "13108 9220 200"
+      },
+      {
+        "turn": 189,
+        "command": "7499 -4684 200 Jrke's Special"
+      },
+      {
+        "turn": 190,
+        "command": "13595 9345 0"
+      },
+      {
+        "turn": 191,
+        "command": "9982 -6738 200 Jrke's Special"
+      },
+      {
+        "turn": 192,
+        "command": "14264 9223 200"
+      },
+      {
+        "turn": 193,
+        "command": "6629 -5690 97 Jrke's Special"
+      },
+      {
+        "turn": 194,
+        "command": "16402 7700 200"
+      },
+      {
+        "turn": 195,
+        "command": "5547 -5373 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 196,
+        "command": "18265 5905 200"
+      },
+      {
+        "turn": 197,
+        "command": "7876 -6913 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 198,
+        "command": "19412 5224 SHIELD"
+      },
+      {
+        "turn": 199,
+        "command": "8395 -6903 200 Jrke's Special"
+      },
+      {
+        "turn": 200,
+        "command": "19918 3589 0"
+      },
+      {
+        "turn": 201,
+        "command": "6730 -5684 56 Jrke's Special"
+      },
+      {
+        "turn": 202,
+        "command": "19676 3049 200"
+      },
+      {
+        "turn": 203,
+        "command": "4809 -3480 79 Jrke's Special"
+      },
+      {
+        "turn": 204,
+        "command": "19023 4961 0"
+      },
+      {
+        "turn": 205,
+        "command": "3555 -662 200 Jrke's Special"
+      },
+      {
+        "turn": 206,
+        "command": "19263 1733 200"
+      },
+      {
+        "turn": 207,
+        "command": "2957 2434 200 Jrke's Special"
+      },
+      {
+        "turn": 208,
+        "command": "19283 2130 200"
+      },
+      {
+        "turn": 209,
+        "command": "2893 4212 200 Jrke's Special"
+      },
+      {
+        "turn": 210,
+        "command": "19202 4229 200"
+      },
+      {
+        "turn": 211,
+        "command": "2677 4604 200 Jrke's Special"
+      },
+      {
+        "turn": 212,
+        "command": "18473 6911 0"
+      },
+      {
+        "turn": 213,
+        "command": "2372 5355 200 Jrke's Special"
+      },
+      {
+        "turn": 214,
+        "command": "16911 9211 200"
+      },
+      {
+        "turn": 215,
+        "command": "1825 5446 200 Jrke's Special"
+      },
+      {
+        "turn": 216,
+        "command": "16199 10236 0"
+      },
+      {
+        "turn": 217,
+        "command": "1132 5389 200 Jrke's Special"
+      },
+      {
+        "turn": 218,
+        "command": "13817 11652 0"
+      },
+      {
+        "turn": 219,
+        "command": "373 5521 200 Jrke's Special"
+      },
+      {
+        "turn": 220,
+        "command": "12228 12128 200"
+      },
+      {
+        "turn": 221,
+        "command": "-583 4803 200 Jrke's Special"
+      },
+      {
+        "turn": 222,
+        "command": "15589 11600 0"
+      },
+      {
+        "turn": 223,
+        "command": "-740 7978 49 Jrke's Special"
+      },
+      {
+        "turn": 224,
+        "command": "18441 10141 0"
+      },
+      {
+        "turn": 225,
+        "command": "-837 9508 76 Jrke's Special"
+      },
+      {
+        "turn": 226,
+        "command": "20603 7918 0"
+      },
+      {
+        "turn": 227,
+        "command": "453 12026 38 Jrke's Special"
+      },
+      {
+        "turn": 228,
+        "command": "21888 5173 0"
+      },
+      {
+        "turn": 229,
+        "command": "2463 13800 199 Jrke's Special"
+      },
+      {
+        "turn": 230,
+        "command": "22237 2821 0"
+      },
+      {
+        "turn": 231,
+        "command": "4865 14826 200 Jrke's Special"
+      },
+      {
+        "turn": 232,
+        "command": "21761 -51 0"
+      },
+      {
+        "turn": 233,
+        "command": "7420 15026 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 234,
+        "command": "20453 -2538 0"
+      },
+      {
+        "turn": 235,
+        "command": "9676 13840 200 Jrke's Special"
+      },
+      {
+        "turn": 236,
+        "command": "18310 -4608 0"
+      },
+      {
+        "turn": 237,
+        "command": "7694 14450 200 Jrke's Special"
+      },
+      {
+        "turn": 238,
+        "command": "16076 -5742 0"
+      },
+      {
+        "turn": 239,
+        "command": "9847 12695 105 Jrke's Special"
+      },
+      {
+        "turn": 240,
+        "command": "13223 -6279 200"
+      },
+      {
+        "turn": 241,
+        "command": "11433 10216 200 Jrke's Special"
+      },
+      {
+        "turn": 242,
+        "command": "10156 -6099 0"
+      },
+      {
+        "turn": 243,
+        "command": "12415 7350 200 Jrke's Special"
+      },
+      {
+        "turn": 244,
+        "command": "7357 -4955 200"
+      },
+      {
+        "turn": 245,
+        "command": "11768 9399 200 Jrke's Special"
+      },
+      {
+        "turn": 246,
+        "command": "9849 -6411 0"
+      },
+      {
+        "turn": 247,
+        "command": "10228 12140 200 Jrke's Special"
+      },
+      {
+        "turn": 248,
+        "command": "12852 -7064 0"
+      },
+      {
+        "turn": 249,
+        "command": "12225 9964 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 250,
+        "command": "14401 -7104 SHIELD"
+      },
+      {
+        "turn": 251,
+        "command": "10660 12557 200 Jrke's Special"
+      },
+      {
+        "turn": 252,
+        "command": "14571 -7231 200"
+      },
+      {
+        "turn": 253,
+        "command": "8312 14270 136 Jrke's Special"
+      },
+      {
+        "turn": 254,
+        "command": "17124 -6468 200"
+      },
+      {
+        "turn": 255,
+        "command": "5480 15146 200 Jrke's Special"
+      },
+      {
+        "turn": 256,
+        "command": "17948 -6005 200"
+      },
+      {
+        "turn": 257,
+        "command": "2459 15080 200 Jrke's Special"
+      },
+      {
+        "turn": 258,
+        "command": "20223 -3871 200"
+      },
+      {
+        "turn": 259,
+        "command": "-471 14261 200 Jrke's Special"
+      },
+      {
+        "turn": 260,
+        "command": "20009 -4342 200"
+      },
+      {
+        "turn": 261,
+        "command": "-2416 13305 200 Jrke's Special"
+      },
+      {
+        "turn": 262,
+        "command": "20454 -4254 200"
+      },
+      {
+        "turn": 263,
+        "command": "-1389 14346 181 Jrke's Special"
+      },
+      {
+        "turn": 264,
+        "command": "22174 -1659 200"
+      },
+      {
+        "turn": 265,
+        "command": "-2567 13370 70 Jrke's Special"
+      },
+      {
+        "turn": 266,
+        "command": "23136 1301 200"
+      },
+      {
+        "turn": 267,
+        "command": "69 14841 200 Jrke's Special"
+      },
+      {
+        "turn": 268,
+        "command": "23223 4337 SHIELD"
+      },
+      {
+        "turn": 269,
+        "command": "2996 15599 68 Jrke's Special"
+      },
+      {
+        "turn": 270,
+        "command": "22190 7163 0"
+      },
+      {
+        "turn": 271,
+        "command": "6098 14792 200 Jrke's Special"
+      },
+      {
+        "turn": 272,
+        "command": "20299 9479 0"
+      },
+      {
+        "turn": 273,
+        "command": "9011 13234 200 Jrke's Special"
+      },
+      {
+        "turn": 274,
+        "command": "17753 11053 0"
+      },
+      {
+        "turn": 275,
+        "command": "11491 11066 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 276,
+        "command": "14820 11725 200"
+      },
+      {
+        "turn": 277,
+        "command": "13187 8294 39 Jrke's Special"
+      },
+      {
+        "turn": 278,
+        "command": "11814 11625 200"
+      },
+      {
+        "turn": 279,
+        "command": "11733 10950 96 Jrke's Special"
+      },
+      {
+        "turn": 280,
+        "command": "9129 10834 200"
+      },
+      {
+        "turn": 281,
+        "command": "13392 8196 120 Jrke's Special"
+      },
+      {
+        "turn": 282,
+        "command": "6720 9343 200"
+      },
+      {
+        "turn": 283,
+        "command": "14121 5097 200 Jrke's Special"
+      },
+      {
+        "turn": 284,
+        "command": "4908 7388 0"
+      },
+      {
+        "turn": 285,
+        "command": "14364 5424 200 Jrke's Special"
+      },
+      {
+        "turn": 286,
+        "command": "6185 10129 0"
+      },
+      {
+        "turn": 287,
+        "command": "14032 8458 200 Jrke's Special"
+      },
+      {
+        "turn": 288,
+        "command": "5855 10282 0"
+      },
+      {
+        "turn": 289,
+        "command": "15249 6193 200 Jrke's Special"
+      },
+      {
+        "turn": 290,
+        "command": "7060 11982 0"
+      },
+      {
+        "turn": 291,
+        "command": "14943 9266 200 Jrke's Special"
+      },
+      {
+        "turn": 292,
+        "command": "9552 13863 0"
+      },
+      {
+        "turn": 293,
+        "command": "16649 6463 200 Jrke's Special"
+      },
+      {
+        "turn": 294,
+        "command": "12155 14815 0"
+      },
+      {
+        "turn": 295,
+        "command": "16515 9238 200 Jrke's Special"
+      },
+      {
+        "turn": 296,
+        "command": "9069 14148 0"
+      },
+      {
+        "turn": 297,
+        "command": "15563 11615 200 Jrke's Special"
+      },
+      {
+        "turn": 298,
+        "command": "6993 13066 200"
+      },
+      {
+        "turn": 299,
+        "command": "15815 12214 200 Jrke's Special"
+      },
+      {
+        "turn": 300,
+        "command": "4789 11178 200"
+      },
+      {
+        "turn": 301,
+        "command": "14972 13544 200 Jrke's Special"
+      },
+      {
+        "turn": 302,
+        "command": "3824 10446 200"
+      },
+      {
+        "turn": 303,
+        "command": "12863 14877 71 Jrke's Special"
+      },
+      {
+        "turn": 304,
+        "command": "2415 7877 0"
+      },
+      {
+        "turn": 305,
+        "command": "10469 15268 199 Jrke's Special"
+      },
+      {
+        "turn": 306,
+        "command": "2036 5088 0"
+      },
+      {
+        "turn": 307,
+        "command": "8073 14835 12 Jrke's Special"
+      },
+      {
+        "turn": 308,
+        "command": "2681 2400 SHIELD"
+      },
+      {
+        "turn": 309,
+        "command": "6011 13460 7 Jrke's Special"
+      },
+      {
+        "turn": 310,
+        "command": "4174 186 0"
+      },
+      {
+        "turn": 311,
+        "command": "4549 11323 32 Jrke's Special"
+      },
+      {
+        "turn": 312,
+        "command": "6391 -1438 200"
+      },
+      {
+        "turn": 313,
+        "command": "3859 8685 71 Jrke's Special"
+      },
+      {
+        "turn": 314,
+        "command": "8697 -2191 200"
+      },
+      {
+        "turn": 315,
+        "command": "4013 5841 37 Jrke's Special"
+      },
+      {
+        "turn": 316,
+        "command": "11376 -2265 200"
+      },
+      {
+        "turn": 317,
+        "command": "5068 3085 133 Jrke's Special"
+      },
+      {
+        "turn": 318,
+        "command": "11238 -2340 200"
+      },
+      {
+        "turn": 319,
+        "command": "6862 664 169 Jrke's Special"
+      },
+      {
+        "turn": 320,
+        "command": "9902 -2606 200"
+      },
+      {
+        "turn": 321,
+        "command": "5947 1596 137 Jrke's Special"
+      },
+      {
+        "turn": 322,
+        "command": "10862 -3037 200"
+      },
+      {
+        "turn": 323,
+        "command": "4266 4278 200 Jrke's Special"
+      },
+      {
+        "turn": 324,
+        "command": "8493 -3434 0"
+      },
+      {
+        "turn": 325,
+        "command": "3354 7226 200 Jrke's Special"
+      },
+      {
+        "turn": 326,
+        "command": "6577 -3369 0"
+      },
+      {
+        "turn": 327,
+        "command": "2845 7633 200 Jrke's Special"
+      },
+      {
+        "turn": 328,
+        "command": "6084 -3582 0"
+      },
+      {
+        "turn": 329,
+        "command": "2692 10282 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 330,
+        "command": "3499 -2254 0"
+      },
+      {
+        "turn": 331,
+        "command": "2596 7338 200 Jrke's Special"
+      },
+      {
+        "turn": 332,
+        "command": "1496 -112 0"
+      },
+      {
+        "turn": 333,
+        "command": "3545 4402 121 Jrke's Special"
+      },
+      {
+        "turn": 334,
+        "command": "347 2564 0"
+      },
+      {
+        "turn": 335,
+        "command": "5255 1886 107 Jrke's Special"
+      },
+      {
+        "turn": 336,
+        "command": "115 4882 0"
+      },
+      {
+        "turn": 337,
+        "command": "4869 3192 42 Jrke's Special"
+      },
+      {
+        "turn": 338,
+        "command": "750 7843 0"
+      },
+      {
+        "turn": 339,
+        "command": "5195 3111 200 Jrke's Special"
+      },
+      {
+        "turn": 340,
+        "command": "203 5737 200"
+      },
+      {
+        "turn": 341,
+        "command": "5482 2624 189 Jrke's Special"
+      },
+      {
+        "turn": 342,
+        "command": "846 8347 200"
+      },
+      {
+        "turn": 343,
+        "command": "4406 4560 196 Jrke's Special"
+      },
+      {
+        "turn": 344,
+        "command": "173 7627 200"
+      },
+      {
+        "turn": 345,
+        "command": "3617 7309 200 Jrke's Special"
+      },
+      {
+        "turn": 346,
+        "command": "-726 6379 200"
+      },
+      {
+        "turn": 347,
+        "command": "3377 9419 200 Jrke's Special"
+      },
+      {
+        "turn": 348,
+        "command": "-1562 3343 200"
+      },
+      {
+        "turn": 349,
+        "command": "3914 12261 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 350,
+        "command": "-1523 385 SHIELD"
+      },
+      {
+        "turn": 351,
+        "command": "3004 9416 93 Jrke's Special"
+      },
+      {
+        "turn": 352,
+        "command": "-475 -2204 SHIELD"
+      },
+      {
+        "turn": 353,
+        "command": "3255 8999 22 Jrke's Special"
+      },
+      {
+        "turn": 354,
+        "command": "1384 -4148 200"
+      },
+      {
+        "turn": 355,
+        "command": "3682 9768 0 Jrke's Special"
+      },
+      {
+        "turn": 356,
+        "command": "3864 -5286 0"
+      },
+      {
+        "turn": 357,
+        "command": "3713 6716 110 Jrke's Special"
+      },
+      {
+        "turn": 358,
+        "command": "6612 -5465 200"
+      },
+      {
+        "turn": 359,
+        "command": "4440 4053 146 Jrke's Special"
+      },
+      {
+        "turn": 360,
+        "command": "9330 -4675 200"
+      },
+      {
+        "turn": 361,
+        "command": "3740 7104 200 Jrke's Special"
+      },
+      {
+        "turn": 362,
+        "command": "11793 -3173 200"
+      },
+      {
+        "turn": 363,
+        "command": "3490 7958 75 Jrke's Special"
+      },
+      {
+        "turn": 364,
+        "command": "13773 -1059 200"
+      },
+      {
+        "turn": 365,
+        "command": "3591 4841 200 Jrke's Special"
+      },
+      {
+        "turn": 366,
+        "command": "15090 1498 200"
+      },
+      {
+        "turn": 367,
+        "command": "2872 6140 200 Jrke's Special"
+      },
+      {
+        "turn": 368,
+        "command": "15626 4283 200"
+      },
+      {
+        "turn": 369,
+        "command": "2365 9185 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 370,
+        "command": "15859 5466 200"
+      },
+      {
+        "turn": 371,
+        "command": "2178 7457 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 372,
+        "command": "15307 8094 200"
+      },
+      {
+        "turn": 373,
+        "command": "2995 10617 200 Jrke's Special"
+      },
+      {
+        "turn": 374,
+        "command": "17145 5159 0"
+      },
+      {
+        "turn": 375,
+        "command": "2784 7586 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 376,
+        "command": "17769 4880 0"
+      },
+      {
+        "turn": 377,
+        "command": "3509 4546 16 Jrke's Special"
+      },
+      {
+        "turn": 378,
+        "command": "17699 6658 200"
+      },
+      {
+        "turn": 379,
+        "command": "4157 3452 188 Jrke's Special"
+      },
+      {
+        "turn": 380,
+        "command": "18215 6899 200"
+      },
+      {
+        "turn": 381,
+        "command": "5300 1835 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 382,
+        "command": "19378 5697 200"
+      },
+      {
+        "turn": 383,
+        "command": "3974 4710 200 Jrke's Special"
+      },
+      {
+        "turn": 384,
+        "command": "19957 6488 200"
+      },
+      {
+        "turn": 385,
+        "command": "3603 7002 75 Jrke's Special"
+      },
+      {
+        "turn": 386,
+        "command": "19367 9367 0"
+      },
+      {
+        "turn": 387,
+        "command": "4428 4029 59 Jrke's Special"
+      },
+      {
+        "turn": 388,
+        "command": "17839 11709 0"
+      },
+      {
+        "turn": 389,
+        "command": "4485 4081 200 Jrke's Special"
+      },
+      {
+        "turn": 390,
+        "command": "15640 13222 0"
+      },
+      {
+        "turn": 391,
+        "command": "6007 1393 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 392,
+        "command": "13062 13777 0"
+      },
+      {
+        "turn": 393,
+        "command": "5882 2391 83 Jrke's Special"
+      },
+      {
+        "turn": 394,
+        "command": "10423 13336 0"
+      },
+      {
+        "turn": 395,
+        "command": "5802 3436 200 Jrke's Special"
+      },
+      {
+        "turn": 396,
+        "command": "8036 11953 0"
+      },
+      {
+        "turn": 397,
+        "command": "7757 1470 200 Jrke's Special"
+      },
+      {
+        "turn": 398,
+        "command": "6180 9776 0"
+      },
+      {
+        "turn": 399,
+        "command": "6303 4146 200 Jrke's Special"
+      },
+      {
+        "turn": 400,
+        "command": "5079 7026 200"
+      },
+      {
+        "turn": 401,
+        "command": "5889 5448 53 Jrke's Special"
+      },
+      {
+        "turn": 402,
+        "command": "4682 4037 200"
+      },
+      {
+        "turn": 403,
+        "command": "5594 6793 199 Jrke's Special"
+      },
+      {
+        "turn": 404,
+        "command": "4952 1369 0"
+      },
+      {
+        "turn": 405,
+        "command": "5378 9879 197 Jrke's Special"
+      },
+      {
+        "turn": 406,
+        "command": "6132 -1290 200"
+      },
+      {
+        "turn": 407,
+        "command": "5962 12863 200 Jrke's Special"
+      },
+      {
+        "turn": 408,
+        "command": "8067 -3657 200"
+      },
+      {
+        "turn": 409,
+        "command": "7296 15508 200 Jrke's Special"
+      },
+      {
+        "turn": 410,
+        "command": "10465 -5326 200"
+      },
+      {
+        "turn": 411,
+        "command": "9259 17598 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 412,
+        "command": "8209 -4809 200"
+      },
+      {
+        "turn": 413,
+        "command": "11764 18793 54 Jrke's Special"
+      },
+      {
+        "turn": 414,
+        "command": "7732 -5251 200"
+      },
+      {
+        "turn": 415,
+        "command": "14507 18997 200 Jrke's Special"
+      },
+      {
+        "turn": 416,
+        "command": "7083 -5709 SHIELD"
+      },
+      {
+        "turn": 417,
+        "command": "17172 18208 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 418,
+        "command": "8700 -7167 SHIELD"
+      },
+      {
+        "turn": 419,
+        "command": "19458 16520 74 Jrke's Special"
+      },
+      {
+        "turn": 420,
+        "command": "11403 -8087 200"
+      },
+      {
+        "turn": 421,
+        "command": "21105 14112 200 Jrke's Special"
+      },
+      {
+        "turn": 422,
+        "command": "14237 -7995 200"
+      },
+      {
+        "turn": 423,
+        "command": "21925 11229 114 Jrke's Special"
+      },
+      {
+        "turn": 424,
+        "command": "16843 -6917 0"
+      },
+      {
+        "turn": 425,
+        "command": "21811 8165 62 Jrke's Special"
+      },
+      {
+        "turn": 426,
+        "command": "18936 -4992 0"
+      },
+      {
+        "turn": 427,
+        "command": "20814 5218 79 Jrke's Special"
+      },
+      {
+        "turn": 428,
+        "command": "20288 -2431 0"
+      },
+      {
+        "turn": 429,
+        "command": "19021 2658 200 Jrke's Special"
+      },
+      {
+        "turn": 430,
+        "command": "20745 491 200"
+      },
+      {
+        "turn": 431,
+        "command": "16668 639 200 Jrke's Special"
+      },
+      {
+        "turn": 432,
+        "command": "20445 3463 0"
+      },
+      {
+        "turn": 433,
+        "command": "13926 -673 200 Jrke's Special"
+      },
+      {
+        "turn": 434,
+        "command": "19190 6186 200"
+      },
+      {
+        "turn": 435,
+        "command": "12234 -1268 200 Jrke's Special"
+      },
+      {
+        "turn": 436,
+        "command": "17280 8490 0"
+      },
+      {
+        "turn": 437,
+        "command": "12939 -1842 200 Jrke's Special"
+      },
+      {
+        "turn": 438,
+        "command": "16041 9434 0"
+      },
+      {
+        "turn": 439,
+        "command": "14830 -2320 200 Jrke's Special"
+      },
+      {
+        "turn": 440,
+        "command": "16167 9463 200"
+      },
+      {
+        "turn": 441,
+        "command": "17624 -2151 199 Jrke's Special"
+      },
+      {
+        "turn": 442,
+        "command": "13444 10667 200"
+      },
+      {
+        "turn": 443,
+        "command": "14908 -4011 12 Jrke's Special"
+      },
+      {
+        "turn": 444,
+        "command": "10540 11077 200"
+      },
+      {
+        "turn": 445,
+        "command": "11988 -4792 76 Jrke's Special"
+      },
+      {
+        "turn": 446,
+        "command": "7715 10660 0"
+      },
+      {
+        "turn": 447,
+        "command": "9161 -4568 51 Jrke's Special"
+      },
+      {
+        "turn": 448,
+        "command": "7411 10851 0"
+      },
+      {
+        "turn": 449,
+        "command": "6716 -3406 78 Jrke's Special"
+      },
+      {
+        "turn": 450,
+        "command": "7787 11346 200"
+      },
+      {
+        "turn": 451,
+        "command": "4879 -1501 27 Jrke's Special"
+      },
+      {
+        "turn": 452,
+        "command": "5301 10008 SHIELD"
+      },
+      {
+        "turn": 453,
+        "command": "3874 941 89 Jrke's Special"
+      },
+      {
+        "turn": 454,
+        "command": "6962 11749 0"
+      },
+      {
+        "turn": 455,
+        "command": "3743 3615 40 Jrke's Special"
+      },
+      {
+        "turn": 456,
+        "command": "4836 10230 200"
+      },
+      {
+        "turn": 457,
+        "command": "4554 6227 47 Jrke's Special"
+      },
+      {
+        "turn": 458,
+        "command": "3700 8881 0"
+      },
+      {
+        "turn": 459,
+        "command": "6219 8488 64 Jrke's Special"
+      },
+      {
+        "turn": 460,
+        "command": "2632 6206 0"
+      },
+      {
+        "turn": 461,
+        "command": "8561 10157 147 Jrke's Special"
+      },
+      {
+        "turn": 462,
+        "command": "2524 3238 0"
+      },
+      {
+        "turn": 463,
+        "command": "11319 11126 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 464,
+        "command": "2662 2626 200"
+      },
+      {
+        "turn": 465,
+        "command": "14277 11139 200 Jrke's Special"
+      },
+      {
+        "turn": 466,
+        "command": "3441 54 0"
+      },
+      {
+        "turn": 467,
+        "command": "13439 11177 200 Jrke's Special"
+      },
+      {
+        "turn": 468,
+        "command": "4855 -2038 0"
+      },
+      {
+        "turn": 469,
+        "command": "16365 10444 117 Jrke's Special"
+      },
+      {
+        "turn": 470,
+        "command": "7270 -3899 0"
+      },
+      {
+        "turn": 471,
+        "command": "18944 8808 110 Jrke's Special"
+      },
+      {
+        "turn": 472,
+        "command": "6657 -3547 0"
+      },
+      {
+        "turn": 473,
+        "command": "17348 9958 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 474,
+        "command": "7774 -4120 200"
+      },
+      {
+        "turn": 475,
+        "command": "14737 11010 22 Jrke's Special"
+      },
+      {
+        "turn": 476,
+        "command": "5150 -2358 0"
+      },
+      {
+        "turn": 477,
+        "command": "12651 11309 32 Jrke's Special"
+      },
+      {
+        "turn": 478,
+        "command": "4894 -1836 0"
+      },
+      {
+        "turn": 479,
+        "command": "9543 10912 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 480,
+        "command": "5173 -1915 0"
+      },
+      {
+        "turn": 481,
+        "command": "10552 11197 138 Jrke's Special"
+      },
+      {
+        "turn": 482,
+        "command": "5247 -1853 0"
+      },
+      {
+        "turn": 483,
+        "command": "7607 10154 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 484,
+        "command": "3886 173 200"
+      },
+      {
+        "turn": 485,
+        "command": "10543 11246 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 486,
+        "command": "2883 2883 200"
+      },
+      {
+        "turn": 487,
+        "command": "7600 10194 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 488,
+        "command": "2690 2964 200"
+      },
+      {
+        "turn": 489,
+        "command": "8062 10451 200 Jrke's Special"
+      },
+      {
+        "turn": 490,
+        "command": "3343 -229 200"
+      },
+      {
+        "turn": 491,
+        "command": "11053 11378 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 492,
+        "command": "1934 2454 0"
+      },
+      {
+        "turn": 493,
+        "command": "8699 10757 200 Jrke's Special"
+      },
+      {
+        "turn": 494,
+        "command": "1559 5334 0"
+      },
+      {
+        "turn": 495,
+        "command": "6853 9783 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 496,
+        "command": "1236 2029 0"
+      },
+      {
+        "turn": 497,
+        "command": "4565 7656 200 Jrke's Special"
+      },
+      {
+        "turn": 498,
+        "command": "905 4449 200"
+      },
+      {
+        "turn": 499,
+        "command": "4058 6950 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 500,
+        "command": "1285 7319 200"
+      },
+      {
+        "turn": 501,
+        "command": "6152 9279 200 Jrke's Special"
+      },
+      {
+        "turn": 502,
+        "command": "2443 9914 SHIELD"
+      },
+      {
+        "turn": 503,
+        "command": "8861 10847 172 Jrke's Special"
+      },
+      {
+        "turn": 504,
+        "command": "4478 11808 0"
+      },
+      {
+        "turn": 505,
+        "command": "11922 11499 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 506,
+        "command": "6775 12800 200"
+      },
+      {
+        "turn": 507,
+        "command": "8861 10850 200 Jrke's Special"
+      },
+      {
+        "turn": 508,
+        "command": "8403 13022 200"
+      },
+      {
+        "turn": 509,
+        "command": "11922 11500 200 Jrke's Special"
+      },
+      {
+        "turn": 510,
+        "command": "5035 12323 200"
+      },
+      {
+        "turn": 511,
+        "command": "15033 11173 174 Jrke's Special"
+      },
+      {
+        "turn": 512,
+        "command": "3999 12142 200"
+      },
+      {
+        "turn": 513,
+        "command": "17891 9901 200 Jrke's Special"
+      },
+      {
+        "turn": 514,
+        "command": "1078 10635 200"
+      },
+      {
+        "turn": 515,
+        "command": "20325 7975 200 Jrke's Special"
+      },
+      {
+        "turn": 516,
+        "command": "669 11039 0"
+      },
+      {
+        "turn": 517,
+        "command": "22137 5534 200 Jrke's Special"
+      },
+      {
+        "turn": 518,
+        "command": "226 11288 200"
+      },
+      {
+        "turn": 519,
+        "command": "23184 2772 200 Jrke's Special"
+      },
+      {
+        "turn": 520,
+        "command": "747 12556 200"
+      },
+      {
+        "turn": 521,
+        "command": "22911 -299 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 522,
+        "command": "125 12980 200"
+      },
+      {
+        "turn": 523,
+        "command": "21413 -3249 200 Jrke's Special"
+      },
+      {
+        "turn": 524,
+        "command": "-2488 11345 200"
+      },
+      {
+        "turn": 525,
+        "command": "19127 -5652 57 Jrke's Special"
+      },
+      {
+        "turn": 526,
+        "command": "-4437 9134 200"
+      },
+      {
+        "turn": 527,
+        "command": "16738 -7082 200 Jrke's Special"
+      },
+      {
+        "turn": 528,
+        "command": "-5464 6634 SHIELD"
+      },
+      {
+        "turn": 529,
+        "command": "19224 -5434 200 Jrke's Special"
+      },
+      {
+        "turn": 530,
+        "command": "-4961 4187 200"
+      },
+      {
+        "turn": 531,
+        "command": "19111 -5746 200 Jrke's Special"
+      },
+      {
+        "turn": 532,
+        "command": "-3525 1982 0"
+      },
+      {
+        "turn": 533,
+        "command": "19888 -5463 200 Jrke's Special"
+      },
+      {
+        "turn": 534,
+        "command": "-1302 297 200"
+      },
+      {
+        "turn": 535,
+        "command": "19119 -6804 200 Jrke's Special"
+      },
+      {
+        "turn": 536,
+        "command": "1478 -644 0"
+      },
+      {
+        "turn": 537,
+        "command": "16731 -8825 200 Jrke's Special"
+      },
+      {
+        "turn": 538,
+        "command": "4536 -701 200"
+      },
+      {
+        "turn": 539,
+        "command": "13682 -9254 150 Jrke's Special"
+      },
+      {
+        "turn": 540,
+        "command": "7575 -29 200"
+      },
+      {
+        "turn": 541,
+        "command": "10951 -8655 200 Jrke's Special"
+      },
+      {
+        "turn": 542,
+        "command": "10353 1363 200"
+      },
+      {
+        "turn": 543,
+        "command": "9138 -8015 2 Jrke's Special"
+      },
+      {
+        "turn": 544,
+        "command": "12644 3387 200"
+      },
+      {
+        "turn": 545,
+        "command": "12040 -8689 44 Jrke's Special"
+      },
+      {
+        "turn": 546,
+        "command": "14267 5887 200"
+      },
+      {
+        "turn": 547,
+        "command": "13145 -8695 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 548,
+        "command": "15098 8094 200"
+      },
+      {
+        "turn": 549,
+        "command": "10110 -8338 200 Jrke's Special"
+      },
+      {
+        "turn": 550,
+        "command": "15677 7802 200"
+      },
+      {
+        "turn": 551,
+        "command": "7169 -7048 37 Jrke's Special"
+      },
+      {
+        "turn": 552,
+        "command": "16207 9559 200"
+      },
+      {
+        "turn": 553,
+        "command": "6527 -6632 135 Jrke's Special"
+      },
+      {
+        "turn": 554,
+        "command": "17100 6523 0"
+      },
+      {
+        "turn": 555,
+        "command": "4294 -4370 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 556,
+        "command": "17810 6912 200"
+      },
+      {
+        "turn": 557,
+        "command": "2873 -1548 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 558,
+        "command": "18248 9875 0"
+      },
+      {
+        "turn": 559,
+        "command": "2394 1384 200 Jrke's Special"
+      },
+      {
+        "turn": 560,
+        "command": "18535 10855 200"
+      },
+      {
+        "turn": 561,
+        "command": "2848 4480 200 Jrke's Special"
+      },
+      {
+        "turn": 562,
+        "command": "19683 9549 0"
+      },
+      {
+        "turn": 563,
+        "command": "4240 7273 SHIELD Jrke's Special"
+      },
+      {
+        "turn": 564,
+        "command": "20169 10038 200"
+      },
+      {
+        "turn": 565,
+        "command": "6428 9489 110 Jrke's Special"
+      },
+      {
+        "turn": 566,
+        "command": "19519 12897 0"
+      },
+      {
+        "turn": 567,
+        "command": "9196 10913 68 Jrke's Special"
+      },
+      {
+        "turn": 568,
+        "command": "19801 13378 200"
+      }
+    ]
+  }
+}

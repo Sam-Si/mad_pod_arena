@@ -1,0 +1,229 @@
+# =============================================================================
+# mad_pod_arena — comprehensive .gitignore
+# C++/Bazel arena + Python helpers + CodinGame battle data tooling
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Bazel (symlinks, caches, local overrides)
+# -----------------------------------------------------------------------------
+/bazel-*
+/bazel-bin
+/bazel-out
+/bazel-testlogs
+/bazel-genfiles
+/bazel-execroot
+.bazel/
+.bazelbsp/
+.bazelrc.local
+*.bazel~
+# Lockfile is committed for reproducible Bzlmod deps (remove this line only if
+# you deliberately want lockfile out of version control).
+# MODULE.bazel.lock
+
+# Local bazelisk binary if dropped in-repo
+/bazelisk
+
+# -----------------------------------------------------------------------------
+# C / C++ build artifacts (non-Bazel / IDE / ad-hoc g++)
+# -----------------------------------------------------------------------------
+*.o
+*.a
+*.lib
+*.obj
+*.lo
+*.la
+*.slo
+*.ko
+*.elf
+*.so
+*.so.*
+*.dylib
+*.dll
+*.exe
+*.out
+*.app
+*.pch
+*.gch
+*.pdb
+*.ilk
+*.dSYM/
+*.su
+*.idb
+*.iobj
+*.ipdb
+
+# Coverage / profiling
+*.gcno
+*.gcda
+*.gcov
+*.profraw
+*.profdata
+perf.data
+perf.data.old
+
+# CMake (if used alongside Bazel)
+CMakeCache.txt
+CMakeFiles/
+CMakeScripts/
+cmake-build-*/
+cmake_install.cmake
+CTestTestfile.cmake
+install_manifest.txt
+compile_commands.json
+_deps/
+
+# Clang / LLVM tooling outputs
+.cache/clangd/
+.cache/ccls/
+.ccls-cache/
+
+# -----------------------------------------------------------------------------
+# Python
+# -----------------------------------------------------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+.envrc
+
+# Test / type / lint caches
+.pytest_cache/
+pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.pyre/
+.pyright/
+.tox/
+.nox/
+.hypothesis/
+cython_debug/
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+*.py,cover
+cover/
+nosetests.xml
+.cache
+
+# Protobuf generated (if ever added)
+*_pb2.py
+*_pb2_grpc.py
+*.pb.cc
+*.pb.h
+*.pbobjc.m
+
+# -----------------------------------------------------------------------------
+# IDE / editor
+# -----------------------------------------------------------------------------
+.idea/
+.vscode/
+*.code-workspace
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.vim/
+.emacs.d/
+.project
+.classpath
+.settings/
+*.iml
+
+# -----------------------------------------------------------------------------
+# OS / temp / local scratch
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+._*
+.Spotlight-V100
+.Trashes
+
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.rej
+*.log
+
+# Project-specific local dirs / temp dumps
+logs/
+scratch/
+/bin/
+.tmp/
+tmp/
+temp/
+.local/
+tmp.txt
+tmp_*.txt
+
+# Secrets / local env
+.env
+.env.*
+!.env.example
+
+# Archives accidentally dropped in tree
+*.tar
+*.tar.gz
+*.tgz
+*.zip
+*.7z
+*.rar
+
+# -----------------------------------------------------------------------------
+# Containers / remote editors
+# -----------------------------------------------------------------------------
+.docker/
+docker-compose.override.yml
+.devcontainer/local.env
+.vscode-server/
+.vscode-server-insiders/
+
+# -----------------------------------------------------------------------------
+# Misc generated / local-only
+# -----------------------------------------------------------------------------
+generated/
+*.generated.py
+.cursor/
+.cursorignore
+.cursorindexingignore
+
+# Never re-introduce third-party / external bot sources
+src/legacy_bot/
+**/legacy_wrapper.h
+
+# local driver copy
+sim/replay_driver

@@ -1,0 +1,32 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("//tools:cpp_opts.bzl", "THREAD_COPTS", "THREAD_LINKOPTS")
+
+cc_binary(
+    name = "cg_bot",
+    srcs = ["cg_bot.cpp"],
+    deps = ["//src/engine"],
+    copts = THREAD_COPTS,
+    linkopts = THREAD_LINKOPTS,
+)
+
+# Export cg_bot.cpp as a header for inclusion by the benchmark wrapper
+cc_library(
+    name = "cg_bot_hdr",
+    hdrs = ["cg_bot.cpp"],
+    visibility = ["//visibility:public"],
+)
+
+# Standalone build for CodinGame submission (inlines engine, no deps)
+cc_binary(
+    name = "cg_bot_standalone",
+    srcs = ["cg_bot.cpp"],
+    copts = THREAD_COPTS + ["-DCG_STANDALONE"],
+    linkopts = THREAD_LINKOPTS,
+)
+
+cc_binary(
+    name = "cg_bot_verify",
+    srcs = ["cg_bot.cpp"],
+    copts = ["-std=c++17", "-O3", "-DLOCAL_VERIFY"],
+    deps = ["//src/legacy_bot:legacy_bot_hdr"],
+)

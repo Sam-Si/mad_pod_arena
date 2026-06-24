@@ -1,0 +1,133 @@
+name: CI
+
+on:
+  push:
+    branches: [main, master, 'feature/**']
+  pull_request:
+    branches: [main, master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # ---------------------------------------------------------------------------
+  # 1) Battle retention — fail fast if pre-cutoff replays reappear
+  # ---------------------------------------------------------------------------
+  battle-retention:
+    name: Battle retention (id > 870230019)
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Enforce RETENTION.md
+        run: python3 battles/scripts/enforce_retention.py
+
+  # ---------------------------------------------------------------------------
+  # 2) Build + unit tests (Bazel)
+  # ---------------------------------------------------------------------------
+  build-and-test:
+    name: Build & unit tests (Bazel)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-${{ runner.os }}-${{ hashFiles('.bazelversion', 'MODULE.bazel', 'MODULE.bazel.lock', '**/*.bazel', '**/*.bzl') }}
+          restore-keys: |
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Show Bazel version
+        run: bazel --version
+
+      - name: Build all targets
+        run: bazel build --config=ci //...
+
+      - name: Run Bazel unit tests
+        run: bazel test --config=ci //... --test_output=errors
+
+  # ---------------------------------------------------------------------------
+  # 3) PHYSICS GATE — referee engine must be 100% on golden corpus
+  #
+  # Single source of truth: src/physics/physics.h
+  # Verifier:            //src/physics:verify_battles  (C++, no Python required)
+  # Corpus:              battles/test_session_battles/  (~312 games, post-cutoff)
+  #
+  # Any FAIL here blocks merge. This is the production fidelity gate.
+  # ---------------------------------------------------------------------------
+  physics-accuracy:
+    name: Physics 100% (golden battles)
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    needs: [battle-retention]
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Mount Bazel caches
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/bazel
+            ~/.cache/bazel-disk-cache
+          key: bazel-phys-${{ runner.os }}-${{ hashFiles('.bazelversion', 'MODULE.bazel', 'MODULE.bazel.lock', 'src/physics/**') }}
+          restore-keys: |
+            bazel-phys-${{ runner.os }}-
+            bazel-${{ runner.os }}-
+
+      - name: Install Bazelisk
+        uses: bazel-contrib/setup-bazel@0.9.1
+        with:
+          bazelisk-cache: true
+          disk-cache: ${{ runner.temp }}/bazel-disk-cache
+          repository-cache: ${{ runner.temp }}/bazel-repo-cache
+
+      - name: Build verifier (SSoT path)
+        run: bazel build --config=ci //src/physics:verify_battles //src/physics:test_physics
+
+      - name: Unit tests for physics.h
+        run: bazel test --config=ci //src/physics:test_physics --test_output=errors
+
+      - name: Verify test_session corpus (must be 100%)
+        run: |
+          set -euo pipefail
+          BIN=bazel-bin/src/physics/verify_battles
+          echo "=== Referee physics SSoT: src/physics/physics.h ==="
+          echo "=== Corpus: battles/test_session_battles (full gate, agent-timeouts excluded) ==="
+          "$BIN" --dir battles/test_session_battles --stop-on-fail
+          echo "=== PHYSICS GATE PASSED — 100% turn accuracy on test_session ==="
+
+      - name: Verify golden_physics_battles pass tier (~156 expected_pass)
+        run: |
+          set -euo pipefail
+          # Install only if needed; harness uses g++ + subprocess driver
+          python3 battles/scripts/verify_golden_corpus.py --tier pass
+          echo "=== GOLDEN PASS TIER PASSED ==="
+
+      - name: Sanity — golden corpus present
+        run: |
+          n=$(find battles/golden_physics_battles/battles -name 'battle_*.json' | wc -l)
+          echo "golden_physics_battles: $n"
+          test "$n" -ge 150
+          n2=$(find battles/test_session_battles -name 'battle_*.json' | wc -l)
+          echo "test_session_battles: $n2"
+          test "$n2" -ge 100

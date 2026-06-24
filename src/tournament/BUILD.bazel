@@ -1,0 +1,17 @@
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "benchmark_tournament",
+    srcs = ["benchmark_tournament.cpp", "cg_bot_wrapper.h"],
+    deps = ["//src/engine", "//src/cg:cg_bot_hdr"],
+    copts = ["-std=c++17", "-O3", "-pthread", "-Isrc"],
+    linkopts = ["-pthread"],
+)
+
+cc_binary(
+    name = "benchmark_tournament",
+    srcs = ["benchmark_tournament.cpp", "legacy_wrapper.h"],
+    deps = ["//src/engine", "//src/bot:ga_bot", "//src/legacy_bot:legacy_bot_hdr"],
+    copts = ["-std=c++17", "-O3", "-pthread", "-Isrc"],
+    linkopts = ["-pthread"],
+)

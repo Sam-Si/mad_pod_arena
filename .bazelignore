@@ -1,0 +1,18 @@
+# Paths Bazel should not traverse as packages
+logs
+scratch
+tmp
+temp
+.venv
+venv
+.git
+.github
+.idea
+.vscode
+.bazel
+.bazelbsp
+# Large non-build trees (battle corpora, third-party referees, docs, Python sim)
+battles
+third_party
+docs
+sim

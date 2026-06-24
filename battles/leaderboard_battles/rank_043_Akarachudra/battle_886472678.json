@@ -1,0 +1,398 @@
+{
+  "gameId": 886472678,
+  "matchup": "Player_0 vs Player_1",
+  "mapAndParameters": {
+    "gameEngineName": "CodersStrikeBack",
+    "refereeVersion": 0,
+    "physicsConstants": {
+      "fieldWidth": 16000,
+      "fieldHeight": 9000,
+      "podHitboxRadius": 400,
+      "checkpointActivationRadius": 600,
+      "mapCheckpointCount": 4,
+      "maxTurnRotationLimitRad": 0.3141592653589793
+    },
+    "trackCheckpoints": [
+      {
+        "checkpointSequenceIndex": 0,
+        "coordinates": {
+          "x": 4122,
+          "y": 7392
+        }
+      },
+      {
+        "checkpointSequenceIndex": 1,
+        "coordinates": {
+          "x": 13510,
+          "y": 2328
+        }
+      },
+      {
+        "checkpointSequenceIndex": 2,
+        "coordinates": {
+          "x": 12914,
+          "y": 7202
+        }
+      },
+      {
+        "checkpointSequenceIndex": 3,
+        "coordinates": {
+          "x": 5651,
+          "y": 2582
+        }
+      }
+    ],
+    "spawnManifest": [
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 3885.0,
+          "y": 6952.0
+        }
+      },
+      {
+        "ownerPlayerId": 0,
+        "spawnCoordinates": {
+          "x": 4359.0,
+          "y": 7832.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 3410.0,
+          "y": 6072.0
+        }
+      },
+      {
+        "ownerPlayerId": 1,
+        "spawnCoordinates": {
+          "x": 4834.0,
+          "y": 8712.0
+        }
+      }
+    ],
+    "podInitialVectors": [
+      {
+        "positionVector": {
+          "x": 3885.0,
+          "y": 6952.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 4359.0,
+          "y": 7832.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 3410.0,
+          "y": 6072.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      },
+      {
+        "positionVector": {
+          "x": 4834.0,
+          "y": 8712.0
+        },
+        "velocityVector": {
+          "vx": 0.0,
+          "vy": 0.0
+        },
+        "angularOrientationRad": 0.0,
+        "shieldCooldownState": 0,
+        "internalRefFlags": [
+          "null",
+          "null",
+          "null"
+        ],
+        "targetCheckpointIndex": 0,
+        "activationGroupMasks": [
+          "1",
+          "1"
+        ],
+        "hudSpeechBubbleText": ""
+      }
+    ],
+    "engineExecutionConstraints": {
+      "player0Constraints": "1:100",
+      "player1Constraints": "1:100"
+    }
+  },
+  "gameInformationTimeline": [
+    {
+      "turn": 0,
+      "log": "$0 rank: 1\n$1 rank: 1"
+    },
+    {
+      "turn": 2,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 4,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 6,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 8,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 10,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 12,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 14,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 16,
+      "log": "$0 rank: 1\n$1 rank: 2"
+    },
+    {
+      "turn": 18,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 20,
+      "log": "$0 rank: 2\n$1 rank: 1"
+    },
+    {
+      "turn": 22,
+      "log": "$0 rank: 1\n$1 eliminated! rank: 2"
+    }
+  ],
+  "playerCommands": {
+    "Player_0": [
+      {
+        "turn": 1,
+        "command": "12850 2459 BOOST"
+      },
+      {
+        "turn": 2,
+        "command": "13510 2328 BOOST 0"
+      },
+      {
+        "turn": 3,
+        "command": "12164 2016 200"
+      },
+      {
+        "turn": 4,
+        "command": "12765 997 200 0"
+      },
+      {
+        "turn": 5,
+        "command": "13875 1462 200"
+      },
+      {
+        "turn": 6,
+        "command": "13458 708 200 0"
+      },
+      {
+        "turn": 7,
+        "command": "13819 1067 200"
+      },
+      {
+        "turn": 8,
+        "command": "13355 -941 200 0"
+      },
+      {
+        "turn": 9,
+        "command": "17805 -2017 200"
+      },
+      {
+        "turn": 10,
+        "command": "14108 -1447 200 0"
+      },
+      {
+        "turn": 11,
+        "command": "11418 3345 200"
+      },
+      {
+        "turn": 12,
+        "command": "16411 716 200 0"
+      },
+      {
+        "turn": 13,
+        "command": "8195 2167 0"
+      },
+      {
+        "turn": 14,
+        "command": "17864 3234 200 0"
+      },
+      {
+        "turn": 15,
+        "command": "10205 3342 200"
+      },
+      {
+        "turn": 16,
+        "command": "18614 1196 200 0"
+      },
+      {
+        "turn": 17,
+        "command": "13196 6516 0"
+      },
+      {
+        "turn": 18,
+        "command": "19774 2312 0 0"
+      },
+      {
+        "turn": 19,
+        "command": "14712 2413 64"
+      },
+      {
+        "turn": 20,
+        "command": "20228 5040 200 0"
+      },
+      {
+        "turn": 21,
+        "command": "8817 6642 SHIELD"
+      }
+    ],
+    "Player_1": [
+      {
+        "turn": 1,
+        "command": "3495 7250 200"
+      },
+      {
+        "turn": 2,
+        "command": "13510 2328 BOOST 1"
+      },
+      {
+        "turn": 3,
+        "command": "12779 12845 6"
+      },
+      {
+        "turn": 4,
+        "command": "14268 3787 200 1"
+      },
+      {
+        "turn": 5,
+        "command": "6505 4898 200"
+      },
+      {
+        "turn": 6,
+        "command": "15491 4818 200 1"
+      },
+      {
+        "turn": 7,
+        "command": "13505 4719 200"
+      },
+      {
+        "turn": 8,
+        "command": "15610 2952 200 1"
+      },
+      {
+        "turn": 9,
+        "command": "9920 2280 200"
+      },
+      {
+        "turn": 10,
+        "command": "16399 2507 200 1"
+      },
+      {
+        "turn": 11,
+        "command": "10071 1866 200"
+      },
+      {
+        "turn": 12,
+        "command": "17247 2038 200 1"
+      },
+      {
+        "turn": 13,
+        "command": "13704 4387 200"
+      },
+      {
+        "turn": 14,
+        "command": "17895 1088 0 1"
+      },
+      {
+        "turn": 15,
+        "command": "13740 3630 200"
+      },
+      {
+        "turn": 16,
+        "command": "16689 -1757 200 1"
+      },
+      {
+        "turn": 17,
+        "command": "9860 9380 200"
+      },
+      {
+        "turn": 18,
+        "command": "14847 -3962 0 1"
+      },
+      {
+        "turn": 19,
+        "command": "-1032 -4953 200"
+      },
+      {
+        "turn": 20,
+        "command": "12489 -5197 200 1"
+      },
+      {
+        "turn": 21,
+        "command": "12921 3703 200"
+      }
+    ]
+  }
+}
