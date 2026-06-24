@@ -14,6 +14,7 @@ cc_library(
     name = "cg_bot_hdr",
     hdrs = ["cg_bot.cpp"],
     visibility = ["//visibility:public"],
+    deps = ["//src/engine"],
 )
 
 # Standalone build for CodinGame submission (inlines engine, no deps)
@@ -24,9 +25,11 @@ cc_binary(
     linkopts = THREAD_LINKOPTS,
 )
 
+# Local verification build (engine-backed; legacy_bot package was removed)
 cc_binary(
     name = "cg_bot_verify",
     srcs = ["cg_bot.cpp"],
-    copts = ["-std=c++17", "-O3", "-DLOCAL_VERIFY"],
-    deps = ["//src/legacy_bot:legacy_bot_hdr"],
+    deps = ["//src/engine"],
+    copts = THREAD_COPTS + ["-DLOCAL_VERIFY"],
+    linkopts = THREAD_LINKOPTS,
 )

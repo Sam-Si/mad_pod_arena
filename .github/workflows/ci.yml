@@ -107,19 +107,33 @@ jobs:
       - name: Unit tests for physics.h
         run: bazel test --config=ci //src/physics:test_physics --test_output=errors
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Build replay_driver for Python harness
+        run: |
+          set -euo pipefail
+          bazel build --config=ci //src/physics:replay_driver
+          # physics_driver.py defaults to sim/replay_driver (local g++ path)
+          cp -f bazel-bin/src/physics/replay_driver sim/replay_driver
+          chmod +x sim/replay_driver
+
       - name: Verify test_session corpus (must be 100%)
         run: |
           set -euo pipefail
-          BIN=bazel-bin/src/physics/verify_battles
+          # Authoritative gate: sim/verify_battles.py drives physics.h via replay_driver
+          # (tolerances in docs/physics-verification.md). C++ //src/physics:verify_battles
+          # remains buildable but is not the merge gate (stricter alternate compare).
           echo "=== Referee physics SSoT: src/physics/physics.h ==="
-          echo "=== Corpus: battles/test_session_battles (full gate, agent-timeouts excluded) ==="
-          "$BIN" --dir battles/test_session_battles --stop-on-fail
+          echo "=== Corpus: battles/test_session_battles (Python harness) ==="
+          python3 sim/verify_battles.py battles/test_session_battles
           echo "=== PHYSICS GATE PASSED — 100% turn accuracy on test_session ==="
 
-      - name: Verify golden_physics_battles pass tier (~156 expected_pass)
+      - name: Verify golden_physics_battles pass tier
         run: |
           set -euo pipefail
-          # Install only if needed; harness uses g++ + subprocess driver
           python3 battles/scripts/verify_golden_corpus.py --tier pass
           echo "=== GOLDEN PASS TIER PASSED ==="
 

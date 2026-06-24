@@ -88,10 +88,14 @@ static void test_dest_equals_pos_skips() {
 }
 
 static void test_timeout_reset_100() {
+    // passCheckpoint stores kTimeoutLimit+1; simulateWorld decrements once per turn so
+    // the CG keyframe (post end-turn) shows 100. Unit test checks the pre-decrement store.
     int timeouts[2] = {50, 50};
     csb::Pod p;
     p.next = 1;
     p.passCheckpoint(0, 10, timeouts);
+    EXPECT_TRUE(timeouts[0] == csb::kTimeoutLimit + 1);
+    timeouts[0]--;  // end-of-turn behaviour in Game::simulateWorld
     EXPECT_TRUE(timeouts[0] == 100);
 }
 
