@@ -5,9 +5,9 @@
 All code lives in the **`mad_pod_arena`** monorepo only (the old `codingame-csb-physics` tree was merged and retired).
 
 ```
-$ python3 sim/verify_battles.py battles/test_session_battles
+$ MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
   312/312 tested battles PASSED (46,364 turns, 100.00% accuracy)
-  ★ CI physics gate — must remain 100%
+  ★ MERGE_PHYSICS_OK component (A) — must remain 100% (see docs/VERIFICATION_TRUTH_POLICY.md)
 
 $ python3 sim/verify_battles.py battles/leaderboard_battles
   ~17,399 / 17,521 battles fully match every turn (~99.84% turn accuracy)
@@ -30,7 +30,7 @@ Given a battle JSON from CodinGame:
 4. Feed initial state + exact commands into `physics.h` via `physics/replay_driver`
 5. Compare engine output vs referee state **every single turn** — position, velocity, angle, next_cp, timeouts
 
-A battle PASSes only if **every turn** matches within rounding tolerance (pos ±1, vel ±1, angle ±1°).
+A battle PASSes the **CI gate** only if **every turn** matches within **GATE_*** tolerances from `sim/tolerance_policy.py` (pos **5**, vel **3**, angle **1°**, timeout tol **1**). Tighter ±1 bounds are **EXPLORE_*** / diagnostic defaults (`sim/compare_battle.py`), not the merge gate.
 
 ---
 
@@ -254,7 +254,7 @@ g++ -std=c++17 -O2 -o physics/replay_driver physics/replay_driver.cpp
 | `physics/replay_driver.cpp` | C++ text-protocol driver for physics.h |
 | `sim/battle_parser.py` | Parses battle JSON → structured data |
 | `sim/physics_driver.py` | Python subprocess wrapper for C++ driver |
-| `sim/verify_battles.py` | Batch verifier (the definitive test) |
+| `sim/verify_battles.py --gate` | Gate (A) batch verifier (`MERGE_PHYSICS_OK`; tolerances in `sim/tolerance_policy`) |
 | `sim/compare_battle.py` | Single-battle debugger with detailed output |
 | `rules.md` | Original game rules reference |
 | `battles/test_session_battles/` | 220 real battle replays (test corpus) |

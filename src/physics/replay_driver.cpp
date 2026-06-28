@@ -42,11 +42,14 @@ using csb::Point;
 
 void print_pod_state(const Game& g, int i) {
     const Pod& p = g.pods[i];
-    std::cout << std::fixed << std::setprecision(2);
+    // Pos is integer-valued after endTurn; print with enough digits for angle
+    // (radians) so Python GATE compares the real double, not a 0.01-rad (~0.6°)
+    // quantization that falsely looks like angle drift on every turn.
+    std::cout << std::fixed;
     std::cout << i << " "
-              << p.p.x << " " << p.p.y << " "
+              << std::setprecision(2) << p.p.x << " " << p.p.y << " "
               << (int)p.s.x << " " << (int)p.s.y << " "
-              << p.angle << " "
+              << std::setprecision(17) << p.angle << " "
               << p.next << " "
               << p.shieldtimer << " "
               << p.boosted << "\n";

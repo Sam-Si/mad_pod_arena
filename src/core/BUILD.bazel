@@ -1,0 +1,12 @@
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
+cc_library(
+    name = "core_headers",
+    hdrs = [
+        "constants.h",
+        "maps/catalog.h",
+        "progress.h",
+    ],
+    includes = ["."],
+    visibility = ["//visibility:public"],
+)

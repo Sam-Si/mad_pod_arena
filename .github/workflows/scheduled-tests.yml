@@ -44,7 +44,7 @@ jobs:
           bazel build --config=ci //...
           bazel test --config=ci //... --test_output=errors
 
-  # Broader corpus — informational. Golden gate lives in ci.yml.
+  # Broader corpus — DIAGNOSTIC / informational. PR MERGE_PHYSICS_OK lives in ci.yml physics-accuracy.
   nightly-physics-leaderboard:
     name: Nightly physics (leaderboard sample)
     runs-on: ubuntu-latest
@@ -76,7 +76,9 @@ jobs:
       - name: Build verifier
         run: bazel build --config=ci //src/physics:verify_battles
 
-      - name: Golden corpus (must still pass)
+      # ROLE=DIAGNOSTIC (nightly). Does not block PR merges. Stricter C++ tolerances.
+      # PR compound gate is only ci.yml job physics-accuracy (MERGE_PHYSICS_OK).
+      - name: Nightly C++ verify test_session (diagnostic)
         run: bazel-bin/src/physics/verify_battles --dir battles/test_session_battles
 
       - name: Leaderboard corpus (full post-cutoff set; report only)

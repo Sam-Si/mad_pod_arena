@@ -8,6 +8,7 @@ relative to this file's location (always at <project>/sim/physics_driver.py).
 from __future__ import annotations
 import subprocess
 import os
+import sys
 from typing import List, Dict, Tuple, Optional
 
 # Resolve project root once at import time
@@ -20,27 +21,63 @@ _DEFAULT_DRIVER = os.path.join(_THIS_DIR, "replay_driver")
 _PHYSICS_HDR_DIR = os.path.join(_PROJECT_ROOT, "src", "physics")
 
 
+_driver_logged = False
+
+
 def ensure_driver_built(driver_path: str = _DEFAULT_DRIVER) -> str:
-    """Build the driver if it doesn't exist or is older than source. Returns abs path."""
-    physics_h = os.path.join(_PHYSICS_HDR_DIR, "physics.h")
-    needs_build = not os.path.exists(driver_path)
-    if not needs_build and os.path.exists(_DRIVER_SRC):
-        needs_build = os.path.getmtime(_DRIVER_SRC) > os.path.getmtime(driver_path)
-    if not needs_build and os.path.exists(physics_h):
-        needs_build = os.path.getmtime(physics_h) > os.path.getmtime(driver_path)
-    if needs_build:
-        ret = subprocess.run(
-            [
-                "g++", "-std=c++17", "-O2",
-                f"-I{_PHYSICS_HDR_DIR}",
-                "-o", driver_path,
-                _DRIVER_SRC,
-            ],
-            capture_output=True, text=True,
+    """Resolve replay_driver per docs/VERIFICATION_TRUTH_POLICY.md. Returns abs path.
+
+    Priority:
+      1. MAD_POD_REPLAY_DRIVER env (cwd-relative if not absolute) — wins over driver_path
+      2. If candidate path exists and is executable — use it (no mtime rebuild)
+      3. Else if MAD_POD_GATE_STRICT!=1 — ad-hoc g++ with WARN
+      4. Else fail closed
+    """
+    global _driver_logged
+    strict = os.environ.get("MAD_POD_GATE_STRICT", "") == "1"
+    env = os.environ.get("MAD_POD_REPLAY_DRIVER")
+
+    if env:
+        path = os.path.abspath(env)
+        if not (os.path.isfile(path) and os.access(path, os.X_OK)):
+            raise RuntimeError(
+                f"MAD_POD_REPLAY_DRIVER={env!r} -> {path!r} missing or not executable"
+            )
+        return path
+
+    candidate = os.path.abspath(driver_path)
+    if os.path.isfile(candidate):
+        if not os.access(candidate, os.X_OK):
+            raise RuntimeError(
+                f"Driver exists but is not executable: {candidate}"
+            )
+        if not _driver_logged:
+            print(f"driver={candidate}", file=sys.stderr)
+            _driver_logged = True
+        return candidate
+
+    if strict:
+        raise RuntimeError(
+            f"No replay_driver at {candidate} and MAD_POD_GATE_STRICT=1 "
+            "(fail-closed; copy Bazel binary first)"
         )
-        if ret.returncode != 0:
-            raise RuntimeError(f"Failed to build driver:\n{ret.stderr}")
-    return driver_path
+
+    ret = subprocess.run(
+        [
+            "g++", "-std=c++17", "-O2",
+            f"-I{_PHYSICS_HDR_DIR}",
+            "-o", candidate,
+            _DRIVER_SRC,
+        ],
+        capture_output=True, text=True,
+    )
+    if ret.returncode != 0:
+        raise RuntimeError(f"Failed to build driver:\n{ret.stderr}")
+    print(
+        "WARN: ad-hoc g++ driver; CI uses Bazel //src/physics:replay_driver",
+        file=sys.stderr,
+    )
+    return candidate
 
 
 class CppPhysics:

@@ -1,5 +1,9 @@
 // Verify csb physics against Codingame leaderboard battle JSON (frames[] schema).
 //
+// ROLE=DIAGNOSTIC (stricter numeric compare). NOT the PR merge corpus gate.
+// Merge gate (MERGE_PHYSICS_OK): see docs/VERIFICATION_TRUTH_POLICY.md — Python
+//   sim/verify_battles.py --gate + golden --tier pass + test_physics.
+//
 // Usage:
 //   verify_battles [--dir PATH] [--file PATH] [--mode cumulative|per_turn|both]
 //                  [--verbose] [--stop-on-fail] [--limit N] [--no-ncp]

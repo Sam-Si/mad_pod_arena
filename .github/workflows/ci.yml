@@ -67,16 +67,24 @@ jobs:
         run: bazel test --config=ci //... --test_output=errors
 
   # ---------------------------------------------------------------------------
-  # 3) PHYSICS GATE — referee engine must be 100% on golden corpus
+  # 3) PHYSICS GATE — MERGE_PHYSICS_OK (compound)
   #
-  # Single source of truth: src/physics/physics.h
-  # Verifier:            //src/physics:verify_battles  (C++, no Python required)
-  # Corpus:              battles/test_session_battles/  (~312 games, post-cutoff)
+  # Job id physics-accuracy is FROZEN (see docs/VERIFICATION_TRUTH_POLICY.md).
+  # Code SSoT: src/physics/physics.h
   #
-  # Any FAIL here blocks merge. This is the production fidelity gate.
+  # MERGE_PHYSICS_OK := this job green := (U) ∧ (A) ∧ (B)
+  #   (U) bazel test //src/physics:test_physics
+  #   (A) MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
+  #   (B) MAD_POD_GATE_STRICT=1 python3 battles/scripts/verify_golden_corpus.py --tier pass
+  # Driver: Bazel //src/physics:replay_driver copied to sim/replay_driver
+  # Tolerances: sim/tolerance_policy.py GATE_*
+  #
+  # C++ //src/physics:verify_battles is built for compile smoke / local DIAGNOSTIC
+  # (stricter compare). It is NOT the merge corpus verifier.
+  # PR_MERGE_OK also requires battle-retention and build-and-test.
   # ---------------------------------------------------------------------------
   physics-accuracy:
-    name: Physics 100% (golden battles)
+    name: Physics gate (compound)
     runs-on: ubuntu-latest
     timeout-minutes: 60
     needs: [battle-retention]
@@ -101,10 +109,10 @@ jobs:
           disk-cache: ${{ runner.temp }}/bazel-disk-cache
           repository-cache: ${{ runner.temp }}/bazel-repo-cache
 
-      - name: Build verifier (SSoT path)
-        run: bazel build --config=ci //src/physics:verify_battles //src/physics:test_physics
+      - name: Build physics targets (C++ diagnostic binary + tests + replay_driver)
+        run: bazel build --config=ci //src/physics:verify_battles //src/physics:test_physics //src/physics:replay_driver
 
-      - name: Unit tests for physics.h
+      - name: "Gate (U): test_physics"
         run: bazel test --config=ci //src/physics:test_physics --test_output=errors
 
       - name: Setup Python
@@ -112,30 +120,29 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Build replay_driver for Python harness
+      - name: Install replay_driver for Python harness
         run: |
           set -euo pipefail
-          bazel build --config=ci //src/physics:replay_driver
-          # physics_driver.py defaults to sim/replay_driver (local g++ path)
           cp -f bazel-bin/src/physics/replay_driver sim/replay_driver
           chmod +x sim/replay_driver
 
-      - name: Verify test_session corpus (must be 100%)
+      - name: "Gate (A): Python verify_battles --gate test_session"
+        env:
+          MAD_POD_GATE_STRICT: "1"
         run: |
           set -euo pipefail
-          # Authoritative gate: sim/verify_battles.py drives physics.h via replay_driver
-          # (tolerances in docs/physics-verification.md). C++ //src/physics:verify_battles
-          # remains buildable but is not the merge gate (stricter alternate compare).
-          echo "=== Referee physics SSoT: src/physics/physics.h ==="
-          echo "=== Corpus: battles/test_session_battles (Python harness) ==="
-          python3 sim/verify_battles.py battles/test_session_battles
-          echo "=== PHYSICS GATE PASSED — 100% turn accuracy on test_session ==="
+          echo "=== MERGE_PHYSICS_OK component (A) ==="
+          MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
+          echo "=== (A) PASSED ==="
 
-      - name: Verify golden_physics_battles pass tier
+      - name: "Gate (B): golden corpus --tier pass"
+        env:
+          MAD_POD_GATE_STRICT: "1"
         run: |
           set -euo pipefail
-          python3 battles/scripts/verify_golden_corpus.py --tier pass
-          echo "=== GOLDEN PASS TIER PASSED ==="
+          echo "=== MERGE_PHYSICS_OK component (B) ==="
+          MAD_POD_GATE_STRICT=1 python3 battles/scripts/verify_golden_corpus.py --tier pass
+          echo "=== (B) PASSED ==="
 
       - name: Sanity — golden corpus present
         run: |
@@ -145,3 +152,6 @@ jobs:
           n2=$(find battles/test_session_battles -name 'battle_*.json' | wc -l)
           echo "test_session_battles: $n2"
           test "$n2" -ge 100
+
+      - name: Verification truth policy checker
+        run: python3 sim/check_verification_policy.py

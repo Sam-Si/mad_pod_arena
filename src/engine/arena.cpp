@@ -1,60 +1,34 @@
 #include "src/engine/arena.h"
+#include "maps/catalog.h"
+#include "progress.h"
+#define CSB_PHYSICS_NO_GLOBAL_USING 1
+#include "src/physics/physics.h"
+
+#include <cmath>
 #include <iostream>
+#include <sstream>
+#include <string>
 
-// All 18 maps captured from real CodinGame server
-static const std::vector<std::vector<Vec2>> ALL_MAPS = {
-    // Map 0: Cross variant
-    { Vec2(12929, 7191), Vec2(5614, 2557), Vec2(4114, 7440), Vec2(13515, 2340) },
-    // Map 1: Hostile territories
-    { Vec2(13584, 7626), Vec2(12449, 1355), Vec2(10519, 6003), Vec2(3593, 5174) },
-    // Map 2: Tramway (6 CPs)
-    { Vec2(14075, 7765), Vec2(13888, 1202), Vec2(10257, 4931), Vec2(6104, 2204), Vec2(3049, 5211), Vec2(6260, 7743) },
-    // Map 3: Dalton
-    { Vec2(9426, 7247), Vec2(5962, 4254), Vec2(14674, 1436), Vec2(3442, 7215) },
-    // Map 4: Triangle
-    { Vec2(5033, 5264), Vec2(11472, 6064), Vec2(9081, 1865) },
-    // Map 5: Tramway variant (6 CPs)
-    { Vec2(13095, 2313), Vec2(4579, 2152), Vec2(7377, 4920), Vec2(3303, 7243), Vec2(14551, 7688), Vec2(10577, 5043) },
-    // Map 6: Makbilit
-    { Vec2(2645, 7027), Vec2(10065, 5940), Vec2(13925, 1916), Vec2(8004, 3244) },
-    // Map 7: Arrow
-    { Vec2(14633, 1420), Vec2(3428, 7230), Vec2(9449, 7224), Vec2(5962, 4253) },
-    // Map 8: Reverse Tramway (6 CPs)
-    { Vec2(3031, 5179), Vec2(6271, 7752), Vec2(14096, 7753), Vec2(13873, 1231), Vec2(10258, 4890), Vec2(6128, 2203) },
-    // Map 9: Diamond
-    { Vec2(11202, 5412), Vec2(7244, 6630), Vec2(5403, 2840), Vec2(10293, 3376) },
-    // Map 10: Triangle variant
-    { Vec2(6000, 5375), Vec2(11322, 2825), Vec2(7508, 6916) },
-    // Map 11: Diamond variant
-    { Vec2(5406, 2811), Vec2(10302, 3339), Vec2(11231, 5436), Vec2(7267, 6667) },
-    // Map 12: Tilted square
-    { Vec2(9547, 1383), Vec2(3654, 4439), Vec2(7977, 7904), Vec2(13322, 5535) },
-    // Map 13: Tilted square (reverse)
-    { Vec2(13310, 5555), Vec2(9561, 1374), Vec2(3636, 4433), Vec2(7981, 7891) },
-    // Map 14: Tilted square variant
-    { Vec2(13283, 5513), Vec2(9560, 1394), Vec2(3652, 4444), Vec2(7997, 7872) },
-    // Map 15: Tramway variant 2 (6 CPs)
-    { Vec2(6306, 7766), Vec2(14117, 7743), Vec2(13885, 1197), Vec2(10229, 4926), Vec2(6102, 2199), Vec2(2991, 5197) },
-    // Map 16: Tilted square variant 2
-    { Vec2(13311, 5519), Vec2(9585, 1426), Vec2(3615, 4419), Vec2(7974, 7919) },
-    // Map 17: Hostile territories variant
-    { Vec2(12435, 1353), Vec2(10563, 5965), Vec2(3558, 5170), Vec2(13579, 7616) },
-};
-
-Arena::Arena(std::shared_ptr<IBot> bot0, std::shared_ptr<IBot> bot1) 
+Arena::Arena(std::shared_ptr<IBot> bot0, std::shared_ptr<IBot> bot1)
     : bot0_(bot0), bot1_(bot1) {}
 
-int Arena::GetMapCount() { return ALL_MAPS.size(); }
+int Arena::GetMapCount() { return GetTournamentMapCount(); }
 
 void Arena::GenerateMap(int map_idx) {
     laps_ = 3;
-    
-    if (map_idx < 0 || map_idx >= (int)ALL_MAPS.size()) {
-        map_idx = FastRandInt(0, ALL_MAPS.size() - 1);
-    }
-    cps_ = ALL_MAPS[map_idx];
-    cp_count_ = cps_.size();
 
+    if (map_idx < 0 || map_idx >= GetTournamentMapCount()) {
+        map_idx = FastRandInt(0, GetTournamentMapCount() - 1);
+    }
+    const auto& raw = GetTournamentMapsRaw()[static_cast<size_t>(map_idx)];
+    cps_.clear();
+    cps_.reserve(raw.size());
+    for (const auto& pt : raw) {
+        cps_.emplace_back(pt.x, pt.y);
+    }
+    cp_count_ = static_cast<int>(cps_.size());
+
+    // Degrees view pods for IBot (full world). Core state lives in game_ during PlayGame.
     double dx = cps_[1].x - cps_[0].x;
     double dy = cps_[1].y - cps_[0].y;
     double dd = std::sqrt(dx * dx + dy * dy);
@@ -73,67 +47,125 @@ void Arena::GenerateMap(int map_idx) {
         pods_[i] = Pod();
         pods_[i].id = i;
         pods_[i].team = i / 2;
-        
         pods_[i].pos.x = Round(cps_[0].x + uy * start_mults[i].x);
         pods_[i].pos.y = Round(cps_[0].y + ux * start_mults[i].y);
-        
         pods_[i].angle = -1.0;
         pods_[i].next_cp_id = 1;
+        pods_[i].boost_available = true;
+        pods_[i].shield_cd = 0;
+        pods_[i].timeout = 0;
+        pods_[i].laps_completed = 0;
+    }
+}
+
+static std::string ThrustToken(const PodAction& a) {
+    if (a.thrust == -1) return "SHIELD";
+    if (a.thrust == 650) return "BOOST";
+    std::ostringstream oss;
+    oss << a.thrust;
+    return oss.str();
+}
+
+// Build degrees IBot view from Fidelity game (full 4 pods). Local CP for next_cp_id.
+static void SyncViewFromGame(const csb::Game& g, int track_size, std::vector<Pod>& view) {
+    view.resize(4);
+    for (int i = 0; i < 4; ++i) {
+        const csb::Pod& c = g.pods[static_cast<size_t>(i)];
+        Pod& v = view[static_cast<size_t>(i)];
+        v.id = i;
+        v.team = i / 2;
+        v.pos.x = c.p.x;
+        v.pos.y = c.p.y;
+        v.vel.x = c.s.x;
+        v.vel.y = c.s.y;
+        // Uninitialized: core uses ~-1° in radians; expose -1 degrees for IBot contract.
+        if (!c.hasRotated && c.angle > -0.02 && c.angle < 0.0) {
+            v.angle = -1.0;
+        } else if (!c.hasRotated && std::fabs(c.angle + csb::kDegToRad) < 1e-9) {
+            v.angle = -1.0;
+        } else {
+            double deg = c.angle * csb::kRadToDeg;
+            while (deg >= 360.0) deg -= 360.0;
+            while (deg < 0.0) deg += 360.0;
+            v.angle = deg;
+        }
+        v.next_cp_id = csb_progress::LocalNext(c.next, track_size);
+        v.boost_available = (c.boosted == 0);
+        v.shield_cd = c.shieldtimer;
+        // Approximate per-pod timeout display from team timeout (view only).
+        v.timeout = (i < 2) ? (csb::kTimeoutLimit + 1 - g.playerTimeout[0]) : (csb::kTimeoutLimit + 1 - g.playerTimeout[1]);
+        if (v.timeout < 0) v.timeout = 0;
+        int lap = 0, local = 0;
+        csb_progress::Decode(c.next, track_size, &lap, &local);
+        v.laps_completed = lap;
+        if (c.won) {
+            v.laps_completed = 3;  // signal finished for any legacy readers
+        }
     }
 }
 
 ArenaResult Arena::PlayGame(bool verbose, int map_idx) {
     GenerateMap(map_idx);
 
+    // Fidelity world (SSOT) — OQ2: outcomes must match referee Game / replay_driver.
+    csb::Game game;
+    std::vector<csb::Point> track;
+    track.reserve(cps_.size());
+    for (const auto& cp : cps_) {
+        track.push_back({cp.x, cp.y});
+    }
+    game.initialize(track, laps_);
+
     bot0_->Initialize(laps_, cp_count_, cps_, 0);
     bot1_->Initialize(laps_, cp_count_, cps_, 1);
 
+    const int track_size = cp_count_;
     int turn = 0;
+    csb::StepOptions fidelity{csb::PhysicsProfile::Fidelity};
+
     while (true) {
         turn++;
         if (verbose) std::cout << "--- Turn " << turn << " ---" << std::endl;
 
+        SyncViewFromGame(game, track_size, pods_);
+
+        // Preserve full 4-pod observation for both bots (arena.cpp historical contract).
         std::vector<PodAction> actions0 = bot0_->GetActions(pods_);
         std::vector<PodAction> actions1 = bot1_->GetActions(pods_);
 
-        // Apply actions
-        pods_[0].ApplyServerAction(actions0[0].tx, actions0[0].ty, actions0[0].thrust);
-        pods_[1].ApplyServerAction(actions0[1].tx, actions0[1].ty, actions0[1].thrust);
-        pods_[2].ApplyServerAction(actions1[0].tx, actions1[0].ty, actions1[0].thrust);
-        pods_[3].ApplyServerAction(actions1[1].tx, actions1[1].ty, actions1[1].thrust);
+        game.applyAction(0, static_cast<int>(actions0[0].tx), static_cast<int>(actions0[0].ty), ThrustToken(actions0[0]));
+        game.applyAction(1, static_cast<int>(actions0[1].tx), static_cast<int>(actions0[1].ty), ThrustToken(actions0[1]));
+        game.applyAction(2, static_cast<int>(actions1[0].tx), static_cast<int>(actions1[0].ty), ThrustToken(actions1[0]));
+        game.applyAction(3, static_cast<int>(actions1[1].tx), static_cast<int>(actions1[1].ty), ThrustToken(actions1[1]));
+        game.step(fidelity);
 
-        // Simulate physics (checkpoint crossing is done internally per sub-step)
-        PhysicsSimulator::SimulateTurn(pods_.data(), cps_);
-
-        // Check CPs, timeouts, and wins
-        bool team0_won = false;
-        bool team1_won = false;
-        bool team0_eliminated = true;
-        bool team1_eliminated = true;
-
-        for (int i = 0; i < 4; ++i) {
-            pods_[i].timeout++;
-            
-            if (pods_[i].laps_completed == laps_) {
-                if (pods_[i].team == 0) team0_won = true;
-                else team1_won = true;
-            }
-
-            if (pods_[i].timeout < 100) {
-                if (pods_[i].team == 0) team0_eliminated = false;
-                else team1_eliminated = false;
-            }
+        // Terminal conditions solely from Game / progress (not legacy laps_completed path).
+        bool team0_won = game.pods[0].won || game.pods[1].won;
+        bool team1_won = game.pods[2].won || game.pods[3].won;
+        // Prefer winner() if decisive
+        int w = game.checkWinner();
+        if (w == 0) return {0, turn, "Team 0 finished the race (Fidelity)"};
+        if (w == 1) return {1, turn, "Team 1 finished the race (Fidelity)"};
+        if (w == -1 && (team0_won || team1_won || !game.teamAlive(0) || !game.teamAlive(1))) {
+            return {-1, turn, "Draw (Fidelity terminal)"};
         }
 
-        if (team0_won && team1_won) return {-1, turn, "Draw (both teams finished on same turn)"};
+        bool team0_eliminated = game.playerTimeout[0] <= 0;
+        bool team1_eliminated = game.playerTimeout[1] <= 0;
+        if (team0_eliminated && team1_eliminated)
+            return {-1, turn, "Draw (both eliminated by timeout)"};
+        if (team0_eliminated)
+            return {1, turn, "Team 1 won (Team 0 eliminated by timeout)"};
+        if (team1_eliminated)
+            return {0, turn, "Team 0 won (Team 1 eliminated by timeout)"};
+
+        if (team0_won && team1_won)
+            return {-1, turn, "Draw (both teams finished on same turn)"};
         if (team0_won) return {0, turn, "Team 0 finished the race"};
         if (team1_won) return {1, turn, "Team 1 finished the race"};
-        
-        if (team0_eliminated && team1_eliminated) return {-1, turn, "Draw (both eliminated by timeout)"};
-        if (team0_eliminated) return {1, turn, "Team 1 won (Team 0 eliminated by timeout)"};
-        if (team1_eliminated) return {0, turn, "Team 0 won (Team 1 eliminated by timeout)"};
 
-        if (turn >= 1000) {
+        // CG / Fidelity max turns (was 1000 on legacy arena)
+        if (turn >= csb::kMaxGameTurns) {
             return {-1, turn, "Draw (Max turns reached)"};
         }
     }

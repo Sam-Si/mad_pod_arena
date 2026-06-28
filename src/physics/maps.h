@@ -1,3 +1,7 @@
+// QUARANTINE (SSOT PR-2): Go-shaped 13-map ALTERNATE catalog — NOT a subset of the
+// tournament 18 maps in src/core/maps/catalog.h. Unused by gate drivers.
+// Prefer deletion once no references remain; do not teach as SSOT.
+
 #pragma once
 #include <vector>
 

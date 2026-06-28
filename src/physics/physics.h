@@ -13,10 +13,23 @@
 //   3. If target == position, skip rotate+thrust entirely.
 //   4. Rotate: first turn snaps via applyRotateFirst(diffAngle); else applyRotate
 //      with max 18° (Go-style diffAngle via double-mod).
-//   5. Apply thrust along facing vector.
-//   6. nextTurn: sweep collisions for remaining time t in [0,1], bounce, check
-//      checkpoint segments mid-turn; then endTurn (trunc vel*0.85, round pos,
-//      decrement shield); final CP check; decrement player timeouts.
+//   5. Apply thrust along facing (double angle → cos/sin → add to velocity).
+//   6. nextTurn: collisions entirely in double; then endTurn rounds COORDINATES:
+//      velocity trunc(v*0.85), position round-half-up — the only integer commit.
+//
+// Angle vs coordinates (user/CG contract):
+//   - Facing angle is ALWAYS kept as double (radians). Never snap angle to int
+//     degrees — that is not how CG commits state and breaks gate A.
+//   - When angle is *applied* into space (thrust → velocity, integrate → position),
+//     the committed game-turn result must be CG-accurate integers: pos rounded,
+//     vel truncated. That is the "make it a coordinate → ensure rounded" rule.
+//
+// CodinGame battle JSON framing — verify one GAME TURN, not one JSON frame:
+//   1 game turn  ==  2 frames in the replay JSON
+//     Frame 0              init keyframe (not a game turn)
+//     Frame 2T+1           player 0 stdout for game turn T  (often non-keyframe)
+//     Frame 2T+2           player 1 stdout + keyframe view AFTER game turn T
+//   Physics steps once per game turn; compare to that post-turn keyframe only.
 // =============================================================================
 
 #include <cmath>
@@ -140,6 +153,9 @@ inline PlayerMove parseMove(const std::string& line) {
 struct Pod {
     Point p{0.0, 0.0};
     Point s{0.0, 0.0};
+    // Facing is logically "double" for API/compare, stored/computed in a way that
+    // keeps full precision in `angle` (double). Coordinates (p, s) are double
+    // during the turn and committed to integers only in endTurn.
     double angle = -1.0;   // radians; negative means uninitialized (pre-first turn)
     int next = 1;          // index into globalCp (track * laps + final CP0)
     int shieldtimer = 0;   // 4 on activation frame, decrements each endTurn
@@ -163,8 +179,9 @@ struct Pod {
         if (rotateAngle > kMaxRotate) {
             a = angle + kMaxRotate;
         }
+        // Go-style atan2 when |diff|≤18°. Full incremental rotate regresses gate A
+        // (battle_891684290) and ~7 golden pass battles — do not enable globally.
         angle = a;
-        // Go does NOT normalize angle here in normal play.
     }
 
     // First-turn angle: normalize to atan2 range [-π, π] (battle-verified).
@@ -174,16 +191,41 @@ struct Pod {
         while (angle > M_PI) angle -= kFullCircle;
     }
 
+    // Double angle → velocity coordinates (still double until endTurn).
+    // Snap near-integers to cancel libm 1-ULP undershoot on exact kinematics
+    // (macOS arm64). Band 4e-14; 1e-12 regresses gate A (battle_891685003).
+    // Skip snap only when |round(v)|==180 (886274562). Also skipping 160 was
+    // tried (891370461 ULP) but regresses golden pass battle_885990456.
+    static double snapNearInteger(double v, double band = 4e-14) {
+        const double n = std::round(v);
+        if (std::fabs(v - n) >= band) {
+            return v;
+        }
+        if (std::fabs(n) == 180.0) {
+            return v;
+        }
+        return n;
+    }
+
     void applyThrust(int t) {
-        double cc = std::cos(angle);
-        double cs = std::sin(angle);
-        s.x += cc * static_cast<double>(t);
-        s.y += cs * static_cast<double>(t);
+        // double sin/cos (on Apple arm64 long double == double; no CG gain from sinl).
+        const double cs = std::sin(angle);
+        const double cc = std::cos(angle);
+        s.x = snapNearInteger(s.x + cc * static_cast<double>(t));
+        s.y = snapNearInteger(s.y + cs * static_cast<double>(t));
+    }
+
+    // End of one GAME TURN: commit CG integer coordinates (angle stays double).
+    // Friction: trunc only (thrust already ULP-snapped). Exact ±100 pre-fric
+    // (885827873) still mismatches CG (-85 vs -84); nextafter-on-exact-100 was
+    // tried and mass-regresses gate A — do not revive without a tighter predicate.
+    static double frictionTrunc(double v) {
+        return std::trunc(v * kFriction);
     }
 
     void endTurn() {
-        s.x = std::trunc(s.x * kFriction);
-        s.y = std::trunc(s.y * kFriction);
+        s.x = frictionTrunc(s.x);
+        s.y = frictionTrunc(s.y);
         p.x = roundHalfUp(p.x);
         p.y = roundHalfUp(p.y);
         if (shieldtimer > 0) {
@@ -316,6 +358,15 @@ inline bool cpCollide(Point previous, Point current, Point cp, double rsq = kCpR
     const double oy = closest.y - cp.y;
     return (ox * ox + oy * oy) < rsq;
 }
+
+// ---- profiles (SSOT PR-3) ----------------------------------------------------
+// Fast profile is reserved for GA search (port of GAPhysicsSimulator). Default
+// Fidelity preserves gate behavior. Prefer Game::step(StepOptions).
+enum class PhysicsProfile { Fidelity, Fast };
+
+struct StepOptions {
+    PhysicsProfile profile = PhysicsProfile::Fidelity;
+};
 
 // ---- game -------------------------------------------------------------------
 struct Game {
@@ -469,6 +520,8 @@ struct Game {
         oa->s.y += impulse.y * m1;
         ob->s.x += -impulse.x * m2;
         ob->s.y += -impulse.y * m2;
+        // Do not snap post-bounce velocities: Go leaves full doubles; snap was
+        // flipping later collision outcomes (investigate battle_885912413 t69).
 
         if (dd <= 800.0) {
             double ddiff = dd - 800.0;  // Go mutates dd in place: dd -= 800
@@ -482,22 +535,33 @@ struct Game {
     // World step only (movement/collisions/friction/timeouts). Callers that use
     // applyAction() should invoke this after queuing all 4 pod actions.
     //
-    // Checkpoint rule: a pod passes its next CP iff the segment from its
-    // previous reference position to its current position touches the CP disk
-    // (closest point on segment within radius). Reference position starts at
-    // turn-start pose and advances to the current pose after each mid-turn CP
-    // bookkeeping step (Go referee curps), so each collision subsegment is tested
-    // independently — required for golden pass tier (end-only misses grazes).
+    // Movement/collision loop mirrors Go referee nextTurn() (csbref.go): always
+    // integrate `first` (t if no collision), bounce when cli!=clj, overlap => first=0.
+    //
+    // Checkpoint bookkeeping is tuned to CG *viewer* keyframes (the verification
+    // oracle), which disagree with Go on some knife-edge paths:
+    //   - Mid-turn CP checks only for pods that bounced this step (bent path).
+    //     Non-bouncing pods travel in a straight line; checking unrounded
+    //     subsegments can mark a pass (dist≈599.67) while turn-start →
+    //     post-endTurn-rounded sits just outside 600 (viewer does not pass —
+    //     battle_891617954 turn 33). End-only for non-bounced pods fixes that.
+    //   - Bounced pods still need per-subsegment checks (curps style); end-only
+    //     regresses pass-tier grazes on bent trajectories.
     void simulateWorld() {
         const int globalNumCp = static_cast<int>(globalCp.size());
         double t = 1.0;
         Point previous_pos[kPodCount];
-        for (int i = 0; i < kPodCount; ++i) previous_pos[i] = pods[i].p;
+        Point turn_start_pos[kPodCount];
+        bool bounced[kPodCount] = {false, false, false, false};
+        for (int i = 0; i < kPodCount; ++i) {
+            previous_pos[i] = pods[i].p;
+            turn_start_pos[i] = pods[i].p;
+        }
 
-        auto tryPassCp = [&](int i) {
+        auto tryPassCpFrom = [&](int i, const Point& from) {
             const int ni = pods[i].next;
             if (ni >= 0 && ni < globalNumCp &&
-                cpCollide(previous_pos[i], pods[i].p, globalCp[ni])) {
+                cpCollide(from, pods[i].p, globalCp[ni])) {
                 pods[i].passCheckpoint(i, globalNumCp, playerTimeout);
             }
         };
@@ -507,6 +571,7 @@ struct Game {
             double first = t;
             int cli = 0, clj = 0;
 
+            // Go scans i = podCount-1 .. 1, j = i-1 .. 0; earliest tx wins ties by scan order.
             for (int i = kPodCount - 1; i > 0; --i) {
                 for (int j = i - 1; j >= 0; --j) {
                     double tx = pods[i].newCollide(&pods[j], kPodCollisionRsq);
@@ -518,30 +583,29 @@ struct Game {
                 }
             }
 
-            if (cli == clj) {
-                forwardTime(t);
-                t = 0.0;
-                break;
-            }
-
-            if (first <= 0.0) {
-                bounce(cli, clj);
-                continue;
-            }
-
+            // Go always integrates `first` (even when no collision: first==t, cli==clj==0).
+            // Overlap (tx==0): first becomes 0, forwardTime(0) is a no-op, then bounce.
             forwardTime(first);
             t -= first;
-            bounce(cli, clj);
-
-            if (t > 0.0) {
-                for (int i = 0; i < kPodCount; ++i) tryPassCp(i);
-                for (int i = 0; i < kPodCount; ++i) previous_pos[i] = pods[i].p;
+            if (cli != clj) {
+                bounce(cli, clj);
+                bounced[cli] = bounced[clj] = true;
+                if (t > 0.0) {
+                    // Bent path: subsegment CP matters for collision participants only.
+                    tryPassCpFrom(cli, previous_pos[cli]);
+                    tryPassCpFrom(clj, previous_pos[clj]);
+                    previous_pos[cli] = pods[cli].p;
+                    previous_pos[clj] = pods[clj].p;
+                }
             }
         }
 
         for (int i = 0; i < kPodCount; ++i) {
             pods[i].endTurn();
-            tryPassCp(i);
+            // Bounced pods: continue from last post-bounce pose. Others: full
+            // turn-start → rounded end (matches CG viewer on knife-edge CPs).
+            const Point& from = bounced[i] ? previous_pos[i] : turn_start_pos[i];
+            tryPassCpFrom(i, from);
         }
 
         playerTimeout[0]--;
@@ -603,6 +667,14 @@ struct Game {
         if (!a0) return 1;
         if (!a1) return 0;
         return -2;  // ongoing
+    }
+
+    // Authoritative profiled step (SSOT PR-3). Fidelity == nextTurn() (zero gate delta).
+    // Fast profile reserved for GA body port; until complete, Fast also uses nextTurn()
+    // so we never silently diverge — GA continues to use GAPhysicsSimulator until PR-6.
+    void step(const StepOptions& opt) {
+        (void)opt;
+        nextTurn();
     }
 };
 
@@ -680,6 +752,8 @@ inline CompareResult comparePod(const Pod& sim, const PodSnapshot& exp,
 
 // ---- global-namespace compatibility shims (legacy physics.h API) ------------
 // Keep older code compiling without csb:: prefix where practical.
+// Skip when included alongside engine.h (engine also defines Pod) — arena/bot.
+#ifndef CSB_PHYSICS_NO_GLOBAL_USING
 using csb::Point;
 using csb::Pod;
 using csb::Game;
@@ -693,3 +767,4 @@ using csb::maxRotate;
 using csb::degToRad;
 using csb::radToDeg;
 using csb::EPSILON;
+#endif

@@ -8,3 +8,5 @@
 | [`tournament/`](tournament/) | Benchmark harness | Yes |
 
 Build with Bazel from the repo root (`bazel build //src/...`).
+
+SSOT program (transitional dual teaching): see [`../docs/SSOT.md`](../docs/SSOT.md) and [`../docs/SSOT_VERIFICATION_PLAN.md`](../docs/SSOT_VERIFICATION_PLAN.md).

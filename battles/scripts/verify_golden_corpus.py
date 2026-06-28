@@ -54,6 +54,7 @@ def tier_files(tier: str) -> list[tuple[str, str]]:
 
 
 def main():
+    print("role=GATE_COMPONENT", file=sys.stderr)
     ap = argparse.ArgumentParser()
     ap.add_argument("--tier", choices=["pass", "fail", "all"], default="all")
     ap.add_argument("--strict-fail-tier", action="store_true",

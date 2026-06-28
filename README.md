@@ -35,12 +35,16 @@ mad_pod_arena/
 │   └── scripts/                  Scrape / migrate / dedup helpers
 │
 ├── third_party/referees/     External referee & arena sources (read-only refs)
-├── docs/                     Rules, verification notes, research logs
-│   └── archive/              Merge notes (e.g. retired codingame-csb-physics)
+├── docs/                     Rules, verification policy, research logs
+│   ├── VERIFICATION_TRUTH_POLICY.md  ← MERGE_PHYSICS_OK / CI gate governance
+│   ├── physics-verification.md       Methodology & edge cases
+│   └── archive/              Superseded notes (SOLID review pointer, merges)
 ├── tools/                    Bazel helpers (cpp_opts.bzl, …)
 ├── setup.sh / setup-ubuntu.sh
 └── BUILD.bazel, MODULE.bazel, WORKSPACE.bazel
 ```
+
+Root stays lean: `README.md`, `GEMINI.md`, Bazel modules, `src/`, `sim/`, `battles/`, `docs/`, `tools/`, `third_party/`, setup scripts only — no ad-hoc review dumps at repo root.
 
 | Want to… | Go here |
 |---|---|
@@ -60,7 +64,7 @@ mad_pod_arena/
 
 | Concern | **Only** edit here | Verified by |
 |---|---|---|
-| **Referee / CG-server physics** | [`src/physics/physics.h`](src/physics/physics.h) | CI physics gate + `//src/physics:verify_battles` |
+| **Referee / CG-server physics** | [`src/physics/physics.h`](src/physics/physics.h) | **`MERGE_PHYSICS_OK`** (job `physics-accuracy`) — see [`docs/VERIFICATION_TRUTH_POLICY.md`](docs/VERIFICATION_TRUTH_POLICY.md) |
 | **Bot / arena / GA search physics** | [`src/engine/engine.h`](src/engine/engine.h) + [`engine.cpp`](src/engine/engine.cpp) | `//src/engine` tests, tournaments |
 | **Battle retention** | [`battles/RETENTION.md`](battles/RETENTION.md) (`id > 870230019`) | `battles/scripts/enforce_retention.py` in CI |
 
@@ -71,7 +75,9 @@ mad_pod_arena/
 | **Used by** | Verifiers (`verify_battles`, `sim/` → `replay_driver`) | GA bot, arena, tournament |
 | **Precision** | `double`, full referee edge cases | Optimized; GA path may skip checks |
 
-`src/engine/csb_physics.h` is **not** referee physics — experimental engine helper only.
+> **SSOT refactor in progress:** dual physics SSOT teaching is **transitional**. Canonical end state and verification: [`docs/SSOT.md`](docs/SSOT.md), [`docs/SSOT_REFACTOR_DESIGN.md`](docs/SSOT_REFACTOR_DESIGN.md), [`docs/SSOT_VERIFICATION_PLAN.md`](docs/SSOT_VERIFICATION_PLAN.md). Gate job `physics-accuracy` and `GATE_*` stay frozen.
+
+`src/engine/csb_physics.h` was experimental (not referee SoT) and is **removed** (SSOT PR-1).
 
 **Rule of thumb:** reproducing the CodinGame server → `src/physics/` only.
 Improving bot search speed/quality → `src/engine/` only.
@@ -83,10 +89,21 @@ Never paste physics loops into bots, `sim/`, or third_party wrappers.
 |---|---|---|
 | [`ci.yml`](.github/workflows/ci.yml) | `battle-retention` | No battles with `id <= 870230019` |
 | [`ci.yml`](.github/workflows/ci.yml) | `build-and-test` | `bazel build/test //...` |
-| [`ci.yml`](.github/workflows/ci.yml) | **`physics-accuracy`** | **`verify_battles` on `test_session_battles` must be 100%** |
-| [`scheduled-tests.yml`](.github/workflows/scheduled-tests.yml) | nightly | Full build + leaderboard corpus report |
+| [`ci.yml`](.github/workflows/ci.yml) | **`physics-accuracy`** | **`MERGE_PHYSICS_OK`**: `test_physics` + `sim/verify_battles.py --gate` + golden `--tier pass` |
+| [`scheduled-tests.yml`](.github/workflows/scheduled-tests.yml) | nightly | Full build + **diagnostic** C++ corpus (not PR merge gate) |
 
-Local equivalent of the physics gate:
+Local **`MERGE_PHYSICS_OK`** (physics only; **`PR_MERGE_OK`** also needs retention + `build-and-test`). Spec: [`docs/VERIFICATION_TRUTH_POLICY.md`](docs/VERIFICATION_TRUTH_POLICY.md).
+
+```bash
+bazel build //src/physics:replay_driver //src/physics:test_physics
+cp -f bazel-bin/src/physics/replay_driver sim/replay_driver && chmod +x sim/replay_driver
+bazel test //src/physics:test_physics
+MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
+MAD_POD_GATE_STRICT=1 python3 battles/scripts/verify_golden_corpus.py --tier pass
+python3 sim/check_verification_policy.py
+```
+
+C++ `verify_battles` is **DIAGNOSTIC** (stricter; may fail where the gate passes):
 
 ```bash
 bazel build //src/physics:verify_battles
@@ -164,21 +181,22 @@ bazel-bin/src/physics/verify_battles --file battles/test_session_battles/battle_
 
 ### Python harness (`sim/`)
 
-Uses `replay_driver` (auto-built via `g++`, or build with Bazel first).
+Prefer Bazel `replay_driver` copied to `sim/replay_driver` (CI sets `MAD_POD_GATE_STRICT=1`). Ad-hoc `g++` only when the binary is missing and strict is off (prints a WARN).
 
 ```bash
-# Verify golden corpus
-python3 sim/verify_battles.py battles/test_session_battles
+# Gate (A) — MERGE_PHYSICS_OK component
+MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
 
-# Debug one battle in detail
+# Diagnostic batch (same GATE_* numbers; not gate role without --gate)
+python3 sim/verify_battles.py battles/leaderboard_battles
+
+# Debug one battle (EXPLORE_* tolerances; optional --gate-tolerances)
 python3 sim/compare_battle.py battles/test_session_battles/battle_891669739.json
 ```
 
-Or via Bazel for the driver only:
-
 ```bash
 bazel build //src/physics:replay_driver
-# Then point sim/physics_driver.py at bazel-bin/src/physics/replay_driver if desired
+cp -f bazel-bin/src/physics/replay_driver sim/replay_driver && chmod +x sim/replay_driver
 ```
 
 ### Battle corpora
@@ -232,7 +250,7 @@ src/
     engine.cpp/h        PhysicsSimulator (reference) + GAPhysicsSimulator (GA-optimized)
     arena.cpp/h         Game loop, 18 real CG maps, timeout/win detection
     bot.h               IBot interface + BotConfig hyperparameters
-    csb_physics.h       Shared CSB physics helpers used by engine
+    # csb_physics.h removed (SSOT PR-1) — was experimental, not referee SoT
     test_physics.cpp    Diff harness vs Go referee
     diff_test.py        Python runner for the above
   physics/

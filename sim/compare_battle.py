@@ -1,91 +1,130 @@
 #!/usr/bin/env python3
 """
-Full battle replay validator using your C++ physics engine.
+Full battle replay validator (DIAGNOSTIC — not MERGE_PHYSICS_OK alone).
 
-Runs an entire test_session_battle (or any battle JSON) through the
-compiled physics/replay_driver and compares every post-turn state
-against the ground truth recorded by the real referee.
+Usage (from repo root):
+    python3 sim/compare_battle.py battles/test_session_battles/battle_XXX.json
+    python3 sim/compare_battle.py battles/.../battle_XXX.json --max-turns 20
+    python3 sim/compare_battle.py battles/.../battle_XXX.json --gate-tolerances
 
-Usage:
-    python sim/compare_battle.py battles/test_session_battles/battle_891669739.json [--max-turns 20]
-
-It will stop at the first significant divergence and print a detailed report.
-This is the tool you can use to gain high confidence that your physics
-produces the correct final outcome given start + all moves.
+Legacy: second positional digit still accepted as max turns (pre-argparse compat).
 """
 
 from __future__ import annotations
-import sys
+
+import argparse
 import math
+import os
+import sys
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from battle_parser import load_battle
+from compare_util import angle_close, is_invalid_thrust, pos_close, vel_close
 from physics_driver import CppPhysics
+from tolerance_policy import (
+    EXPLORE_ANG_TOL_DEG,
+    EXPLORE_POS_TOL,
+    EXPLORE_TIMEOUT_TOL,
+    EXPLORE_VEL_TOL,
+    GATE_ANG_TOL_DEG,
+    GATE_POS_TOL,
+    GATE_TIMEOUT_TOL,
+    GATE_VEL_TOL,
+)
 
 
-def pos_close(a: float, b: float, tol: float = 1.0) -> bool:
-    return abs(a - b) <= tol
-
-def vel_close(a: int, b: int, tol: int = 1) -> bool:
-    return abs(a - b) <= tol
-
-def angle_close(a: float, b: float, tol_deg: float = 1.0) -> bool:
-    da = abs(a - b)
-    da = min(da, 2*math.pi - da)
-    return da <= (tol_deg * math.pi / 180.0)
-
-def _is_invalid_thrust(thrust_str):
-    if thrust_str in ("SHIELD", "BOOST"):
-        return False
-    try:
-        val = int(thrust_str)
-        return val < 0 or val > 200
-    except (ValueError, TypeError):
-        return False
-
-
-def compare_one_turn(turn: int, sim_pods: list, gt_pods: list,
-                     sim_timeouts, gt_timeouts, n_checkpoints=0) -> list[str]:
-    """Return list of mismatch descriptions, or [] if perfect match."""
+def compare_one_turn(
+    turn: int,
+    sim_pods: list,
+    gt_pods: list,
+    sim_timeouts,
+    gt_timeouts,
+    n_checkpoints=0,
+    *,
+    pos_tol,
+    vel_tol,
+    ang_tol_deg,
+    timeout_tol,
+) -> list[str]:
     errs = []
     for i in range(4):
         sp = sim_pods[i]
         gp = gt_pods[i]
 
-        if not (pos_close(sp["x"], gp.x) and pos_close(sp["y"], gp.y)):
-            errs.append(f"pod{i} pos: sim=({sp['x']:.1f},{sp['y']:.1f}) gt=({gp.x:.1f},{gp.y:.1f})")
+        if not (pos_close(sp["x"], gp.x, pos_tol) and pos_close(sp["y"], gp.y, pos_tol)):
+            errs.append(
+                f"pod{i} pos: sim=({sp['x']:.1f},{sp['y']:.1f}) gt=({gp.x:.1f},{gp.y:.1f})"
+            )
 
-        if not (vel_close(sp["vx"], gp.vx) and vel_close(sp["vy"], gp.vy)):
+        if not (vel_close(sp["vx"], gp.vx, vel_tol) and vel_close(sp["vy"], gp.vy, vel_tol)):
             errs.append(f"pod{i} vel: sim=({sp['vx']},{sp['vy']}) gt=({gp.vx},{gp.vy})")
 
-        if not angle_close(sp["angle"], gp.angle or 0.0, tol_deg=1.0):
-            errs.append(f"pod{i} angle: sim={math.degrees(sp['angle']):.1f}° gt={math.degrees(gp.angle or 0):.1f}°")
+        if not angle_close(sp["angle"], gp.angle or 0.0, ang_tol_deg):
+            errs.append(
+                f"pod{i} angle: sim={math.degrees(sp['angle']):.1f}° "
+                f"gt={math.degrees(gp.angle or 0):.1f}°"
+            )
 
         sim_cp = sp["next"] % n_checkpoints if n_checkpoints > 0 else sp["next"]
         if sim_cp != gp.next_cp:
             errs.append(f"pod{i} next_cp: sim={sp['next']}(mod={sim_cp}) gt={gp.next_cp}")
 
-    if sim_timeouts != gt_timeouts:
+    if (
+        abs(sim_timeouts[0] - gt_timeouts[0]) > timeout_tol
+        or abs(sim_timeouts[1] - gt_timeouts[1]) > timeout_tol
+    ):
         errs.append(f"timeouts: sim={sim_timeouts} gt={gt_timeouts}")
 
     return errs
 
 
-def main():
-    if len(sys.argv) < 2:
-        print(__doc__)
-        sys.exit(1)
+def _parse_args(argv=None):
+    # Legacy: argv[2] digit as max turns without --max-turns
+    argv = list(sys.argv[1:] if argv is None else argv)
+    legacy_max = None
+    if len(argv) >= 2 and argv[1].isdigit() and not argv[1].startswith("-"):
+        legacy_max = int(argv[1])
+        argv = [argv[0]] + argv[2:]
 
-    path = sys.argv[1]
-    max_turns = int(sys.argv[2]) if len(sys.argv) > 2 and sys.argv[2].isdigit() else 999999
+    p = argparse.ArgumentParser(description="DIAGNOSTIC single-battle physics compare.")
+    p.add_argument("battle_json", help="Path to battle_*.json")
+    p.add_argument("--max-turns", type=int, default=None, help="Stop after N turns")
+    p.add_argument(
+        "--gate-tolerances",
+        action="store_true",
+        help="Use GATE_* tolerances instead of EXPLORE_*",
+    )
+    args = p.parse_args(argv)
+    if legacy_max is not None and args.max_turns is None:
+        args.max_turns = legacy_max
+    if args.max_turns is None:
+        args.max_turns = 999999
+    return args
 
+
+def main(argv=None):
+    print("role=DIAGNOSTIC", file=sys.stderr)
+    args = _parse_args(argv)
+
+    if args.gate_tolerances:
+        pos_tol, vel_tol = GATE_POS_TOL, GATE_VEL_TOL
+        ang_tol, to_tol = GATE_ANG_TOL_DEG, GATE_TIMEOUT_TOL
+    else:
+        pos_tol, vel_tol = EXPLORE_POS_TOL, EXPLORE_VEL_TOL
+        ang_tol, to_tol = EXPLORE_ANG_TOL_DEG, EXPLORE_TIMEOUT_TOL
+
+    path = args.battle_json
     log = load_battle(path)
     print(f"Validating {path}")
     print(f"  {len(log.turns)} turns, {len(log.checkpoints)} checkpoints")
-    print(f"  Final referee outcome: ranks={log.ranks}, timeouts p0/p1 = {log.keyframes[-1].timeout_p0}/{log.keyframes[-1].timeout_p1}")
+    print(
+        f"  Final referee outcome: ranks={log.ranks}, timeouts p0/p1 = "
+        f"{log.keyframes[-1].timeout_p0}/{log.keyframes[-1].timeout_p1}"
+    )
 
     phys = CppPhysics()
     phys.init_battle(log.checkpoints, laps=log.laps)
 
-    # Inject *exact* initial state from the battle (critical)
     init = log.initial_state
     for i, p in enumerate(init.pods):
         ang = p.angle if p.angle is not None else -0.0174533
@@ -94,28 +133,35 @@ def main():
 
     first_mismatch = None
     for t, ta in enumerate(log.turns):
-        if t >= max_turns:
+        if t >= args.max_turns:
             break
 
-        # InvalidInput propagation (same logic as verify_battles.py)
-        p0_acts = [(ta.p0_pod0.target_x, ta.p0_pod0.target_y, ta.p0_pod0.thrust),
-                   (ta.p0_pod1.target_x, ta.p0_pod1.target_y, ta.p0_pod1.thrust)]
-        p1_acts = [(ta.p1_pod0.target_x, ta.p1_pod0.target_y, ta.p1_pod0.thrust),
-                   (ta.p1_pod1.target_x, ta.p1_pod1.target_y, ta.p1_pod1.thrust)]
+        p0_acts = [
+            (ta.p0_pod0.target_x, ta.p0_pod0.target_y, ta.p0_pod0.thrust),
+            (ta.p0_pod1.target_x, ta.p0_pod1.target_y, ta.p0_pod1.thrust),
+        ]
+        p1_acts = [
+            (ta.p1_pod0.target_x, ta.p1_pod0.target_y, ta.p1_pod0.thrust),
+            (ta.p1_pod1.target_x, ta.p1_pod1.target_y, ta.p1_pod1.thrust),
+        ]
 
-        if _is_invalid_thrust(p0_acts[0][2]):
+        if is_invalid_thrust(p0_acts[0][2]):
             inv = p0_acts[0][2]
-            p0_acts = [(p0_acts[0][0], p0_acts[0][1], inv),
-                       (p0_acts[1][0], p0_acts[1][1], inv)]
-        elif _is_invalid_thrust(p0_acts[1][2]):
-            pass  # only second pod invalidated
+            p0_acts = [
+                (p0_acts[0][0], p0_acts[0][1], inv),
+                (p0_acts[1][0], p0_acts[1][1], inv),
+            ]
+        elif is_invalid_thrust(p0_acts[1][2]):
+            pass
 
-        if _is_invalid_thrust(p1_acts[0][2]):
+        if is_invalid_thrust(p1_acts[0][2]):
             inv = p1_acts[0][2]
-            p1_acts = [(p1_acts[0][0], p1_acts[0][1], inv),
-                       (p1_acts[1][0], p1_acts[1][1], inv)]
-        elif _is_invalid_thrust(p1_acts[1][2]):
-            pass  # only second pod invalidated
+            p1_acts = [
+                (p1_acts[0][0], p1_acts[0][1], inv),
+                (p1_acts[1][0], p1_acts[1][1], inv),
+            ]
+        elif is_invalid_thrust(p1_acts[1][2]):
+            pass
 
         phys.apply(0, p0_acts[0][0], p0_acts[0][1], p0_acts[0][2])
         phys.apply(1, p0_acts[1][0], p0_acts[1][1], p0_acts[1][2])
@@ -125,9 +171,18 @@ def main():
         sim = phys.step()
         gt = log.keyframes[t]
 
-        errs = compare_one_turn(t, sim["pods"], gt.pods, sim["timeouts"],
-                                (gt.timeout_p0, gt.timeout_p1),
-                                n_checkpoints=len(log.checkpoints))
+        errs = compare_one_turn(
+            t,
+            sim["pods"],
+            gt.pods,
+            sim["timeouts"],
+            (gt.timeout_p0, gt.timeout_p1),
+            n_checkpoints=len(log.checkpoints),
+            pos_tol=pos_tol,
+            vel_tol=vel_tol,
+            ang_tol_deg=ang_tol,
+            timeout_tol=to_tol,
+        )
 
         if errs:
             if first_mismatch is None:
@@ -146,7 +201,10 @@ def main():
         print("Your physics engine produces identical states to the referee on this battle.")
     else:
         print(f"\nFirst divergence at turn {first_mismatch}")
-        print("Use this + the collision/shield/boost turns reported by validate.py to debug physics.h")
+        print(
+            "Use this + the collision/shield/boost turns reported by validate.py "
+            "to debug physics.h"
+        )
 
     phys.close()
 

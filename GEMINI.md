@@ -18,8 +18,8 @@ Full human-oriented overview: [README.md](README.md).
 ## Core Principles
 
 ### 1. DRY (Don't Repeat Yourself) — two physics SSoTs, not one
-- **Bot / arena physics** lives only in `src/engine/engine.h` + `engine.cpp`. Never duplicate it elsewhere.
-- **Referee / CG-server physics** lives only in `src/physics/physics.h`. Verified by `sim/` and `//src/physics:verify_battles`.
+- **Bot / arena physics** lives only in `src/engine/engine.h` + `engine.cpp` (**transitional** — SSOT program moves Fast into `src/physics/physics.h` profiles; see [`docs/SSOT.md`](docs/SSOT.md)). Never duplicate it elsewhere **outside that program**.
+- **Referee / CG-server physics** lives only in `src/physics/physics.h`. **`MERGE_PHYSICS_OK`** = job `physics-accuracy` (Python `sim/verify_battles.py --gate` + golden `--tier pass` + `test_physics`). C++ `//src/physics:verify_battles` is **DIAGNOSTIC**. See [`docs/VERIFICATION_TRUTH_POLICY.md`](docs/VERIFICATION_TRUTH_POLICY.md).
 - `cg_bot.cpp` uses the shared engine via `#include "src/engine/engine.h"`. The inline engine copy is only active when `-DCG_STANDALONE` is defined (for CodinGame submission).
 - Changing bot search physics? Edit `src/engine/` only. Changing CG fidelity? Edit `src/physics/` only.
 
@@ -47,7 +47,7 @@ Full human-oriented overview: [README.md](README.md).
 | `sim/*.py` | Python verification harness | ✅ Yes |
 | `src/cg/cg_bot.cpp` | GA bot logic (CodinGame submission) | ✅ Bot logic only |
 | `src/cg/cg_bot.cpp` (`#ifdef CG_STANDALONE`) | Inline engine copy for CG submission | ⚠️ Must mirror engine.h/cpp |
-| `src/engine/test_physics.cpp` | Diff harness vs Go referee | ✅ Yes |
+| `src/engine/test_physics.cpp` | Removed SSOT PR-1 (depended on deleted `csb_physics.h`) | ❌ Gone |
 | `src/engine/diff_test.py` | Python runner (50 random cases) | ✅ Yes |
 | `battles/` | Replay corpora (data) | ✅ Add/scrape only |
 | `third_party/` | External referees | 🚫 Treat as read-only refs |
@@ -58,15 +58,17 @@ Full human-oriented overview: [README.md](README.md).
 # Build everything
 bazel build //...
 
-# Referee physics vs golden battles (C++)
+# MERGE_PHYSICS_OK local (gate A + policy checker; also run golden --tier pass in CI)
+bazel build //src/physics:replay_driver && cp -f bazel-bin/src/physics/replay_driver sim/replay_driver
+MAD_POD_GATE_STRICT=1 python3 sim/verify_battles.py --gate battles/test_session_battles
+python3 sim/check_verification_policy.py
+
+# DIAGNOSTIC C++ (stricter; not PR merge gate alone)
 bazel build //src/physics:verify_battles
 bazel-bin/src/physics/verify_battles --dir battles/test_session_battles
 
-# Referee physics vs battles (Python)
-python3 sim/verify_battles.py battles/test_session_battles
-
 # Engine differential tests vs Go referee (must pass 50/50)
-bazel build //src/engine:test_physics
+bazel test --config=ci //src/physics:test_physics
 python3 src/engine/diff_test.py
 
 # Run benchmark tournament

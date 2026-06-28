@@ -1,16 +1,12 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_library")
+
 cc_library(
     name = "engine",
     srcs = ["engine.cpp", "arena.cpp"],
-    hdrs = ["engine.h", "arena.h", "bot.h", "csb_physics.h"],
+    hdrs = ["engine.h", "arena.h", "bot.h"],
+    deps = [
+        "//src/core:core_headers",
+        "//src/physics:physics",
+    ],
     visibility = ["//visibility:public"],
 )
-
-cc_binary(
-    name = "test_physics",
-    srcs = ["test_physics.cpp"],
-    deps = [":engine"],
-    copts = ["-std=c++17", "-O3"],
-    visibility = ["//visibility:public"],
-)
-
