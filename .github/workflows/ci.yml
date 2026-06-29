@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Mount Bazel caches
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cache/bazel
@@ -92,7 +92,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Mount Bazel caches
-        uses: actions/cache@v4
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cache/bazel
