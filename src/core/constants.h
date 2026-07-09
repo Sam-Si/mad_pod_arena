@@ -30,7 +30,7 @@ inline constexpr int kShieldTimerActivate = 4;
 
 // Fidelity shield inverse-mass factor (activation frame)
 inline constexpr double kShieldMassFactorFidelity = 0.1;
-// Fast / GAPhysicsSimulator Mass() on activation frame
+// Fast (csb::fast) Mass() on activation frame
 inline constexpr double kShieldMassFast = 10.0;
 inline constexpr double kNormalMassFast = 1.0;
 

@@ -39,6 +39,11 @@
 #include <array>
 #include <sstream>
 #include <cctype>
+#include <cassert>
+
+#include "fast.h"
+#include "fidelity_math.h"
+#include "fidelity_world_step.h"
 
 #ifndef M_PI
 #define M_PI 3.14159265358979323846
@@ -46,24 +51,8 @@
 
 namespace csb {
 
-// ---- constants --------------------------------------------------------------
-inline constexpr double kPodRadius = 400.0;
-inline constexpr double kPodCollisionRsq = 800.0 * 800.0;  // diameter 1600
-inline constexpr double kCpRadius = 600.0;
-inline constexpr double kCpRsq = 600.0 * 600.0;
-inline constexpr int kPodCount = 4;
-inline constexpr double kMinImpulse = 120.0;
-inline constexpr double kFriction = 0.85;
-inline constexpr double kFullCircle = 2.0 * M_PI;
-inline constexpr double kRadToDeg = 180.0 / M_PI;
-inline constexpr double kDegToRad = M_PI / 180.0;
-inline constexpr double kMaxRotate = 18.0 * kDegToRad;
-inline constexpr double kEpsilon = 0.00001;
-inline constexpr int kDefaultLaps = 3;
-inline constexpr int kTimeoutLimit = 100;
-inline constexpr int kMaxThrust = 200;
-inline constexpr int kBoostThrust = 650;
-inline constexpr int kMaxGameTurns = 500;
+// ---- constants: single numeric SSOT via fidelity_math.h → core/constants.h ----
+// (kPodRadius, kFriction, kMaxRotate, kSnap*, … declared in fidelity_math.h)
 
 // Legacy aliases (existing call sites)
 inline constexpr double podRSQ = kPodCollisionRsq;
@@ -91,13 +80,11 @@ struct Point {
 };
 
 inline double getAngle(const Point& start, const Point& end) {
-    return std::atan2(end.y - start.y, end.x - start.x);
+    return csb::getAngle(start.x, start.y, end.x, end.y);
 }
 
-// Go math.Mod preserves sign of dividend (same as std::fmod).
-inline double goMod(double x, double y) { return std::fmod(x, y); }
-
-inline double roundHalfUp(double x) { return std::floor(x + 0.5); }
+// goMod / roundHalfUp / frictionTrunc / snapNearInteger / getAngle / cpCollide /
+// newCollideTime: see fidelity_math.h (Extract Function / Duplicated Code).
 
 // ---- move -------------------------------------------------------------------
 struct PlayerMove {
@@ -163,65 +150,35 @@ struct Pod {
     bool won = false;
     bool hasRotated = false;  // false until first non-skipped rotate (per-pod first turn)
 
-    // Go: math.Mod(2*da, 2*pi) - da
+    // Go: math.Mod(2*da, 2*pi) - da (SSOT fidelityDiffAngle).
     double diffAngle(Point target) const {
-        double a = getAngle(p, target);
-        double da = goMod(a - angle, kFullCircle);
-        return goMod(2.0 * da, kFullCircle) - da;
+        return fidelityDiffAngle(angle, p.x, p.y, target.x, target.y);
     }
 
+    void canonicalizeAngle() { canonicalizeAngleRad(angle); }
+
+    // SSOT: applyFidelityRotate / applyFidelityThrust in fidelity_math.h.
     void applyRotate(Point target) {
-        double a = getAngle(p, target);
-        double rotateAngle = diffAngle(target);
-        if (rotateAngle < -kMaxRotate) {
-            a = angle - kMaxRotate;
-        }
-        if (rotateAngle > kMaxRotate) {
-            a = angle + kMaxRotate;
-        }
-        // Go-style atan2 when |diff|≤18°. Full incremental rotate regresses gate A
-        // (battle_891684290) and ~7 golden pass battles — do not enable globally.
-        angle = a;
+        applyFidelityRotate(angle, p.x, p.y, target.x, target.y);
     }
 
-    // First-turn angle: normalize to atan2 range [-π, π] (battle-verified).
-    void applyRotateFirst(double rotateAngle) {
-        angle = rotateAngle;
-        while (angle < -M_PI) angle += kFullCircle;
-        while (angle > M_PI) angle -= kFullCircle;
+    // First successful rotate: face geometric target (CG spawn / hasRotated=false).
+    void applyRotateFirst(double target_angle) {
+        angle = target_angle;
+        canonicalizeAngle();
     }
 
-    // Double angle → velocity coordinates (still double until endTurn).
-    // Snap near-integers to cancel libm 1-ULP undershoot on exact kinematics
-    // (macOS arm64). Band 4e-14; 1e-12 regresses gate A (battle_891685003).
-    // Skip snap only when |round(v)|==180 (886274562). Also skipping 160 was
-    // tried (891370461 ULP) but regresses golden pass battle_885990456.
     static double snapNearInteger(double v, double band = 4e-14) {
-        const double n = std::round(v);
-        if (std::fabs(v - n) >= band) {
-            return v;
-        }
-        if (std::fabs(n) == 180.0) {
-            return v;
-        }
-        return n;
+        return csb::snapNearInteger(v, band);
     }
 
-    void applyThrust(int t) {
-        // double sin/cos (on Apple arm64 long double == double; no CG gain from sinl).
-        const double cs = std::sin(angle);
-        const double cc = std::cos(angle);
-        s.x = snapNearInteger(s.x + cc * static_cast<double>(t));
-        s.y = snapNearInteger(s.y + cs * static_cast<double>(t));
-    }
+    void applyThrust(int t) { applyFidelityThrust(s.x, s.y, angle, t); }
 
     // End of one GAME TURN: commit CG integer coordinates (angle stays double).
     // Friction: trunc only (thrust already ULP-snapped). Exact ±100 pre-fric
     // (885827873) still mismatches CG (-85 vs -84); nextafter-on-exact-100 was
     // tried and mass-regresses gate A — do not revive without a tighter predicate.
-    static double frictionTrunc(double v) {
-        return std::trunc(v * kFriction);
-    }
+    static double frictionTrunc(double v) { return csb::frictionTrunc(v); }
 
     void endTurn() {
         s.x = frictionTrunc(s.x);
@@ -236,25 +193,7 @@ struct Pod {
     // Time to collide with b (radius sq). Returns 0 if already overlapping,
     // 10 if no collision within this turn segment.
     double newCollide(const Pod* b, double rsq) const {
-        Point rel_p{b->p.x - p.x, b->p.y - p.y};
-        double pLength2 = rel_p.x * rel_p.x + rel_p.y * rel_p.y;
-        if (pLength2 <= rsq) {
-            return 0.0;
-        }
-        Point v{b->s.x - s.x, b->s.y - s.y};
-        double d = rel_p.dot(v);
-        if (d > 0.0) {
-            return 10.0;
-        }
-        double vLength2 = v.x * v.x + v.y * v.y;
-        if (vLength2 == 0.0) {
-            return 10.0;
-        }
-        double disc = d * d - vLength2 * (pLength2 - rsq);
-        if (disc < 0.0) {
-            return 10.0;
-        }
-        return (-d - std::sqrt(disc)) / vLength2;
+        return newCollideTime(p.x, p.y, s.x, s.y, b->p.x, b->p.y, b->s.x, b->s.y, rsq);
     }
 
     // Referee sets timeout so that after the mandatory end-of-turn -- it reads 100
@@ -279,54 +218,11 @@ struct Pod {
         return next % trackSize;
     }
 
-    // Apply one player move.
-    // First-turn snap: per-pod via hasRotated flag (not global turn index).
-    //   Pods that target==pos on turn 0 keep hasRotated=false and snap on first real rotate.
-    // InvalidInput (thrust <0 or >200): no rotation, no thrust, no shield activation.
-    // BOOST: always consumes per-pod boost; during shield cooldown thrust is still forced to 0.
-    // target == position: SHIELD still sets timer; then skip rotate+thrust.
+    // Apply one player move — SSOT applyFidelityMove (fidelity_math.h).
     void applyMove(const PlayerMove& move, bool /*is_first_turn_global*/) {
-        // InvalidInput: referee skips rotate and thrust entirely (angle/vel unchanged
-        // except friction at endTurn). Does NOT activate shield even for negative thrust.
-        if (move.invalid_input) {
-            return;
-        }
-
-        int t = move.thrust;
-
-        if (move.shield) {
-            shieldtimer = 4;
-            t = 0;
-        } else if (move.boost) {
-            // Boost is consumed even during shield cooldown; only thrust is suppressed.
-            if (boosted == 0) {
-                boosted = 1;
-                t = kBoostThrust;
-            } else {
-                t = kMaxThrust;
-            }
-        }
-
-        if (shieldtimer > 0) {
-            t = 0;
-        }
-
-        // Go: if dest == position, continue (skip rotate + thrust entirely).
-        // SHIELD timer is already set above when applicable.
-        if (move.target.x == p.x && move.target.y == p.y) {
-            return;
-        }
-
-        if (!hasRotated) {
-            // Per-pod first rotate: snap facing (Go: angle=0; angle=diffAngle(dest))
-            angle = 0.0;
-            double a = diffAngle(move.target);
-            applyRotateFirst(a);
-            hasRotated = true;
-        } else {
-            applyRotate(move.target);
-        }
-        applyThrust(t);
+        applyFidelityMove(p.x, p.y, s.x, s.y, angle, shieldtimer, boosted, hasRotated,
+                          move.target.x, move.target.y, move.thrust, move.shield,
+                          move.boost, move.invalid_input);
     }
 };
 
@@ -339,29 +235,12 @@ struct Pod {
 // has closest dist exactly 600.0 with positions matching GT but GT does not pass;
 // inclusive <= falsely advances next_cp. Go uses < as well.
 inline bool cpCollide(Point previous, Point current, Point cp, double rsq = kCpRsq) {
-    const double dx = current.x - previous.x;
-    const double dy = current.y - previous.y;
-    Point closest = previous;
-    const double seg_len2 = dx * dx + dy * dy;
-    if (seg_len2 != 0.0) {
-        // Project cp onto the infinite line previous→current; Go clamps with
-        // u>1 → current, else u>0 → interpolate, else previous (u==0 uses previous).
-        double u = ((cp.x - previous.x) * dx + (cp.y - previous.y) * dy) / seg_len2;
-        if (u > 1.0) {
-            closest = current;
-        } else if (u > 0.0) {
-            closest.x = previous.x + u * dx;
-            closest.y = previous.y + u * dy;
-        }
-    }
-    const double ox = closest.x - cp.x;
-    const double oy = closest.y - cp.y;
-    return (ox * ox + oy * oy) < rsq;
+    return csb::cpCollide(previous.x, previous.y, current.x, current.y, cp.x, cp.y, rsq);
 }
 
-// ---- profiles (SSOT PR-3) ----------------------------------------------------
-// Fast profile is reserved for GA search (port of GAPhysicsSimulator). Default
-// Fidelity preserves gate behavior. Prefer Game::step(StepOptions).
+// ---- profiles (SSOT) ---------------------------------------------------------
+// PhysicsProfile::Fast is reserved / unsupported on Game — Fast search uses
+// csb::fast::SimulateTurn on degrees pods (see fast.h). Fidelity == nextTurn().
 enum class PhysicsProfile { Fidelity, Fast };
 
 struct StepOptions {
@@ -440,7 +319,7 @@ struct Game {
     }
 
     // Seed pods from known state (battle frame 0 or mid-game resync).
-    // hasRotated defaults false so first real rotate still snaps (battle frame-0 start).
+    // Uninit facing (~-1° sentinel or ~0) → hasRotated=false (reference isFirstTurn).
     void setPodState(int i, double x, double y, double vx, double vy,
                      double ang_rad, int next_cp_global,
                      int shield = 0, int boost_used = 0) {
@@ -452,7 +331,8 @@ struct Game {
         po.shieldtimer = shield;
         po.boosted = boost_used;
         po.won = false;
-        po.hasRotated = false;
+        po.hasRotated = !(std::fabs(ang_rad - kInitAngleSentinel) < kInitAngleSentinelTol ||
+                          std::fabs(ang_rad) < kInitAngleSentinelTol);
     }
 
     // Incremental driver API: queue one pod's action (thrust as string).
@@ -485,132 +365,36 @@ struct Game {
         hasPendingMove[pod_idx] = true;
     }
 
-    void forwardTime(double t) {
-        for (int i = 0; i < kPodCount; ++i) {
-            pods[i].p.x += pods[i].s.x * t;
-            pods[i].p.y += pods[i].s.y * t;
-        }
-    }
-
-    void bounce(int p1, int p2) {
-        Pod* oa = &pods[p1];
-        Pod* ob = &pods[p2];
-
-        Point normal{ob->p.x - oa->p.x, ob->p.y - oa->p.y};
-        double dd = normal.norm();
-        if (dd == 0.0) return;
-        normal.x /= dd;
-        normal.y /= dd;
-
-        Point relv{oa->s.x - ob->s.x, oa->s.y - ob->s.y};
-
-        double m1 = 1.0, m2 = 1.0;
-        if (oa->shieldtimer == 4) m1 = 0.1;
-        if (ob->shieldtimer == 4) m2 = 0.1;
-
-        double force = normal.dot(relv) / (m1 + m2);
-        if (force < kMinImpulse) {
-            force += kMinImpulse;
-        } else {
-            force += force;
-        }
-
-        Point impulse{normal.x * -force, normal.y * -force};
-        oa->s.x += impulse.x * m1;
-        oa->s.y += impulse.y * m1;
-        ob->s.x += -impulse.x * m2;
-        ob->s.y += -impulse.y * m2;
-        // Do not snap post-bounce velocities: Go leaves full doubles; snap was
-        // flipping later collision outcomes (investigate battle_885912413 t69).
-
-        if (dd <= 800.0) {
-            double ddiff = dd - 800.0;  // Go mutates dd in place: dd -= 800
-            oa->p.x += normal.x * -(-ddiff / 2.0 + kEpsilon);
-            oa->p.y += normal.y * -(-ddiff / 2.0 + kEpsilon);
-            ob->p.x += normal.x * (-ddiff / 2.0 + kEpsilon);
-            ob->p.y += normal.y * (-ddiff / 2.0 + kEpsilon);
-        }
-    }
-
-    // World step only (movement/collisions/friction/timeouts). Callers that use
-    // applyAction() should invoke this after queuing all 4 pod actions.
-    //
-    // Movement/collision loop mirrors Go referee nextTurn() (csbref.go): always
-    // integrate `first` (t if no collision), bounce when cli!=clj, overlap => first=0.
-    //
-    // Checkpoint bookkeeping is tuned to CG *viewer* keyframes (the verification
-    // oracle), which disagree with Go on some knife-edge paths:
-    //   - Mid-turn CP checks only for pods that bounced this step (bent path).
-    //     Non-bouncing pods travel in a straight line; checking unrounded
-    //     subsegments can mark a pass (dist≈599.67) while turn-start →
-    //     post-endTurn-rounded sits just outside 600 (viewer does not pass —
-    //     battle_891617954 turn 33). End-only for non-bounced pods fixes that.
-    //   - Bounced pods still need per-subsegment checks (curps style); end-only
-    //     regresses pass-tier grazes on bent trajectories.
+    // World step only — single SSOT in fidelity_world_step.h (bounce/forwardTime live there).
     void simulateWorld() {
-        const int globalNumCp = static_cast<int>(globalCp.size());
-        double t = 1.0;
-        Point previous_pos[kPodCount];
-        Point turn_start_pos[kPodCount];
-        bool bounced[kPodCount] = {false, false, false, false};
+        WorldPod wp[kPodCount];
         for (int i = 0; i < kPodCount; ++i) {
-            previous_pos[i] = pods[i].p;
-            turn_start_pos[i] = pods[i].p;
+            wp[i].px = pods[i].p.x;
+            wp[i].py = pods[i].p.y;
+            wp[i].vx = pods[i].s.x;
+            wp[i].vy = pods[i].s.y;
+            wp[i].next = pods[i].next;
+            wp[i].shieldtimer = pods[i].shieldtimer;
+            wp[i].won = pods[i].won;
         }
-
-        auto tryPassCpFrom = [&](int i, const Point& from) {
-            const int ni = pods[i].next;
-            if (ni >= 0 && ni < globalNumCp &&
-                cpCollide(from, pods[i].p, globalCp[ni])) {
-                pods[i].passCheckpoint(i, globalNumCp, playerTimeout);
-            }
-        };
-
-        int safety = 0;
-        while (t > 0.0 && safety++ < 200) {
-            double first = t;
-            int cli = 0, clj = 0;
-
-            // Go scans i = podCount-1 .. 1, j = i-1 .. 0; earliest tx wins ties by scan order.
-            for (int i = kPodCount - 1; i > 0; --i) {
-                for (int j = i - 1; j >= 0; --j) {
-                    double tx = pods[i].newCollide(&pods[j], kPodCollisionRsq);
-                    if (tx <= first) {
-                        first = tx;
-                        cli = i;
-                        clj = j;
-                    }
-                }
-            }
-
-            // Go always integrates `first` (even when no collision: first==t, cli==clj==0).
-            // Overlap (tx==0): first becomes 0, forwardTime(0) is a no-op, then bounce.
-            forwardTime(first);
-            t -= first;
-            if (cli != clj) {
-                bounce(cli, clj);
-                bounced[cli] = bounced[clj] = true;
-                if (t > 0.0) {
-                    // Bent path: subsegment CP matters for collision participants only.
-                    tryPassCpFrom(cli, previous_pos[cli]);
-                    tryPassCpFrom(clj, previous_pos[clj]);
-                    previous_pos[cli] = pods[cli].p;
-                    previous_pos[clj] = pods[clj].p;
-                }
-            }
+        const int n = static_cast<int>(globalCp.size());
+        double gcx_buf[64];
+        double gcy_buf[64];
+        // global_n for multi-lap tracks is small (≤ 8*5+1); stack buffer is enough.
+        for (int i = 0; i < n && i < 64; ++i) {
+            gcx_buf[i] = globalCp[static_cast<size_t>(i)].x;
+            gcy_buf[i] = globalCp[static_cast<size_t>(i)].y;
         }
-
+        simulateFidelityWorld(wp, gcx_buf, gcy_buf, n, playerTimeout, &turn);
         for (int i = 0; i < kPodCount; ++i) {
-            pods[i].endTurn();
-            // Bounced pods: continue from last post-bounce pose. Others: full
-            // turn-start → rounded end (matches CG viewer on knife-edge CPs).
-            const Point& from = bounced[i] ? previous_pos[i] : turn_start_pos[i];
-            tryPassCpFrom(i, from);
+            pods[i].p.x = wp[i].px;
+            pods[i].p.y = wp[i].py;
+            pods[i].s.x = wp[i].vx;
+            pods[i].s.y = wp[i].vy;
+            pods[i].next = wp[i].next;
+            pods[i].shieldtimer = wp[i].shieldtimer;
+            pods[i].won = wp[i].won;
         }
-
-        playerTimeout[0]--;
-        playerTimeout[1]--;
-        turn++;
     }
 
     // Driver API: apply any pending per-pod actions then simulate the world step.
@@ -669,11 +453,14 @@ struct Game {
         return -2;  // ongoing
     }
 
-    // Authoritative profiled step (SSOT PR-3). Fidelity == nextTurn() (zero gate delta).
-    // Fast profile reserved for GA body port; until complete, Fast also uses nextTurn()
-    // so we never silently diverge — GA continues to use GAPhysicsSimulator until PR-6.
+    // Fidelity == nextTurn(). Fast is unsupported on Game (use csb::fast::SimulateTurn).
     void step(const StepOptions& opt) {
-        (void)opt;
+        if (opt.profile == PhysicsProfile::Fast) {
+#ifndef NDEBUG
+            assert(false && "Game::step(Fast) unsupported; call csb::fast::SimulateTurn");
+#endif
+            return;  // leave state + pendingMoves unchanged; NEVER nextTurn()
+        }
         nextTurn();
     }
 };

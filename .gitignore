@@ -227,3 +227,18 @@ src/legacy_bot/
 
 # local driver copy
 sim/replay_driver
+# Ad-hoc g++ builds of physics validators (prefer Bazel //src/physics:*)
+sim/validate_fast_physics_battles
+/tmp/
+
+# Accidental foreign trees (never commit)
+/tpu-inference/
+
+# Local run artifacts
+/logs/
+*.bakeoff_bak
+sim/legacy/**/__pycache__/
+
+# Local coverage run artifacts
+docs/coverage_out/
+docs/coverage_*_latest.txt

@@ -3,7 +3,7 @@ load("@rules_cc//cc:defs.bzl", "cc_binary")
 cc_binary(
     name = "benchmark_tournament",
     srcs = ["benchmark_tournament.cpp", "cg_bot_wrapper.h"],
-    deps = ["//src/engine", "//src/cg:cg_bot_hdr"],
+    deps = ["//src/engine", "//src/cg:ga_bot"],
     copts = ["-std=c++17", "-O3", "-pthread", "-Isrc"],
     linkopts = ["-pthread"],
 )

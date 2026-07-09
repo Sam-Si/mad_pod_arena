@@ -72,7 +72,7 @@ int main(int argc, char** argv) {
     if (end_map > total_maps) end_map = total_maps;
     if (start_map < 0) start_map = 0;
 
-    GABot::verbose = verbose;
+    SetGABotVerbose(verbose);
 
     unsigned int num_cores = std::thread::hardware_concurrency();
     if (num_cores == 0) num_cores = 4;

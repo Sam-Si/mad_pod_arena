@@ -1,12 +1,26 @@
 load("@rules_cc//cc:defs.bzl", "cc_library", "cc_binary", "cc_test")
 
+exports_files(["fast.h", "physics.h", "fast_physics.h", "fidelity_math.h"])
+
+filegroup(
+    name = "testdata_files",
+    srcs = glob(["testdata/*"]),
+    visibility = ["//visibility:public"],
+)
+
 cc_library(
     name = "physics",
     hdrs = [
         "physics.h",
+        "fast.h",
+        "fast_physics.h",
+        "fidelity_math.h",
+        "fidelity_world_step.h",
         "json_minimal.h",
-        "maps.h",
+        # maps.h deleted: tournament maps SSOT is src/core/maps/catalog.h only
     ],
+    deps = ["//src/core:core_headers"],
+    includes = ["."],
     visibility = ["//visibility:public"],
 )
 
@@ -16,15 +30,43 @@ cc_binary(
     deps = [":physics"],
 )
 
-# Text-protocol driver used by sim/physics_driver.py (Python verification harness)
 cc_binary(
     name = "replay_driver",
     srcs = ["replay_driver.cpp"],
     deps = [":physics"],
+    visibility = ["//visibility:public"],
 )
 
 cc_test(
     name = "test_physics",
     srcs = ["test_physics.cpp"],
     deps = [":physics"],
+    data = [
+        "testdata/fast_goldens.json",
+        "testdata/fast_rollout_goldens.json",
+    ],
+)
+
+cc_binary(
+    name = "bench_fast_physics",
+    srcs = ["bench_fast_physics.cpp"],
+    deps = [":physics"],
+    copts = [
+        "-O3",
+        "-DNDEBUG",
+        "-fno-math-errno",
+        "-fomit-frame-pointer",
+        "-ffp-contract=off",
+    ],
+)
+
+cc_binary(
+    name = "validate_fast_physics_battles",
+    srcs = ["validate_fast_physics_battles.cpp"],
+    deps = [":physics"],
+    copts = [
+        "-O3",
+        "-DNDEBUG",
+        "-ffp-contract=off",
+    ],
 )

@@ -1,4 +1,6 @@
 #pragma once
+#include <cstddef>
+#include "fast.h"
 #include <vector>
 #include <cmath>
 #include <cstdint>
@@ -64,20 +66,20 @@ struct Pod {
 };
 
 double Round(double x);
-bool CheckpointCollide(const Vec2& p1, const Vec2& p2, const Vec2& cp);
+// Checkpoint geometry SSOT: csb::cpCollide in physics/fidelity_math.h (not duplicated here).
 
-class PhysicsSimulator {
-public:
-    static double GetCollisionTime(const Pod& p1, const Pod& p2);
-    static void ResolveCollision(Pod& p1, Pod& p2);
-    static void SimulateTurn(Pod* pods, const std::vector<Vec2>& cps);
-};
-
-// Optimized physics for internal GA search (no CP crossing, no overlap separation,
-// geometric early exits). Slightly different collision results but ~2x faster.
-class GAPhysicsSimulator {
-public:
-    static double GetCollisionTime(const Pod& p1, const Pod& p2);
-    static void ResolveCollision(Pod& p1, Pod& p2);
-    static void SimulateTurn(Pod* pods);
-};
+// Bridge engine Pod <-> csb::fast::Pod (layout-compatible degrees pods).
+inline void FastSimulateTurn(Pod* pods) {
+    static_assert(sizeof(Pod) == sizeof(csb::fast::Pod), "Pod layout must match csb::fast::Pod");
+    static_assert(offsetof(Pod, id) == offsetof(csb::fast::Pod, id), "id offset");
+    static_assert(offsetof(Pod, team) == offsetof(csb::fast::Pod, team), "team offset");
+    static_assert(offsetof(Pod, pos) == offsetof(csb::fast::Pod, pos), "pos offset");
+    static_assert(offsetof(Pod, vel) == offsetof(csb::fast::Pod, vel), "vel offset");
+    static_assert(offsetof(Pod, angle) == offsetof(csb::fast::Pod, angle), "angle offset");
+    static_assert(offsetof(Pod, next_cp_id) == offsetof(csb::fast::Pod, next_cp_id), "next_cp_id offset");
+    static_assert(offsetof(Pod, boost_available) == offsetof(csb::fast::Pod, boost_available), "boost_available offset");
+    static_assert(offsetof(Pod, shield_cd) == offsetof(csb::fast::Pod, shield_cd), "shield_cd offset");
+    static_assert(offsetof(Pod, timeout) == offsetof(csb::fast::Pod, timeout), "timeout offset");
+    static_assert(offsetof(Pod, laps_completed) == offsetof(csb::fast::Pod, laps_completed), "laps_completed offset");
+    csb::fast::SimulateTurn(reinterpret_cast<csb::fast::Pod*>(pods));
+}

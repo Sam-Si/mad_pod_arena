@@ -1,35 +1,128 @@
-load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library")
+load("@rules_cc//cc:defs.bzl", "cc_binary", "cc_library", "cc_test")
 load("//tools:cpp_opts.bzl", "THREAD_COPTS", "THREAD_LINKOPTS")
+
+# Modular bot body (included by cg_bot.cpp; also amalgam genrule inputs).
+# bot_config.h must be listed as a compile input: ga_prelude includes
+# "src/cg/bot_config.h" when !CG_STANDALONE, and Bazel's sandbox only
+# exposes declared rule inputs.
+filegroup(
+    name = "ga_bot_modules",
+    srcs = [
+        "ga_pure.h",
+        "internal/ga_prelude_and_search.inc",
+        "internal/ga_factory.inc",
+        "internal/ga_main.inc",
+        "bot_config.h",
+    ],
+    visibility = ["//visibility:private"],
+)
+
+# Shared srcs for every target that compiles cg_bot.cpp + modular .inc files.
+_CG_BOT_COMPILE_SRCS = [
+    "cg_bot.cpp",
+    "bot_config.h",
+    "ga_pure.h",
+    "internal/ga_prelude_and_search.inc",
+    "internal/ga_factory.inc",
+    "internal/ga_main.inc",
+]
+
+cc_library(
+    name = "ga_pure",
+    hdrs = ["ga_pure.h"],
+    includes = ["."],
+    visibility = ["//visibility:public"],
+)
+
+cc_test(
+    name = "ga_pure_test",
+    srcs = ["ga_pure_test.cpp"],
+    deps = [":ga_pure"],
+    size = "small",
+)
+
+cc_library(
+    name = "ga_bot",
+    srcs = _CG_BOT_COMPILE_SRCS,
+    hdrs = ["ga_bot.h", "bot_config.h", "ga_pure.h"],
+    deps = ["//src/engine", "//src/physics:physics", ":ga_pure"],
+    copts = THREAD_COPTS + ["-DCG_BOT_NO_MAIN", "-Isrc/cg"],
+    linkopts = THREAD_LINKOPTS,
+    visibility = ["//visibility:public"],
+)
 
 cc_binary(
     name = "cg_bot",
-    srcs = ["cg_bot.cpp"],
-    deps = ["//src/engine"],
-    copts = THREAD_COPTS,
+    srcs = _CG_BOT_COMPILE_SRCS,
+    deps = ["//src/engine", "//src/physics:physics", ":ga_pure"],
+    copts = THREAD_COPTS + ["-Isrc/cg"],
     linkopts = THREAD_LINKOPTS,
 )
 
-# Export cg_bot.cpp as a header for inclusion by the benchmark wrapper
 cc_library(
     name = "cg_bot_hdr",
-    hdrs = ["cg_bot.cpp"],
+    hdrs = ["ga_bot.h", "bot_config.h"],
+    includes = ["."],
     visibility = ["//visibility:public"],
     deps = ["//src/engine"],
 )
 
-# Standalone build for CodinGame submission (inlines engine, no deps)
 cc_binary(
     name = "cg_bot_standalone",
-    srcs = ["cg_bot.cpp"],
-    copts = THREAD_COPTS + ["-DCG_STANDALONE"],
+    srcs = _CG_BOT_COMPILE_SRCS,
+    deps = ["//src/physics:physics", ":ga_pure"],
+    copts = THREAD_COPTS + ["-DCG_STANDALONE", "-Isrc/cg"],
     linkopts = THREAD_LINKOPTS,
 )
 
-# Local verification build (engine-backed; legacy_bot package was removed)
 cc_binary(
     name = "cg_bot_verify",
-    srcs = ["cg_bot.cpp"],
-    deps = ["//src/engine"],
-    copts = THREAD_COPTS + ["-DLOCAL_VERIFY"],
+    srcs = _CG_BOT_COMPILE_SRCS,
+    deps = ["//src/engine", "//src/physics:physics", ":ga_pure"],
+    copts = THREAD_COPTS + ["-DLOCAL_VERIFY", "-Isrc/cg"],
     linkopts = THREAD_LINKOPTS,
+)
+
+genrule(
+    name = "cg_bot_amalgam",
+    srcs = [
+        "ga_pure.h",
+        "internal/ga_prelude_and_search.inc",
+        "internal/ga_factory.inc",
+        "internal/ga_main.inc",
+        "//src/physics:fast.h",
+    ],
+    outs = ["cg_bot_amalgam.cpp"],
+    cmd = """
+(
+  echo '// GENERATED — do not edit. Produced by //src/cg:cg_bot_amalgam'
+  echo '#define CG_STANDALONE'
+  echo '#define CG_BOT_AMALGAM 1'
+  cat $(location //src/physics:fast.h)
+  echo ''
+  cat $(location ga_pure.h)
+  echo ''
+  cat $(location internal/ga_prelude_and_search.inc)
+  echo ''
+  cat $(location internal/ga_factory.inc)
+  echo ''
+  cat $(location internal/ga_main.inc)
+) > $@
+""",
+    visibility = ["//visibility:public"],
+)
+
+cc_binary(
+    name = "cg_bot_amalgam_bin",
+    srcs = [":cg_bot_amalgam"],
+    copts = THREAD_COPTS,
+    linkopts = THREAD_LINKOPTS,
+)
+
+cc_test(
+    name = "amalgam_fast_smoke_test",
+    srcs = ["amalgam_fast_smoke_test.cpp"],
+    deps = ["//src/physics:physics"],
+    # Ensures amalgam genrule builds and is available as a runfile.
+    data = [":cg_bot_amalgam"],
 )

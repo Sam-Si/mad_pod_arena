@@ -170,6 +170,8 @@ class CppPhysics:
                         "next": int(parts[6]),
                         "shield": int(parts[7]),
                         "boosted": int(parts[8]),
+                        # Optional 10th field (replay_driver): pod.won for outcome M1
+                        "won": int(parts[9]) if len(parts) >= 10 else 0,
                     })
             # else: skip noise lines (DEBUG, etc.)
         return {"pods": pods, "timeouts": timeouts}
