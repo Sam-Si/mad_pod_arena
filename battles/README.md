@@ -1,55 +1,36 @@
 # Battle corpora
 
-Real CodinGame *Mad Pod Racing* / *Coders Strike Back* replays used to verify
-**one** referee physics implementation: [`src/physics/physics.h`](../src/physics/physics.h).
+Real CodinGame Mad Pod Racing replays for verifying **`src/physics/physics.h`**.
 
-> **Hard retention rule:** only battles with id **> 870230019**. See [RETENTION.md](RETENTION.md).
+## Retention
 
-## Directories
-
-| Folder | Role | CI |
-|---|---|---|
-| `test_session_battles/` | **Golden set** (~312). Physics must be 100% here. | **Required gate** in `.github/workflows/ci.yml` |
-| `test_session_timeouts/` | Agent timed out — segregated; not physics fails. | Not in physics gate |
-| `leaderboard_battles/` | Large post-cutoff scrape (flat `battle_*.json` + optional `rank_*`). | Nightly (report) |
-| `leaderboard_timeouts/` | Leaderboard agent timeouts. | Not in physics gate |
-| `leaderboard_battles_categorized/` | **Index only** (`manifest.csv`) — no duplicate JSON. | — |
-| `leaderboard_physics_divergences/` | **Couldn't match referee** — 44 leaderboard battles where physics diverges; each has `first_fail_turn` in `manifest.csv` + `*.divergence.json` sidecars (copies; originals stay in `leaderboard_battles/`). | — |
-| `golden_physics_battles/` | **~200 golden regression set** — all divergences (`expected_fail`) + stratified pass samples from `test_session_battles` + `leaderboard_battles`. See `manifest.csv`. | Optional gate: pass tier only |
-| `copy_pasted_battles/` | Hand-saved edge cases (markdown). | — |
-| `scripts/` | Scrape / migrate / **enforce_retention.py** / **build_golden_corpus.py** / **verify_golden_corpus.py**. | Retention job |
-
-## Single source of truth (physics)
-
-| Concern | Location | Do not duplicate in |
-|---|---|---|
-| Referee / CG-server fidelity | `src/physics/physics.h` | `src/engine/`, `sim/`, bots |
-| Bot search / arena runner | `src/engine/engine.h` + `engine.cpp` | `src/physics/` |
-| Batch verification | `//src/physics:verify_battles` | Ad-hoc copies of physics |
-| Python harness (optional) | `sim/` drives `replay_driver` → same `physics.h` | Own physics math |
-
-## How to verify locally
+See [`RETENTION.md`](RETENTION.md): battle id **> 870230019**; no truncated action streams (`n_frames > 1+2*n_turns+4`).
 
 ```bash
-# Retention
 python3 battles/scripts/enforce_retention.py
-
-# C++ verifier (same binary CI uses)
-bazel build //src/physics:verify_battles
-bazel-bin/src/physics/verify_battles --dir battles/test_session_battles
-
-# Python harness (same physics.h via replay_driver)
-python3 sim/verify_battles.py battles/test_session_battles
+python3 battles/scripts/enforce_retention.py --truncated
 ```
 
-## Scripts
+## Corpora
+
+| Directory | Role | CI |
+|---|---|---|
+| **`test_session_battles/`** (~312) | Primary gate **(A)** — must be **100%** turn-perfect under GATE | **Required** |
+| **`golden_physics_battles/`** (~200) | Stratified regression; **`expected_pass.txt` (~188)** = gate **(B)** | **Pass tier required** |
+| `leaderboard_physics_divergences/` | Known long-tail fails (curriculum) | Optional |
+| `leaderboard_battles/` | Full breadth scrape | Nightly / research |
+| `copy_pasted_battles/` | Hand-fetched share-replay JSON (+ legacy notes) | Research / EXACT checks |
+| `*_timeouts/` | Agent timeouts — **not** physics fails | Retention only |
+| `scripts/` | Scrape, golden build/verify, retention | CI retention job |
+
+## Golden tests (local)
 
 ```bash
-python3 battles/scripts/scrape_leaderboard.py --help
-python3 battles/scripts/migrate_and_dedup.py
-python3 battles/scripts/enforce_retention.py --delete   # prune if policy violated
+# Gate B only (must pass)
+MAD_POD_GATE_STRICT=1 python3 battles/scripts/verify_golden_corpus.py --tier pass
+
+# Full golden report (fail tier tracked, not blocking)
+python3 battles/scripts/verify_golden_corpus.py
 ```
 
-## Agent curriculum
-
-Labeled learning tiers for AI/agents: [`docs/agent-battle-curriculum.md`](../docs/agent-battle-curriculum.md) and indices in [`docs/agent_pack/`](../docs/agent_pack/).
+Details: [`golden_physics_battles/README.md`](golden_physics_battles/README.md).

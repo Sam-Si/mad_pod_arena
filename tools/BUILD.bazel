@@ -1,1 +1,8 @@
-# Empty BUILD.bazel file to make this directory a valid Bazel package.
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_binary(
+    name = "capture_fast_goldens",
+    srcs = ["capture_fast_goldens.cpp"],
+    deps = ["//src/engine"],
+    copts = ["-std=c++17"],
+)

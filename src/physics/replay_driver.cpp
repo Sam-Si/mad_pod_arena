@@ -52,7 +52,8 @@ void print_pod_state(const Game& g, int i) {
               << std::setprecision(17) << p.angle << " "
               << p.next << " "
               << p.shieldtimer << " "
-              << p.boosted << "\n";
+              << p.boosted << " "
+              << (p.won ? 1 : 0) << "\n";
 }
 
 void run_text_replay() {
@@ -142,3 +143,4 @@ int main(int argc, char** argv) {
     run_text_replay();
     return 0;
 }
+

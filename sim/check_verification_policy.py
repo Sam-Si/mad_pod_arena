@@ -82,11 +82,16 @@ def main() -> None:
         if title not in ci:
             fail(f"ci.yml missing required step name {title!r}")
 
-    pv = open(os.path.join(ROOT, "docs/physics-verification.md"), encoding="utf-8").read()
-    if "sim/tolerance_policy" not in pv:
-        fail("docs/physics-verification.md must contain 'sim/tolerance_policy'")
-    if FORBIDDEN_LEGACY in pv:
-        fail("docs/physics-verification.md still has forbidden ±1 gate sentence")
+    # Historical write-up lives under docs/archive/ (active law is VERIFICATION_TRUTH_POLICY).
+    pv_path = os.path.join(ROOT, "docs/archive/physics-verification.md")
+    if not os.path.isfile(pv_path):
+        pv_path = os.path.join(ROOT, "docs/physics-verification.md")
+    if os.path.isfile(pv_path):
+        pv = open(pv_path, encoding="utf-8").read()
+        if "sim/tolerance_policy" not in pv:
+            fail(f"{pv_path} must contain 'sim/tolerance_policy'")
+        if FORBIDDEN_LEGACY in pv:
+            fail(f"{pv_path} still has forbidden ±1 gate sentence")
 
     readme = open(os.path.join(ROOT, "README.md"), encoding="utf-8").read()
     if "verify_battles.py --gate" not in readme and "MERGE_PHYSICS_OK" not in readme:
@@ -146,6 +151,11 @@ def main() -> None:
                 "check_verification_policy.py"
             ):
                 fail(f"MAD_POD_CLAIM_GATE found in {fp}")
+
+    # Fowler (1999): permanent tests/guards against design smells / dual owners.
+    import check_ssot_policy
+
+    check_ssot_policy.main()
 
     print("POLICY OK: verification truth policy static checks passed")
 

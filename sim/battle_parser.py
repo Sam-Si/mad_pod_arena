@@ -13,6 +13,7 @@ Handles all battle types:
 
 from __future__ import annotations
 import json
+import math
 import re
 from dataclasses import dataclass, field
 from typing import List, Tuple, Optional, Dict, Any
@@ -329,6 +330,57 @@ def load_battle(path: str) -> BattleLog:
         keyframes.append(gs)
 
         t += 1
+
+    # Keyframe SHIELD recovery: scraped stdout sometimes says "200" while the
+    # post-turn keyframe shows shield_active with null targets (rotate skipped,
+    # pure friction). Prefer keyframe intent so collision topology matches CG
+    # (e.g. battle_885912413 turn 69). Target = prior pose → skip rotate.
+    # Tight predicates to avoid InvalidInput frames (shield field + null targets
+    # with negative thrust) and mid-cooldown noise — require frozen angle and
+    # post-friction velocity matching pure friction of prior vel.
+    for t_idx, ta in enumerate(turns):
+        kf = keyframes[t_idx]
+        prev_pods = keyframes[t_idx - 1].pods if t_idx > 0 else init_state.pods
+        acts = [ta.p0_pod0, ta.p0_pod1, ta.p1_pod0, ta.p1_pod1]
+        changed = False
+        new_acts = []
+        for i, act in enumerate(acts):
+            gp = kf.pods[i]
+            pp = prev_pods[i]
+            thr = str(act.thrust)
+            is_numeric_or_boost = thr == "BOOST" or (
+                thr not in ("SHIELD",) and thr.lstrip("-").isdigit() and int(thr) >= 0
+            )
+            ang_frozen = (
+                pp.angle is not None
+                and gp.angle is not None
+                and abs(pp.angle - gp.angle) < 1e-9
+            )
+            pure_fric = (
+                gp.vx == int(math.trunc(pp.vx * 0.85))
+                and gp.vy == int(math.trunc(pp.vy * 0.85))
+            )
+            if (
+                gp.shield_active
+                and gp.target_x is None
+                and gp.target_y is None
+                and is_numeric_or_boost
+                and ang_frozen
+                and pure_fric
+                and thr != "SHIELD"
+            ):
+                new_acts.append(Action(int(pp.x), int(pp.y), "SHIELD"))
+                changed = True
+            else:
+                new_acts.append(act)
+        if changed:
+            turns[t_idx] = TurnActions(
+                turn=ta.turn,
+                p0_pod0=new_acts[0],
+                p0_pod1=new_acts[1],
+                p1_pod0=new_acts[2],
+                p1_pod1=new_acts[3],
+            )
 
     # Determine expected outcome from ranks
     ranks = raw.get("ranks", [])

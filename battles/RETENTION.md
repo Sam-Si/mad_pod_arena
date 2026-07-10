@@ -34,6 +34,29 @@ python3 battles/scripts/enforce_retention.py --delete # hard delete offenders
 
 Scrapers should refuse to write ids ≤ 870230019 (see `MIN_BATTLE_ID` in scripts).
 
+## Truncated action streams (removed)
+
+Replays where the parser cannot recover a full action/keyframe stream are **invalid
+for physics verification**. Criterion:
+
+```text
+n_frames > 1 + 2 * n_turns + 4
+```
+
+(`n_turns` = complete turns with both players’ stdout + 4-pod keyframe.)
+
+Typical causes: agent timeout / crash mid-game, missing stdout lines, scrape
+corruption. These files must **not** remain in physics corpora; do not “fix”
+outcomes by falling back to CG `ranks` while claiming a full replay.
+
+Removed from `leaderboard_battles/` (2026-06-30) — see `logs/truncated_replays_removed.txt`.
+Re-scan / prune:
+
+```bash
+python3 battles/scripts/enforce_retention.py --truncated          # report
+python3 battles/scripts/enforce_retention.py --truncated --delete  # remove
+```
+
 ## CI expectation
 
 - **Gate (must be 100%):** `battles/test_session_battles/` via `//src/physics:verify_battles`
