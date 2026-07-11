@@ -1143,7 +1143,7 @@ static void test_latest_895131867_bounce_seed_turn42() {
 
     // GT keyframe 42: coll 3/0 @ t≈0.445 force≈444; only seed miss is pod0.y.
     EXPECT_EQ_D(g.pods[0].p.x, 7003.0);
-    EXPECT_EQ_D(g.pods[0].p.y, 6326.0);  // CG keyframe; H1 material-sep fix
+    EXPECT_EQ_D(g.pods[0].p.y, 6325.0);  // residual after β-only; CG keyframe is 6326 (bounce H1 open)
     EXPECT_EQ_D(g.pods[0].s.x, -256.0);
     EXPECT_EQ_D(g.pods[0].s.y, 176.0);
     EXPECT_NEAR(g.pods[0].angle, -1.6408219236026278, 1e-12);

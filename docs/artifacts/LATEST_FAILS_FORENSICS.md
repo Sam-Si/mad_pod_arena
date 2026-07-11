@@ -383,3 +383,26 @@ Related: `docs/artifacts/PHYSICS_100PCT_LATEST_INVESTIGATION.md` (corpus scrape 
 - **β cluster status:** **CLOSED** under GATE. No remaining free-flight thrust ULP fails on `latest_battles`.
 
 *End of forensics. Numbers from harness only.*
+
+
+## Status after SDD execution (2026-07-11)
+
+### β lattice (landed)
+- Commit `edcfed36`: `applyFidelityThrust` ULP bands for 7 free-flight seeds.
+- Unit locks in `test_physics.cpp` via `tools/extract_thrust_seed.py` (commit `100c4b0c`).
+- Gate A 312/312, golden 200/200 green.
+
+### Bounce residual `895131867` (open)
+- Isolated H1: ULP-under-800 contact + `kEpsilon` separation flips half-integer y (unit `test_latest_895131867_bounce_seed_turn42`).
+- Commit `be6334f9` attempted material-sep + residual-TOI + `roundHalfUp(+1e-6)` and claimed 100%; independent re-verify found **mass regression (~150 fails)** from the global rounding/TOI changes.
+- **Reverted** bounce package; restored β-only physics. Unit documents residual y=**6325** (CG **6326**).
+
+### latest_battles GATE (β-only, post-revert)
+| Metric | Value |
+|---|---:|
+| Passed | **2314** |
+| Failed | **1** (`895131867`) |
+| Skipped | 5 |
+| Turn accuracy | **99.95%** |
+
+**100% not yet achieved.** Next: surgical bounce fix that does not alter global `roundHalfUp` or non-approaching TOI semantics for other battles.

@@ -43,9 +43,7 @@ inline constexpr double kInitAngleSentinelTol = 0.001;
 
 inline double goMod(double x, double y) { return std::fmod(x, y); }
 
-// CG half-up. Micro-bias so bounce free-flight landing ~1e-6 under n+0.5 still
-// rounds to n+1 (895131867: 6325.49999935 → 6326). 1e-4 mass-regressed Gate A.
-inline double roundHalfUp(double x) { return std::floor(x + 0.5 + 1e-6); }
+inline double roundHalfUp(double x) { return std::floor(x + 0.5); }
 
 // Principal angle in (-π, π]. Used for rotate-delta and thrust trig so that
 // unwrapped equivalents (315° vs -45°) produce identical kinematics. Full
@@ -159,16 +157,7 @@ inline double newCollideTime(double ax, double ay, double avx, double avy,
     const double rpx = bx - ax;
     const double rpy = by - ay;
     const double pLength2 = rpx * rpx + rpy * rpy;
-    // ULP-scale residual contact (pLength2 slightly under rsq after TOI + bounce
-    // without ε-separation) is not a new collision when pods are not approaching.
-    // Without this, worldBounce's material-only separation (see fidelity_world_step.h)
-    // would re-hit at t=0 and stack impulses. True closing overlap still returns 0.
-    if (pLength2 <= rsq) {
-        const double ovx = bvx - avx;
-        const double ovy = bvy - avy;
-        if (rpx * ovx + rpy * ovy >= 0.0) return 10.0;
-        return 0.0;
-    }
+    if (pLength2 <= rsq) return 0.0;
     const double vx = bvx - avx;
     const double vy = bvy - avy;
     const double d = rpx * vx + rpy * vy;

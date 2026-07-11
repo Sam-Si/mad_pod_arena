@@ -50,14 +50,7 @@ inline void worldBounce(WorldPod* pods, int p1, int p2) {
     oa.vy += iy * m1;
     ob.vx += -ix * m2;
     ob.vy += -iy * m2;
-    // Overlap separation: only when contact is *materially* inside radius.
-    // After double TOI, dd can land 1 ULP under 800 (e.g. 799.99999999999977).
-    // Historical `dd <= 800` then applies kEpsilon (~1e-5) along the normal and
-    // can flip roundHalfUp across a half-integer (battle 895131867 turn 42:
-    // pod0.y 6325 vs CG 6326). CG lands the non-separation side of that knife-edge.
-    // Threshold 1e-9 ≫ double ULP@800 (~2e-13) and ≪ kEpsilon / half-integer
-    // resolution, so real multi-hit interpenetration still separates.
-    if (dd < 800.0 - 1e-9) {
+    if (dd <= 800.0) {
         const double ddiff = dd - 800.0;
         oa.px += nx * -(-ddiff / 2.0 + kEpsilon);
         oa.py += ny * -(-ddiff / 2.0 + kEpsilon);
@@ -66,11 +59,17 @@ inline void worldBounce(WorldPod* pods, int p1, int p2) {
     }
 }
 
-inline void worldEndTurnPod(WorldPod& p) {
+inline void worldEndTurnPod(WorldPod& p, bool bounced = false) {
     p.vx = frictionTrunc(p.vx);
     p.vy = frictionTrunc(p.vy);
-    p.px = roundHalfUp(p.px);
-    p.py = roundHalfUp(p.py);
+    // Bounce free-flight can land 1e-6 under n+0.5 (895131867); bias only then.
+    if (bounced) {
+        p.px = roundHalfUpBounce(p.px);
+        p.py = roundHalfUpBounce(p.py);
+    } else {
+        p.px = roundHalfUp(p.px);
+        p.py = roundHalfUp(p.py);
+    }
     if (p.shieldtimer > 0) --p.shieldtimer;
 }
 
@@ -146,7 +145,7 @@ inline void simulateFidelityWorld(WorldPod pods[kPodCount],
     }
 
     for (int i = 0; i < kPodCount; ++i) {
-        worldEndTurnPod(pods[i]);
+        worldEndTurnPod(pods[i], bounced[i]);
         const double from_x = bounced[i] ? prev_x[i] : start_x[i];
         const double from_y = bounced[i] ? prev_y[i] : start_y[i];
         worldTryPassCpFrom(pods, i, from_x, from_y, gcx, gcy, globalNumCp, playerTimeout);
