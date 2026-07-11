@@ -982,6 +982,132 @@ static void test_collision_head_on_fidelity_and_fast() {
     std::cout << "collision_head_on_fidelity_and_fast: ok\n";
 }
 
+// ---------------------------------------------------------------------------
+// latest_battles β ULP knife-edges (harness-measured via tools/extract_thrust_seed.py
+// + isolation_summary / EXACT GT logs). EXPECT values are GT post-friction vel.
+// ---------------------------------------------------------------------------
+
+// Battle 895340085 — first EXACT t87 pod1; pure N thr200 short-axis nextafter.
+// PRE v=(-100,-66); face 90°; GT post (-84,113). Committed lattice → fric -85.
+static void test_latest_895340085_from_isolation() {
+    double vx = -100.0;
+    double vy = -66.0;
+    const double ang = M_PI / 2.0;  // pure N
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -84.0);
+    EXPECT_EQ_D(vy, 113.0);
+    std::cout << "latest_895340085_from_isolation: ok\n";
+}
+
+// Battle 895345570 — first EXACT t95 pod1; 3-4-5 face 126.87° thr200.
+// PRE v=(40,-48); prefric ≈(-80,+112); GT post (-67,95).
+static void test_latest_895345570_from_isolation() {
+    double vx = 40.0;
+    double vy = -48.0;
+    const double ang = std::atan2(0.8, -0.6);  // face 126.8699°
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -67.0);
+    EXPECT_EQ_D(vy, 95.0);
+    std::cout << "latest_895345570_from_isolation: ok\n";
+}
+
+// Battle 895429566 — first EXACT t81 pod1; 3-4-5 face 53.13° thr200.
+// PRE v=(-140,522); prefric ≈(-20,+682); GT post (-16,579).
+static void test_latest_895429566_from_isolation() {
+    double vx = -140.0;
+    double vy = 522.0;
+    const double ang = std::atan2(0.8, 0.6);  // face 53.1301°
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -16.0);
+    EXPECT_EQ_D(vy, 579.0);
+    std::cout << "latest_895429566_from_isolation: ok\n";
+}
+
+// Battle 895515899 — first EXACT t51 pod3; pole 0.96/0.28 thr200.
+// PRE v=(-351,-36); prefric ≈(-543,+20); GT post (-461,16) — |o|~543 wants na.
+static void test_latest_895515899_from_isolation() {
+    double vx = -351.0;
+    double vy = -36.0;
+    const double ang = std::atan2(0.28, -0.96);  // face ~163.7398°
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -461.0);
+    EXPECT_EQ_D(vy, 16.0);
+    std::cout << "latest_895515899_from_isolation: ok\n";
+}
+
+// Battle 895564994 — first EXACT t34 pod0; pure S thr47 short-axis PLAIN.
+// PRE v=(-40,-280); prefric ≈(-40,-327); GT post (-34,-277).
+static void test_latest_895564994_from_isolation() {
+    double vx = -40.0;
+    double vy = -280.0;
+    const double ang = -M_PI / 2.0;  // pure S
+    const int thr = 47;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -34.0);
+    EXPECT_EQ_D(vy, -277.0);
+    std::cout << "latest_895564994_from_isolation: ok\n";
+}
+
+// Battle 895612448 — first EXACT t233 pod1; 3-4-5 face 53.13° thr200.
+// PRE v=(-180,-202); prefric ≈(-60,-42); GT post (-50,-35).
+static void test_latest_895612448_from_isolation() {
+    double vx = -180.0;
+    double vy = -202.0;
+    const double ang = std::atan2(0.8, 0.6);  // face 53.1301°
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -50.0);
+    EXPECT_EQ_D(vy, -35.0);
+    std::cout << "latest_895612448_from_isolation: ok\n";
+}
+
+// Battle 895637720 — first EXACT t290 pod0; 3-4-5 face -126.87° thr200.
+// PRE v=(0,-665); prefric ≈(-120,-825); GT post (-101,-701).
+static void test_latest_895637720_from_isolation() {
+    double vx = 0.0;
+    double vy = -665.0;
+    const double ang = std::atan2(-0.8, -0.6);  // face -126.8699°
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, -101.0);
+    EXPECT_EQ_D(vy, -701.0);
+    std::cout << "latest_895637720_from_isolation: ok\n";
+}
+
+// Regression: pole +20 with |other|≈541 must stay PLAIN fric 17 (885922662 family).
+// PRE v=(-172,-485) thr200 face -16.2602°; prefric (20,-541); GT (17,-459).
+// Must NOT nextafter (+20) — that path is for |o|≥543 (895515899).
+static void test_regression_pole_pos20_other541_plain() {
+    double vx = -172.0;
+    double vy = -485.0;
+    const double ang = -16.26020470831196 * D2R;  // pole 0.96/0.28
+    const int thr = 200;
+    csb::applyFidelityThrust(vx, vy, ang, thr);
+    vx = csb::frictionTrunc(vx);
+    vy = csb::frictionTrunc(vy);
+    EXPECT_EQ_D(vx, 17.0);   // plain; nextafter would be 16
+    EXPECT_EQ_D(vy, -459.0);
+    std::cout << "regression_pole_pos20_other541_plain: ok\n";
+}
+
 static void test_fidelity_edge_cases() {
     test_rotate_full_snap_within_18();
     test_rotate_exact_18_max_rotate();
@@ -1003,6 +1129,15 @@ static void test_fidelity_edge_cases() {
     test_fast_physics_matches_fidelity_ssot();
     test_fast_vs_fidelity_game_step();
     test_collision_head_on_fidelity_and_fast();
+    // latest_battles β ULP locks (TDD; expect fail on committed lattice without WIP)
+    test_latest_895340085_from_isolation();
+    test_latest_895345570_from_isolation();
+    test_latest_895429566_from_isolation();
+    test_latest_895515899_from_isolation();
+    test_latest_895564994_from_isolation();
+    test_latest_895612448_from_isolation();
+    test_latest_895637720_from_isolation();
+    test_regression_pole_pos20_other541_plain();
 }
 
 int main() {
