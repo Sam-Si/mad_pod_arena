@@ -328,6 +328,7 @@ Structure campaign is **complete enough** when:
 - [ ] Ownership row unchanged or SSOT.md + policy updated?
 - [ ] No second lattice / bounce / constants / maps?
 - [ ] Amalgam still builds if bot sources moved?
+- [ ] Amalgam genrule + smoke green if `src/cg` product sources moved?
 - [ ] Degrees↔radians bridge still correct if types moved?
 - [ ] Joint apply order preserved?
 - [ ] Named test suite green (truth suite / Gate A/B as required)?
@@ -341,3 +342,58 @@ Structure campaign is **complete enough** when:
 ## 12. One-line sequencing recommendation
 
 **Physics SSOT is largely finished → next repo refactor center of gravity is the bot monoblock (`ga_prelude_and_search.inc`) under a frozen Fidelity law and a hard Fidelity-vs-Fast product fence; then data clumps, terminal helpers, and harness/docs hygiene — always with the truth suite as the only behavior oracle.**
+
+---
+
+## 13. Plan hardening (execution gates)
+
+*Added 2026-07-11 — makes Waves 0–1 auditable. Does not change physics law.*
+
+### 13.1 Wave 1 exit criteria (bot modularization)
+
+Wave 1 is **done** only when **all** of the following hold:
+
+| ID | Criterion |
+|----|-----------|
+| **W1.1** | `src/cg/internal/ga_prelude_and_search.inc` is **glue only** (includes + thin wiring) **or** ≤ **400** lines of non-comment, non-blank code |
+| **W1.2** | Named seams exist as separate modules (names may vary): **evolve/population**, **evaluate**, **I/O or GetActions orchestration**, **CG_STANDALONE / amalgam stubs** |
+| **W1.3** | `ga_pure` (or successor) remains pure scoring SSOT — no I/O, no RNG |
+| **W1.4** | Amalgam genrule source list matches modules; amalgam smoke **PASS** |
+| **W1.5** | Fast goldens + `./tools/run_truth_suite.sh --quick` **PASS** |
+| **W1.6** | No new unflagged Fast call sites in modules labeled EXACT / champion / oracle |
+
+**Not required for Wave 1:** full tournament suite, Gate A (unless a freeze-list file is touched), Path C / RL features, Wave 2 data clumps.
+
+### 13.2 Fidelity / GATE freeze list (Waves 1–5)
+
+Do **not** modify these in structure PRs (comment-only / cross-links OK):
+
+| Path | Why |
+|------|-----|
+| `src/physics/fidelity_math.h` | ULP / rotate / thrust lattice |
+| `src/physics/fidelity_world_step.h` | World step law |
+| `src/core/constants.h` | Numeric law values |
+| `sim/tolerance_policy.py` | GATE numbers |
+| Gate tolerance tables in verification policy | Merge bar |
+
+If a real bug requires touching a freeze-list file: **split PRs** — structure-only first, or Fidelity hat alone with Gate A + golden.
+
+### 13.3 Amalgam acceptance (every bot-structure PR)
+
+When any `src/cg/**` product source used by the amalgam genrule changes:
+
+1. Genrule source list includes all modules.
+2. Amalgam target builds.
+3. `//src/cg:amalgam_fast_smoke_test` (or equivalent export smoke) **PASS**.
+4. PR description notes paste remains **generated only**.
+
+### 13.4 Path C / product fence (structure note)
+
+Structure extracts must not add new Fast call sites to EXACT/champion paths. RL / Encode / Path C features are a **separate product hat**; they consume modular layout but are **out of scope** for Waves 1–5 (see Zero-Bias design docs under `docs/artifacts/`).
+
+### 13.5 Supersedes (structure sequencing)
+
+For **structure wave order**, this file is authoritative.  
+`docs/SSOT_FORWARD_PLAN.md` remains an SSOT audit / history.  
+`docs/FOWLER_2018_ZERO_SMELL_REFACTOR_PLAN.md` remains smell inventory / process notes.  
+Living ownership register remains `docs/SSOT.md`.
