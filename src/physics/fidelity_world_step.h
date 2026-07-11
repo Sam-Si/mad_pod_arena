@@ -62,7 +62,7 @@ inline void worldBounce(WorldPod* pods, int p1, int p2) {
 inline void worldEndTurnPod(WorldPod& p, bool bounced = false) {
     p.vx = frictionTrunc(p.vx);
     p.vy = frictionTrunc(p.vy);
-    // Bounce free-flight can land 1e-6 under n+0.5 (895131867); bias only then.
+    // Post-bounce free-flight can land 1e-6 under n+0.5 (895131867); bias only then.
     if (bounced) {
         p.px = roundHalfUpBounce(p.px);
         p.py = roundHalfUpBounce(p.py);

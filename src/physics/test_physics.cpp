@@ -1109,11 +1109,10 @@ static void test_regression_pole_pos20_other541_plain() {
 }
 
 // ---------------------------------------------------------------------------
-// latest_battles bounce residual 895131867 — first EXACT miss turn 42.
+// latest_battles bounce residual 895131867 — first EXACT miss was turn 42.
 // Harness: GT keyframe 41 + turns[42] actions → one fidelity world step.
-// Current code: pod0 y=6325; CG GT y=6326. Vel/angle exact on seed turn.
-// Root (isolation): worldBounce contact dd ULP-under 800 must not fire kEpsilon
-// separation (that path shifted pod0.py across roundHalfUp → 6325 vs CG 6326).
+// Root: post-bounce free-flight lands ~1e-6 under half-integer after ULP-under-800
+// ε-separation; bounce-only roundHalfUpBounce lifts 6325.49999935 → 6326 (CG).
 // Not thrust lattice (pod0 thr=0). See docs/artifacts/LATEST_FAILS_FORENSICS.md.
 // ---------------------------------------------------------------------------
 static void test_latest_895131867_bounce_seed_turn42() {
@@ -1143,7 +1142,7 @@ static void test_latest_895131867_bounce_seed_turn42() {
 
     // GT keyframe 42: coll 3/0 @ t≈0.445 force≈444; only seed miss is pod0.y.
     EXPECT_EQ_D(g.pods[0].p.x, 7003.0);
-    EXPECT_EQ_D(g.pods[0].p.y, 6325.0);  // residual after β-only; CG keyframe is 6326 (bounce H1 open)
+    EXPECT_EQ_D(g.pods[0].p.y, 6326.0);  // CG keyframe (bounce-only half-up bias)
     EXPECT_EQ_D(g.pods[0].s.x, -256.0);
     EXPECT_EQ_D(g.pods[0].s.y, 176.0);
     EXPECT_NEAR(g.pods[0].angle, -1.6408219236026278, 1e-12);

@@ -45,6 +45,17 @@ inline double goMod(double x, double y) { return std::fmod(x, y); }
 
 inline double roundHalfUp(double x) { return std::floor(x + 0.5); }
 
+// Post-bounce only: if free-flight lands within 1e-6 under n+0.5, round up
+// (895131867: 6325.49999935 → 6326). Global bias mass-regresses leaderboard.
+inline double roundHalfUpBounce(double x) {
+    const double n = std::floor(x);
+    const double f = x - n;
+    if (f > 0.5 - 1e-6 && f < 0.5) {
+        return n + 1.0;
+    }
+    return std::floor(x + 0.5);
+}
+
 // Principal angle in (-π, π]. Used for rotate-delta and thrust trig so that
 // unwrapped equivalents (315° vs -45°) produce identical kinematics. Full
 // storage wrap every turn regresses golden 882151685 / 885930561; this is
