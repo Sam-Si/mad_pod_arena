@@ -6,7 +6,9 @@
 |---|---|
 | [`VERIFICATION_TRUTH_POLICY.md`](VERIFICATION_TRUTH_POLICY.md) | **Authoritative** merge gate (`MERGE_PHYSICS_OK`, job `physics-accuracy`, `GATE_*`) |
 | [`SSOT.md`](SSOT.md) | Living physics ownership register (Fidelity + Fast) |
-| [`SSOT_FORWARD_PLAN.md`](SSOT_FORWARD_PLAN.md) | Full-repo SSOT audit + phased plan (2026-07-09) |
+| [`SSOT_FORWARD_PLAN.md`](SSOT_FORWARD_PLAN.md) | SSOT audit / history (2026-07-09). **Structure wave order:** see [`plans/2026-07-11-full-repo-refactoring-plan.md`](plans/2026-07-11-full-repo-refactoring-plan.md) |
+| [`plans/`](plans/) | **Campaign plans** (dated MD; all new plans go here — see `plans/README.md`) |
+| [`plans/2026-07-11-full-repo-refactoring-plan.md`](plans/2026-07-11-full-repo-refactoring-plan.md) | **Active** structure campaign — structure sequencing / waves for full-repo refactoring |
 | [`WEWLC_GAP_ANALYSIS.md`](WEWLC_GAP_ANALYSIS.md) | Feathers *Working Effectively with Legacy Code* — book gist + what this repo still lacks |
 | [`BRANCH_COVERAGE_REPORT.md`](BRANCH_COVERAGE_REPORT.md) | Measured branch coverage + 10-battle EXACT proof |
 | [`TESTING_BAR_FROM_BOOKS.md`](TESTING_BAR_FROM_BOOKS.md) | Fowler/Feathers testing bar enforcement map |

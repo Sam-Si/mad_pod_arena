@@ -1,5 +1,7 @@
 # Zero–code-smell refactor plan (Fowler *Refactoring*, 2nd ed. 2018)
 
+> **Structure sequencing:** use [`plans/2026-07-11-full-repo-refactoring-plan.md`](plans/2026-07-11-full-repo-refactoring-plan.md) (Active). This file is not the wave driver.
+
 **Authority (process):** Martin Fowler with Kent Beck, *Refactoring: Improving the Design of Existing Code*, Second Edition (Addison-Wesley / Pearson, 2018).  
 **Local PDF:** `~/Downloads/[Addison-Wesley Object Technology Series] Martin Fowler - Refactoring_ Improving the Design of Existing Code (2018, Addison-Wesley Professional) - libgen.li.pdf`  
 **Behavioral authority (repo):** **tests only** — `./tools/run_truth_suite.sh` (docs explain; suite decides).

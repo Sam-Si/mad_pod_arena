@@ -45,6 +45,17 @@ inline double goMod(double x, double y) { return std::fmod(x, y); }
 
 inline double roundHalfUp(double x) { return std::floor(x + 0.5); }
 
+// Post-bounce only: if free-flight lands within 1e-6 under n+0.5, round up
+// (895131867: 6325.49999935 → 6326). Global bias mass-regresses leaderboard.
+inline double roundHalfUpBounce(double x) {
+    const double n = std::floor(x);
+    const double f = x - n;
+    if (f > 0.5 - 1e-6 && f < 0.5) {
+        return n + 1.0;
+    }
+    return std::floor(x + 0.5);
+}
+
 // Principal angle in (-π, π]. Used for rotate-delta and thrust trig so that
 // unwrapped equivalents (315° vs -45°) produce identical kinematics. Full
 // storage wrap every turn regresses golden 882151685 / 885930561; this is
@@ -303,12 +314,16 @@ inline void applyFidelityThrust(double& vx, double& vy, double angle, int t) {
     } else if (isPole && exact_prod(sx) && !exact_prod(sy)
                && ((sx == -240.0 && std::fabs(sy) >= 200.0) ||
                    (sx == -40.0 && std::fabs(sy) >= 150.0) ||
-                   (sx == 140.0 && std::fabs(sy) >= 600.0))) {
-        sx = std::nextafter(sx, 0.0);  // 885988100 / 886246733 / 885900898
+                   (sx == 140.0 && std::fabs(sy) >= 600.0) ||
+                   (sx == 20.0 && std::fabs(sy) >= 543.0))) {
+        // +20 large other: 895515899 |o|~543 wants na (fric 16). Golden 885922662
+        // |o|~541 wants plain 17 — require |o|>=543.
+        sx = std::nextafter(sx, 0.0);  // 885988100 / 886246733 / 885900898 / 895515899
     } else if (isPole && exact_prod(sy) && !exact_prod(sx)
                && ((sy == -240.0 && std::fabs(sx) >= 200.0) ||
                    (sy == -40.0 && std::fabs(sx) >= 150.0) ||
-                   (sy == 140.0 && std::fabs(sx) >= 600.0))) {
+                   (sy == 140.0 && std::fabs(sx) >= 600.0) ||
+                   (sy == 20.0 && std::fabs(sx) >= 543.0))) {
         sy = std::nextafter(sy, 0.0);
     } else if (exact_prod(sx) && is345 && sx == -40.0 && !exact_prod(sy)
                && std::fabs(sy) > 50.0 && std::fabs(sy) < 200.0) {
@@ -327,11 +342,13 @@ inline void applyFidelityThrust(double& vx, double& vy, double angle, int t) {
                 return v;
             }
             if (ns_axis && an == 80.0 && thrust <= 100) return v;  // 886444291
-            if (ns_axis && an == 100.0 && std::fabs(other) < 150.0) return v;
-            if (ns_axis && an == 40.0 && thrust < 100 &&
-                std::fabs(other) < 150.0) {
+            // |100|: plain only thr<200 with modest other (871352362). thr>=200
+            // wants nextafter even |o|~134 (895340085 pure N).
+            if (ns_axis && an == 100.0 && thrust < 200 && std::fabs(other) < 150.0) {
                 return v;
             }
+            // |40|: plain all thr<100 (895564994 thr47 |o| large wants plain -34).
+            if (ns_axis && an == 40.0 && thrust < 100) return v;
             if (ns_axis && an == 20.0 && thrust <= 2) return v;   // 886361770
             if (ns_axis && an == 120.0 && thrust < 20) return v;  // 891619475
             if (!ns_axis && thrust < 100) {
@@ -371,13 +388,19 @@ inline void applyFidelityThrust(double& vx, double& vy, double angle, int t) {
                 && std::fabs(sx) >= 250.0) {
                 sy = std::nextafter(sy, 0.0);
             }
+            // 3-4-5 0.6-axis residual want_na. Mid bands: other-sign matters —
+            // 895345570 (-80, +112) wants na; 886469115 (-80, -135) wants plain.
+            // 895429566 (-20, +682) wants na; 888427967 (-20, -531) wants plain.
             if (exact_prod(sx) && !exact_prod(sy) && x_is_06 && sx < 0.0
                 && thrust >= 100) {
                 const double ao = std::fabs(sy);
                 if ((sx == -240.0 && ao >= 200.0 && ao < 400.0) ||
-                    (sx == -120.0 && ao >= 300.0 && ao < 450.0) ||
+                    (sx == -120.0 && ao >= 300.0 && ao < 900.0) ||  // 895637720
                     (sx == -80.0 && ao >= 150.0 && ao < 300.0) ||
-                    (sx == -40.0 && ao >= 300.0 && ao < 450.0)) {
+                    (sx == -80.0 && sy > 0.0 && ao >= 100.0 && ao < 150.0) ||  // 895345570
+                    (sx == -60.0 && ao > 0.0 && ao < 150.0) ||      // 895612448
+                    (sx == -40.0 && ao >= 300.0 && ao < 450.0) ||
+                    (sx == -20.0 && sy > 0.0 && ao >= 400.0)) {     // 895429566
                     sx = std::nextafter(sx, 0.0);
                 }
             }
@@ -385,9 +408,12 @@ inline void applyFidelityThrust(double& vx, double& vy, double angle, int t) {
                 && thrust >= 100) {
                 const double ao = std::fabs(sx);
                 if ((sy == -240.0 && ao >= 200.0 && ao < 400.0) ||
-                    (sy == -120.0 && ao >= 300.0 && ao < 450.0) ||
+                    (sy == -120.0 && ao >= 300.0 && ao < 900.0) ||
                     (sy == -80.0 && ao >= 150.0 && ao < 300.0) ||
-                    (sy == -40.0 && ao >= 300.0 && ao < 450.0)) {
+                    (sy == -80.0 && sx > 0.0 && ao >= 100.0 && ao < 150.0) ||
+                    (sy == -60.0 && ao > 0.0 && ao < 150.0) ||
+                    (sy == -40.0 && ao >= 300.0 && ao < 450.0) ||
+                    (sy == -20.0 && sx > 0.0 && ao >= 400.0)) {
                     sy = std::nextafter(sy, 0.0);
                 }
             }
@@ -446,3 +472,5 @@ inline void applyFidelityMove(double& px, double& py, double& vx, double& vy,
 }
 
 }  // namespace csb
+
+

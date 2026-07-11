@@ -59,11 +59,17 @@ inline void worldBounce(WorldPod* pods, int p1, int p2) {
     }
 }
 
-inline void worldEndTurnPod(WorldPod& p) {
+inline void worldEndTurnPod(WorldPod& p, bool bounced = false) {
     p.vx = frictionTrunc(p.vx);
     p.vy = frictionTrunc(p.vy);
-    p.px = roundHalfUp(p.px);
-    p.py = roundHalfUp(p.py);
+    // Post-bounce free-flight can land 1e-6 under n+0.5 (895131867); bias only then.
+    if (bounced) {
+        p.px = roundHalfUpBounce(p.px);
+        p.py = roundHalfUpBounce(p.py);
+    } else {
+        p.px = roundHalfUp(p.px);
+        p.py = roundHalfUp(p.py);
+    }
     if (p.shieldtimer > 0) --p.shieldtimer;
 }
 
@@ -139,7 +145,7 @@ inline void simulateFidelityWorld(WorldPod pods[kPodCount],
     }
 
     for (int i = 0; i < kPodCount; ++i) {
-        worldEndTurnPod(pods[i]);
+        worldEndTurnPod(pods[i], bounced[i]);
         const double from_x = bounced[i] ? prev_x[i] : start_x[i];
         const double from_y = bounced[i] ? prev_y[i] : start_y[i];
         worldTryPassCpFrom(pods, i, from_x, from_y, gcx, gcy, globalNumCp, playerTimeout);

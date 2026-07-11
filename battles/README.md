@@ -21,6 +21,7 @@ python3 battles/scripts/enforce_retention.py --truncated
 | `leaderboard_battles/` | Full breadth scrape | Nightly / research |
 | `copy_pasted_battles/` | Hand-fetched share-replay JSON (+ legacy notes) | Research / EXACT checks |
 | `*_timeouts/` | Agent timeouts — **not** physics fails | Retention only |
+| **`latest_battles/`** | Post-max-id scrape (id > prior local max) | Research / regression | 
 | `scripts/` | Scrape, golden build/verify, retention | CI retention job |
 
 ## Golden tests (local)

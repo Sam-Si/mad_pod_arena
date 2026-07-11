@@ -1,5 +1,7 @@
 # SSOT Forward Plan — full-repo walk (2026-07-09)
 
+> **Structure sequencing:** use [`plans/2026-07-11-full-repo-refactoring-plan.md`](plans/2026-07-11-full-repo-refactoring-plan.md) (Active). This file is not the wave driver.
+
 **Audience:** implementers consolidating ownership so one law owns each concern.  
 **Normative register:** [`SSOT.md`](SSOT.md) (update on every phase).  
 **Behavioral truth:** `./tools/run_truth_suite.sh` (tests decide, not docs).  
