@@ -391,18 +391,47 @@ Related: `docs/artifacts/PHYSICS_100PCT_LATEST_INVESTIGATION.md` (corpus scrape 
 - Commit `edcfed36`: `applyFidelityThrust` ULP bands for 7 free-flight seeds.
 - Unit locks in `test_physics.cpp` via `tools/extract_thrust_seed.py` (commit `100c4b0c`).
 - Gate A 312/312, golden 200/200 green.
+- **7 β battles CLOSED** under GATE:  
+  `895340085`, `895345570`, `895429566`, `895515899`, `895564994`, `895612448`, `895637720`.
 
-### Bounce residual `895131867` (open)
-- Isolated H1: ULP-under-800 contact + `kEpsilon` separation flips half-integer y (unit `test_latest_895131867_bounce_seed_turn42`).
+### Bounce residual `895131867` (CLOSED)
+- Isolated: ULP-under-800 contact + `kEpsilon` separation flips half-integer y (unit `test_latest_895131867_bounce_seed_turn42`).
 - Commit `be6334f9` attempted material-sep + residual-TOI + `roundHalfUp(+1e-6)` and claimed 100%; independent re-verify found **mass regression (~150 fails)** from the global rounding/TOI changes.
-- **Reverted** bounce package; restored β-only physics. Unit documents residual y=**6325** (CG **6326**).
+- **Reverted** bounce package (`7443ae34`); restored β-only physics temporarily.
+- **Surgical H5 land** (`844f7a62`): post-bounce-only half-integer undershoot fix for `roundHalfUpBounce` — no global TOI / material-sep churn.
+- Single-battle GATE + EXACT perfect; unit expects pod0 y=**6326**.
 
-### latest_battles GATE (β-only, post-revert)
+### Exit suite (Task 7) — all 8 closed, definition of done met
+
+| Field | Value |
+|---|---|
+| **Physics HEAD** | `844f7a62` (H5 bounce) on `edcfed36` (β lattice) |
+| **Driver** | `//src/physics:replay_driver` → `sim/replay_driver` (rebuilt) |
+| **Unit** | `bazel test --config=ci //src/physics:test_physics` → **PASSED** |
+| **Gate A** | 312/312 Failed:0, turn accuracy 100.00% |
+| **Golden** | 200/200 pass-tier OK |
+| **latest_battles** | `python3 -u sim/verify_battles.py battles/latest_battles` |
+
 | Metric | Value |
 |---|---:|
-| Passed | **2314** |
-| Failed | **1** (`895131867`) |
-| Skipped | 5 |
-| Turn accuracy | **99.95%** |
+| Total battles | 2320 |
+| Passed (100%) | **2315** |
+| Failed | **0** |
+| Skipped | **5** (non-battles only) |
+| Perfect turns | **553215 / 553215** |
+| Turn accuracy | **100.00%** |
 
-**100% not yet achieved.** Next: surgical bounce fix that does not alter global `roundHalfUp` or non-approaching TOI semantics for other battles.
+### Closure map (all 8)
+
+| Battle | Seed class | Closing commit | Status |
+|---|---|---|---|
+| `895340085` | β free-flight ULP | `edcfed36` | **CLOSED** |
+| `895345570` | β ULP 3-4-5 | `edcfed36` | **CLOSED** |
+| `895429566` | β ULP → α surface | `edcfed36` | **CLOSED** |
+| `895515899` | β pole ULP | `edcfed36` | **CLOSED** |
+| `895564994` | β pure-short ULP | `edcfed36` | **CLOSED** |
+| `895612448` | β ULP 3-4-5 | `edcfed36` | **CLOSED** |
+| `895637720` | β ULP 3-4-5 | `edcfed36` | **CLOSED** |
+| `895131867` | γ-seed / bounce | `844f7a62` | **CLOSED** |
+
+**100% turn correctness achieved on `battles/latest_battles` under frozen `GATE_*`.** No physics source changes in Task 7 (docs-only exit package).

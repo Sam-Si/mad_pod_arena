@@ -80,7 +80,9 @@ Scraper extension: `--min-id` + `_eligible_game_id()` in `battles/scripts/scrape
 
 ## 6. Verify results on `battles/latest_battles/`
 
-From `verify_latest.log` (GATE tolerances, DIAGNOSTIC role):
+### Historical baseline (pre-fix, investigation day)
+
+From original `verify_latest.log` (GATE tolerances, DIAGNOSTIC role):
 
 | Metric | Value |
 |---|---:|
@@ -92,43 +94,45 @@ From `verify_latest.log` (GATE tolerances, DIAGNOSTIC role):
 | Turn accuracy | **99.80%** |
 | Wall time | ~75 s |
 
-### Fail list (first fail turn)
+### Fail list at investigation open (first fail turn) — all now closed
 
-| Battle | Turn | Types | Notes |
-|---|---:|---|---|
-| `895131867` | 48 | pos | pod2/3 Δ≈6 units (just over GATE 5) — class **β** |
-| `895340085` | 93 | pos | pod1 Δx=−6 — **β** |
-| `895345570` | 99 | pos, vel | pod1 Δx=−6; mild vel — **β** |
-| `895429566` | 90 | angle | pod1 ~2.2° over GATE 1° — **α** |
-| `895515899` | 60 | pos | pod3 Δy=−7 — **β** |
-| `895564994` | 47 | pos | pod2 Δx=−6 — **β** |
-| `895612448` | 239 | pos | late game Δy=−7 — **β** |
-| `895637720` | 297 | pos | late Δx=6 — **β** |
+| Battle | Turn | Types | Notes | Status |
+|---|---:|---|---|---|
+| `895131867` | 48 | pos | pod2/3 Δ≈6 — bounce **γ-seed** | **CLOSED** (`844f7a62` H5) |
+| `895340085` | 93 | pos | pod1 Δx=−6 — **β** | **CLOSED** (`edcfed36` lattice) |
+| `895345570` | 99 | pos, vel | pod1 Δx=−6 — **β** | **CLOSED** (`edcfed36`) |
+| `895429566` | 90 | angle | pod1 ~2.2° — **α** surface of β | **CLOSED** (`edcfed36`) |
+| `895515899` | 60 | pos | pod3 Δy=−7 — **β** | **CLOSED** (`edcfed36`) |
+| `895564994` | 47 | pos | pod2 Δx=−6 — **β** | **CLOSED** (`edcfed36`) |
+| `895612448` | 239 | pos | late game Δy=−7 — **β** | **CLOSED** (`edcfed36`) |
+| `895637720` | 297 | pos | late Δx=6 — **β** | **CLOSED** (`edcfed36`) |
 
-**No γ catastrophe** in this set. Dominant residual: **integer commit / ULP β** (position just past 5-unit GATE), plus one **angle α**.
+### Exit suite re-verify (Task 7, 2026-07-11) — definition of done
 
-### If physics is the culprit for these 8
+Physics HEAD: `844f7a62` (H5 bounce) on top of β lattice `edcfed36`.
 
-Priority experiments (do **not** loosen GATE):
+| Corpus | Result |
+|---|---|
+| `//src/physics:test_physics` | **PASSED** |
+| Gate A `test_session_battles` | **312/312 Failed:0** turn accuracy 100.00% |
+| Golden `verify_golden_corpus --tier pass` | **200/200** |
+| `latest_battles` GATE | **Passed 2315 / Failed 0 / Skipped 5 / Total 2320** turn accuracy **100.00%** (553215/553215 perfect turns) |
 
-1. Binary-search first double divergence before GATE trip on each id.  
-2. Check collision on fail turn (bounce vs free flight).  
-3. Thrust/friction ULP near integer axes for the ±6 pos cases.  
-4. Angle-only case `895429566`: rotate lattice / principal angle / long-horizon accumulate.  
-5. Promote any pure numeric isolation to `//src/physics:test_physics`.  
-6. Re-run Gate A + golden + these 8 after each change.
+**All 8 original residuals closed.** Skips (5) are non-battle sidecars / non-testable files only — not physics fails.
 
 ## 7. Bottom line
 
 1. **Pre-existing warehouse was already 100% under GATE** — not inventing a green bar.  
-2. **Fresh post-max-id battles surface a real ~0.2% fail rate (8/2320)** — long-tail Fidelity risk is **not zero** on new data.  
-3. Failures cluster as **β (pos ±6..7)** + **one α (angle)** — classic residual classes; engine levers in §4 apply.  
-4. Non-physics skips/timeouts remain separate.  
-5. This branch delivers: investigation, `--min-id` scrape, `latest_battles` corpus + verify numbers for follow-up physics work.
+2. **Fresh post-max-id battles initially surface ~0.2% fail rate (8/2320)** — long-tail Fidelity risk was real on new data.  
+3. Failures clustered as **β (pos ±6..7, thrust ULP)** + **one α (angle surface of β)** + **one bounce γ-seed** (`895131867`).  
+4. **β lattice** (`edcfed36`) closed 7/8; **H5 bounce** (`844f7a62`) closed residual 895131867.  
+5. **Exit suite (Task 7): latest_battles GATE 100.00% turn accuracy, Failed:0** under frozen `GATE_*`.  
+6. Non-physics skips/timeouts remain separate (5 skips on latest corpus).
 
 ## 8. Related paths
 
 - Fidelity SSOT: `src/physics/fidelity_math.h`, `fidelity_world_step.h`  
 - Gate: `docs/VERIFICATION_TRUTH_POLICY.md`, `sim/tolerance_policy.py`  
 - Scraper: `battles/scripts/scrape_leaderboard.py`  
-- Latest: `battles/latest_battles/`
+- Latest: `battles/latest_battles/`  
+- Forensics: `docs/artifacts/LATEST_FAILS_FORENSICS.md`
