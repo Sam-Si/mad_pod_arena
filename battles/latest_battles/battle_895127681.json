@@ -1,0 +1,61 @@
+{
+  "frames": [
+    {
+      "gameInformation": "",
+      "summary": "$0 rank: 1\n$1 rank: 1\n",
+      "view": " 0\nCodersStrikeBack\n16000 9000 400 600 4 0.3141592653589793\n14090 7769 13852 1222 10243 4947 6119 2216 2994 5166 6269 7779\n0 13590.0 7787.0 0 14590.0 7751.0 1 12591.0 7823.0 1 15589.0 7715.0\n13590.0 7787.0 0 0 0 0 null null null 0 1 1\n\"\"\n14590.0 7751.0 0 0 0 0 null null null 0 1 1\n\"\"\n12591.0 7823.0 0 0 0 0 null null null 0 1 1\n\"\"\n15589.0 7715.0 0 0 0 0 null null null 0 1 1\n\"\"\n1:100 1:100\n",
+      "keyframe": true,
+      "agentId": -1
+    },
+    {
+      "gameInformation": "Pod 1 of player $0 moves towards (10882, -1839) at power 200\nPod 2 of player $0 moves towards (10451, -1352) at power 0\n",
+      "stdout": "10882 -1839 200\n10451 -1352 0\n",
+      "view": " 1\n",
+      "keyframe": false,
+      "agentId": 0
+    },
+    {
+      "gameInformation": "¤RED¤Timeout: the program did not provide 2 input lines in due time... $1 will no longer be active in this game.§RED§\n",
+      "stdout": "13852 1222 0\n",
+      "summary": "$0 rank: 1\n$1 eliminated! rank: 2\n",
+      "view": " 2\n13536.0 7594.0 -46 -163 200 0 10882 -1839 -1.8450299624369075 0 1 1\n\"\"\n14590.0 7751.0 0 0 0 0 10451 -1352 -1.9975396871043576 0 1 2\n\"\"\n12591.0 7823.0 0 0 0 1 null null null 0 1 3\n\"\"\n15589.0 7715.0 0 0 0 1 null null null 0 1 4\n\"\"\n1:99 2:99\n",
+      "keyframe": true,
+      "agentId": 1
+    }
+  ],
+  "gameId": 895127681,
+  "refereeInput": "seed=119052492\npod_timeout=100\nmap=14090 7769 13852 1222 10243 4947 6119 2216 2994 5166 6269 7779\npod_per_player=2\n",
+  "scores": [
+    2.0,
+    0.0
+  ],
+  "ranks": [
+    0,
+    1
+  ],
+  "tooltips": [
+    "{\"turn\":2,\"text\":\"$1: timeout!\",\"event\":1}"
+  ],
+  "agents": [
+    {
+      "index": 0,
+      "codingamer": {
+        "userId": 7210216,
+        "pseudo": "benj-gh"
+      },
+      "agentId": 6538231,
+      "score": 39.81598324487267,
+      "valid": true
+    },
+    {
+      "index": 1,
+      "codingamer": {
+        "userId": 6094633,
+        "pseudo": "Intox7"
+      },
+      "agentId": 5391731,
+      "score": 7.6937198787442895,
+      "valid": true
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "frames": [
+    {
+      "gameInformation": "",
+      "summary": "$0 rank: 1\n$1 rank: 1\n",
+      "view": " 0\nCodersStrikeBack\n16000 9000 400 600 4 0.3141592653589793\n11496 6050 9083 1848 4981 5232\n0 11062.0 6299.0 0 11930.0 5801.0 1 10195.0 6797.0 1 12797.0 5303.0\n11062.0 6299.0 0 0 0 0 null null null 0 1 1\n\"\"\n11930.0 5801.0 0 0 0 0 null null null 0 1 1\n\"\"\n10195.0 6797.0 0 0 0 0 null null null 0 1 1\n\"\"\n12797.0 5303.0 0 0 0 0 null null null 0 1 1\n\"\"\n1:100 1:100\n",
+      "keyframe": true,
+      "agentId": -1
+    },
+    {
+      "gameInformation": "Pod 1 of player $0 boosts towards (9083, 1848)\nPod 2 of player $0 boosts towards (9083, 1848)\n",
+      "stdout": "9083 1848 BOOST\n9083 1848 BOOST\n",
+      "view": " 1\n",
+      "keyframe": false,
+      "agentId": 0
+    },
+    {
+      "gameInformation": "Pod 1 of player $1 moves towards (9099, 1919) at power 200\nPod 2 of player $1 moves towards (8263, 3196) at power 200\n",
+      "stdout": "9099 1919 200 Let's go !\n8263 3196 200 Let's go !\n",
+      "summary": "$0 rank: 1\n$1 rank: 2\n",
+      "view": " 2\n10798.0 5705.0 -224 -504 650 0 9083 1848 -1.9891665657008653 0 1 1\n\"\"\n11550.0 5274.0 -322 -448 650 0 9083 1848 -2.194959313535425 0 1 2\n\"\"\n10151.0 6602.0 -37 -165 200 0 9099 1919 -1.7918083065206818 0 1 3\n\"Let's go !\"\n12616.0 5219.0 -154 -71 200 0 8263 3196 -2.7065725683602944 0 1 4\n\"Let's go !\"\n1:99 2:99\n",
+      "keyframe": true,
+      "agentId": 1
+    },
+    {
+      "gameInformation": "Pod 1 of player $0 moves towards (10129, 4962) at power 200\nPod 2 of player $0 enabled its shield\n",
+      "stdout": "10129 4962 200\n10962 4465 SHIELD\n",
+      "view": " 3\n",
+      "keyframe": false,
+      "agentId": 0
+    },
+    {
+      "gameInformation": "¤RED¤Timeout: the program did not provide 2 input lines in due time... $1 will no longer be active in this game.§RED§\n",
+      "stdout": "",
+      "summary": "$0 rank: 1\n$1 eliminated! rank: 2\n",
+      "view": " 4\n10440.0 5052.0 -304 -554 200 0 10129 4962 -2.3033258310598446 0 1 1\n\"\"\n11228.0 4826.0 -273 -380 0 0 10962 4465 -2.1992985604363304 1 1 2\n\"\"\n10114.0 6437.0 -31 -140 0 1 null null -1.7918083065206818 0 1 3\n\"\"\n12462.0 5148.0 -130 -60 0 1 null null -2.7065725683602944 0 1 4\n\"\"\n1:98 2:98\n",
+      "keyframe": true,
+      "agentId": 1
+    }
+  ],
+  "gameId": 895491385,
+  "refereeInput": "seed=170828689\npod_timeout=100\nmap=11496 6050 9083 1848 4981 5232\npod_per_player=2\n",
+  "scores": [
+    2.0,
+    0.0
+  ],
+  "ranks": [
+    0,
+    1
+  ],
+  "tooltips": [
+    "{\"turn\":4,\"text\":\"$1: timeout!\",\"event\":1}"
+  ],
+  "agents": [
+    {
+      "index": 0,
+      "codingamer": {
+        "userId": 735910,
+        "pseudo": "Agade",
+        "avatar": 1997542876524
+      },
+      "agentId": 6543638,
+      "score": 49.228648562267274,
+      "valid": true
+    },
+    {
+      "index": 1,
+      "codingamer": {
+        "userId": 1343111,
+        "pseudo": "Thal",
+        "avatar": 4602256436099
+      },
+      "agentId": 634029,
+      "score": 4.376863659568518,
+      "valid": true
+    }
+  ]
+}

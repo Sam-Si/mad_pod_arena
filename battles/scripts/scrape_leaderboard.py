@@ -430,9 +430,32 @@ def setup_robust_session(cookie=None):
     return session
 
 
-def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="battles/leaderboard_battles", cookie=None):
+def _eligible_game_id(game_id, min_id=None):
+    """True if game_id may be persisted: > RETENTION floor and (optional) > min_id."""
+    try:
+        gid = int(game_id)
+    except (TypeError, ValueError):
+        return False
+    if gid <= MIN_BATTLE_ID:
+        return False
+    if min_id is not None and gid <= int(min_id):
+        return False
+    return True
+
+
+def scrape_leaderboard(
+    puzzle_handle,
+    start=0,
+    limit_players=5,
+    output_dir="battles/leaderboard_battles",
+    cookie=None,
+    min_id=None,
+):
     """
     Scrape battle replays from the CodinGame leaderboard.
+
+    min_id: if set, only download battles with gameId strictly greater than min_id
+            (and always greater than MIN_BATTLE_ID per RETENTION.md).
     """
     os.makedirs(output_dir, exist_ok=True)
     session = setup_robust_session(cookie)
@@ -442,6 +465,7 @@ def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="batt
     leaderboard_payload = [puzzle_handle, None, "global", {"active": False, "column": "", "filter": ""}]
 
     print(f"[*] Fetching leaderboard -> {leaderboard_url}")
+    print(f"[*] Retention floor: id > {MIN_BATTLE_ID}; min_id filter: {min_id!r}")
     try:
         response = session.post(leaderboard_url, json=leaderboard_payload)
         response.raise_for_status()
@@ -458,6 +482,8 @@ def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="batt
     # Load local checksums registry for instant offline verification
     checksums = get_checksum_map(output_dir)
     pending_game_ids = set()
+    seen_ids = 0
+    filtered_low = 0
 
     for idx, user_row in enumerate(target_users):
         rank = start + idx + 1
@@ -486,6 +512,10 @@ def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="batt
             game_id = battle.get("gameId") or battle.get("id")
             if not game_id:
                 continue
+            seen_ids += 1
+            if not _eligible_game_id(game_id, min_id=min_id):
+                filtered_low += 1
+                continue
 
             file_path = os.path.join(output_dir, f"battle_{game_id}.json")
             
@@ -494,14 +524,15 @@ def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="batt
             if os.path.exists(file_path) and is_file_accurate(file_path, check_stderr=False, expected_checksum=expected):
                 continue
                 
-            pending_game_ids.add(game_id)
+            pending_game_ids.add(int(game_id))
 
     print("\n" + "=" * 80)
+    print(f"[*] Scanned game ids: {seen_ids}; filtered by min_id/retention: {filtered_low}")
     print(f"[*] Identified {len(pending_game_ids)} new/unverified games to download.")
     print("=" * 80)
 
     # Run robust parallel downloader
-    download_all_parallel(list(pending_game_ids), output_dir, session, session.headers, checksums)
+    download_all_parallel(sorted(pending_game_ids), output_dir, session, session.headers, checksums)
 
     # Save finalized checksum database
     checksum_file = os.path.join(output_dir, ".checksums.json")
@@ -515,12 +546,20 @@ def scrape_leaderboard(puzzle_handle, start=0, limit_players=5, output_dir="batt
     migrate_and_deduplicate(output_dir)
 
 
-def scrape_user_battles(target_user_id, puzzle_handle="coders-strike-back", output_dir="battles/leaderboard_battles", limit_players=None, cookie=None):
+def scrape_user_battles(
+    target_user_id,
+    puzzle_handle="coders-strike-back",
+    output_dir="battles/leaderboard_battles",
+    limit_players=None,
+    cookie=None,
+    min_id=None,
+):
     """
     Scrapes all battles for a specific userId by scanning leaderboard players.
     """
     os.makedirs(output_dir, exist_ok=True)
     session = setup_robust_session(cookie)
+    print(f"[*] Retention floor: id > {MIN_BATTLE_ID}; min_id filter: {min_id!r}")
 
     # 1. Fetch leaderboard
     leaderboard_url = f"{BASE_URL}/Leaderboards/getFilteredPuzzleLeaderboard"
@@ -616,6 +655,8 @@ def scrape_user_battles(target_user_id, puzzle_handle="coders-strike-back", outp
     pending_game_ids = set()
 
     for game_id in sorted(matched_games.keys()):
+        if not _eligible_game_id(game_id, min_id=min_id):
+            continue
         file_path = os.path.join(output_dir, f"battle_{game_id}.json")
         expected = checksums.get(str(game_id))
         
@@ -623,7 +664,7 @@ def scrape_user_battles(target_user_id, puzzle_handle="coders-strike-back", outp
         if os.path.exists(file_path) and is_file_accurate(file_path, check_stderr=False, expected_checksum=expected):
             continue
             
-        pending_game_ids.add(game_id)
+        pending_game_ids.add(int(game_id))
 
     print("\n" + "=" * 80)
     print(f"[*] Identified {len(pending_game_ids)} new/unverified matches to download.")
@@ -665,6 +706,15 @@ if __name__ == "__main__":
                         help="Trigger standalone deduplication on the output-dir without scraping")
     parser.add_argument("--cookie", type=str, default=None,
                         help="Raw cookie string to authenticate requests and retrieve full cerr/stderr logs")
+    parser.add_argument(
+        "--min-id",
+        type=int,
+        default=None,
+        help=(
+            "Only download battles with gameId strictly greater than this value "
+            f"(always also enforces id > {MIN_BATTLE_ID} per RETENTION.md)"
+        ),
+    )
 
     args = parser.parse_args()
 
@@ -679,7 +729,8 @@ if __name__ == "__main__":
                 puzzle_handle=PUZZLE_NAME,
                 output_dir=args.output_dir,
                 limit_players=args.limit_players,
-                cookie=args.cookie
+                cookie=args.cookie,
+                min_id=args.min_id,
             )
         else:
             scrape_leaderboard(
@@ -687,5 +738,6 @@ if __name__ == "__main__":
                 start=args.start_rank,
                 limit_players=args.limit_leaderboard,
                 output_dir=args.output_dir,
-                cookie=args.cookie
+                cookie=args.cookie,
+                min_id=args.min_id,
             )
