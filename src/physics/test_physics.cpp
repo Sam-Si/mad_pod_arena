@@ -1189,7 +1189,7 @@ static void test_fidelity_edge_cases() {
     test_latest_895612448_from_isolation();
     test_latest_895637720_from_isolation();
     test_regression_pole_pos20_other541_plain();
-    // latest_battles bounce residual 895131867 (H1 material-sep)
+    // latest_battles bounce 895131867 (H5 roundHalfUpBounce; CG y=6326)
     test_latest_895131867_bounce_seed_turn42();
 }
 
