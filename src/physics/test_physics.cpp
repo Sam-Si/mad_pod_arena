@@ -1112,8 +1112,8 @@ static void test_regression_pole_pos20_other541_plain() {
 // latest_battles bounce residual 895131867 — first EXACT miss turn 42.
 // Harness: GT keyframe 41 + turns[42] actions → one fidelity world step.
 // Current code: pod0 y=6325; CG GT y=6326. Vel/angle exact on seed turn.
-// Root (isolation): worldBounce dd is 799.999... (≤800) so separation with
-// kEpsilon shifts pod0.py by ~−5.8e-6 across roundHalfUp half-integer → 6325.
+// Root (isolation): worldBounce contact dd ULP-under 800 must not fire kEpsilon
+// separation (that path shifted pod0.py across roundHalfUp → 6325 vs CG 6326).
 // Not thrust lattice (pod0 thr=0). See docs/artifacts/LATEST_FAILS_FORENSICS.md.
 // ---------------------------------------------------------------------------
 static void test_latest_895131867_bounce_seed_turn42() {
@@ -1143,7 +1143,7 @@ static void test_latest_895131867_bounce_seed_turn42() {
 
     // GT keyframe 42: coll 3/0 @ t≈0.445 force≈444; only seed miss is pod0.y.
     EXPECT_EQ_D(g.pods[0].p.x, 7003.0);
-    EXPECT_EQ_D(g.pods[0].p.y, 6326.0);  // FAILS today: sim y=6325 (H1 separation)
+    EXPECT_EQ_D(g.pods[0].p.y, 6326.0);  // CG keyframe; H1 material-sep fix
     EXPECT_EQ_D(g.pods[0].s.x, -256.0);
     EXPECT_EQ_D(g.pods[0].s.y, 176.0);
     EXPECT_NEAR(g.pods[0].angle, -1.6408219236026278, 1e-12);
@@ -1190,7 +1190,7 @@ static void test_fidelity_edge_cases() {
     test_latest_895612448_from_isolation();
     test_latest_895637720_from_isolation();
     test_regression_pole_pos20_other541_plain();
-    // latest_battles bounce residual (expect FAIL until Task 6 worldBounce fix)
+    // latest_battles bounce residual 895131867 (H1 material-sep)
     test_latest_895131867_bounce_seed_turn42();
 }
 
