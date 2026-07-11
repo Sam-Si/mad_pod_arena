@@ -73,6 +73,47 @@ Primary `forensics/compare_<id>.log` = **committed** GATE stdout. Also: `exact_c
 
 **Lever:** `src/physics/fidelity_world_step.h` (`worldBounce` / TOI scan / impulse integerization) — not `applyFidelityThrust`. **WIP lattice does not fix** (same GATE@48).
 
+#### Task 5 isolation (2026-07-11) — turn 42 bounce seed locked
+
+**Harness (post lattice `edcfed36`):** EXACT first miss **turn 42**; GATE first fail **turn 48**. Micro-replay from GT keyframe 41 + `turns[42]` reproduces seed without full-battle prefix.
+
+**Cascade (sim−gt, current Fidelity):**
+
+| t | Diffs | GT coll |
+|--:|---|---|
+| 41 | none (exact) | 2/0 |
+| 42 | p0 Δp=(0,−1); vel/ang exact | **3/0** t≈0.445 force≈444 imp (−137,360) |
+| 43 | p0 Δp=(−1,+1) Δvy=+1; p2 Δp=(+1,−1) | 2/0 |
+| 44–45 | free-flight drift grows | none |
+| 46 | multi-ram spreads to p0/p2/p3 | 2/0 + 3/0 |
+| 48 | p2 Δp=(−6,+2); p3 Δp=(+4,+6) **GATE** | none |
+
+**Seed checklist:** first EXACT **pos only** (pod0 y); victim thr **0**; pair **3/0** mid-turn TOI; error grows after subsequent rams.
+
+**C++ mid-step dump (Task 5):**
+
+| Quantity | Value |
+|---|---|
+| TOI pair | only 3/0 at `0.44485030654718183` (matches GT) |
+| Contact `dd` | `799.99999999999977` → `dd <= 800` **true** |
+| Force | raw 222.12 → doubled **444.234…** (matches GT; not min-impulse) |
+| Shield mass | both timers 0 (not H3) |
+| Separation | `kEpsilon` shift on pod0 ≈ (−8.1e-6, **−5.8e-6**) |
+| Pre-`roundHalfUp` pod0.y | **`6325.49999935046`** → rounds to **6325** |
+| Without separation (dd slightly >800) | y≈`6325.500005` → would round to **6326** (GT) |
+
+**Hypothesis rank:**
+
+| Rank | H | Verdict |
+|---:|---|---|
+| **1** | **H1** separation epsilon / `dd <= 800` | **PRIMARY** — ULP-under 800 fires separation; ε·ny crosses half-integer |
+| 2 | H5 endTurn round after bounce | Surface: half-up of borderline y; root is H1 offset |
+| 3 | H2 min impulse | **Ruled out** — force≫120, matches GT 444 |
+| 4 | H3 shield mass 0.1 | **Ruled out** — shieldtimer 0 both pods |
+| 5 | H4 TOI order | **Ruled out** — single pair TOI this turn |
+
+**Unit lock:** `test_latest_895131867_bounce_seed_turn42` in `src/physics/test_physics.cpp` (expect FAIL until Task 6). Logs: `implementer/task5/`.
+
 ---
 
 ### 2. `battle_895340085` — GATE@93 — **β free-flight ULP (pure cardinal)**

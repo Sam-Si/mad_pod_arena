@@ -1108,6 +1108,58 @@ static void test_regression_pole_pos20_other541_plain() {
     std::cout << "regression_pole_pos20_other541_plain: ok\n";
 }
 
+// ---------------------------------------------------------------------------
+// latest_battles bounce residual 895131867 — first EXACT miss turn 42.
+// Harness: GT keyframe 41 + turns[42] actions → one fidelity world step.
+// Current code: pod0 y=6325; CG GT y=6326. Vel/angle exact on seed turn.
+// Root (isolation): worldBounce dd is 799.999... (≤800) so separation with
+// kEpsilon shifts pod0.py by ~−5.8e-6 across roundHalfUp half-integer → 6325.
+// Not thrust lattice (pod0 thr=0). See docs/artifacts/LATEST_FAILS_FORENSICS.md.
+// ---------------------------------------------------------------------------
+static void test_latest_895131867_bounce_seed_turn42() {
+    csb::Game g;
+    g.initialize({{10566.0, 5057.0},
+                  {13086.0, 2324.0},
+                  {4579.0, 2185.0},
+                  {7365.0, 4950.0},
+                  {3304.0, 7247.0},
+                  {14588.0, 7685.0}},
+                 3);
+    // GT keyframe after turn 41 (perfect match through t41).
+    g.setPodState(0, 7144.0, 6003.0, 60.0, 466.0, -1.9546213957064795, 4, 0, 0);
+    g.setPodState(1, 3421.0, 4721.0, -14.0, 131.0, 1.2389323371930934, 3, 0, 0);
+    g.setPodState(2, 7074.0, 5135.0, 148.0, 96.0, 1.5184324353716177, 2, 0, 0);
+    g.setPodState(3, 7970.0, 6563.0, -135.0, 271.0, 2.9147008635784277, 4, 0, 0);
+    g.setPlayerTimeouts(96, 93);
+    for (int i = 0; i < 4; ++i) {
+        g.pods[i].hasRotated = true;
+    }
+    // Battle turns[42] actions (produce keyframe 42).
+    g.applyAction(0, 7074, 5005, "0");
+    g.applyAction(1, 3747, 5667, "0");
+    g.applyAction(2, -18808, 101728, "200");
+    g.applyAction(3, -91649, -2153, "200");
+    g.nextTurn();
+
+    // GT keyframe 42: coll 3/0 @ t≈0.445 force≈444; only seed miss is pod0.y.
+    EXPECT_EQ_D(g.pods[0].p.x, 7003.0);
+    EXPECT_EQ_D(g.pods[0].p.y, 6326.0);  // FAILS today: sim y=6325 (H1 separation)
+    EXPECT_EQ_D(g.pods[0].s.x, -256.0);
+    EXPECT_EQ_D(g.pods[0].s.y, 176.0);
+    EXPECT_NEAR(g.pods[0].angle, -1.6408219236026278, 1e-12);
+
+    EXPECT_EQ_D(g.pods[1].p.x, 3407.0);
+    EXPECT_EQ_D(g.pods[1].p.y, 4852.0);
+    EXPECT_EQ_D(g.pods[2].p.x, 7170.0);
+    EXPECT_EQ_D(g.pods[2].p.y, 5424.0);
+    EXPECT_EQ_D(g.pods[3].p.x, 7836.0);
+    EXPECT_EQ_D(g.pods[3].p.y, 6960.0);
+    EXPECT_EQ_D(g.pods[3].s.x, 22.0);
+    EXPECT_EQ_D(g.pods[3].s.y, 435.0);
+
+    std::cout << "latest_895131867_bounce_seed_turn42: ok\n";
+}
+
 static void test_fidelity_edge_cases() {
     test_rotate_full_snap_within_18();
     test_rotate_exact_18_max_rotate();
@@ -1138,6 +1190,8 @@ static void test_fidelity_edge_cases() {
     test_latest_895612448_from_isolation();
     test_latest_895637720_from_isolation();
     test_regression_pole_pos20_other541_plain();
+    // latest_battles bounce residual (expect FAIL until Task 6 worldBounce fix)
+    test_latest_895131867_bounce_seed_turn42();
 }
 
 int main() {
